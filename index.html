@@ -1,0 +1,2096 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOOM/SCROLL — un feed satirico che vuole il tuo QI</title>
+<meta name="description" content="Un feed satirico italiano dove l'obiettivo è smettere di scrollare. Il tuo QI cala ogni 16 secondi. Il cervello ti implora. Gli sponsor wellness ti vogliono salvare a pagamento. 5 finali da scoprire.">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="DOOM/SCROLL — un feed satirico che vuole il tuo QI">
+<meta property="og:description" content="Un feed satirico italiano: il tuo QI cala, il cervello ti implora di smettere, gli sponsor wellness ti vogliono salvare a pagamento. 5 finali da scoprire.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:locale" content="it_IT">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOOM/SCROLL — un feed satirico che vuole il tuo QI">
+<meta name="twitter:description" content="Un feed satirico italiano: il tuo QI cala, il cervello ti implora di smettere, gli sponsor wellness ti vogliono salvare a pagamento. 5 finali da scoprire.">
+<meta name="twitter:image" content="og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0d0d'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23e03535'/%3E%3C/svg%3E">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a; --bg-card: #111; --border: #252525; --border-hover: #3a3a3a;
+    --text: #ffffff; --text-dim: #e8e8e8; --text-muted: #cccccc; --text-faint: #aaaaaa;
+    --red: #e03535; --red-bg: #1a0a0a; --green: #4ca84a; --green-bg: #0a1a0a;
+  }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  #app { max-width: 480px; margin: 0 auto; padding: 0 12px 80px; }
+  .header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 0 10px; z-index: 50; }
+  .app-title { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; font-family: 'Courier New', monospace; }
+  .app-subtitle { font-size: 10px; color: var(--text-faint); margin: 0 0 10px; font-family: 'Courier New', monospace; letter-spacing: 0.05em; line-height: 1.5; }
+  .app-subtitle .pill { color: var(--text-muted); }
+  .app-subtitle .pill.found { color: var(--text-dim); }
+  .brand { color: var(--text-dim); letter-spacing: 0.22em; }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .iq-stage { margin-left: auto; font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; text-transform: lowercase; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .stat { background: #161616; border: 1px solid #252525; border-radius: 8px; padding: 8px 10px; text-align: center; }
+  .stat-val { font-size: 20px; font-weight: 600; color: var(--red); font-family: 'Courier New', monospace; line-height: 1; transition: color 0.4s; }
+  .stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .progress-bar { height: 2px; background: #1e1e1e; margin-top: 10px; border-radius: 1px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--red); width: 100%; transition: width 0.6s ease; }
+  .progress-lbl { font-size: 11px; color: var(--text-faint); margin-top: 4px; font-family: 'Courier New', monospace; text-align: right; letter-spacing: 0.04em; }
+  .feed { padding: 14px 0; }
+  .news-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; transition: border-color 0.2s; animation: fadeUp 0.3s ease; }
+  .news-card:hover { border-color: var(--border-hover); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .news-src { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+  .news-hl { font-size: 14px; font-weight: 500; color: #ffffff; line-height: 1.45; margin-bottom: 10px; }
+  .news-meta { display: flex; align-items: center; gap: 8px; }
+  .news-tag { font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #1a1a1a; color: var(--text-muted); border: 1px solid #252525; text-transform: uppercase; letter-spacing: 0.05em; }
+  .news-time { font-size: 11px; color: var(--text-faint); margin-left: auto; font-family: 'Courier New', monospace; }
+  .news-card.peak { border-left: 2px solid var(--red); }
+  .news-card.peak .news-hl { color: #ffdddd; font-style: italic; }
+  .news-card.interesting .news-tag { background: #131c13; color: #6fa66f; border-color: #1c2c1c; }
+  .news-card.lercio { border-left: 2px solid #d4a017; background: #131108; }
+  .news-card.lercio .news-hl { color: #fff8e8; }
+  .news-card.lercio .news-src { color: #c8920a; letter-spacing: 0.12em; }
+  .news-card.lercio .news-tag { background: #1e1800; color: #c8920a; border-color: #2e2400; }
+  .news-card.lercio::before { content: 'SATIRA'; display: inline-block; font-size: 9px; font-family: 'Courier New', monospace; color: #c8920a; background: #2a1e00; border: 1px solid #3a2c00; border-radius: 3px; padding: 1px 5px; letter-spacing: 0.12em; margin-bottom: 7px; }
+  .promo-card { background: linear-gradient(135deg, #21180b 0%, #1a1a1a 58%, #17100c 100%); border: 1px dashed #b9822d; border-radius: 10px; padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; animation: fadeUp 0.3s ease; box-shadow: 0 0 0 1px rgba(185,130,45,.12); }
+  .promo-card::before { content: 'SPONSOR WELLNESS / TRAPPOLA DI LUCIDITÀ'; display: block; font-size: 10px; color: #d8bd77; letter-spacing: .16em; font-family: 'Courier New', monospace; margin-bottom: 7px; opacity: .9; }
+  .promo-card:hover { border-color: #666; }
+  .promo-label { font-size: 10px; color: #c8a045; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 5px; font-family: 'Courier New', monospace; }
+  .promo-title { font-size: 14px; font-weight: 600; color: #fff5e0; margin-bottom: 4px; }
+  .promo-desc { font-size: 12px; color: #d4be9a; margin-bottom: 8px; line-height: 1.4; }
+  .promo-cta { display: inline-block; font-size: 11px; padding: 5px 12px; background: #2a2015; color: #c8a045; border-radius: 4px; border: 1px solid #443015; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .quiz-card { background: var(--bg-card); border: 1px solid #2a3a2a; border-left: 2px solid #5a8a5a; border-radius: 10px; padding: 14px; margin-bottom: 10px; animation: fadeUp 0.3s ease; }
+  .quiz-label { font-size: 11px; color: #6fa66f; margin-bottom: 6px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+  .quiz-q { font-size: 14px; color: #ffffff; line-height: 1.45; margin-bottom: 12px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 6px; }
+  .quiz-btn { background: #161616; border: 1px solid #2e2e2e; color: #e8e8e8; padding: 9px 12px; border-radius: 6px; text-align: left; cursor: pointer; font-size: 12px; font-family: inherit; transition: all 0.15s; }
+  .quiz-btn:hover { background: #1e1e1e; border-color: #444; color: #ffffff; }
+  .quiz-btn.answered-wrong { border-color: var(--red); background: var(--red-bg); color: #ffffff; cursor: default; }
+  .quiz-btn.answered-right { border-color: var(--green); background: var(--green-bg); color: #ffffff; cursor: default; }
+  .quiz-btn:disabled { opacity: 0.4; cursor: default; }
+  .quiz-feedback { font-size: 11px; color: var(--text-muted); font-family: 'Courier New', monospace; margin-top: 8px; font-style: italic; }
+  .load-more { width: 100%; padding: 13px; background: var(--bg-card); border: 1px solid #252525; border-radius: 8px; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 4px; font-family: 'Courier New', monospace; letter-spacing: 0.04em; transition: border-color 0.2s, color 0.2s; }
+  .load-more:hover { border-color: var(--red); color: var(--text-dim); }
+  .load-more.glitch-1 { animation: glitch1 0.3s; }
+  .load-more.glitch-2 { animation: glitch2 0.3s; }
+  .load-more.glitch-3 { animation: glitch3 0.3s; color: #ff4040 !important; border-color: var(--red) !important; }
+  @keyframes glitch1 { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-1px); } }
+  @keyframes glitch2 { 0%,100% { transform: translateX(0); } 25% { transform: translateX(2px); } 75% { transform: translateX(-2px); } }
+  @keyframes glitch3 { 0%,100% { transform: translateX(0); text-shadow: none; } 33% { transform: translateX(-3px); text-shadow: 2px 0 var(--red); } 66% { transform: translateX(3px); text-shadow: -2px 0 #4040ff; } }
+  .brain-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; animation: fadeIn 0.4s ease; }
+  .brain-overlay.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .brain-modal { background: var(--bg); border: 1px solid var(--text-dim); border-radius: 12px; padding: 24px; max-width: 420px; width: 100%; animation: scaleIn 0.3s ease; }
+  @keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .brain-label { font-size: 10px; color: var(--text-dim); font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .brain-label::before { content: '◉'; color: var(--text-dim); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .brain-msg { font-size: 16px; color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; margin-bottom: 20px; min-height: 60px; }
+  .brain-actions { display: flex; gap: 8px; }
+  .brain-btn { flex: 1; padding: 11px; border-radius: 8px; border: 1px solid; background: transparent; cursor: pointer; font-size: 12px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; }
+  .brain-btn.listen { border-color: var(--green); color: var(--green); }
+  .brain-btn.listen:hover { background: var(--green-bg); }
+  .brain-btn.ignore { border-color: var(--text-faint); color: var(--text-muted); }
+  .brain-btn.ignore:hover { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+  /* ── Ending overlay base ── */
+  .ending-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 200; padding: 24px 20px; overflow-y: auto; }
+  .ending-overlay.active { display: flex; }
+  .ending-inner { width: 100%; max-width: 420px; text-align: center; }
+
+  /* ── Stats block (shared, inherits color from parent) ── */
+  .ending-stats { margin: 28px auto 10px; padding: 12px 0; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; opacity: 0.55; max-width: 300px; font-size: 12px; font-family: 'Courier New', monospace; }
+  .ending-stats div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .ending-progress { margin-top: 18px; font-size: 11px; font-family: 'Courier New', monospace; letter-spacing: 0.1em; opacity: 0.6; }
+  .ending-finals { font-size: 10px; margin-top: 5px; font-family: 'Courier New', monospace; letter-spacing: 0.04em; opacity: 0.45; line-height: 1.7; }
+  .ending-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+  .ending-restart, .ending-share { padding: 11px 24px; background: transparent; border: 1px solid currentColor; color: currentColor; cursor: pointer; font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 5px; transition: opacity 0.2s; }
+  .ending-restart:hover, .ending-share:hover { opacity: 0.65; }
+  .ending-share.copied { opacity: 0.4; }
+
+  /* ── NIRVANA — quasi vuoto, freddo, cinico ── */
+  .ending-overlay.ending-nirvana { background: #060606; color: #cccccc; flex-direction: column; animation: fadeIn 2s ease; }
+  .ending-nirvana .ending-inner { padding-top: 10vh; }
+  .ending-nirvana .e-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.3em; color: #444; margin-bottom: 48px; }
+  .ending-nirvana .e-iq { font-size: 96px; font-family: 'Courier New', monospace; font-weight: 700; color: #222; line-height: 1; margin-bottom: 40px; }
+  .ending-nirvana .e-title { font-size: 13px; font-family: 'Courier New', monospace; letter-spacing: 0.25em; color: #555; margin-bottom: 32px; text-transform: uppercase; }
+  .ending-nirvana .e-body { font-size: 14px; line-height: 2; color: #888; max-width: 340px; margin: 0 auto; }
+  .ending-nirvana .e-body em { color: #555; font-style: normal; display: block; margin-top: 8px; }
+  .ending-nirvana .ending-stats { border-color: #222; }
+  .ending-nirvana .ending-restart, .ending-nirvana .ending-share { border-color: #333; color: #555; }
+
+  /* ── SMETTI — diagnosi cinica, clinical ── */
+  .ending-overlay.ending-smetti { background: #0f0f0f; color: #e0e0e0; flex-direction: column; }
+  .ending-smetti .ending-inner { text-align: left; }
+  .ending-smetti .e-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.2em; color: #555; margin-bottom: 24px; }
+  .ending-smetti .e-title { font-size: 11px; font-family: 'Courier New', monospace; color: #666; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; border-left: 2px solid #333; padding-left: 12px; }
+  .ending-smetti .e-step { font-size: 14px; color: #cccccc; line-height: 1.7; margin-bottom: 10px; padding-left: 20px; position: relative; }
+  .ending-smetti .e-step::before { content: '—'; position: absolute; left: 0; color: #444; }
+  .ending-smetti .e-step.dim { color: #555; }
+  .ending-smetti .e-conclusion { margin-top: 24px; font-size: 13px; font-family: 'Courier New', monospace; color: #444; border-top: 1px solid #222; padding-top: 16px; line-height: 1.8; }
+  .ending-smetti .e-conclusion strong { color: #e03535; font-weight: normal; }
+
+  /* ── QUIT — epico, lento, monumentale ── */
+  .ending-overlay.ending-quit { background: #050a05; color: #c8f0c8; flex-direction: column; position: relative; overflow: hidden; animation: quitPulse 8s ease-in-out infinite; }
+  @keyframes quitPulse {
+    0%, 100% { background: #050a05; }
+    50% { background: #081208; }
+  }
+  /* Sfondo con erba SVG, sottile, decorativo */
+  .ending-quit::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 25vh;
+    background: radial-gradient(ellipse at center bottom, rgba(74,255,74,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ending-quit .ending-inner { position: relative; z-index: 2; padding: 4vh 0 20px; }
+  .ending-quit .e-label {
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5em;
+    color: #2a5a2a;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 0.3s forwards;
+  }
+  .ending-quit .e-title {
+    font-size: 28px;
+    font-family: 'Courier New', monospace;
+    color: #6aff6a;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    text-shadow: 0 0 24px rgba(106,255,106,0.4);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #6aff6a;
+    width: 0;
+    animation: quitTyping 2s steps(20, end) 1.2s forwards, quitCursor 0.8s step-end infinite 3.2s;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+  }
+  @keyframes quitTyping {
+    from { width: 0; }
+    to { width: 11ch; }
+  }
+  @keyframes quitCursor {
+    50% { border-color: transparent; }
+  }
+  .ending-quit .e-subtitle {
+    font-size: 11px;
+    color: #4a7a4a;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.18em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 3.5s forwards;
+  }
+  /* Conquiste come iscrizioni monumentali, niente icone */
+  .ending-quit .e-monument {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .ending-quit .e-line {
+    font-family: 'Courier New', monospace;
+    color: #88dd88;
+    font-size: 14px;
+    line-height: 2.2;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: quitLineIn 1.4s ease forwards;
+  }
+  .ending-quit .e-line.dim {
+    color: #4a7a4a;
+    font-size: 12px;
+  }
+  .ending-quit .e-line:nth-child(1) { animation-delay: 4.5s; }
+  .ending-quit .e-line:nth-child(2) { animation-delay: 5.5s; }
+  .ending-quit .e-line:nth-child(3) { animation-delay: 6.5s; }
+  .ending-quit .e-line:nth-child(4) { animation-delay: 7.5s; }
+  .ending-quit .e-line:nth-child(5) { animation-delay: 8.8s; }
+  @keyframes quitLineIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes quitFadeIn {
+    to { opacity: 1; }
+  }
+  /* Lapide finale: SCREEN TIME 00:00:00 */
+  .ending-quit .e-tombstone {
+    margin: 50px auto 0;
+    max-width: 280px;
+    padding: 22px 16px;
+    border-top: 1px solid #2a5a2a;
+    border-bottom: 1px solid #2a5a2a;
+    text-align: center;
+    opacity: 0;
+    animation: quitFadeIn 2s ease 10s forwards;
+  }
+  .ending-quit .e-tombstone-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: #4a7a4a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .ending-quit .e-tombstone-time {
+    font-family: 'Courier New', monospace;
+    font-size: 32px;
+    color: #6aff6a;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(106,255,106,0.3);
+  }
+  .ending-quit .e-grass { margin: 30px auto 0; opacity: 0.4; display: block; }
+  .ending-quit .ending-stats {
+    border-color: #1a3a1a;
+    color: #4a8a4a;
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 11s forwards;
+  }
+  .ending-quit .ending-progress, .ending-quit .ending-finals {
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 11.5s forwards;
+  }
+  .ending-quit .ending-actions {
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 12s forwards;
+  }
+  .ending-quit .ending-restart, .ending-quit .ending-share { border-color: #2a5a2a; color: #6ab06a; }
+
+  /* ── CAPITALISMO SPIRITUALE — wellness landing page ── */
+  .ending-overlay.ending-capitalismo { background: #faf5e8; color: #2a1a00; flex-direction: column; }
+  .ending-capitalismo .ending-inner { text-align: center; }
+  .ending-capitalismo .e-kicker { font-size: 10px; letter-spacing: 0.25em; color: #c8920a; font-family: 'Courier New', monospace; text-transform: uppercase; margin-bottom: 8px; }
+  .ending-capitalismo .e-logo { font-size: 28px; font-weight: 800; color: #1a0a00; letter-spacing: -0.02em; margin-bottom: 4px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .ending-capitalismo .e-tagline { font-size: 12px; color: #c8920a; margin-bottom: 20px; font-style: italic; }
+  .ending-capitalismo .e-stars { color: #d4a017; font-size: 18px; letter-spacing: 2px; margin-bottom: 6px; }
+  .ending-capitalismo .e-reviews { font-size: 11px; color: #8a6a30; margin-bottom: 20px; }
+  .ending-capitalismo .e-feature { font-size: 13px; color: #3a2a10; line-height: 1.7; padding: 6px 0; border-bottom: 1px solid #e8d8b0; max-width: 320px; margin: 0 auto; text-align: left; display: flex; gap: 10px; }
+  .ending-capitalismo .e-feature::before { content: '✓'; color: #c8920a; flex-shrink: 0; }
+  .ending-capitalismo .e-price-block { margin: 20px auto; max-width: 280px; background: #fff8e8; border: 1px solid #e8d0a0; border-radius: 12px; padding: 16px; }
+  .ending-capitalismo .e-price-old { font-size: 14px; color: #aaa; text-decoration: line-through; margin-bottom: 2px; }
+  .ending-capitalismo .e-price { font-size: 28px; font-weight: 800; color: #c8920a; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .ending-capitalismo .e-price-note { font-size: 10px; color: #8a6a30; margin-top: 2px; }
+  .ending-capitalismo .e-cta { display: block; width: 100%; max-width: 280px; margin: 12px auto 0; padding: 14px; background: #c8920a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; cursor: default; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .ending-capitalismo .e-fine-print { font-size: 10px; color: #b0a080; margin-top: 8px; font-style: italic; }
+  .ending-capitalismo .ending-stats { border-color: #e8d0a0; color: #8a6a30; }
+  .ending-capitalismo .ending-restart, .ending-capitalismo .ending-share { border-color: #d4a040; color: #8a6a30; }
+
+  /* ── BRAINROT — chaos ── */
+  .ending-overlay.ending-brainrot { background: #000; color: #fff; flex-direction: column; overflow: hidden; position: relative; }
+  .ending-brainrot .ending-inner { position: relative; z-index: 2; }
+  .ending-brainrot .e-chaos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+  .ending-brainrot .e-chaos span { position: absolute; font-family: 'Courier New', monospace; animation: brainrotFloat linear infinite; opacity: 0; white-space: nowrap; }
+  @keyframes brainrotFloat { 0% { opacity: 0; transform: translateY(0) rotate(var(--rot)); } 10% { opacity: 1; } 90% { opacity: 0.6; } 100% { opacity: 0; transform: translateY(-120vh) rotate(calc(var(--rot) + 20deg)); } }
+  .ending-brainrot .e-title { font-size: 11px; font-family: 'Courier New', monospace; letter-spacing: 0.3em; color: #ff3030; text-transform: uppercase; margin-bottom: 16px; animation: glitch2 2s infinite; }
+  .ending-brainrot .e-fragments { font-family: 'Courier New', monospace; line-height: 1.6; }
+  .ending-brainrot .e-frag { display: block; font-size: 14px; color: #ddd; margin: 3px 0; }
+  .ending-brainrot .e-frag.loud { font-size: 20px; color: #ff3030; text-shadow: 2px 0 #0ff, -2px 0 #f0f; animation: glitch3 0.8s infinite; font-weight: 700; }
+  .ending-brainrot .e-frag.dim { color: #555; font-size: 11px; }
+  .ending-brainrot .e-frag.mid { color: #ff9040; font-size: 16px; }
+  .ending-brainrot .ending-stats { border-color: #333; opacity: 0.4; }
+  .ending-brainrot .ending-restart, .ending-brainrot .ending-share { border-color: #ff3030; color: #ff3030; }
+
+  .news-comment { margin-top: 9px; padding-top: 8px; border-top: 1px solid #1e1e1e; font-size: 11px; color: #707070; line-height: 1.35; font-family: 'Courier New', monospace; }
+  .news-card.brainrot-news { border-color: #ff3030; box-shadow: 0 0 0 1px rgba(255,48,48,.15); animation: fadeUp 0.3s ease, glitch2 1.2s infinite; }
+  .news-card.brainrot-news .news-hl { color: #ffd0d0; font-family: 'Courier New', monospace; }
+  .promo-card.used { opacity: 0.72; border-style: solid; cursor: default; }
+  .promo-result { margin-top: 9px; padding-top: 8px; border-top: 1px dashed #4a3a22; font-size: 11px; color: #d8bd77; line-height: 1.4; font-family: 'Courier New', monospace; }
+  .toast-wrap { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 300; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
+  .toast { background: rgba(12,12,12,.96); border: 1px solid #333; color: #d8d8d8; border-radius: 8px; padding: 12px 16px; margin-top: 8px; font-size: 13px; font-family: 'Courier New', monospace; box-shadow: 0 8px 28px rgba(0,0,0,.35); animation: toastIn .18s ease, toastOut .4s ease 5s forwards; line-height: 1.5; }
+  .toast.good { border-color: #315a31; color: #a9d6a9; }
+  .toast.bad { border-color: #5a3131; color: #e0a0a0; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+
+  .shop-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 180; padding: 18px; background: rgba(0,0,0,.88); animation: fadeIn .18s ease; }
+  .shop-overlay.active { display: flex; }
+  .shop-modal { width: min(440px, 100%); background: #12100d; border: 1px solid #b9822d; border-radius: 14px; padding: 18px; box-shadow: 0 18px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(185,130,45,.15); }
+  .shop-top { display: flex; gap: 14px; align-items: stretch; margin-bottom: 14px; }
+  .shop-asset { width: 92px; min-width: 92px; border-radius: 12px; border: 1px solid #4a351d; background: radial-gradient(circle at 35% 25%, #443016, #18120d 70%); display: flex; align-items: center; justify-content: center; font-size: 42px; position: relative; overflow: hidden; }
+  .shop-asset::after { content: 'ASSET'; position: absolute; bottom: 6px; right: 7px; font-size: 8px; letter-spacing: .15em; color: #c8a045; opacity: .65; font-family: 'Courier New', monospace; }
+  .shop-kicker { font-size: 9px; color: #c8a045; text-transform: uppercase; letter-spacing: .16em; font-family: 'Courier New', monospace; margin-bottom: 6px; }
+  .shop-title { font-size: 18px; color: #f0dfba; font-weight: 650; line-height: 1.2; margin-bottom: 6px; }
+  .shop-desc { font-size: 13px; color: #b9a27c; line-height: 1.45; }
+  .shop-meta { border-top: 1px dashed #4a351d; border-bottom: 1px dashed #4a351d; padding: 10px 0; margin: 12px 0; font-size: 11px; color: #d8bd77; font-family: 'Courier New', monospace; line-height: 1.6; }
+  .shop-hint { display: none; background: #1d130f; border: 1px solid #693a2a; color: #e0a28d; border-radius: 8px; padding: 9px 10px; font-size: 12px; line-height: 1.35; margin: 10px 0; font-family: 'Courier New', monospace; }
+  .shop-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .shop-btn { flex: 1; padding: 11px; border-radius: 8px; border: 1px solid; background: transparent; cursor: pointer; font-size: 12px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: .08em; }
+  .shop-btn.buy { color: #d8bd77; border-color: #8f6725; background: #201608; }
+  .shop-btn.buy:hover { background: #2a1d0b; }
+  .shop-btn.close { color: #888; border-color: #333; }
+  .shop-btn.close:hover { color: #ccc; border-color: #555; }
+  .quiz-btn.answered-neutral { border-color: #777; background: #181818; color: #e8e8e8; cursor: default; }
+  .quiz-btn.answered-idiot { border-color: #ff3030; background: #230707; color: #ffb0b0; cursor: default; }
+
+  /* ── SPLASH SCREEN ── */
+  .splash-overlay { position: fixed; inset: 0; z-index: 500; background: #050505; display: flex; align-items: center; justify-content: center; padding: 24px; transition: opacity 0.6s ease; }
+  .splash-overlay.hiding { opacity: 0; pointer-events: none; }
+  .splash-inner { max-width: 360px; width: 100%; }
+  .splash-brand { font-size: 11px; letter-spacing: 0.28em; color: #444; font-family: 'Courier New', monospace; text-transform: uppercase; margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+  .splash-brand::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulse 1.5s infinite; }
+  .splash-headline { font-size: 22px; color: #e8e8e8; line-height: 1.45; margin-bottom: 14px; font-weight: 400; letter-spacing: -0.01em; }
+  .splash-headline strong { color: #ffffff; font-weight: 600; }
+  .splash-rules { margin: 24px 0; }
+  .splash-rule { font-size: 12px; color: #555; font-family: 'Courier New', monospace; line-height: 1.7; padding: 3px 0; display: flex; gap: 10px; }
+  .splash-rule::before { content: '—'; color: #333; flex-shrink: 0; }
+  .splash-rule.highlight { color: #888; }
+  .splash-cta { display: block; width: 100%; margin-top: 32px; padding: 14px; background: transparent; border: 1px solid #333; color: #aaa; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+  .splash-cta:hover { border-color: var(--red); color: var(--text-dim); }
+  .splash-returning { font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-top: 16px; text-align: center; line-height: 1.7; }
+  .splash-returning strong { color: #666; }
+  .splash-finals-note { font-size: 10px; color: #333; font-family: 'Courier New', monospace; letter-spacing: 0.06em; margin-top: 8px; }
+
+  /* ── NOTIFICA INTERRUPT ── */
+  .notif-overlay { position: fixed; inset: 0; z-index: 400; display: none; align-items: flex-start; justify-content: center; padding: 20px; background: rgba(0,0,0,0.7); animation: fadeIn 0.3s ease; }
+  .notif-overlay.active { display: flex; }
+  .notif-banner { width: min(380px, 100%); background: #1a1a1a; border: 1px solid #333; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.8); animation: notifDrop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes notifDrop { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .notif-header { background: #111; padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #252525; }
+  .notif-app-icon { width: 22px; height: 22px; background: #1a6a3a; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+  .notif-app-name { font-size: 11px; color: #888; font-family: 'Courier New', monospace; letter-spacing: 0.08em; }
+  .notif-time-label { font-size: 10px; color: #444; margin-left: auto; font-family: 'Courier New', monospace; }
+  .notif-body { padding: 14px; }
+  .notif-sender { font-size: 13px; color: #e8e8e8; font-weight: 600; margin-bottom: 4px; }
+  .notif-text { font-size: 13px; color: #aaa; line-height: 1.45; margin-bottom: 16px; }
+  .notif-actions { display: flex; gap: 8px; }
+  .notif-btn { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid; background: transparent; cursor: pointer; font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s; }
+  .notif-btn.reply { border-color: #2a4a3a; color: #6ab08a; }
+  .notif-btn.reply:hover { background: #0d1f15; }
+  .notif-btn.dismiss { border-color: #2a2a2a; color: #555; }
+  .notif-btn.dismiss:hover { border-color: var(--red); color: #e03535; }
+
+  /* ── CONVERSAZIONE POST-NOTIFICA ── */
+  .conv-overlay { position: fixed; inset: 0; z-index: 410; display: none; align-items: flex-end; justify-content: center; padding: 0; background: rgba(0,0,0,0.9); }
+  .conv-overlay.active { display: flex; }
+  .conv-modal { width: min(420px, 100%); background: #0d0d0d; border-top: 1px solid #252525; padding: 0; max-height: 80vh; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; animation: slideUp 0.3s ease; }
+  @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .conv-header { padding: 14px 16px 10px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; gap: 10px; }
+  .conv-avatar { width: 34px; height: 34px; border-radius: 50%; background: #1a3a2a; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .conv-contact { font-size: 13px; color: #e8e8e8; font-weight: 500; }
+  .conv-status { font-size: 10px; color: #4a8a5a; margin-top: 1px; }
+  .conv-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+  .conv-msg { max-width: 78%; padding: 9px 12px; border-radius: 14px; font-size: 13px; line-height: 1.45; }
+  .conv-msg.them { background: #1e1e1e; color: #ddd; align-self: flex-start; border-radius: 4px 14px 14px 14px; }
+  .conv-msg.me { background: #1a3a2a; color: #c8f0c8; align-self: flex-end; border-radius: 14px 4px 14px 14px; }
+  .conv-choices { padding: 12px 16px 20px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #1a1a1a; }
+  .conv-choice { padding: 11px 14px; background: #141414; border: 1px solid #252525; border-radius: 10px; color: #ccc; font-size: 12px; cursor: pointer; text-align: left; font-family: inherit; transition: all 0.15s; line-height: 1.35; }
+  .conv-choice:hover { border-color: #4a8a5a; color: #e8e8e8; }
+  .conv-end-msg { padding: 12px 16px 20px; font-size: 12px; color: #4a8a5a; font-family: 'Courier New', monospace; text-align: center; }
+
+  /* ── PRESSURE EVENT 8 MIN ── */
+  .news-card.pressure-event { border: 1px solid #333; background: #0d0d0d; position: relative; overflow: hidden; }
+  .news-card.pressure-event::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px); pointer-events: none; animation: scanlines 4s linear infinite; }
+  @keyframes scanlines { from { background-position: 0 0; } to { background-position: 0 100px; } }
+  .pressure-event-label { font-size: 9px; color: #e03535; font-family: 'Courier New', monospace; letter-spacing: 0.2em; margin-bottom: 8px; animation: glitch1 2s infinite; }
+  .pressure-event-msg { font-size: 15px; color: #e8e8e8; line-height: 1.5; font-family: 'Courier New', monospace; }
+  .pressure-event-sub { font-size: 11px; color: #555; font-family: 'Courier New', monospace; margin-top: 8px; }
+
+  /* ── PRE-FINALE SENTENCE ── */
+  .prefinal-overlay { position: fixed; inset: 0; z-index: 195; display: none; align-items: center; justify-content: center; padding: 24px; background: #000; }
+  .prefinal-overlay.active { display: flex; }
+  .prefinal-text { max-width: 360px; font-size: 15px; color: #aaaaaa; font-family: 'Courier New', monospace; line-height: 2.2; text-align: center; }
+  .prefinal-text span { display: block; opacity: 0; animation: prefinalLine 3s ease forwards; }
+  .prefinal-text span:nth-child(2) { animation-delay: 0.4s; }
+  .prefinal-text span:nth-child(3) { animation-delay: 0.8s; }
+  @keyframes prefinalLine { 0% { opacity: 0; transform: translateY(4px); } 20% { opacity: 1; transform: translateY(0); } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* ── SESTO FINALE SEGRETO (SANTO) ── */
+  .ending-overlay.ending-santo { background: #f8f8f5; color: #1a1a1a; flex-direction: column; animation: fadeIn 3s ease; }
+  .ending-santo .ending-inner { text-align: center; padding-top: 8vh; }
+  .ending-santo .e-label { font-size: 9px; letter-spacing: 0.4em; color: #bbb; font-family: 'Courier New', monospace; margin-bottom: 48px; }
+  .ending-santo .e-glyph { font-size: 11px; color: #ccc; letter-spacing: 0.2em; font-family: 'Courier New', monospace; margin-bottom: 32px; }
+  .ending-santo .e-title { font-size: 14px; color: #888; font-family: 'Courier New', monospace; letter-spacing: 0.25em; margin-bottom: 24px; }
+  .ending-santo .e-body { font-size: 13px; color: #aaa; line-height: 2.2; max-width: 320px; margin: 0 auto; font-family: 'Courier New', monospace; }
+  .ending-santo .ending-stats { border-color: #ddd; color: #bbb; }
+  .ending-santo .ending-restart, .ending-santo .ending-share { border-color: #ccc; color: #aaa; }
+
+  /* ── CAPITALISMO MORPH ── */
+  body.morph-1 { --bg: #0d0c0a; --bg-card: #130f0a; --border: #2e261a; }
+  body.morph-2 { --bg: #130f08; --bg-card: #1a130a; --border: #3a2e1a; }
+  body.morph-3 { --bg: #1a1208; --bg-card: #221808; --border: #483a20; }
+  body.morph-4 { --bg: #201508; --bg-card: #2a1c08; --border: #58461e; }
+  body.morph-4 .header { background: var(--bg); }
+  body.morph-4 .brand { color: #c8a045; }
+  body.morph-4 .live-dot { background: #c8920a; }
+  body.morph-4 .stat-val { color: #c8920a; }
+  body.morph-4 .progress-fill { background: #c8920a; }
+  .morph-banner { display: none; background: linear-gradient(90deg, #21180b, #2a1f0e, #21180b); border-bottom: 1px solid #4a351d; padding: 6px 12px; text-align: center; font-size: 10px; color: #d8bd77; font-family: 'Courier New', monospace; letter-spacing: 0.1em; }
+  body.morph-2 .morph-banner { display: block; }
+  .wellness-inject { background: linear-gradient(135deg, #1e1408, #150f05); border: 1px dashed #6a4a1e; border-radius: 10px; padding: 14px; margin-bottom: 10px; font-size: 12px; color: #c8a870; font-family: 'Courier New', monospace; line-height: 1.6; }
+  .wellness-inject::before { content: 'MINDFLOW™ SUGGERISCE'; display: block; font-size: 9px; letter-spacing: 0.2em; color: #8a6a30; margin-bottom: 8px; }
+
+
+
+  /* v2.10 — lercio cards + meta disclaimer card */
+  .shop-modal { width: min(460px, 100%); padding: 0; overflow: hidden; background: #120f0b; }
+  .shop-hero { padding: 16px; background: radial-gradient(circle at 20% 0%, rgba(216,189,119,.14), transparent 38%), linear-gradient(135deg, #1d1409, #12100d 62%); border-bottom: 1px solid #4a351d; }
+  .shop-top { margin-bottom: 0; align-items: center; }
+  .shop-asset { width: 112px; min-width: 112px; height: 112px; font-size: 48px; background: radial-gradient(circle at 36% 24%, #5a3f1b, #1b130c 72%); box-shadow: inset 0 0 24px rgba(216,189,119,.08); }
+  .shop-asset::after { content: attr(data-asset); left: 8px; right: 8px; bottom: 7px; text-align: center; font-size: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .shop-kicker { color: #d8bd77; }
+  .shop-title { font-size: 20px; color: #f4e5c6; }
+  .shop-desc { color: #c7ad82; }
+  .shop-price-row { display:flex; align-items:flex-end; gap:8px; margin-top:10px; }
+  .shop-price { font-size: 22px; color:#f0dfba; font-weight:700; font-family:'Courier New', monospace; }
+  .shop-subprice { font-size:10px; color:#8d7654; margin-bottom:3px; text-transform:uppercase; letter-spacing:.08em; }
+  .shop-badges { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .shop-badge { font-size:9px; color:#d8bd77; border:1px solid #59401e; background:#211608; border-radius:999px; padding:4px 7px; font-family:'Courier New', monospace; letter-spacing:.04em; }
+  .shop-body { padding: 14px 16px 16px; }
+  .shop-section { border: 1px solid #2f2416; border-radius: 10px; padding: 10px 11px; margin-bottom: 9px; background:#15110c; }
+  .shop-section-title { font-size:9px; color:#9f7d3a; text-transform:uppercase; letter-spacing:.16em; font-family:'Courier New', monospace; margin-bottom:6px; }
+  .shop-section p { font-size:12px; line-height:1.45; color:#c4ad89; margin:0; }
+  .shop-review { font-size:11px; color:#8e7b60; line-height:1.4; font-style:italic; margin-top:8px; }
+  .shop-warning-box { display:none; border:1px solid #693a2a; background:#1d130f; color:#e0a28d; border-radius:10px; padding:10px 11px; font-size:12px; line-height:1.4; margin-bottom:10px; font-family:'Courier New', monospace; }
+  .shop-warning-box.active { display:block; }
+  .shop-gate { display:none; border:1px solid #8a4a2d; background:#23120b; color:#f0b494; border-radius:10px; padding:10px 11px; font-size:12px; line-height:1.4; margin-bottom:10px; font-family:'Courier New', monospace; animation: fadeUp .16s ease; }
+  .shop-gate.active { display:block; }
+  .shop-actions { padding: 0; margin-top: 12px; }
+  .shop-btn.buy { background:#261907; color:#f3d58e; }
+  .shop-btn.buy.armed { border-color:#bd613e; color:#ffb092; background:#31150d; animation: glitch1 .3s; }
+
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <div class="morph-banner" id="morphBanner">✦ MINDFLOW™ PRO — la tua lucidità, ora in abbonamento ✦</div>
+    <div class="app-title">
+      <span class="live-dot" id="liveDot"></span>
+      <span class="brand">DOOM/SCROLL</span>
+      <span class="iq-stage" id="iqStage">cosciente</span>
+    </div>
+    <div class="app-subtitle" id="appSubtitle">scrolla. il QI cala. <span class="pill" id="finalsPill">5 finali da scoprire.</span></div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val" id="iqVal">100</div><div class="stat-lbl">QI residuo</div></div>
+      <div class="stat"><div class="stat-val" id="timerVal">00:00</div><div class="stat-lbl">Tempo perso</div></div>
+      <div class="stat"><div class="stat-val" id="newsCount">0</div><div class="stat-lbl">Cose viste</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-lbl" id="progressLbl">QI: 100/100</div>
+  </div>
+  <div class="feed" id="feed"></div>
+</div>
+
+<div class="brain-overlay" id="brainOverlay">
+  <div class="brain-modal">
+    <div class="brain-label">messaggio dal cervello</div>
+    <div class="brain-msg" id="brainMsg"></div>
+    <div class="brain-actions">
+      <button class="brain-btn listen" onclick="listenBrain()">ok smetto</button>
+      <button class="brain-btn ignore" onclick="ignoreBrain()">tra un po'</button>
+    </div>
+  </div>
+</div>
+
+<div class="ending-overlay" id="endingOverlay"></div>
+<div class="shop-overlay" id="shopOverlay">
+  <div class="shop-modal" id="shopModal"></div>
+</div>
+<!-- Splash Screen -->
+<div class="splash-overlay" id="splashOverlay">
+  <div class="splash-inner" id="splashInner"></div>
+</div>
+
+<!-- Notifica interrupt -->
+<div class="notif-overlay" id="notifOverlay">
+  <div class="notif-banner">
+    <div class="notif-header">
+      <div class="notif-app-icon">💬</div>
+      <span class="notif-app-name">MESSAGGI</span>
+      <span class="notif-time-label">adesso</span>
+    </div>
+    <div class="notif-body">
+      <div class="notif-sender" id="notifSender">Giulia</div>
+      <div class="notif-text" id="notifText">Ti ho cercato. Stai bene?</div>
+      <div class="notif-actions">
+        <button class="notif-btn reply" onclick="replyNotification()">rispondi</button>
+        <button class="notif-btn dismiss" onclick="ignoreNotification()">ignora</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Conversazione -->
+<div class="conv-overlay" id="convOverlay">
+  <div class="conv-modal">
+    <div class="conv-header">
+      <div class="conv-avatar">👤</div>
+      <div>
+        <div class="conv-contact" id="convContact">Giulia</div>
+        <div class="conv-status">online</div>
+      </div>
+    </div>
+    <div class="conv-messages" id="convMessages"></div>
+    <div class="conv-choices" id="convChoices"></div>
+  </div>
+</div>
+
+<!-- Pre-finale -->
+<div class="prefinal-overlay" id="prefinalOverlay">
+  <div class="prefinal-text" id="prefinalText"></div>
+</div>
+
+<!-- Morph banner wellness -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+// Config costanti — restano inline perché piccole e usate subito
+const SOURCES = ["IL POST MORTALE","CORRIERE DELLA SERA DI SEMPRE","REPUBBLICA SENZA SPERANZA","ANSA — LE SOLITE COSE","SKY TG24 LOOP INFINITO","FATTO QUOTIDIANO (titolo casuale)","LA STAMPA RIBADITA","MESSAGGERO DEL NULLA"];
+const TIMES = ["2 min fa","5 min fa","8 min fa","12 min fa","18 min fa","23 min fa","31 min fa","45 min fa","1 ora fa","2 ore fa","ieri","2 gg fa"];
+
+// Contenuto caricato da content.json
+let NEWS_MEH = [], NEWS_INTERESTING = [], NEWS_PEAK = [], NEWS_BRAINROT = [];
+let REPEATABLE_NEWS = [], EXTRA_MEH_TOPICS = [], EXTRA_MEH_ENDINGS = [];
+let EXTRA_INTERESTING = [], EXTRA_PEAK = [], EXTRA_BRAINROT = [];
+let EXTRA_NEWS_MEH_V28 = [], EXTRA_NEWS_INTERESTING_V28 = [];
+let EXTRA_NEWS_PEAK_V28 = [], EXTRA_NEWS_BRAINROT_V28 = [];
+let FAKE_COMMENTS = [], ADS = [];
+let LERCIO_NEWS = []; // caricato da lercio.json
+let QUIZZES = []; // caricato da quizzes.json
+
+let BRAIN_MSGS = [], BRAIN_IGNORE_MSGS = [];
+const SHOP_WARNINGS = {
+  3: ["Terzo acquisto wellness. Forse ascoltare il cervello costa meno e non rinnova automaticamente."],
+  4: ["Quarto acquisto. Il carrello sta diventando una terapia sostitutiva.", "Seconda conferma: vuoi davvero comprare un promemoria invece di seguire quello biologico già installato?"],
+  5: ["Quinto acquisto. Ultimo bivio prima della santificazione con ricevuta.", "Il cervello è ancora disponibile. Non ha piano annuale.", "Stai per trasformare il problema in abbonamento. Confermi la conversione spirituale?", "Quarta conferma, perché a questo punto la frizione è un servizio pubblico: compri davvero?"],
+  default: ["Sicuro? Il cervello sostiene di offrire la stessa funzione gratis, ma senza landing page."]
+};
+
+const IQ_STAGES = [[80,"cosciente"],[60,"lievemente intontito"],[40,"mente plastificata"],[20,"vuoto cosmico"],[1,"proto-nirvana"],[0,"nirvana"]];
+
+let iq = 100, minIQ = 100, seconds = 0, newsCount = 0;
+let brainListened = 0, brainListenedStreak = 0, brainIgnored = 0, everIgnored = false;
+let cardsSinceInterruption = 0;
+let mehUsed = [], intUsed = [], peakUsed = [], adUsed = [], quizUsed = [], brainrotUsed = [], lercioUsed = [];
+let recentLoadClicks = [];
+let gameOver = false, totalLoadMore = 0;
+let adClicks = 0, usefulAdClicks = 0, spiritualDebt = 0, adsShown = 0, loadsSinceAd = 0;
+let brainrotLevel = 0, doubleClickStreak = 0, lastLoadClickAt = 0;
+let scrollLossDebt = 0;
+let lastStage = '';
+let mainTimerId = null;
+let brainTimerId = null;
+let interruptionCount = 0;
+let pendingPromo = null, pendingPromoElement = null;
+
+// v3.0 state
+let pressureLevel = 0;           // 0=normal 1=3min 2=5min 3=8min
+let eventAt8minDone = false;
+let capitalismoMorphLevel = 0;
+let notificationShown = false;
+let notificationReplied = false;
+let notificationIgnored = false;
+let convStep = 0;
+let audioCtx = null, ambientGainNode = null, ambientStarted = false;
+let ambientOscillators = [], ambientNoise = null;
+// Santo tracking (sesto finale segreto)
+let allQuizConscious = true;     // diventa false al primo quiz non-conscious
+let noAdsBought = true;          // diventa false al primo acquisto
+let brainListenedFirst = false;  // diventa true se ascolti la PRIMA volta
+let noLercioInteracted = true;   // diventa false se clicchi una card lercio
+let isFirstBrainShown = true;
+let isReturningPlayer = false;
+let passiveReasonIdx = 0;
+
+const PASSIVE_REASONS = [
+  'il tempo passa anche senza che tu faccia niente',
+  'sessione attiva da troppo',
+  'danno da esposizione passiva',
+  'il feed esiste, il tempo no',
+  'costo opportunità non richiesto',
+  'entropia mentale standard',
+  'il QI cala a prescindere',
+  'tempo trascorso online: non recuperabile',
+  'attenzione consumata in background',
+  'nessun valore prodotto. nessun punto assegnato.',
+].sort(() => Math.random() - 0.5);
+
+const feed = document.getElementById('feed');
+const STORAGE_KEY = 'doomscroll_finales';
+
+function showToast(msg, kind='') {
+  const wrap = document.getElementById('toastWrap');
+  const div = document.createElement('div');
+  div.className = 'toast ' + kind;
+  div.textContent = msg;
+  wrap.appendChild(div);
+  setTimeout(() => div.remove(), 5600);
+}
+
+function pickItem(items, used, fallbackItems=null) {
+  // Se il pool principale è vuoto, usa il fallback se disponibile
+  if (!items || items.length === 0) {
+    const src = fallbackItems && fallbackItems.length ? fallbackItems : null;
+    if (!src) return [["Feed esaurito.", "Déjà-vu"], -1];
+    const idx = Math.floor(Math.random()*src.length);
+    return [src[idx], -1];
+  }
+  // Pool esaurito: auto-reset invece di fallback fisso.
+  // Il feed ricomincia dal pool invece di mostrare sempre le stesse 5 notizie.
+  if (used.length >= items.length) {
+    used.length = 0; // reset in-place: mantiene il riferimento all'array
+  }
+  let idx;
+  let guard = 0;
+  do { idx = Math.floor(Math.random()*items.length); guard++; } while (used.includes(idx) && guard < 500);
+  used.push(idx);
+  return [items[idx], idx];
+}
+function timeStr(s) { return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
+function getUnlocked() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } }
+function unlockFinal(name) {
+  const u = getUnlocked();
+  if (!u.includes(name)) { u.push(name); localStorage.setItem(STORAGE_KEY, JSON.stringify(u)); }
+}
+function updateFinalsPill() {
+  const pill = document.getElementById('finalsPill');
+  if (!pill) return;
+  const u = getUnlocked();
+  if (u.length === 0) {
+    pill.textContent = '5 finali da scoprire.';
+    pill.classList.remove('found');
+  } else if (u.length >= 5) {
+    pill.textContent = 'tutti e 5 i finali sbloccati. ora scrolli per sport.';
+    pill.classList.add('found');
+  } else {
+    pill.textContent = `${u.length}/5 finali sbloccati. ne mancano ${5 - u.length}.`;
+    pill.classList.add('found');
+  }
+}
+
+function updateIQDisplay() {
+  document.getElementById('iqVal').textContent = iq;
+  document.getElementById('progressFill').style.width = iq + '%';
+  document.getElementById('progressLbl').textContent = `QI: ${iq}/100`;
+  let newStage = '';
+  for (const [thr, label] of IQ_STAGES) {
+    if (iq >= thr) { document.getElementById('iqStage').textContent = label; newStage = label; break; }
+  }
+  // Quando entri in una nuova fase di degrado, lo dico una volta sola, in modo narrativo.
+  if (newStage && newStage !== lastStage) {
+    if (lastStage !== '') {
+      const stageMsgs = {
+        'lievemente intontito': [
+          'sei ufficialmente lievemente intontito. ben arrivato.',
+          'lievemente intontito. il danno è contenuto. per ora.',
+          'transizione completata: cosciente → intontito. il feed ha preso nota.',
+        ],
+        'mente plastificata': [
+          'mente plastificata. il cartone si curva, non si spezza.',
+          'mente plastificata. ora le notizie scivolano dentro senza attrito.',
+          'mente plastificata. il feed ti trova finalmente gestibile.',
+        ],
+        'vuoto cosmico': [
+          'vuoto cosmico raggiunto. la stanza intorno è facoltativa.',
+          'vuoto cosmico. i pensieri ci sono ancora, ma non insistono.',
+          'vuoto cosmico. hai trovato il modo più moderno per meditare.',
+        ],
+        'proto-nirvana': [
+          'proto-nirvana. il pollice continua per inerzia spirituale.',
+          'proto-nirvana. tecnicamente sei ancora sveglio.',
+          'proto-nirvana. a questo punto il feed scorre da solo.',
+        ],
+        'nirvana': [
+          'nirvana. non legge più nemmeno questo toast.',
+          'nirvana. il feed ha vinto. il feed ti ringrazia.',
+          'nirvana. nessun pensiero è stato disturbato in questa sessione.',
+        ],
+      };
+      const variants = stageMsgs[newStage];
+      if (variants) showToast(variants[Math.floor(Math.random()*variants.length)], 'bad');
+    }
+    lastStage = newStage;
+  }
+  const iqEl = document.getElementById('iqVal');
+  if (iq < 20) iqEl.style.color = '#ff80c0';
+  else if (iq < 40) iqEl.style.color = '#ff6060';
+  else if (iq < 60) iqEl.style.color = '#ff9040';
+  else iqEl.style.color = 'var(--red)';
+}
+function updateIQ(delta, reason='') {
+  if (gameOver) return;
+  iq = Math.max(0, Math.min(100, iq + delta));
+  if (iq < minIQ) minIQ = iq;
+  updateIQDisplay();
+  if (reason) showToast((delta > 0 ? '+' : '') + delta + ' QI — ' + reason, delta > 0 ? 'good' : 'bad');
+  checkEndings();
+}
+
+// Messaggi per lo scroll volontario (cliccare "carica altro").
+// Ruotano in ordine così non si ripetono subito, con shuffle iniziale.
+const SCROLL_REASONS = [
+  'scelta consapevole di continuare',
+  'il pollice ha deciso prima del cervello',
+  'momentum scrolling rilevato',
+  'curiosità irrisolta, costo pagato',
+  'un altro carico, un altro taglio',
+  'scroll volontario — la responsabilità è tua',
+  'nessuno ti ha obbligato. questo è il problema.',
+  'hai scelto il feed invece dell\'alternativa',
+  'azione muscolare non supportata da intenzione',
+  'click effettuato, danno applicato',
+].sort(() => Math.random() - 0.5);
+let scrollReasonIdx = 0;
+
+function spendScrollIQ() {
+  // Media: -1.5 QI per carica altro. Abbastanza lenta da sembrare innocua, abbastanza forte da contare.
+  scrollLossDebt += 1.5;
+  const loss = Math.floor(scrollLossDebt);
+  scrollLossDebt -= loss;
+  if (loss > 0) {
+    const reason = SCROLL_REASONS[scrollReasonIdx % SCROLL_REASONS.length];
+    scrollReasonIdx++;
+    updateIQ(-loss, reason);
+  }
+}
+
+function promoConfirmMessage(purchaseNumber, step, required) {
+  const scripts = {
+    3: ['Terzo acquisto wellness. Sicuro che la salvezza debba avere un carrello?'],
+    4: ['Quarto acquisto. Conferma 1/2: non è autocura se ti serve una ricevuta.', 'Conferma 2/2: stai comprando un limite perché non riesci a metterne uno.'],
+    5: ['Quinto acquisto. Il feed apre il reparto casse spirituali.', 'Conferma 2/4: respirare resta gratis, per ora.', 'Conferma 3/4: la tua pace interiore sta chiedendo il CVV.', 'Conferma 4/4: ultimo click prima della monetizzazione dell’anima.']
+  };
+  return (scripts[purchaseNumber] && scripts[purchaseNumber][step-1]) || `Conferma ${step}/${required}: il capitalismo vuole solo essere sicuro.`;
+}
+
+function addNewsCard(forceBrainrot=false) {
+  let item, cssClass;
+  if (forceBrainrot || brainrotLevel >= 4 || (brainrotLevel >= 2 && Math.random() < 0.22)) {
+    [item] = pickItem(NEWS_BRAINROT, brainrotUsed, REPEATABLE_NEWS); cssClass = 'brainrot-news';
+  } else {
+    const r = Math.random();
+    if (r < 0.5) { [item] = pickItem(NEWS_MEH, mehUsed, REPEATABLE_NEWS); cssClass = ''; }
+    else if (r < 0.8) { [item] = pickItem(NEWS_INTERESTING, intUsed, REPEATABLE_NEWS); cssClass = 'interesting'; }
+    else { [item] = pickItem(NEWS_PEAK, peakUsed, REPEATABLE_NEWS); cssClass = 'peak'; }
+  }
+  const [hl, tag] = Array.isArray(item) ? item : [item, 'Attualità'];
+  const src = cssClass === 'brainrot-news' ? 'REDAZIONE SEMANTICAMENTE INSTABILE' : SOURCES[Math.floor(Math.random()*SOURCES.length)];
+  const time = TIMES[Math.floor(Math.random()*TIMES.length)];
+  const comment = (Math.random() < 0.25 && FAKE_COMMENTS.length > 0)
+    ? `<div class="news-comment">${FAKE_COMMENTS[Math.floor(Math.random()*FAKE_COMMENTS.length)] || ''}</div>`
+    : '';
+  const div = document.createElement('div');
+  div.className = 'news-card ' + cssClass;
+  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${hl}</div><div class="news-meta"><span class="news-tag">${tag}</span><span class="news-time">${time}</span></div>${comment}`;
+  feed.appendChild(div);
+  newsCount++;
+  document.getElementById('newsCount').textContent = newsCount;
+  cardsSinceInterruption++;
+}
+
+function addLercioCard() {
+  if (!LERCIO_NEWS || LERCIO_NEWS.length === 0) { addNewsCard(); return; }
+  const [item] = pickItem(LERCIO_NEWS, lercioUsed);
+  const [hl, tag] = Array.isArray(item) ? item : [item, 'Satira'];
+  const src = SOURCES[Math.floor(Math.random()*SOURCES.length)];
+  const time = TIMES[Math.floor(Math.random()*TIMES.length)];
+  const div = document.createElement('div');
+  div.className = 'news-card lercio';
+  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${escapeHtml(hl)}</div><div class="news-meta"><span class="news-tag">${escapeHtml(tag)}</span><span class="news-time">${time}</span></div>`;
+  feed.appendChild(div);
+  newsCount++;
+  document.getElementById('newsCount').textContent = newsCount;
+  cardsSinceInterruption++;
+}
+
+
+function addAdCard() {
+  // Classi DOM senza 'ad': gli ad blocker possono nascondere elementi chiamati ad-card.
+  adsShown++;
+  loadsSinceAd = 0;
+  const [ad] = pickItem(ADS, adUsed);
+  const div = document.createElement('div');
+  div.className = 'promo-card';
+  div.innerHTML = `<div class="promo-label">${ad.label}</div><div class="promo-title">${ad.title}</div><div class="promo-desc">${ad.desc}</div><span class="promo-cta">VEDI SCHEDA PRODOTTO</span>`;
+  div.onclick = () => {
+    if (div.classList.contains('used') || gameOver) return;
+    openProductPage(ad, div);
+  };
+  feed.appendChild(div);
+  cardsSinceInterruption = 0;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+}
+
+function openProductPage(ad, sourceEl) {
+  pendingPromo = ad;
+  pendingPromoElement = sourceEl;
+  purchaseGateStep = 0;
+  const nextBuy = adClicks + 1;
+  const details = productDetails(ad);
+  const required = gateRequirement(nextBuy);
+  const assetEmoji = ad.title.includes('Ballerina') ? '☕' :
+    ad.title.includes('Smartwatch') ? '⌚' :
+    ad.title.includes('Libro') ? '📕' :
+    ad.title.includes('Ritiro') ? '🧘' :
+    ad.title.includes('Audio') ? '🎧' :
+    ad.title.includes('Planner') ? '📒' : '✨';
+  const warning = nextBuy >= 3
+    ? `<div class="shop-warning-box active">${escapeHtml(SHOP_WARNINGS[nextBuy]?.[0] || SHOP_WARNINGS.default[0])}</div>`
+    : '';
+  const badges = details.badges.map(b => `<span class="shop-badge">${escapeHtml(b)}</span>`).join('');
+  const modal = document.getElementById('shopModal');
+  modal.innerHTML = `
+    <div class="shop-hero">
+      <div class="shop-top">
+        <div class="shop-asset" data-asset="${escapeHtml(details.asset.split('/').pop())}">${assetEmoji}</div>
+        <div>
+          <div class="shop-kicker">scheda prodotto salvata localmente</div>
+          <div class="shop-title">${escapeHtml(ad.title)}</div>
+          <div class="shop-desc">${escapeHtml(ad.desc)}</div>
+          <div class="shop-price-row"><div class="shop-price">${escapeHtml(details.price)}</div><div class="shop-subprice">${escapeHtml(details.subprice)}</div></div>
+          <div class="shop-badges">${badges}</div>
+        </div>
+      </div>
+    </div>
+    <div class="shop-body">
+      <div class="shop-section">
+        <div class="shop-section-title">cosa promette</div>
+        <p>${escapeHtml(details.promise)}</p>
+      </div>
+      <div class="shop-section">
+        <div class="shop-section-title">cosa fa davvero</div>
+        <p>${escapeHtml(details.reality)}</p>
+        <div class="shop-review">${escapeHtml(details.review)}</div>
+      </div>
+      ${warning}
+      <div class="shop-gate" id="shopGate"></div>
+      <div class="shop-actions">
+        <button class="shop-btn close" onclick="closeProductPage()">chiudi scheda</button>
+        <button class="shop-btn buy" id="shopBuyBtn" onclick="buyCurrentPromo()">${required ? 'procedi all\'acquisto' : 'compra lucidità'}</button>
+      </div>
+    </div>`;
+  document.getElementById('shopOverlay').classList.add('active');
+}
+
+function closeProductPage() {
+  document.getElementById('shopOverlay').classList.remove('active');
+  pendingPromo = null;
+  pendingPromoElement = null;
+  purchaseGateStep = 0;
+}
+
+
+function productDetails(ad) {
+  const title = ad.title || '';
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'') || 'prodotto-mentale';
+  const base = {
+    price: ad.iq >= 10 ? '€149,99' : ad.iq >= 8 ? '€79,99' : ad.iq >= 6 ? '€29,99/mese' : '€9,99/mese',
+    subprice: ad.iq >= 10 ? 'pagabili in serenità rateizzata' : 'rinnovo automatico emotivo',
+    promise: 'Promette una versione più calma di te, possibilmente con onboarding elegante e zero responsabilità personale immediata.',
+    reality: 'Funziona abbastanza da farti sentire lucido, non abbastanza da sostituire una decisione vera.',
+    review: '★★★★★ “Mi ha aiutato a rimandare il cambiamento con più consapevolezza.” — utente verificato, probabilmente stanco',
+    asset: '/assets/wellness/' + slug + '.mental',
+    badges: ['+ '+ad.iq+' QI', 'asset locale', 'anti-doomscroll-ish']
+  };
+  if (title.includes('Planner')) {
+    base.promise = 'Trasforma il caos in caselle, colori e una calligrafia temporaneamente ottimista.';
+    base.reality = 'Il planner non fa le cose al posto tuo. Però giudica meglio della tua home screen.';
+    base.price = '€24,90'; base.subprice = 'penna non inclusa'; base.badges.push('cartaceo, quindi sospetto');
+  } else if (title.includes('Ritiro')) {
+    base.promise = 'Tre giorni senza notifiche, con la possibilità di parlare del fatto che non hai notifiche.';
+    base.reality = 'Tornerai con 42 foto, due insight e la stessa password dimenticata.';
+    base.price = '€899'; base.subprice = 'silenzio premium'; base.badges.push('foto post-ritiro incluse');
+  } else if (title.includes('Smartwatch')) {
+    base.promise = 'Ti interrompe per ricordarti che vieni interrotto troppo. Design circolare, come il problema.';
+    base.reality = 'Un altro schermo sul corpo. Ma almeno vibra con buone intenzioni.';
+    base.price = '€299'; base.subprice = 'polso non incluso'; base.badges.push('notifiche anti-notifiche');
+  } else if (title.includes('Libro')) {
+    base.promise = 'Una guida per smettere di scrollare, comodamente scaricabile sul dispositivo che devi usare meno.';
+    base.reality = 'Se lo apri davvero, hai già battuto metà internet. Se lo salvi e basta, benvenuto nel club.';
+    base.price = '€14,99'; base.subprice = 'PDF del paradosso'; base.badges.push('leggibile anche mai');
+  } else if (title.includes('Audio')) {
+    base.promise = 'Frequenze che sembrano scientifiche quanto basta per non fare domande.';
+    base.reality = 'Copre il rumore del feed. Non il feed.';
+    base.price = '€12,99/mese'; base.subprice = 'onde fatturate'; base.badges.push('40Hz di marketing');
+  } else if (title.includes('App') || title.includes('Detox')) {
+    base.promise = 'Blocca le app distraenti installando un’altra app da controllare compulsivamente.';
+    base.reality = 'Il serpente si mangia la coda, ma almeno ha una dashboard.';
+    base.price = '€6,99/mese'; base.subprice = 'trial con trappola'; base.badges.push('dashboard della colpa');
+  }
+  return base;
+}
+
+let purchaseGateStep = 0;
+
+function gateRequirement(nextBuy) {
+  if (nextBuy === 3) return 1;
+  if (nextBuy === 4) return 2;
+  if (nextBuy >= 5) return 4;
+  return 0;
+}
+
+function promoGateMessage(purchaseNumber, step, required) {
+  const scripts = {
+    3: ['Terzo acquisto wellness. Hint gratuito: forse ascoltare il cervello costa meno del carrello.'],
+    4: ['Quarto acquisto. Primo controllo qualità: stai comprando un limite invece di metterlo.', 'Secondo controllo qualità: il cervello offre lo stesso servizio, ma senza fattura.'],
+    5: ['Quinto acquisto. Il reparto casse spirituali ti saluta per nome.', 'Respirare resta gratis. Questa informazione non piace agli investitori.', 'Stai per trasformare il problema in abbonamento. È una scelta, tecnicamente.', 'Ultimo click: compri la pace o provi, per scandalo, ad ascoltarti?']
+  };
+  return (scripts[purchaseNumber] && scripts[purchaseNumber][step-1]) || `Conferma ${step}/${required}: frizione aggiunta per il tuo bene, forse.`;
+}
+
+function completePromoPurchase() {
+  if (!pendingPromo || !pendingPromoElement || gameOver) return;
+  const ad = pendingPromo;
+  const div = pendingPromoElement;
+  closeProductPage();
+  div.classList.add('used');
+  adClicks++;
+  usefulAdClicks++;
+  noAdsBought = false; // traccia via del santo
+  spiritualDebt += ad.iq >= 8 ? 2 : 1;
+  const cta = div.querySelector('.promo-cta');
+  if (cta) cta.textContent = 'ACQUISTATO MENTALMENTE';
+  const result = document.createElement('div');
+  result.className = 'promo-result';
+  result.textContent = ad.result + (adClicks >= 3 ? ' // Hint: forse ascoltare il cervello era la versione gratis.' : '');
+  div.appendChild(result);
+  updateIQ(ad.iq, 'lucidità con ricevuta fiscale');
+  // Metamorfosi capitalismo progressiva
+  if (adClicks >= 3) applyCapitalismoMorph(Math.min(adClicks - 1, 4));
+  if (!gameOver && adClicks >= 5 && iq >= 35) {
+    setTimeout(() => triggerEnding('capitalismo'), 650);
+  } else if (!gameOver && adClicks >= 5 && iq < 35) {
+    showToast('Troppo tardi per il capitalismo spirituale. Sei già quasi folklore.', 'bad');
+  }
+}
+
+
+function buyCurrentPromo() {
+  if (!pendingPromo || !pendingPromoElement || gameOver) return;
+  const nextBuy = adClicks + 1;
+  const required = gateRequirement(nextBuy);
+  if (purchaseGateStep < required) {
+    purchaseGateStep++;
+    const gate = document.getElementById('shopGate');
+    const btn = document.getElementById('shopBuyBtn');
+    if (gate) {
+      gate.classList.add('active');
+      gate.textContent = promoGateMessage(nextBuy, purchaseGateStep, required);
+    }
+    if (btn) {
+      btn.classList.add('armed');
+      btn.textContent = purchaseGateStep >= required ? 'ok, compra davvero' : `conferma ${purchaseGateStep + 1}/${required}`;
+    }
+    showToast(`Frizione anti-shopping ${purchaseGateStep}/${required}. Il cervello applaude piano.`, purchaseGateStep >= required ? 'bad' : 'good');
+    return;
+  }
+  completePromoPurchase();
+}
+
+function normalizeQuiz(q) {
+  if (q && Array.isArray(q.opts)) return q;
+  // Backward compatibility: some older 2-choice polls still exist in the pool.
+  // Convert them into the new 4-choice format so one legacy item cannot crash the preview.
+  if (q && typeof q.right === 'string' && typeof q.wrong === 'string') {
+    return {
+      q: q.q || 'Sondaggio non caricato correttamente. Cosa fai?',
+      opts: [
+        {t: q.right, d: 2, k: 'conscious', fb: q.fb || 'risposta consapevole'},
+        {t: 'Non saprei, ma almeno ci penso', d: 0, k: 'neutral', fb: 'neutralità dignitosa'},
+        {t: q.wrong, d: -1, k: 'stupid', fb: q.fb || 'scelta discutibile'},
+        {t: 'Apro altre 14 notizie per decidere', d: -3, k: 'idiot', fb: 'hai trasformato il dubbio in carburante'}
+      ]
+    };
+  }
+  // Last-resort fallback: keep the game alive instead of killing the feed.
+  return {
+    q: 'Il feed ha perso il sondaggio. Reazione?',
+    opts: [
+      {t:'Chiudo e salvo la sanità mentale', d:2, k:'conscious', fb:'hai scelto la via improbabile'},
+      {t:'Segnalo il bug mentalmente', d:0, k:'neutral', fb:'ticket non aperto'},
+      {t:'Continuo come se nulla fosse', d:-1, k:'stupid', fb:'resilienza o negazione'},
+      {t:'Clicco tutto più forte', d:-3, k:'idiot', fb:'debugging da primate'}
+    ]
+  };
+}
+
+function addQuizCard() {
+  const [rawQuiz] = pickItem(QUIZZES, quizUsed);
+  const q = normalizeQuiz(rawQuiz);
+  const div = document.createElement('div');
+  div.className = 'quiz-card';
+
+  const opts = [...q.opts].sort(() => Math.random() - 0.5);
+  const buttons = opts.map(opt =>
+    `<button class="quiz-btn" data-delta="${opt.d}" data-kind="${opt.k}" data-fb="${escapeHtml(opt.fb)}">${escapeHtml(opt.t)}</button>`
+  ).join('');
+
+  div.innerHTML = `<div class="quiz-label">▷ Sondaggio onesto / 4 scelte</div><div class="quiz-q">${escapeHtml(q.q)}</div><div class="quiz-options">${buttons}</div><div class="quiz-feedback" style="display:none;"></div>`;
+  feed.appendChild(div);
+
+  const btns = div.querySelectorAll('.quiz-btn');
+  const fb = div.querySelector('.quiz-feedback');
+  btns.forEach(btn => {
+    btn.onclick = () => {
+      const delta = Number(btn.getAttribute('data-delta'));
+      const kind = btn.getAttribute('data-kind');
+      const text = btn.getAttribute('data-fb');
+
+      btns.forEach(b => { b.disabled = true; });
+
+      if (kind === 'conscious') btn.classList.add('answered-right');
+      else if (kind === 'neutral') btn.classList.add('answered-neutral');
+      else if (kind === 'idiot') btn.classList.add('answered-idiot');
+      else btn.classList.add('answered-wrong');
+
+      // traccia via del santo: solo conscious conta
+      if (kind !== 'conscious') allQuizConscious = false;
+
+      const sign = delta > 0 ? '+' : '';
+      fb.textContent = `// ${text} — ${sign}${delta} QI`;
+      fb.style.display = 'block';
+
+      if (delta !== 0) {
+        const reason = kind === 'conscious' ? 'risposta consapevole, raro evento naturale'
+          : kind === 'idiot' ? 'risposta idiota, punizione educativa'
+          : 'risposta stupida, micro-danno registrato';
+        updateIQ(delta, reason);
+      } else {
+        showToast('0 QI — risposta neutra: non hai peggiorato, non festeggiare', '');
+      }
+    };
+  });
+  cardsSinceInterruption = 0;
+}
+
+function addLoadMore() {
+  const btn = document.createElement('button');
+  btn.className = 'load-more';
+  btn.textContent = '↓ carica altro (sì, davvero)';
+  btn.onclick = (event) => onLoadMore(btn, event);
+  setTimeout(() => setBrainrotButton(btn), 0);
+  feed.appendChild(btn);
+}
+
+function setBrainrotButton(btn) {
+  const n = recentLoadClicks.length;
+  let level = 0;
+
+  // Testo che degenera su due assi:
+  // - totalLoadMore: quante volte hai caricato in totale (stanchezza)
+  // - recentLoadClicks: quanto velocemente stai cliccando (brainrot acuto)
+  // Le due scale si sommano — chi clicca in fretta degrada più in fretta.
+
+  // Asse brainrot acuto (click ravvicinati)
+  if (n >= 25) level = 4;
+  else if (n >= 20) level = 3;
+  else if (n >= 15) level = 2;
+  else if (n >= 10) level = 1;
+
+  // Asse stanchezza cronica (totalLoadMore) — si accumula più lentamente
+  let chronLevel = 0;
+  if (totalLoadMore >= 20) chronLevel = 4;
+  else if (totalLoadMore >= 14) chronLevel = 3;
+  else if (totalLoadMore >= 9) chronLevel = 2;
+  else if (totalLoadMore >= 5) chronLevel = 1;
+
+  const effectiveLevel = Math.max(level, chronLevel);
+  brainrotLevel = Math.max(brainrotLevel, level);
+
+  // Scala del testo: da verboso e ironico a silenzio totale
+  const labels = [
+    '↓ carica altro (sì, davvero)',   // 0 — inizio, tono sarcastico
+    '↓ un altro po\'',                // 1 — ancora ragionevole
+    '↓ ancora',                       // 2 — si semplifica
+    '↓ dai',                          // 3 — richiesta
+    '↓ pls',                          // 4 — supplica
+  ];
+
+  // Livello 4 massimo: testo sparisce, rimane solo la freccia
+  const label = effectiveLevel >= 4 ? '↓' : labels[Math.min(effectiveLevel, labels.length - 1)];
+
+  btn.textContent = label;
+  btn.className = 'load-more' + (effectiveLevel ? ' glitch-' + Math.min(effectiveLevel, 3) : '');
+}
+
+function onLoadMore(btn, event) {
+  if (gameOver) return;
+  const now = Date.now();
+  const fastAgain = lastLoadClickAt && (now - lastLoadClickAt < 650);
+  lastLoadClickAt = now;
+  if (fastAgain || (event && event.detail >= 2)) {
+    doubleClickStreak++;
+    brainrotLevel = Math.max(brainrotLevel, Math.min(4, doubleClickStreak));
+    showToast('doppio impulso registrato: stabilità semantica in calo', 'bad');
+  } else {
+    doubleClickStreak = Math.max(0, doubleClickStreak - 1);
+  }
+  recentLoadClicks.push(now);
+  recentLoadClicks = recentLoadClicks.filter(t => now - t < 60000);
+  setBrainrotButton(btn);
+  if ((recentLoadClicks.length >= 24 && brainrotLevel >= 3) || doubleClickStreak >= 4) { triggerEnding('brainrot'); return; }
+  totalLoadMore++;
+  loadsSinceAd++;
+  spendScrollIQ();
+  if (gameOver) return;
+  btn.remove();
+
+  try {
+    const newsToAdd = 6 + Math.floor(Math.random()*2);
+    const mustShowAd = adsShown < 4 || loadsSinceAd >= 2;
+    const mustShowQuiz = totalLoadMore <= 3 || (totalLoadMore % 2 === 0);
+    // Lercio: più spesso man mano che il QI cala.
+    // Sopra 60 è raro (ogni 5 load), sotto 40 è frequente (ogni 2), sotto 20 quasi garantito.
+    // Narrativamente: il cervello che degrada smette di distinguere satira da realtà.
+    let lercioFreq;
+    if (iq >= 60) lercioFreq = 5;
+    else if (iq >= 40) lercioFreq = 3;
+    else if (iq >= 20) lercioFreq = 2;
+    else lercioFreq = 1;
+    const showLercio = LERCIO_NEWS.length > 0 && totalLoadMore % lercioFreq === 0;
+    const lercioAt = showLercio ? 1 + Math.floor(Math.random()*4) : -1;
+    for (let i = 0; i < newsToAdd; i++) {
+      if (i === lercioAt) {
+        addLercioCard();
+      } else {
+        addNewsCard(brainrotLevel >= 3 && i === newsToAdd-1);
+      }
+      if (i === 1 && mustShowQuiz) addQuizCard();
+      if (i === 3 && mustShowAd) addAdCard();
+    }
+  } catch (err) {
+    console.error('Errore generazione feed:', err);
+    showToast('Il feed ha tossito. Ho salvato il bottone prima che sparisse.', 'bad');
+  } finally {
+    if (!gameOver) {
+      addLoadMore();
+      const btns = feed.querySelectorAll('.load-more');
+      if (btns.length) setBrainrotButton(btns[btns.length-1]);
+    }
+  }
+}
+
+function showBrainPopup() {
+  if (gameOver) return;
+  let msg;
+
+  if (brainIgnored > 0) {
+    const idx = Math.min(brainIgnored - 1, BRAIN_IGNORE_MSGS.length - 1);
+    msg = BRAIN_IGNORE_MSGS[idx];
+  } else {
+    const brainByPhase = {
+      high: [
+        'hey. stai ancora bene. puoi ancora smettere.',
+        'questo è il momento migliore per chiudere.',
+        'il feed non ha ancora vinto. ancora.',
+        'hai aperto per due minuti. due minuti sono passati.',
+        'nota: potresti fare altro. nota ricevuta?',
+      ],
+      mid: [
+        'sei qui da un po\'. il feed lo sa.',
+        'stai ancora decidendo tu quando fermarti?',
+        'il pensiero che stavi evitando è ancora lì.',
+        'ogni notizia promette la prossima importante.',
+        'la prossima non sarà più importante. ma continuerai.',
+      ],
+      low: [
+        'fermati. adesso. non tra poco.',
+        'il danno si vede. il feed non se ne preoccupa.',
+        'sei ancora capace di decidere. usalo.',
+        'questo non è informarsi. sai che non è informarsi.',
+        'posso aiutarti solo se mi ascolti.',
+      ],
+      critical: [
+        'sono ancora qui.',
+        'puoi ancora smettere. anche adesso.',
+        'non ti giudico. smetti.',
+        'non ricordi nemmeno cosa stavi cercando.',
+        'ti ricordo che esisto.',
+      ],
+    };
+    let pool;
+    if (iq >= 70) pool = brainByPhase.high;
+    else if (iq >= 40) pool = brainByPhase.mid;
+    else if (iq >= 20) pool = brainByPhase.low;
+    else pool = brainByPhase.critical;
+
+    // Scala anche col tempo: dopo 3 min più diretto, dopo 5 quasi rassegnato, dopo 8 oltre
+    if (seconds >= 480) {
+      const latePool = [
+        'sono qui da otto minuti. tu pure.',
+        'il feed non si stancherà mai. io quasi.',
+        'non so più cosa dirti che non ti abbia già detto.',
+        'ok. ti vedo. il feed ti vede meglio.',
+        'otto minuti. il feed ha vinto? non ancora. ma si avvicina.',
+      ];
+      pool = [...latePool, ...(pool.slice(0,2))];
+    } else if (seconds >= 300) {
+      const midLatePool = [
+        'cinque minuti. sei ancora tu a decidere?',
+        'il tempo sta pesando. si vede nel feed.',
+        'cinque minuti e non ti sei fermato. questo dice qualcosa.',
+        'stai ancora cercando qualcosa. non lo trovi qui.',
+      ];
+      pool = [...midLatePool, ...(pool.slice(0,2))];
+    } else if (seconds >= 180) {
+      const earlyLatePool = [
+        'tre minuti. il feed si aspettava di tenerti di più.',
+        'sei ancora dentro. il feed prende nota.',
+        'tre minuti. abbastanza per il danno, poco per il rimpianto.',
+      ];
+      pool = [...earlyLatePool, ...(pool.slice(0,2))];
+    }
+    if (BRAIN_MSGS.length > 0 && Math.random() < 0.35) {
+      let idx = brainListened + brainIgnored;
+      if (idx >= BRAIN_MSGS.length) idx = BRAIN_MSGS.length - 1;
+      msg = BRAIN_MSGS[idx];
+    } else {
+      msg = pool[Math.floor(Math.random() * pool.length)];
+    }
+  }
+
+  const listenBtn = document.querySelector('.brain-btn.listen');
+  const ignoreBtn = document.querySelector('.brain-btn.ignore');
+  if (listenBtn && ignoreBtn) {
+    if (brainIgnored >= 3) {
+      listenBtn.textContent = 'salvami da me';
+      ignoreBtn.textContent = 'fammi peggiorare';
+    } else if (brainIgnored >= 1) {
+      listenBtn.textContent = 'sì, hai ragione';
+      ignoreBtn.textContent = 'ancora 5 minuti';
+    } else {
+      listenBtn.textContent = 'ok smetto';
+      ignoreBtn.textContent = 'tra un po\u2019';
+    }
+  }
+
+  document.getElementById('brainMsg').textContent = msg;
+  document.getElementById('brainOverlay').classList.add('active');
+}
+function listenBrain() {
+  document.getElementById('brainOverlay').classList.remove('active');
+  if (isFirstBrainShown) { brainListenedFirst = true; isFirstBrainShown = false; }
+  brainListened++;
+  brainListenedStreak++;
+  showToast(`cervello ascoltato: ${Math.min(brainListenedStreak,3)}/3`, 'good');
+  if (brainListenedStreak >= 3) {
+    if (usefulAdClicks >= 2 && adClicks < 5) triggerEnding('quit');
+    else triggerEnding('smetti');
+    return;
+  }
+  scheduleNextBrain('listen');
+}
+
+function ignoreBrain() {
+  document.getElementById('brainOverlay').classList.remove('active');
+  if (isFirstBrainShown) { isFirstBrainShown = false; }
+  brainIgnored++;
+  everIgnored = true;
+  brainListenedStreak = 0;
+  updateIQ(-4, 'il cervello prende nota del tradimento');
+  scheduleNextBrain('ignore');
+}
+
+function scheduleNextBrain(mode='neutral') {
+  // Circa 40% più frequente rispetto alla v2.5.
+  // Se lo ignori resta più raro del percorso buono, ma diventa anche più cattivo.
+  let delay;
+  if (mode === 'listen') delay = Math.min(27000, 13000 + brainListened * 3600);
+  else if (mode === 'ignore') delay = Math.min(108000, 51000 + brainIgnored * 18000);
+  else delay = 15000;
+  if (brainTimerId) clearTimeout(brainTimerId);
+  brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, delay);
+}
+
+function checkEndings() {
+  if (gameOver) return;
+  if (iq <= 0) triggerEnding('nirvana');
+}
+
+// Testo di condivisione su misura per il finale raggiunto.
+// Volutamente leggero: deve incuriosire l'amico, non spoilerare il finale.
+function buildShareText(type) {
+  const t = timeStr(seconds);
+  const teasers = {
+    nirvana: `QI: 0/100. non è pace, è assenza. la differenza non si sente da dentro. in ${t}. Provalo:`,
+    smetti: `ho chiuso l'app. ho annaffiato la pianta. ho ripreso il telefono. punto a capo. (${t}) Provalo:`,
+    quit: `QUIT DEFINITIVO in ${t}. ho finito una cosa. ho dormito. ho chiamato qualcuno. pare si possa fare. Provalo:`,
+    capitalismo: `ho risolto il doomscrolling comprando 5 prodotti per smettere il doomscrolling. la pace ha un piano annuale. Provalo:`,
+    brainrot: `BRAINROT™ in ${t}. sigma. no cap. ratio. il feed ha vinto. fr fr. Provalo:`
+  };
+  const line = teasers[type] || `DOOM/SCROLL — un feed che vuole il tuo QI. Provalo:`;
+  return `${line}\n${window.location.href}`;
+}
+
+async function shareEnding(type, btn) {
+  const text = buildShareText(type);
+  // Web Share API funziona bene su mobile (apre il foglio di condivisione nativo).
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'DOOM/SCROLL', text });
+      return;
+    } catch (err) {
+      // L'utente ha annullato. Su molti browser è AbortError: niente fallback, è una scelta consapevole.
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+  // Fallback per desktop e browser senza Web Share: copia negli appunti.
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = 'copiato negli appunti';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'condividi'; btn.classList.remove('copied'); }, 2400);
+  } catch {
+    // Browser molto vecchi: ultimo fallback con textarea.
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); btn.textContent = 'copiato'; btn.classList.add('copied'); }
+    catch { btn.textContent = 'copia non supportata'; }
+    document.body.removeChild(ta);
+    setTimeout(() => { btn.textContent = 'condividi'; btn.classList.remove('copied'); }, 2400);
+  }
+}
+
+function triggerEnding(type) {
+  if (gameOver) return;
+  gameOver = true;
+  document.getElementById('brainOverlay').classList.remove('active');
+  // Check sesto finale segreto — la via del santo
+  if (type === 'smetti' && allQuizConscious && noAdsBought && brainListenedFirst && noLercioInteracted) {
+    type = 'santo';
+  }
+  showPreFinalThenEnding(type);
+}
+
+function doTriggerEnding(type) {
+  const ALL = ['nirvana','smetti','quit','brainrot','capitalismo'];
+  const NAMES = { nirvana:'Nirvana', smetti:'Smetti davvero', quit:'Quit definitivo', brainrot:'Brainrot\u2122', capitalismo:'Capitalismo spirituale' };
+  if (type !== 'santo') unlockFinal(type);
+  const unlocked = getUnlocked();
+  const finalsList = ALL.map(f => unlocked.includes(f) ? '\u2713 ' + NAMES[f] : '\uD83D\uDD12 ???').join('  \u00b7  ');
+
+  const overlay = document.getElementById('endingOverlay');
+  overlay.className = 'ending-overlay active ending-' + type;
+
+  // Blocco statistiche condiviso — eredita i colori dal tema del finale
+  const stats = `
+    <div class="ending-stats">
+      <div><span>tempo perso</span><span>${timeStr(seconds)}</span></div>
+      <div><span>qi finale</span><span>${iq}/100</span></div>
+      <div><span>cose viste</span><span>${newsCount}</span></div>
+      <div><span>cervello ascoltato</span><span>${brainListened}x</span></div>
+      <div><span>cervello ignorato</span><span>${brainIgnored}x</span></div>
+      <div><span>annunci cliccati</span><span>${adClicks}x</span></div>
+    </div>
+    <div class="ending-progress">finale ${unlocked.length} di 5 sbloccato</div>
+    <div class="ending-finals">${finalsList}</div>
+    <div class="ending-actions">
+      <button class="ending-share" onclick="shareEnding('${type}', this)">condividi</button>
+      <button class="ending-restart" onclick="restartGame()">ricomincia</button>
+    </div>`;
+
+  // ── NIRVANA ────────────────────────────────────────────────────────────────
+  if (type === 'nirvana') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">FINE CORSA</div>
+        <div class="e-iq">0</div>
+        <div class="e-title">QI RESIDUO</div>
+        <div class="e-body">
+          non hai vinto contro il feed.<br>
+          hai smesso di avere strumenti per combatterlo.<br>
+          <em>la differenza non si sente da dentro.</em>
+          <br><br>
+          hai raggiunto uno stato che alcune app di meditazione<br>
+          vendono a 9,99 al mese.<br>
+          <em>tu ci sei arrivato gratis, per caso, scrollando.</em>
+          <br><br>
+          la pace che senti adesso non \xe8 tua.<br>
+          \xe8 assenza.
+        </div>
+        ${stats}
+      </div>`;
+    playZenSound();
+
+  // ── SMETTI ─────────────────────────────────────────────────────────────────
+  } else if (type === 'smetti') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">// DIAGNOSI — REV. ${Math.floor(seconds/60)+1}</div>
+        <div class="e-title">hai chiuso l'app.</div>
+        <div class="e-step">hai bevuto un bicchiere d'acqua.</div>
+        <div class="e-step">hai aperto la finestra.</div>
+        <div class="e-step">hai guardato fuori per circa 40 secondi.</div>
+        <div class="e-step">hai annaffiato la pianta che stava morendo da settimane.</div>
+        <div class="e-step">hai risposto a un messaggio che aspettava da ieri.</div>
+        <div class="e-step dim">hai pensato: "ecco, cos'\xe8 difficile in questo?"</div>
+        <div class="e-step dim">hai preso il telefono per vedere l'ora.</div>
+        <div class="e-step dim">hai aperto l'app.</div>
+        <div class="e-conclusion">
+          non \xe8 una ricaduta.<br>
+          \xe8 la sequenza normale.<br>
+          <strong>punto a capo.</strong>
+        </div>
+        ${stats}
+      </div>`;
+
+  // ── QUIT DEFINITIVO ── epico, costruzione progressiva, monumentale
+  } else if (type === 'quit') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">— RICONOSCIMENTO RARO —</div>
+        <div style="text-align:center;"><div class="e-title">QUIT DEFINITIVO</div></div>
+        <div style="text-align:center;"><div class="e-subtitle">il feed è ancora aperto. tu no.</div></div>
+        <div class="e-monument">
+          <div class="e-line">hai finito una cosa.</div>
+          <div class="e-line">hai dormito.</div>
+          <div class="e-line">hai chiamato qualcuno per nessun motivo.</div>
+          <div class="e-line dim">hai guardato fuori dalla finestra.</div>
+          <div class="e-line dim">il tempo è passato senza essere documentato.</div>
+        </div>
+        <div class="e-tombstone">
+          <div class="e-tombstone-label">SCREEN TIME OGGI</div>
+          <div class="e-tombstone-time">00:00:00</div>
+        </div>
+        <svg class="e-grass" width="280" height="36" viewBox="0 0 280 36" fill="none">
+          ${Array.from({length:30}, (_,i) => {
+            const x = i*9+4, h2 = 14+Math.sin(i*1.7)*8, w = 1.5+Math.random()*1.5;
+            return `<rect x="${x}" y="${36-h2}" width="${w}" height="${h2}" rx="1" fill="#1a4a1a" opacity="${0.35+Math.random()*0.35}"/>`;
+          }).join('')}
+        </svg>
+        ${stats}
+      </div>`;
+
+  // ── CAPITALISMO SPIRITUALE ─────────────────────────────────────────────────
+  } else if (type === 'capitalismo') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-kicker">\u2728 SOLUZIONE CERTIFICATA \u2728</div>
+        <div class="e-logo">MindFlow\u2122 Pro</div>
+        <div class="e-tagline">la tua pace interiore, ora con dashboard</div>
+        <div class="e-stars">\u2605\u2605\u2605\u2605\u2605</div>
+        <div class="e-reviews">4.9 · 12.847 recensioni verificate</div>
+        <div class="e-feature">hai smesso di scrollare comprando cinque prodotti per smettere di scrollare</div>
+        <div class="e-feature">il problema \xe8 risolto. il problema \xe8 in abbonamento annuale</div>
+        <div class="e-feature">non ascolti pi\xf9 il feed. ascolti i podcast sul non ascoltare il feed</div>
+        <div class="e-feature">la tua ansia ora \xe8 ottimizzata e ha un nome di prodotto</div>
+        <div class="e-price-block">
+          <div class="e-price-old">€ 149,99 / anno</div>
+          <div class="e-price">€ 9,99 <span style="font-size:14px;font-weight:400">/mese</span></div>
+          <div class="e-price-note">rinnovo automatico · annulla quando vuoi · non annullerai</div>
+        </div>
+        <button class="e-cta">CONTINUA IL TUO PERCORSO \u2192</button>
+        <div class="e-fine-print">il tuo qi \xe8 salvo. il tuo conto no. la pace interiore non \xe8 rimborsabile.</div>
+        ${stats}
+      </div>`;
+
+  // ── BRAINROT ───────────────────────────────────────────────────────────────
+  } else if (type === 'brainrot') {
+    const CHAOS_TERMS = [
+      'SIGMA','no cap','W rizz','ratio','L+ratio','Ohio','only in ohio',
+      'NPC','main character','it\'s giving','understood the assignment',
+      'aura farming','gigachad','touch grass','caught in 4K','fr fr',
+      'gyatt','skibidi','rizz','slay','based','lowkey','highkey',
+      'pov:','bussin','sus','glizzy','rent free','understood',
+      '\u{1F480}','\u{1F525}','\u{1F4AF}','\u26A1','\u{1F921}','\u{1F9E0}',
+      'TUNG','brrr','tralalà','sigma grindset','only in ohio',
+    ];
+    const chaosItems = Array.from({length: 28}, (_, i) => {
+      const term = CHAOS_TERMS[Math.floor(Math.random()*CHAOS_TERMS.length)];
+      const size = 9 + Math.floor(Math.random()*16);
+      const x = Math.random()*90;
+      const delay = Math.random()*8;
+      const dur = 6 + Math.random()*10;
+      const rot = (Math.random()*40-20).toFixed(0);
+      const color = ['#ff3030','#ff9040','#ffffff','#00ffff','#ff00ff','#ffff00'][Math.floor(Math.random()*6)];
+      return `<span style="left:${x}%;top:${70+Math.random()*30}%;font-size:${size}px;color:${color};--rot:${rot}deg;animation-delay:${delay}s;animation-duration:${dur}s">${term}</span>`;
+    }).join('');
+
+    overlay.innerHTML = `
+      <div class="e-chaos">${chaosItems}</div>
+      <div class="ending-inner">
+        <div class="e-title">BRAINROT\u2122 CERTIFICATO</div>
+        <div class="e-fragments">
+          <span class="e-frag dim">hai cliccato troppo velocemente per</span>
+          <span class="e-frag loud">SIGMA</span>
+          <span class="e-frag">il feed non riesce più a produrre significato.</span>
+          <span class="e-frag dim">ora produce solo</span>
+          <span class="e-frag mid">stimoli. pattern. loop.</span>
+          <span class="e-frag dim">uomo fa cosa —</span>
+          <span class="e-frag">internet arrabbiato —</span>
+          <span class="e-frag dim">esperto dice boh —</span>
+          <span class="e-frag loud">W RIZZ</span>
+          <span class="e-frag">la frase lunga è morta.</span>
+          <span class="e-frag mid">il titolo basta.</span>
+          <span class="e-frag dim">il titolo è tutto.</span>
+          <span class="e-frag loud">NO CAP FR FR</span>
+          <span class="e-frag dim">il cervello non legge più.</span>
+          <span class="e-frag">riconosce solo pattern.</span>
+          <span class="e-frag loud">RATIO</span>
+        </div>
+        ${stats}
+      </div>`;
+    playGlitchSound();
+
+  // ── SANTO (SEGRETO) ───────────────────────────────────────────────────────
+  } else if (type === 'santo') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">——</div>
+        <div class="e-glyph">· · ·</div>
+        <div class="e-title">hai ascoltato.</div>
+        <div class="e-body">
+          non hai comprato niente.<br>
+          hai risposto a ogni domanda con attenzione.<br>
+          hai smesso quando te lo hanno chiesto.<br>
+          <br>
+          il feed non sa cosa fare di te.<br>
+          <br>
+          questo finale non esiste.<br>
+          se lo hai trovato, sai già cosa significa.
+        </div>
+        ${stats}
+      </div>`;
+    stopAmbient();
+  }
+
+  // Ferma l'audio sui finali silenziosi
+  if (type === 'nirvana') stopAmbient();
+  if (type === 'quit') stopAmbient();
+}
+
+function playZenSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [261.63, 329.63, 392.00].forEach((freq, i) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.frequency.value = freq;
+      o.type = 'sine';
+      o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0, ctx.currentTime + i*0.3);
+      g.gain.linearRampToValueAtTime(0.15, ctx.currentTime + i*0.3 + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.3 + 3);
+      o.start(ctx.currentTime + i*0.3);
+      o.stop(ctx.currentTime + i*0.3 + 3);
+    });
+  } catch(e) {}
+}
+function playGlitchSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    for (let i = 0; i < 8; i++) {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.frequency.value = 80 + Math.random()*400;
+      o.type = 'square';
+      o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0.08, ctx.currentTime + i*0.08);
+      g.gain.linearRampToValueAtTime(0, ctx.currentTime + i*0.08 + 0.05);
+      o.start(ctx.currentTime + i*0.08);
+      o.stop(ctx.currentTime + i*0.08 + 0.05);
+    }
+  } catch(e) {}
+}
+function resetStateForNewRun() {
+  iq = 100; minIQ = 100; seconds = 0; newsCount = 0;
+  brainListened = 0; brainListenedStreak = 0; brainIgnored = 0; everIgnored = false;
+  cardsSinceInterruption = 0; recentLoadClicks = []; gameOver = false; totalLoadMore = 0;
+  adClicks = 0; usefulAdClicks = 0; spiritualDebt = 0; adsShown = 0; loadsSinceAd = 0; brainrotLevel = 0; doubleClickStreak = 0; lastLoadClickAt = 0; scrollLossDebt = 0; interruptionCount = 0;
+  mehUsed = []; intUsed = []; peakUsed = []; adUsed = []; quizUsed = []; brainrotUsed = []; lercioUsed = [];
+  scrollReasonIdx = 0;
+  passiveReasonIdx = 0;
+  lastStage = '';
+  feed.innerHTML = '';
+  document.getElementById('endingOverlay').className = 'ending-overlay';
+  document.getElementById('endingOverlay').innerHTML = '';
+  document.getElementById('brainOverlay').classList.remove('active');
+  document.getElementById('shopOverlay')?.classList.remove('active');
+  // Bug fix: chiudi anche gli altri overlay possibili (notifica, conversazione, pre-finale)
+  document.getElementById('notifOverlay')?.classList.remove('active');
+  document.getElementById('convOverlay')?.classList.remove('active');
+  document.getElementById('prefinalOverlay')?.classList.remove('active');
+  pendingPromo = null; pendingPromoElement = null;
+  purchaseGateStep = 0; // reset gate confermazione acquisti
+  // v3 reset
+  pressureLevel = 0; eventAt8minDone = false; capitalismoMorphLevel = 0;
+  notificationShown = false; notificationReplied = false; notificationIgnored = false;
+  convStep = 0; allQuizConscious = true; noAdsBought = true; brainListenedFirst = false;
+  noLercioInteracted = true; isFirstBrainShown = true;
+  document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
+  document.getElementById('timerVal').textContent = '00:00';
+  document.getElementById('newsCount').textContent = '0';
+  updateIQDisplay();
+  updateFinalsPill();
+}
+
+function restartGame() {
+  if (mainTimerId) clearInterval(mainTimerId);
+  if (brainTimerId) clearTimeout(brainTimerId);
+  stopAmbient();
+  resetStateForNewRun();
+  init();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SPLASH SCREEN ────────────────────────────────────────────────────────────
+function showSplash() {
+  isReturningPlayer = !!localStorage.getItem('doomscroll_played');
+  const unlocked = getUnlocked();
+  const inner = document.getElementById('splashInner');
+  if (isReturningPlayer) {
+    inner.innerHTML = `
+      <div class="splash-brand">DOOM/SCROLL</div>
+      <div class="splash-headline">rieccoci.</div>
+      <div class="splash-rules">
+        <div class="splash-rule highlight">il feed ricorda che sei già stato qui.</div>
+        <div class="splash-rule">il cervello pure.</div>
+        ${unlocked.length > 0 ? `<div class="splash-rule">${unlocked.length}/5 finali sbloccati. ${unlocked.length < 5 ? `ne mancano ${5 - unlocked.length}.` : 'tutti trovati. scrolli per sport.'}</div>` : ''}
+      </div>
+      <button class="splash-cta" onclick="startGame()">ricomincia a scrollare</button>`;
+  } else {
+    inner.innerHTML = `
+      <div class="splash-brand">DOOM/SCROLL</div>
+      <div class="splash-headline">sei il protagonista di un feed che <strong>vuole il tuo QI.</strong></div>
+      <div class="splash-rules">
+        <div class="splash-rule">ogni scroll ti costa qualcosa.</div>
+        <div class="splash-rule">il cervello ti chiederà di smettere. puoi ignorarlo.</div>
+        <div class="splash-rule">ci sono annunci. alcuni sembrano utili.</div>
+        <div class="splash-rule highlight">ci sono 5 finali da scoprire — o evitare.</div>
+      </div>
+      <button class="splash-cta" onclick="startGame()">inizia a scrollare</button>
+      <div class="splash-finals-note">nessun account. nessun registro. solo il feed.</div>`;
+  }
+}
+
+function startGame() {
+  const overlay = document.getElementById('splashOverlay');
+  overlay.classList.add('hiding');
+  setTimeout(() => { overlay.style.display = 'none'; }, 650);
+  localStorage.setItem('doomscroll_played', '1');
+  initAmbient();
+  init();
+}
+
+// ── AMBIENT AUDIO ────────────────────────────────────────────────────────────
+function initAmbient() {
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    ambientGainNode = audioCtx.createGain();
+    ambientGainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    ambientGainNode.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 4);
+    ambientGainNode.connect(audioCtx.destination);
+    // Bass drone
+    const bass = audioCtx.createOscillator();
+    bass.type = 'sine';
+    bass.frequency.setValueAtTime(38, audioCtx.currentTime);
+    const bassGain = audioCtx.createGain();
+    bassGain.gain.value = 0.7;
+    bass.connect(bassGain);
+    bassGain.connect(ambientGainNode);
+    bass.start();
+    ambientOscillators.push(bass);
+    // Sub hum
+    const hum = audioCtx.createOscillator();
+    hum.type = 'triangle';
+    hum.frequency.setValueAtTime(60, audioCtx.currentTime);
+    const humGain = audioCtx.createGain();
+    humGain.gain.value = 0.3;
+    hum.connect(humGain);
+    humGain.connect(ambientGainNode);
+    hum.start();
+    ambientOscillators.push(hum);
+    // Digital noise via buffer
+    const bufferSize = audioCtx.sampleRate * 2;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.15;
+    const noiseSource = audioCtx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+    const noiseFilter = audioCtx.createBiquadFilter();
+    noiseFilter.type = 'bandpass';
+    noiseFilter.frequency.value = 800;
+    noiseFilter.Q.value = 0.5;
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.value = 0.18;
+    noiseSource.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ambientGainNode);
+    noiseSource.start();
+    ambientNoise = { source: noiseSource, filter: noiseFilter, gain: noiseGain };
+    ambientStarted = true;
+  } catch(e) {}
+}
+
+function updateAmbient(currentIQ) {
+  if (!ambientStarted || !audioCtx || !ambientGainNode) return;
+  try {
+    const t = audioCtx.currentTime;
+    if (currentIQ >= 60) {
+      ambientGainNode.gain.linearRampToValueAtTime(0.06, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(38, t + 3);
+    } else if (currentIQ >= 40) {
+      ambientGainNode.gain.linearRampToValueAtTime(0.10, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(32, t + 3);
+      if (ambientNoise) ambientNoise.gain.gain.linearRampToValueAtTime(0.28, t + 2);
+    } else if (currentIQ >= 20) {
+      ambientGainNode.gain.linearRampToValueAtTime(0.16, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(26, t + 3);
+      if (ambientNoise) { ambientNoise.filter.frequency.linearRampToValueAtTime(400, t + 2); ambientNoise.gain.gain.linearRampToValueAtTime(0.38, t + 2); }
+    } else {
+      ambientGainNode.gain.linearRampToValueAtTime(0.22, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(18, t + 3);
+      if (ambientNoise) { ambientNoise.filter.frequency.linearRampToValueAtTime(200, t + 2); ambientNoise.gain.gain.linearRampToValueAtTime(0.5, t + 2); }
+    }
+  } catch(e) {}
+}
+
+function stopAmbient() {
+  try {
+    if (ambientGainNode && audioCtx) ambientGainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.5);
+  } catch(e) {}
+  ambientStarted = false;
+}
+
+// ── PRESSIONE CRESCENTE ───────────────────────────────────────────────────────
+function checkPressure(s) {
+  if (pressureLevel < 1 && s >= 180) {
+    pressureLevel = 1;
+    showToast('3 minuti. il feed non si preoccupa per te.', 'bad');
+    if (brainTimerId) { clearTimeout(brainTimerId); brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 4000); }
+  }
+  if (pressureLevel < 2 && s >= 300) {
+    pressureLevel = 2;
+    applyFeedDegradation();
+    showToast('5 minuti. il feed sta cambiando.', 'bad');
+  }
+  if (pressureLevel < 3 && s >= 480) {
+    pressureLevel = 3;
+    if (!eventAt8minDone) { eventAt8minDone = true; triggerUniqueEvent(); }
+  }
+}
+
+function applyFeedDegradation() {
+  document.querySelectorAll('.news-card:not(.brainrot-news)').forEach((card, i) => {
+    if (i % 3 === 0) card.style.opacity = '0.85';
+    if (i % 5 === 0) card.style.filter = 'saturate(0.7)';
+  });
+}
+
+function triggerUniqueEvent() {
+  const div = document.createElement('div');
+  div.className = 'news-card pressure-event';
+  div.innerHTML = `
+    <div class="pressure-event-label">// SISTEMA IN MANUTENZIONE NON PIANIFICATA</div>
+    <div class="pressure-event-msg">il feed ha continuato a funzionare per otto minuti.<br>nessuno ha chiesto perché.</div>
+    <div class="pressure-event-sub">questo messaggio non sarà qui la prossima volta. non è un errore.</div>`;
+  const loadBtn = feed.querySelector('.load-more');
+  if (loadBtn) feed.insertBefore(div, loadBtn);
+  else feed.appendChild(div);
+  showToast('evento di sistema registrato.', '');
+}
+
+// ── NOTIFICA INTERRUPT ────────────────────────────────────────────────────────
+function scheduleNotification() {
+  const triggerTime = Math.min(240 + Math.floor(Math.random()*60), 9999);
+  setTimeout(() => {
+    if (!gameOver && !notificationShown && (seconds >= 240 || iq < 55)) showNotification();
+  }, (triggerTime - seconds) * 1000 + 500);
+}
+
+function showNotification() {
+  notificationShown = true;
+  document.getElementById('notifOverlay').classList.add('active');
+  if (mainTimerId) clearInterval(mainTimerId);
+}
+
+function ignoreNotification() {
+  notificationIgnored = true;
+  document.getElementById('notifOverlay').classList.remove('active');
+  updateIQ(-5, 'messaggio ignorato. lei aspetta ancora.');
+  showToast('il feed riprende. il messaggio no.', 'bad');
+  resumeAfterNotif();
+  brainrotLevel = Math.max(brainrotLevel, 1);
+  if (brainTimerId) clearTimeout(brainTimerId);
+  brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 3000);
+}
+
+function replyNotification() {
+  document.getElementById('notifOverlay').classList.remove('active');
+  notificationReplied = true;
+  convStep = 0;
+  document.getElementById('convOverlay').classList.add('active');
+  const msgs = document.getElementById('convMessages');
+  msgs.innerHTML = '';
+  addConvMsg('Ti ho cercato. Stai bene?', 'them');
+  showConvChoices(0);
+}
+
+const CONV_SCRIPT = [
+  {
+    choices: [
+      { text: 'Sì, sto bene. Perché?', next: 1 },
+      { text: 'Non lo so, onestamente.', next: 2 }
+    ]
+  },
+  {
+    them: 'Niente, avevo un brutto presentimento. Possiamo vederci?',
+    choices: [
+      { text: 'Sì. Adesso metto giù il telefono.', next: 'good' },
+      { text: 'Oggi non riesco.', next: 3 }
+    ]
+  },
+  {
+    them: 'Ok. Ti ascolto.',
+    choices: [
+      { text: 'Grazie. Ci vediamo?', next: 'good' },
+      { text: 'Lascia stare, va bene così.', next: 3 }
+    ]
+  },
+  {
+    them: 'Ok. Scrivimi quando vuoi.',
+    choices: null,
+    end: 'hai chiuso la conversazione. lei aspetta ancora.'
+  }
+];
+
+function addConvMsg(text, side) {
+  const msgs = document.getElementById('convMessages');
+  const div = document.createElement('div');
+  div.className = 'conv-msg ' + side;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showConvChoices(stepIdx) {
+  const step = CONV_SCRIPT[stepIdx];
+  const choicesEl = document.getElementById('convChoices');
+  choicesEl.innerHTML = '';
+  if (!step.choices) {
+    const end = document.createElement('div');
+    end.className = 'conv-end-msg';
+    end.textContent = step.end || '';
+    choicesEl.appendChild(end);
+    setTimeout(() => {
+      document.getElementById('convOverlay').classList.remove('active');
+      resumeAfterNotif();
+    }, 2500);
+    return;
+  }
+  step.choices.forEach(choice => {
+    const btn = document.createElement('button');
+    btn.className = 'conv-choice';
+    btn.textContent = choice.text;
+    btn.onclick = () => advanceConv(choice, stepIdx);
+    choicesEl.appendChild(btn);
+  });
+}
+
+function advanceConv(choice, fromStep) {
+  addConvMsg(choice.text, 'me');
+  document.getElementById('convChoices').innerHTML = '';
+  if (choice.next === 'good') {
+    setTimeout(() => {
+      document.getElementById('convOverlay').classList.remove('active');
+      triggerEnding('quit');
+    }, 800);
+    return;
+  }
+  const nextStep = CONV_SCRIPT[choice.next];
+  setTimeout(() => {
+    if (nextStep.them) addConvMsg(nextStep.them, 'them');
+    setTimeout(() => showConvChoices(choice.next), 500);
+  }, 700);
+}
+
+function resumeAfterNotif() {
+  mainTimerId = setInterval(() => {
+    if (gameOver) return;
+    seconds++;
+    document.getElementById('timerVal').textContent = timeStr(seconds);
+    if (seconds % 16 === 0) {
+      const reason = PASSIVE_REASONS[passiveReasonIdx % PASSIVE_REASONS.length];
+      passiveReasonIdx++;
+      updateIQ(-1, reason);
+    }
+    checkPressure(seconds);
+    updateAmbient(iq);
+    document.getElementById('liveDot').style.opacity = seconds % 2 === 0 ? '1' : '0.3';
+  }, 1000);
+}
+// ── CAPITALISMO MORPH ─────────────────────────────────────────────────────────
+function applyCapitalismoMorph(level) {
+  capitalismoMorphLevel = level;
+  document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
+  if (level > 0) document.body.classList.add('morph-' + Math.min(level, 4));
+  if (level >= 2) {
+    const w = document.createElement('div');
+    w.className = 'wellness-inject';
+    w.textContent = 'hai acquistato ' + level + ' prodotti per il tuo benessere. il feed registra il tuo percorso verso la lucidità. prossimo passo: piano annuale.';
+    const loadBtn = feed.querySelector('.load-more');
+    if (loadBtn) feed.insertBefore(w, loadBtn);
+  }
+}
+
+// ── PRE-FINALE LINE ───────────────────────────────────────────────────────────
+function generatePreEndingLine() {
+  const mins = Math.floor(seconds / 60);
+  const timeDesc = mins > 0 ? `${mins} minut${mins === 1 ? 'o' : 'i'}` : `${seconds} secondi`;
+  const parts = [];
+  if (adClicks > 0) parts.push(`hai comprato ${adClicks === 1 ? 'una volta' : `${adClicks} volte`}.`);
+  if (brainIgnored > 0) parts.push(`hai ignorato il cervello ${brainIgnored === 1 ? 'una volta' : `${brainIgnored} volte`}.`);
+  if (brainListened > 0) parts.push(`hai ascoltato il cervello ${brainListened === 1 ? 'una volta' : `${brainListened} volte`}.`);
+  parts.push(`hai scrollato per ${timeDesc}.`);
+  if (notificationIgnored) parts.push('non hai risposto al messaggio.');
+  else if (notificationReplied) parts.push('hai risposto al messaggio.');
+  if (newsCount > 30) parts.push(`hai visto ${newsCount} cose.`);
+  return parts.join(' ');
+}
+
+function showPreFinalThenEnding(type) {
+  const line = generatePreEndingLine();
+  const overlay = document.getElementById('prefinalOverlay');
+
+  // Forza il restart dell'animazione: sostituisce il contenitore con un clone pulito.
+  // Senza questo, se il gioco viene rigiocato la seconda volta l'animazione non riparte.
+  const oldText = document.getElementById('prefinalText');
+  const newText = oldText.cloneNode(false);
+  newText.id = 'prefinalText';
+
+  // Dividi il testo in frasi — max 3 righe, ognuna appare con delay scaglionato
+  const sentences = line.split('. ').filter(s => s.trim()).slice(0, 3);
+  newText.innerHTML = sentences.map(s => `<span>${s.endsWith('.') ? s : s + '.'}</span>`).join('');
+  oldText.parentNode.replaceChild(newText, oldText);
+
+  overlay.classList.add('active');
+
+  // 3.8s: abbastanza da leggere 3 frasi, con l'animazione che finisce naturalmente
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    setTimeout(() => doTriggerEnding(type), 200);
+  }, 3800);
+}
+
+function init() {
+  updateFinalsPill();
+  // Sessione 2: riconosce il ritorno
+  if (isReturningPlayer) {
+    const sub = document.getElementById('appSubtitle');
+    if (sub) sub.innerHTML = 'rieccoci. il feed ti aspettava. <span class="pill" id="finalsPill"></span>';
+    updateFinalsPill();
+    // Prima card che sa che sei tornato
+    const returnCard = document.createElement('div');
+    returnCard.className = 'news-card peak';
+    returnCard.innerHTML = `<div class="news-src">IL FEED — MEMORIA PERSISTENTE</div><div class="news-hl">utente noto: sessione precedente rilevata. benvenuto di nuovo in quello che non riesci a smettere di fare.</div><div class="news-meta"><span class="news-tag">Ritorno</span><span class="news-time">adesso</span></div>`;
+    feed.appendChild(returnCard);
+    newsCount++;
+    document.getElementById('newsCount').textContent = newsCount;
+    // cervello scrive subito
+    if (brainTimerId) clearTimeout(brainTimerId);
+    brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 4000);
+  }
+  addNewsCard();
+  addAdCard();
+  for (let i = 0; i < 3; i++) addNewsCard();
+  addQuizCard();
+  addNewsCard();
+  addLoadMore();
+  if (!isReturningPlayer) scheduleNextBrain('neutral');
+  scheduleNotification();
+  mainTimerId = setInterval(() => {
+    if (gameOver) return;
+    seconds++;
+    document.getElementById('timerVal').textContent = timeStr(seconds);
+    if (seconds % 16 === 0) {
+      const reason = PASSIVE_REASONS[passiveReasonIdx % PASSIVE_REASONS.length];
+      passiveReasonIdx++;
+      updateIQ(-1, reason);
+    }
+    checkPressure(seconds);
+    updateAmbient(iq);
+    document.getElementById('liveDot').style.opacity = seconds % 2 === 0 ? '1' : '0.3';
+  }, 1000);
+}
+
+// Tasto Esc chiude le modal aperte (igiene UX): cervello e shop.
+// Non chiude la schermata di finale, che è intenzionalmente bloccante.
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') return;
+  const shop = document.getElementById('shopOverlay');
+  if (shop && shop.classList.contains('active')) { closeProductPage(); return; }
+  const brain = document.getElementById('brainOverlay');
+  if (brain && brain.classList.contains('active')) {
+    // Chiudere il cervello con Esc = ignorarlo. Coerente con la satira.
+    ignoreBrain();
+  }
+});
+
+// Carica contenuto e quiz in parallelo, poi avvia il gioco.
+// Fallback su dati minimi se il fetch fallisce (es. file:// senza server).
+function applyContent(c) {
+  NEWS_MEH               = c.news_meh               || [];
+  NEWS_INTERESTING       = c.news_interesting       || [];
+  NEWS_PEAK              = c.news_peak              || [];
+  NEWS_BRAINROT          = c.news_brainrot          || [];
+  REPEATABLE_NEWS        = c.repeatable_news        || [];
+  EXTRA_MEH_TOPICS       = c.extra_meh_topics       || [];
+  EXTRA_MEH_ENDINGS      = c.extra_meh_endings      || [];
+  EXTRA_INTERESTING      = c.extra_interesting      || [];
+  EXTRA_PEAK             = c.extra_peak             || [];
+  EXTRA_BRAINROT         = c.extra_brainrot         || [];
+  EXTRA_NEWS_MEH_V28     = c.extra_news_meh_v28     || [];
+  EXTRA_NEWS_INTERESTING_V28 = c.extra_news_interesting_v28 || [];
+  EXTRA_NEWS_PEAK_V28    = c.extra_news_peak_v28    || [];
+  EXTRA_NEWS_BRAINROT_V28= c.extra_news_brainrot_v28|| [];
+  FAKE_COMMENTS          = c.fake_comments          || [];
+  BRAIN_MSGS             = c.brain_msgs             || [];
+  BRAIN_IGNORE_MSGS      = c.brain_ignore_msgs      || [];
+  ADS                    = c.ads                    || [];
+}
+
+const FALLBACK_CONTENT = {
+  news_meh: [["Il mondo continua a esistere nonostante tutto.", "Attualità"],["Nessuna novità rilevante oggi.", "Aggiornamenti"]],
+  brain_msgs: [{mood:'neutral', msgs:['forse è il momento di fermarsi.']}],
+  brain_ignore_msgs: ['capito. il telefono decide per te.'],
+  ads: [{title:'Mindfulness Premium', desc:'La pace interiore in abbonamento mensile.', iq:4, label:'Serenità SaaS'}]
+};
+
+const FALLBACK_QUIZ = [{
+  q: 'Cosa cerchi davvero qui dentro?',
+  opts: [
+    {t: 'Un limite', d: 2, k: 'conscious', fb: 'il cervello ha applaudito piano'},
+    {t: 'Distrazione', d: 0, k: 'neutral', fb: 'onestà basica'},
+    {t: 'Una scusa per non iniziare altro', d: -1, k: 'stupid', fb: 'procrastinazione con feed incorporato'},
+    {t: 'Una ragione esterna per sentirmi così', d: -3, k: 'idiot', fb: 'hai esternalizzato il malessere'}
+  ]
+}];
+
+Promise.allSettled([
+  fetch('content.json').then(r => r.json()),
+  fetch('quizzes.json').then(r => r.json()),
+  fetch('lercio.json').then(r => r.json())
+]).then(([contentRes, quizzesRes, lercioRes]) => {
+  applyContent(contentRes.status === 'fulfilled' ? contentRes.value : FALLBACK_CONTENT);
+  const qData = quizzesRes.status === 'fulfilled' ? quizzesRes.value : FALLBACK_QUIZ;
+  QUIZZES.push(...qData);
+  if (lercioRes.status === 'fulfilled') LERCIO_NEWS.push(...lercioRes.value);
+}).finally(() => {
+  showSplash();
+  // init() viene chiamato da startGame() dopo che l'utente clicca sulla splash
+});
+</script>
+</body>
+</html>
