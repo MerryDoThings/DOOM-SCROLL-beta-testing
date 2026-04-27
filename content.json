@@ -1,0 +1,4633 @@
+{
+  "news_meh": [
+    [
+      "Scienziati confermano: tutto sta peggiorando, ma gradualmente",
+      "Scienza"
+    ],
+    [
+      "Studio: controllare le notizie ogni 5 minuti non aiuta",
+      "Salute"
+    ],
+    [
+      "Nuovo record di caldo. Terzo consecutivo. Nessuno sorpreso",
+      "Clima"
+    ],
+    [
+      "Governo annuncia soluzione, poi ci ripensa",
+      "Politica"
+    ],
+    [
+      "Esperto: 'La situazione è seria'. Nessuno fa nulla",
+      "Economia"
+    ],
+    [
+      "Sì, anche questo è probabilmente colpa del cambiamento climatico",
+      "Ambiente"
+    ],
+    [
+      "Miliardario lancia iniziativa filantropica. Non risolve nulla",
+      "Business"
+    ],
+    [
+      "Nuova crisi nelle ultime 24 ore. Come ogni giorno dal 2016",
+      "Mondo"
+    ],
+    [
+      "Algoritmo ottimizzato per tenerti qui più a lungo. Funziona",
+      "Tech"
+    ],
+    [
+      "Inflazione, guerra, clima, pandemia. E tu come stai?",
+      "Generale"
+    ],
+    [
+      "Annunciato nuovo piano per il futuro. Il futuro non commenta",
+      "Politica"
+    ],
+    [
+      "Borsa in calo. Domani in rialzo. Dopodomani non si sa",
+      "Economia"
+    ],
+    [
+      "Politico fa promessa elettorale. Mai sentita prima",
+      "Politica"
+    ],
+    [
+      "Nuovo studio contraddice quello precedente di tre mesi fa",
+      "Scienza"
+    ],
+    [
+      "Allarme rosso revocato. Allarme arancione confermato",
+      "Cronaca"
+    ],
+    [
+      "Banca centrale alza i tassi. La tua casa costa uguale",
+      "Economia"
+    ],
+    [
+      "Dichiarazioni dell'esperto generiche. Tutti d'accordo",
+      "Politica"
+    ],
+    [
+      "Sentenza rinviata di 6 mesi. Per la quarta volta consecutiva",
+      "Giustizia"
+    ],
+    [
+      "UE annuncia nuova direttiva. Nessuno sa cosa dice",
+      "Europa"
+    ],
+    [
+      "Vertice internazionale. Stretta di mano. Niente di concreto",
+      "Mondo"
+    ],
+    [
+      "Tasse aumentano. Servizi peggiorano. Vecchia notizia",
+      "Economia"
+    ],
+    [
+      "Influencer arrestato per qualcosa di vago. Dettagli inutili",
+      "Gossip"
+    ],
+    [
+      "Pesce avvistato. Non era dove doveva essere",
+      "Curiosità"
+    ],
+    [
+      "Comune riapre fontana. Festa cittadina. Nessuno ci va",
+      "Locale"
+    ],
+    [
+      "Anche oggi traffico. Anche oggi sciopero. Anche oggi rabbia",
+      "Cronaca"
+    ],
+    [
+      "Tavola rotonda fra esperti. Tutti pensano lo stesso",
+      "Cultura"
+    ],
+    [
+      "Università invita Big Tech. Tutti sorridono. Nulla cambia",
+      "Tech"
+    ],
+    [
+      "Riforma annunciata. Definita 'storica'. Sarà rinviata",
+      "Politica"
+    ],
+    [
+      "Studio: tutto è collegato. Nessuno sa esattamente a cosa",
+      "Scienza"
+    ],
+    [
+      "Decreto pubblicato in Gazzetta. Letto da 14 persone in tutto",
+      "Politica"
+    ],
+    [
+      "Esperto preoccupato su Twitter. Da 7 anni. Sempre lo stesso",
+      "Tech"
+    ],
+    [
+      "Tassista racconta aneddoto. Ripreso da 3 testate nazionali",
+      "Cronaca"
+    ],
+    [
+      "Sondaggio: 47% favorevole, 47% contrario, 6% non sa nulla",
+      "Politica"
+    ],
+    [
+      "Ministro chiarisce affermazione precedente. Nessuno chiedeva",
+      "Politica"
+    ],
+    [
+      "Statua restaurata. Polemica. Nuova polemica. Vecchia statua",
+      "Cultura"
+    ],
+    [
+      "Assemblea condominiale finisce in rissa. Quarta volta quest'anno",
+      "Cronaca"
+    ],
+    [
+      "App rilascia aggiornamento. Cambia il colore di un bottone",
+      "Tech"
+    ],
+    [
+      "Studio rivela cosa già sapevamo. Costato 2 milioni di euro",
+      "Scienza"
+    ],
+    [
+      "Cane salva il padrone. Padrone gli compra cibo da discount",
+      "Cronaca"
+    ],
+    [
+      "Scoperto pianeta. A 400 anni luce. Buono per noi, davvero",
+      "Spazio"
+    ],
+    [
+      "Tavolo tecnico: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Tavolo tecnico: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Tavolo tecnico: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Tavolo tecnico: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Tavolo tecnico: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Tavolo tecnico: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Tavolo tecnico: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Commissione speciale: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Commissione speciale: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Commissione speciale: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Commissione speciale: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Commissione speciale: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Commissione speciale: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Riforma annunciata: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Bonus sperimentale: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Piano nazionale: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Piano nazionale: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Piano nazionale: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Piano nazionale: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Piano nazionale: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Piano nazionale: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Decreto correttivo: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Conferenza stampa: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Cabina di regia: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Cabina di regia: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Cabina di regia: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Cabina di regia: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Cabina di regia: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Cabina di regia: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Protocollo d'intesa: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Consultazione pubblica: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Fase due: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Fase due: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Fase due: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Fase due: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Fase due: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Fase due: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Monitoraggio costante: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Emergenza gestita: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Strategia condivisa: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Strategia condivisa: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Strategia condivisa: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Strategia condivisa: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Strategia condivisa: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Strategia condivisa: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Fondi europei: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Sportello digitale: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Portale unico: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Portale unico: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Portale unico: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Portale unico: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Portale unico: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Portale unico: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Campagna informativa: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Relazione trimestrale: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Nota ministeriale: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Nota ministeriale: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Nota ministeriale: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Nota ministeriale: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Nota ministeriale: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Nota ministeriale: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Indice di fiducia: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Mercato immobiliare: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Prezzo del pane: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Prezzo del pane: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Prezzo del pane: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Prezzo del pane: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Prezzo del pane: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Prezzo del pane: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Traffico urbano: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Sciopero preventivo: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Ordinanza comunale: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Ordinanza comunale: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Ordinanza comunale: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Ordinanza comunale: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Ordinanza comunale: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Ordinanza comunale: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Parcheggio smart: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Rotonda provvisoria: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Ponte in manutenzione: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Ponte in manutenzione: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Ponte in manutenzione: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Ponte in manutenzione: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Ponte in manutenzione: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Ponte in manutenzione: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Metropolitana promessa: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "App istituzionale: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Call center pubblico: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Call center pubblico: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Call center pubblico: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Call center pubblico: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Call center pubblico: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Call center pubblico: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Raccolta differenziata: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Bando comunale: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Consiglio straordinario: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Consiglio straordinario: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Consiglio straordinario: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Consiglio straordinario: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Consiglio straordinario: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Consiglio straordinario: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Maggioranza compatta: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Opposizione critica: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Esperto indipendente: viene definito 'storico' da chi lo ha appena rinviato.",
+      "Rumore"
+    ],
+    [
+      "Esperto indipendente: non cambia nulla, ma lo fa con tono istituzionale.",
+      "Rumore"
+    ],
+    [
+      "Esperto indipendente: sarà monitorato con attenzione, quindi dimenticato con metodo.",
+      "Rumore"
+    ],
+    [
+      "Esperto indipendente: riapre un dibattito chiuso male e mai davvero chiuso.",
+      "Rumore"
+    ],
+    [
+      "Esperto indipendente: ha già generato una polemica di servizio.",
+      "Rumore"
+    ],
+    [
+      "Esperto indipendente: potrebbe migliorare la situazione o almeno produrre un PDF.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: promette semplificazione e introduce tre nuovi moduli.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: è stato spiegato in 47 slide e capito da 2 persone.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: divide gli esperti tra pessimisti e pessimisti con grafici.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: funziona in teoria, che è il posto dove funziona tutto.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: richiede SPID, CIE, PEC e una piccola abiura.",
+      "Rumore"
+    ],
+    [
+      "Dossier riservato: arriva insieme a una FAQ che peggiora la domanda.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: prevede una piattaforma digitale non ancora online.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: entra in vigore dopo chiarimenti che nessuno ha letto.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: arriva in ritardo, ma con comunicato puntuale.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: è stato salutato con prudente scetticismo e caffè freddo.",
+      "Rumore"
+    ],
+    [
+      "Rapporto annuale: non risolve il problema, ma gli dà un nome più lungo.",
+      "Rumore"
+    ],
+    [
+      "Il Comune annuncia una nuova piattaforma digitale. Funziona meglio se stampi il modulo.",
+      "Politica"
+    ],
+    [
+      "Conferenza stampa sul futuro della scuola: presente un proiettore del 2009.",
+      "Cultura"
+    ],
+    [
+      "La Regione promette trasporti più efficienti. Il comunicato è arrivato in ritardo.",
+      "Politica"
+    ],
+    [
+      "Nuovo portale pubblico: per accedere serve una password che non puoi creare.",
+      "Tech"
+    ],
+    [
+      "La commissione apre un tavolo tecnico. Il tavolo chiede ferie.",
+      "Lavoro"
+    ],
+    [
+      "Sondaggio nazionale: gli italiani vogliono cambiare tutto, ma dopo pranzo.",
+      "Generale"
+    ],
+    [
+      "Esperti al convegno: la soluzione esiste, ma non nel budget.",
+      "Generale"
+    ],
+    [
+      "Il Ministero presenta una roadmap. La strada è chiusa per lavori.",
+      "Politica"
+    ],
+    [
+      "Aggiornamento dell'app bancaria: ora il panico ha un'animazione più fluida.",
+      "Tech"
+    ],
+    [
+      "Vertice europeo concluso con una dichiarazione molto condivisibile e poco applicabile.",
+      "Tech"
+    ],
+    [
+      "Il traffico migliorerà entro il 2035, assicurano persone che viaggiano con autista.",
+      "Generale"
+    ],
+    [
+      "Nuovo bonus per famiglie: le istruzioni sono più lunghe della gravidanza.",
+      "Generale"
+    ],
+    [
+      "Azienda introduce settimana corta: vale solo nella slide motivazionale.",
+      "Lavoro"
+    ],
+    [
+      "Riforma fiscale semplifica tutto aggiungendo tre acronimi.",
+      "Politica"
+    ],
+    [
+      "Bolletta più chiara: ora capisci precisamente quanto sei triste.",
+      "Generale"
+    ],
+    [
+      "Università apre corso sull'intelligenza artificiale. Le aule non hanno prese elettriche.",
+      "Cultura"
+    ],
+    [
+      "Nuovo piano casa: prevede case, in teoria.",
+      "Generale"
+    ],
+    [
+      "Comune installa panchine smart. Nessuna sa perché esiste.",
+      "Politica"
+    ],
+    [
+      "La privacy policy viene aggiornata: nessuno l'ha letta, tutti hanno accettato.",
+      "Generale"
+    ],
+    [
+      "Allerta meteo rientrata. Resta l'allerta esistenziale.",
+      "Generale"
+    ],
+    [
+      "Inflazione in calo, prezzi no. La matematica chiede discrezione.",
+      "Generale"
+    ],
+    [
+      "Nuova campagna per la lettura: poster enorme davanti a una libreria chiusa.",
+      "Generale"
+    ],
+    [
+      "Il mercato del lavoro cerca giovani esperti con trent'anni di esperienza.",
+      "Lavoro"
+    ],
+    [
+      "Riunione urgente fissata per decidere quando fare la prossima riunione urgente.",
+      "Lavoro"
+    ],
+    [
+      "Un report conferma che i report vengono letti soprattutto da altri report.",
+      "Generale"
+    ],
+    [
+      "La città diventa più verde: aggiunta una pianta nel rendering.",
+      "Generale"
+    ],
+    [
+      "Linea ferroviaria potenziata: il treno ora ritarda con più ambizione.",
+      "Ambiente"
+    ],
+    [
+      "Il nuovo regolamento è semplice: basta leggere le 94 pagine di allegati.",
+      "Generale"
+    ],
+    [
+      "La startup prometteva di rivoluzionare la spesa. Ora vende newsletter.",
+      "Generale"
+    ],
+    [
+      "Esperto rassicura: non è crisi, è una transizione con effetti da crisi.",
+      "Generale"
+    ],
+    [
+      "La palestra comunale riapre. Mancano solo pavimento, porte e fiducia.",
+      "Generale"
+    ],
+    [
+      "I lavori finiranno entro l'anno. Non è stato specificato quale.",
+      "Generale"
+    ],
+    [
+      "Il piano giovani include ascolto, partecipazione e un PDF non compilabile.",
+      "Generale"
+    ],
+    [
+      "Convegno sulla solitudine registra il tutto esaurito online, telecamere spente.",
+      "Generale"
+    ],
+    [
+      "Nuovo algoritmo comunale assegna priorità. Ha scelto se stesso.",
+      "Tech"
+    ],
+    [
+      "Campagna anti-spreco stampata su 80.000 volantini.",
+      "Generale"
+    ],
+    [
+      "Azienda lancia programma benessere: più mail sul benessere, stesso carico di lavoro.",
+      "Tech"
+    ],
+    [
+      "La sanità digitale cresce: anche l'attesa ora ha un QR code.",
+      "Tech"
+    ],
+    [
+      "Tavolo contro il caro affitti ospitato in una sala da 900 euro al giorno.",
+      "Generale"
+    ],
+    [
+      "App educativa riceve premio. Gli studenti continuano a usare la chat di classe.",
+      "Tech"
+    ],
+    [
+      "L'ente chiarisce: il problema è complesso, quindi è di tutti e di nessuno.",
+      "Generale"
+    ],
+    [
+      "Nuova ordinanza sul decoro urbano: vietata la tristezza visibile.",
+      "Generale"
+    ],
+    [
+      "La relazione annuale evidenzia criticità già evidenziate nella relazione annuale.",
+      "Generale"
+    ],
+    [
+      "La banca introduce consulente virtuale: dice le stesse cose, ma senza pausa caffè.",
+      "Generale"
+    ],
+    [
+      "Problemi tecnici al sito delle prenotazioni. La tecnologia avanza a tentoni.",
+      "Generale"
+    ],
+    [
+      "Il festival della sostenibilità distribuisce gadget in plastica riciclata male.",
+      "Generale"
+    ],
+    [
+      "Un nuovo studio scopre che dormire poco fa male. Pubblicato alle 02:13.",
+      "Scienza"
+    ],
+    [
+      "Il governo valuta misure. Le misure valutano di nascondersi.",
+      "Politica"
+    ],
+    [
+      "La città sperimenta bus a chiamata. Nessuno sa chi dovrebbe chiamare chi.",
+      "Generale"
+    ],
+    [
+      "Presentata app per segnalare buche. Crasha appena vede una strada.",
+      "Tech"
+    ],
+    [
+      "L'ufficio stampa corregge il comunicato che correggeva il comunicato.",
+      "Lavoro"
+    ],
+    [
+      "Nuove linee guida per semplificare: entreranno in vigore dopo una fase pilota infinita.",
+      "Generale"
+    ],
+    [
+      "La piattaforma per i concorsi funziona, tranne quando serve.",
+      "Tech"
+    ],
+    [
+      "Il Parlamento discute di futuro digitale usando fascicoli rilegati.",
+      "Politica"
+    ],
+    [
+      "Il bonus psicologo finisce in 42 secondi. Ansia in lista d'attesa.",
+      "Generale"
+    ],
+    [
+      "Inaugurato hub dell'innovazione. Il Wi-Fi chiede una password scritta a mano.",
+      "Tech"
+    ],
+    [
+      "La compagnia telefonica migliora l'assistenza: ora l'attesa ha musica più triste.",
+      "Generale"
+    ],
+    [
+      "L'assemblea approva una mozione per approfondire la possibilità di valutare.",
+      "Tech"
+    ],
+    [
+      "L'osservatorio lancia l'allarme: osservava, ma nessuno osservava l'osservatorio.",
+      "Generale"
+    ],
+    [
+      "Il nuovo piano parcheggi riduce i posti per migliorare l'esperienza spirituale.",
+      "Generale"
+    ],
+    [
+      "Burocrazia semplificata: meno sportelli, più link morti.",
+      "Generale"
+    ],
+    [
+      "L'Italia cresce dello 0,1%. La virgola chiede protezione.",
+      "Generale"
+    ],
+    [
+      "Il servizio clienti risponde dopo 17 giorni: “ci dispiace per l'attesa”.",
+      "Generale"
+    ],
+    [
+      "Le previsioni economiche cambiano: erano previsioni, non promesse.",
+      "Generale"
+    ],
+    [
+      "Il Comune assume un social media manager per comunicare i disservizi in modo empatico.",
+      "Politica"
+    ],
+    [
+      "La riqualificazione urbana parte dal nome del progetto.",
+      "Generale"
+    ],
+    [
+      "Sciopero dei mezzi annunciato con largo anticipo. La rassegnazione ringrazia.",
+      "Generale"
+    ],
+    [
+      "Un sondaggio rivela che tutti vogliono tempo libero, ma nessuno sa dove metterlo.",
+      "Generale"
+    ],
+    [
+      "Il decreto contiene una norma transitoria. Vive lì da dodici anni.",
+      "Politica"
+    ],
+    [
+      "La nuova tessera digitale non sostituisce quella fisica. La affianca, minacciosa.",
+      "Tech"
+    ],
+    [
+      "L'evento gratuito richiede registrazione, conferma, app, badge e perdita di volontà.",
+      "Tech"
+    ],
+    [
+      "Il ministero apre consultazione pubblica. I commenti verranno letti da un file Excel.",
+      "Politica"
+    ],
+    [
+      "Riapre il cantiere fermo dal 2018: era in pausa riflessiva.",
+      "Generale"
+    ],
+    [
+      "L'azienda promette trasparenza. Pubblica un comunicato opaco.",
+      "Lavoro"
+    ],
+    [
+      "Pioggia prevista nel weekend. Il weekend non ha rilasciato dichiarazioni.",
+      "Generale"
+    ],
+    [
+      "La raccolta differenziata migliora: l'umido resta filosoficamente ambiguo.",
+      "Generale"
+    ],
+    [
+      "L'ascensore della stazione è fuori servizio. La modernità prende le scale.",
+      "Generale"
+    ],
+    [
+      "Le ferie sono approvate. Il lavoro viene con te in formato notifica.",
+      "Tech"
+    ],
+    [
+      "Il nuovo piano energetico punta tutto su parole molto energiche.",
+      "Generale"
+    ],
+    [
+      "Aumentano i prezzi dei beni essenziali. Le cose inutili restano competitive.",
+      "Generale"
+    ],
+    [
+      "Confermato il ritardo del progetto. In anticipo sulla comunicazione del ritardo.",
+      "Generale"
+    ],
+    [
+      "L'agenzia pubblica un vademecum: per capirlo serve un altro vademecum.",
+      "Generale"
+    ],
+    [
+      "La smart city introduce cestini intelligenti. I cittadini li interrogano sul senso della vita.",
+      "Generale"
+    ],
+    [
+      "La sicurezza informatica migliora: password consigliata, “non1234”.",
+      "Tech"
+    ],
+    [
+      "Il mercato immobiliare rallenta. Gli affitti no, hanno personalità propria.",
+      "Generale"
+    ],
+    [
+      "Un panel di esperti discute la crisi dell'attenzione per tre ore e mezza.",
+      "Generale"
+    ],
+    [
+      "L'università promuove inclusione digitale. Il modulo non funziona da mobile.",
+      "Tech"
+    ],
+    [
+      "La nuova rotonda migliorerà il traffico creando discussioni infinite.",
+      "Generale"
+    ],
+    [
+      "Servizio online temporaneamente non disponibile dal 2021.",
+      "Generale"
+    ],
+    [
+      "L'azienda taglia costi e li chiama efficienza emotiva.",
+      "Lavoro"
+    ],
+    [
+      "Il Comune installa colonnine elettriche. Sono decorative finché non arriva la corrente.",
+      "Politica"
+    ],
+    [
+      "Gli esperti invitano alla calma. Lo fanno con titoli in maiuscolo.",
+      "Tech"
+    ],
+    [
+      "La nuova campagna salute consiglia di dormire. Sponsorizzata da una app con notifiche.",
+      "Tech"
+    ],
+    [
+      "Il fondo speciale finanzierà idee innovative, purché già dimostrate nel 1998.",
+      "Generale"
+    ],
+    [
+      "Presentato il logo della riforma. La riforma arriverà in un secondo momento.",
+      "Politica"
+    ],
+    [
+      "L'incontro pubblico è partecipato. Parlano sempre gli stessi quattro.",
+      "Generale"
+    ],
+    [
+      "La modulistica cambia formato. Il contenuto resta un labirinto.",
+      "Generale"
+    ],
+    [
+      "Nuovo centro commerciale promette comunità. Vende soprattutto parcheggi.",
+      "Generale"
+    ],
+    [
+      "La commissione etica sull'AI si riunisce su una piattaforma che registra tutto.",
+      "Tech"
+    ],
+    [
+      "La Provincia annuncia manutenzione straordinaria: ordinaria era un concetto troppo audace.",
+      "Ambiente"
+    ],
+    [
+      "Il report sulla povertà viene presentato in una sala con catering notevole.",
+      "Generale"
+    ],
+    [
+      "La app comunale invia notifiche inutili con grande puntualità.",
+      "Tech"
+    ],
+    [
+      "Un nuovo indice misura la felicità urbana. La tua zona non risponde.",
+      "Generale"
+    ],
+    [
+      "La scuola riceve tablet. Mancano docenti, rete e caricabatterie.",
+      "Cultura"
+    ],
+    [
+      "La riunione su Zoom inizia con dieci minuti di “mi sentite?”.",
+      "Lavoro"
+    ],
+    [
+      "Il regolamento privacy protegge i dati chiedendoti di inserirne altri.",
+      "Generale"
+    ],
+    [
+      "La nuova misura è temporanea. Come tutte le cose permanenti all'inizio.",
+      "Generale"
+    ],
+    [
+      "Il sindaco promette ascolto. I microfoni erano spenti.",
+      "Politica"
+    ],
+    [
+      "Apre sportello per il disagio digitale. Prenotazione solo via app.",
+      "Tech"
+    ],
+    [
+      "La città sperimenta semafori intelligenti. Restano rossi per scelta artistica.",
+      "Generale"
+    ],
+    [
+      "La compagnia aerea migliora l'imbarco aggiungendo una fila.",
+      "Generale"
+    ],
+    [
+      "Il portale del lavoro consiglia di aggiornare il curriculum e abbassare le aspettative.",
+      "Lavoro"
+    ],
+    [
+      "La conferenza sul clima finisce con foto di gruppo e aria condizionata forte.",
+      "Ambiente"
+    ],
+    [
+      "La nuova newsletter informa su come ridurre le email.",
+      "Tech"
+    ],
+    [
+      "L'assessore parla di visione. La buca davanti al municipio resta miope.",
+      "Politica"
+    ],
+    [
+      "Il bando premia giovani talenti nati prima del 1990.",
+      "Politica"
+    ],
+    [
+      "La biblioteca estende gli orari: chiude solo quando potresti andarci.",
+      "Cultura"
+    ],
+    [
+      "La città lancia un'app per il turismo lento. Pesa 400 MB.",
+      "Tech"
+    ],
+    [
+      "Il piano anti-smog suggerisce di respirare con moderazione.",
+      "Ambiente"
+    ],
+    [
+      "Il supermercato introduce casse veloci. Il conflitto sociale accelera.",
+      "Generale"
+    ],
+    [
+      "L'azienda chiede feedback anonimo. Il link contiene nome, cognome e reparto.",
+      "Lavoro"
+    ],
+    [
+      "Il nuovo edificio è sostenibile. Tranne per chi lo abita.",
+      "Generale"
+    ],
+    [
+      "La piattaforma di e-learning non carica il corso sulla resilienza.",
+      "Tech"
+    ],
+    [
+      "La conferenza motivazionale inizia con “siamo tutti esausti”.",
+      "Generale"
+    ],
+    [
+      "Un team interfunzionale affronta il problema creando un altro team.",
+      "Generale"
+    ],
+    [
+      "La stampante dell'ufficio è ancora viva e ostile.",
+      "Lavoro"
+    ],
+    [
+      "Il numero verde diventa chatbot grigio.",
+      "Tech"
+    ],
+    [
+      "La città celebra la mobilità dolce. Le piste ciclabili finiscono nei cespugli.",
+      "Generale"
+    ],
+    [
+      "Il calendario condiviso risolve tutto, tranne il tempo.",
+      "Generale"
+    ],
+    [
+      "L'indagine interna conclude che l'indagine esterna servirà.",
+      "Generale"
+    ],
+    [
+      "La pausa pranzo si restringe. La call delle 13:00 si espande.",
+      "Lavoro"
+    ],
+    [
+      "Il nuovo open space favorisce collaborazione e rancore acustico.",
+      "Generale"
+    ],
+    [
+      "La strategia nazionale è ambiziosa. La password del documento è “strategia”.",
+      "Tech"
+    ],
+    [
+      "Il sistema premia il merito, purché abbia già vinto.",
+      "Generale"
+    ],
+    [
+      "La nuova dashboard mostra grafici belli su problemi brutti.",
+      "Generale"
+    ],
+    [
+      "La relazione parla di “criticità note”. Note a chi, non è chiaro.",
+      "Generale"
+    ],
+    [
+      "Il piano ferie è approvato. La casella mail ride piano.",
+      "Tech"
+    ],
+    [
+      "La città lancia il festival del futuro. Biglietti stampati su carta termica.",
+      "Generale"
+    ],
+    [
+      "La nuova policy riduce lo stress vietando di nominarlo.",
+      "Generale"
+    ],
+    [
+      "Aumentano gli abbonamenti. Diminuisce la memoria di averli attivati.",
+      "Generale"
+    ],
+    [
+      "Il quartiere cambia volto. Il tuo affitto cambia personalità.",
+      "Generale"
+    ],
+    [
+      "Il comitato scientifico raccomanda prudenza. Il titolo sceglie panico.",
+      "Generale"
+    ],
+    [
+      "L'app di messaggistica introduce una funzione per ignorare meglio.",
+      "Tech"
+    ],
+    [
+      "Il museo diventa interattivo. Ti chiede subito una mail.",
+      "Tech"
+    ],
+    [
+      "La promessa di semplificazione arriva in tre allegati separati.",
+      "Generale"
+    ],
+    [
+      "La city card non funziona sulla città reale.",
+      "Generale"
+    ],
+    [
+      "La conferenza finisce con “restiamo in contatto”. Nessuno voleva.",
+      "Generale"
+    ],
+    [
+      "Il report trimestrale conferma che il trimestre è successo.",
+      "Generale"
+    ],
+    [
+      "Il Comune cerca volontari per gestire l'emergenza permanente.",
+      "Politica"
+    ],
+    [
+      "Il bando chiede originalità entro un template obbligatorio.",
+      "Politica"
+    ],
+    [
+      "La nuova app per studenti manda notifiche durante gli esami.",
+      "Tech"
+    ],
+    [
+      "I prezzi salgono meno velocemente. Grande vittoria della pendenza.",
+      "Generale"
+    ],
+    [
+      "Il sindacato protesta contro l'automazione usando un modulo automatico.",
+      "Generale"
+    ],
+    [
+      "La riunione ibrida unisce il peggio dei due mondi.",
+      "Lavoro"
+    ],
+    [
+      "La pagina FAQ non contiene la domanda che hai.",
+      "Tech"
+    ],
+    [
+      "Il programma di mentoring assegna un mentore più confuso del mentee.",
+      "Generale"
+    ],
+    [
+      "Il portale sanitario ti fa scegliere una data già passata.",
+      "Generale"
+    ],
+    [
+      "La task force produce una presentazione chiamata “finale_v9_def”.",
+      "Generale"
+    ],
+    [
+      "L'evento sold out era gratuito e nessuno si è presentato.",
+      "Generale"
+    ],
+    [
+      "La nuova metro arriverà. Intanto il rendering è puntualissimo.",
+      "Generale"
+    ],
+    [
+      "La procedura è “snella”: pesa solo 28 passaggi.",
+      "Generale"
+    ],
+    [
+      "Il servizio migliora secondo indicatori scelti dal servizio.",
+      "Generale"
+    ],
+    [
+      "La app del meteo aggiorna la pioggia dopo che sei bagnato.",
+      "Tech"
+    ],
+    [
+      "Il manuale utente comincia con “è intuitivo”. Brutto segno.",
+      "Generale"
+    ],
+    [
+      "Il sistema di ticket chiude il ticket perché non hai risposto mentre dormivi.",
+      "Tech"
+    ],
+    [
+      "La città crea un brand territoriale. Il territorio chiede un geometra.",
+      "Generale"
+    ],
+    [
+      "La consultazione pubblica termina prima che il pubblico lo sappia.",
+      "Tech"
+    ],
+    [
+      "L'ufficio digitale consiglia di telefonare.",
+      "Tech"
+    ],
+    [
+      "Il corso obbligatorio sulla concentrazione ha 64 slide animate.",
+      "Generale"
+    ],
+    [
+      "Il nuovo parcheggio risolve il problema inducendo a non uscire.",
+      "Generale"
+    ]
+  ],
+  "news_interesting": [
+    [
+      "Polipo risolve labirinto in 30 secondi. Tu sei a 12 minuti di scroll",
+      "Scienza"
+    ],
+    [
+      "Trovata grotta inesplorata in Vietnam, profonda 400m",
+      "Esplorazione"
+    ],
+    [
+      "Donna di 99 anni si laurea in fisica nucleare",
+      "Cronaca"
+    ],
+    [
+      "Antico papiro decifrato. Diceva: 'mi annoio molto'",
+      "Storia"
+    ],
+    [
+      "Atleta paralimpica vince oro. Tu non hai fatto colazione",
+      "Sport"
+    ],
+    [
+      "Studente di 12 anni risolve un teorema aperto da 80 anni",
+      "Scienza"
+    ],
+    [
+      "Comunità ricostruisce villaggio in 3 mesi dopo alluvione",
+      "Cronaca"
+    ],
+    [
+      "Nuova specie di rana scoperta. Si chiama come il professore",
+      "Natura"
+    ],
+    [
+      "Robot italiano vince premio mondiale. Lo sai solo perché siamo qui",
+      "Tech"
+    ],
+    [
+      "Donna trova quadro raro in soffitta. Vale 800.000 euro",
+      "Curiosità"
+    ],
+    [
+      "Bambino di 9 anni inventa app per anziani. Più produttivo di te",
+      "Tech"
+    ],
+    [
+      "Volontari ripuliscono spiaggia in 3 ore. Tu non hai pulito casa",
+      "Ambiente"
+    ],
+    [
+      "Aurora boreale visibile in Sicilia per la prima volta da 200 anni",
+      "Scienza"
+    ],
+    [
+      "Antiche rovine emerse dal lago siccitoso. Bello, eh",
+      "Storia"
+    ],
+    [
+      "Restaurata cappella medievale. Più giovane delle tue scuse",
+      "Cultura"
+    ],
+    [
+      "Coppia gira il mondo in bici. Partiti 4 anni fa, tu sei qui",
+      "Viaggi"
+    ],
+    [
+      "Scienziati creano cellule artificiali. Il tuo cellulare è scarico",
+      "Scienza"
+    ],
+    [
+      "Riscoperta lingua estinta, parlata da 2 persone",
+      "Cultura"
+    ],
+    [
+      "Astronauti riparano satellite a mani nude in orbita",
+      "Spazio"
+    ],
+    [
+      "Squadra italiana vince mondiale di robotica. Continui a scrollare",
+      "Tech"
+    ],
+    [
+      "Foresta ripopolata in 5 anni. Il tuo ficus invece è morto",
+      "Ambiente"
+    ],
+    [
+      "Murales gigante completato in centro città. Lo vedrai mai? No",
+      "Arte"
+    ],
+    [
+      "Fotografo cattura raro fenomeno celeste. Tu fotografi cibo",
+      "Foto"
+    ],
+    [
+      "Archeologo trova tomba intatta. Più ordinata della tua scrivania",
+      "Storia"
+    ],
+    [
+      "Ricercatori decifrano diario romano: conteneva lamentele sul traffico e sul vicino.",
+      "Storia"
+    ],
+    [
+      "Scoperta una foresta fossile sotto i ghiacci. Ha gestito meglio il tempo di noi.",
+      "Scienza"
+    ],
+    [
+      "Una biblioteca salva 80.000 libri dall'alluvione. Tu non salvi neanche i preferiti.",
+      "Cultura"
+    ],
+    [
+      "Città spegne le insegne di notte e vede tornare le stelle. Concetto rivoluzionario: buio.",
+      "Ambiente"
+    ],
+    [
+      "Medici completano intervento rarissimo. Il paziente ringrazia, internet commenta senza leggere.",
+      "Salute"
+    ],
+    [
+      "Studente costruisce sensore low-cost per l'acqua potabile. Tu stai ancora cercando il caricatore.",
+      "Tech"
+    ],
+    [
+      "Archivio sonoro restituisce la voce di una cantante dimenticata. Il feed la dimenticherà domani.",
+      "Musica"
+    ],
+    [
+      "Orso attraversa tre confini senza documenti e con più determinazione di te.",
+      "Natura"
+    ],
+    [
+      "Paese resta senza internet per 48 ore. Gli abitanti scoprono di avere una piazza.",
+      "Società"
+    ],
+    [
+      "Ritrovato mosaico romano sotto un parcheggio. La civiltà perde, ma con stile.",
+      "Archeologia"
+    ],
+    [
+      "Un villaggio produce energia condivisa e abbassa le bollette. Sembra una fake news, ma utile.",
+      "Energia"
+    ],
+    [
+      "Nonna di 91 anni impara a programmare per sistemare il sito del circolo. Priorità chiare.",
+      "Tech"
+    ],
+    [
+      "Squadra di volontari recupera un sentiero alpino. Ora esiste una via d'uscita, simbolicamente.",
+      "Ambiente"
+    ],
+    [
+      "Nuovo telescopio fotografa galassia lontanissima. Da lì il tuo feed non si vede.",
+      "Spazio"
+    ],
+    [
+      "Ricercatori scoprono batterio che mangia plastica. Ha già più curriculum di molti ministri.",
+      "Scienza"
+    ],
+    [
+      "Bambini restaurano il giardino della scuola. Loro almeno toccano l'erba non ironicamente.",
+      "Locale"
+    ],
+    [
+      "Un ex manager apre una falegnameria e dorme meglio. Il PIL non sa come reagire.",
+      "Vita"
+    ],
+    [
+      "Scoperto manoscritto con ricetta medievale. Prevede meno passaggi del login alla banca.",
+      "Storia"
+    ],
+    [
+      "Startup fallisce ma rilascia il codice open source. Finalmente una sconfitta utile.",
+      "Tech"
+    ],
+    [
+      "Comune trasforma ex centro commerciale in biblioteca. L'algoritmo lo trova poco monetizzabile.",
+      "Cultura"
+    ],
+    [
+      "Ragazza attraversa l'Europa in treno senza prendere aerei. Il tuo viaggio più lungo oggi è stato al frigo.",
+      "Viaggi"
+    ],
+    [
+      "Pescatori liberano una balena impigliata. La balena non ha aperto thread polemici.",
+      "Natura"
+    ],
+    [
+      "Museo rende gratis l'ingresso serale. Tu sei occupato a guardare foto del museo.",
+      "Cultura"
+    ],
+    [
+      "Nuova cura sperimentale dà risultati promettenti. Per una volta, ansia con speranza.",
+      "Salute"
+    ],
+    [
+      "Un paese pianta alberi da frutto pubblici. La civiltà ogni tanto inciampa nel buono.",
+      "Ambiente"
+    ],
+    [
+      "Sonda invia dati da miliardi di chilometri. Il tuo Wi-Fi invece cede in cucina.",
+      "Spazio"
+    ],
+    [
+      "Ricostruito un violino distrutto in guerra. Suona meglio dei comunicati ufficiali.",
+      "Musica"
+    ],
+    [
+      "Atleta corre ultramaratona per beneficenza. Tu hai evitato le scale mobili rotte.",
+      "Sport"
+    ],
+    [
+      "Tradotta una poesia sumera sull'ansia del lavoro. Niente è nuovo, nemmeno il burnout.",
+      "Storia"
+    ],
+    [
+      "Un quartiere elimina le auto davanti alle scuole. I bambini scoprono il rumore dei passi.",
+      "Città"
+    ],
+    [
+      "Restauratori trovano un disegno nascosto sotto un affresco. Era un gatto, perché la storia sa essere seria.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori usano droni per riforestare una valle bruciata. Per una volta la tecnologia non chiede attenzione, la restituisce.",
+      "Ambiente"
+    ],
+    [
+      "Un archivio dimenticato rivela lettere d'amore mai spedite. Anche nel 1890 la gente lasciava tutto in bozza.",
+      "Tech"
+    ],
+    [
+      "Medici sviluppano una protesi low cost stampata in 3D per bambini. Il futuro ogni tanto fa il suo lavoro.",
+      "Lavoro"
+    ],
+    [
+      "Una comunità salva un cinema di quartiere comprando una poltrona a testa.",
+      "Interessante"
+    ],
+    [
+      "Scoperta una barriera corallina profonda ancora intatta. La notizia bella dura finché non arriva il paragrafo successivo.",
+      "Ambiente"
+    ],
+    [
+      "Fisici osservano un fenomeno previsto cento anni fa. Tu non avevi previsto neanche la batteria al 3%.",
+      "Scienza"
+    ],
+    [
+      "Una maestra in pensione apre una biblioteca gratuita nel garage. Nessun algoritmo, solo sedie scomode e miracoli.",
+      "Tech"
+    ],
+    [
+      "Archeologi trovano semi antichi ancora germinabili. Perfino i ceci hanno più resilienza di noi.",
+      "Interessante"
+    ],
+    [
+      "Un villaggio senza negozi riapre l'emporio grazie a turni volontari. Il capitalismo guarda, confuso.",
+      "Interessante"
+    ],
+    [
+      "Una ragazza costruisce un filtro per microplastiche con materiali da ferramenta.",
+      "Interessante"
+    ],
+    [
+      "Astronomi fotografano una galassia deformata dalla gravità. Sembra il tuo calendario di maggio.",
+      "Scienza"
+    ],
+    [
+      "Una squadra di studenti vince una gara di robotica con pezzi recuperati da stampanti rotte.",
+      "Tech"
+    ],
+    [
+      "Biologi registrano il canto di una balena mai identificata. Potrebbe essere tristezza, potrebbe essere jazz.",
+      "Tech"
+    ],
+    [
+      "Un paese spegne le insegne di notte e rivede le stelle per la prima volta da anni.",
+      "Interessante"
+    ],
+    [
+      "Trovato un manoscritto medievale pieno di battute ai margini. I copisti erano stanchi come noi.",
+      "Tech"
+    ],
+    [
+      "Una app civica creata da volontari segnala barriere architettoniche meglio del portale ufficiale.",
+      "Tech"
+    ],
+    [
+      "Un agricoltore recupera una varietà di grano quasi scomparsa. Il pane avrà una backstory migliore della tua.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori insegnano a un robot a piegare vestiti. Il robot si licenzia mentalmente.",
+      "Tech"
+    ],
+    [
+      "Un gruppo di anziani ripara biciclette per studenti fuori sede. La logistica della gentilezza funziona.",
+      "Cultura"
+    ],
+    [
+      "Scoperta una nuova specie di orchidea su una parete rocciosa. Non ha chiesto finanziamenti.",
+      "Interessante"
+    ],
+    [
+      "In Islanda testano strade che ricaricano veicoli elettrici. In Italia stiamo ancora litigando sulle buche senzienti.",
+      "Interessante"
+    ],
+    [
+      "Una ragazza traduce fiabe nella lingua dei nonni per non perderla.",
+      "Interessante"
+    ],
+    [
+      "Un ospedale riduce le attese cambiando il modo in cui parla ai pazienti. Rivoluzionario: trattarli da esseri umani.",
+      "Tech"
+    ],
+    [
+      "Un osservatorio amatoriale scopre un asteroide. Il telescopio era in un capanno, non in una slide.",
+      "Interessante"
+    ],
+    [
+      "Un quartiere trasforma un parcheggio vuoto in giardino condiviso. Nessuno ha detto “metaverso”.",
+      "Interessante"
+    ],
+    [
+      "Scienziati mappano i funghi che aiutano le foreste a comunicare. Le radici hanno un gruppo chat migliore.",
+      "Tech"
+    ],
+    [
+      "Un ragazzo inventa un sensore economico per avvisare gli anziani se il gas resta aperto.",
+      "Interessante"
+    ],
+    [
+      "Una libreria itinerante raggiunge paesi senza scuole. Il motore fa rumore, la cosa funziona.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori recuperano audio di una lingua estinta da vecchi cilindri. Il passato manda vocali migliori dei tuoi.",
+      "Scienza"
+    ],
+    [
+      "Un collettivo pulisce un fiume e trova meno rifiuti l'anno dopo. A volte il loop si rompe davvero.",
+      "Ambiente"
+    ],
+    [
+      "Un team medico usa videogiochi per riabilitare pazienti neurologici. Per una volta “ancora una partita” è terapia.",
+      "Interessante"
+    ],
+    [
+      "Un falegname costruisce banchi regolabili per una scuola con fondi raccolti online.",
+      "Cultura"
+    ],
+    [
+      "La NASA riceve dati da una sonda creduta muta. Anche lo spazio ogni tanto risponde in ritardo.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di studenti crea mappe accessibili per chi usa sedie a rotelle.",
+      "Tech"
+    ],
+    [
+      "Trovata una nave romana sotto un campo agricolo. Il contadino chiedeva solo meno sassi.",
+      "Interessante"
+    ],
+    [
+      "Un piccolo comune produce più energia di quanta ne consumi. La bolletta ha avuto un momento spirituale.",
+      "Politica"
+    ],
+    [
+      "Una ricercatrice italiana vince un premio per batterie riciclabili. Il futuro, ma meno usa e getta.",
+      "Interessante"
+    ],
+    [
+      "Un artista restaura insegne storiche invece di sostituirle con LED aggressivi.",
+      "Interessante"
+    ],
+    [
+      "Una scuola introduce un'ora senza telefoni e gli studenti sopravvivono. Alcuni riferiscono pensieri.",
+      "Cultura"
+    ],
+    [
+      "In un parco urbano tornano le lucciole dopo anni. La notte ha ricevuto un aggiornamento buono.",
+      "Ambiente"
+    ],
+    [
+      "Un laboratorio crea mattoni da scarti agricoli. Le case potrebbero puzzare leggermente di buon senso.",
+      "Interessante"
+    ],
+    [
+      "Una biblioteca presta strumenti musicali invece di libri. Il silenzio del quartiere è in trattativa.",
+      "Cultura"
+    ],
+    [
+      "Ricercatori scoprono come alcune piante ricordano periodi di siccità. Le tue invece ricordano che le hai tradite.",
+      "Tech"
+    ],
+    [
+      "Un museo rende consultabili online diari di persone comuni. La storia smette per un attimo di essere solo re e guerre.",
+      "Cultura"
+    ],
+    [
+      "Una città riduce incidenti abbassando davvero la velocità, non solo mettendo cartelli.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di ragazzi ripara computer vecchi per donarli a chi studia.",
+      "Interessante"
+    ],
+    [
+      "Scoperto un pigmento antico più stabile di molti governi.",
+      "Interessante"
+    ],
+    [
+      "Una comunità recupera un sentiero abbandonato. Ora porta da qualche parte, concetto raro.",
+      "Politica"
+    ],
+    [
+      "Un team trova un modo semplice per raffreddare edifici senza consumare energia. Le finestre ascoltano.",
+      "Ambiente"
+    ],
+    [
+      "Un cane addestrato riconosce crisi epilettiche con minuti di anticipo. Migliore notifica push mai creata.",
+      "Tech"
+    ],
+    [
+      "Una classe adotta un torrente e misura i miglioramenti anno dopo anno.",
+      "Interessante"
+    ],
+    [
+      "Restaurata una pellicola muta ritenuta perduta. Parla meno di molti talk show, dice di più.",
+      "Interessante"
+    ],
+    [
+      "Un ospedale pediatrico usa visori per ridurre il dolore durante le procedure. Questa volta distrarsi serve.",
+      "Interessante"
+    ],
+    [
+      "Un quartiere organizza cene condivise per anziani soli. Engagement reale, zero scroll.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori producono cemento che assorbe CO2. Il materiale sembra più responsabile di noi.",
+      "Ambiente"
+    ],
+    [
+      "Un villaggio crea una moneta locale per tenere aperti i negozi. L'economia, ma con facce conosciute.",
+      "Interessante"
+    ],
+    [
+      "Una donna ritrova il diario del padre e lo restituisce alla famiglia dopo 60 anni.",
+      "Interessante"
+    ],
+    [
+      "Una startup fallita libera il suo codice invece di seppellirlo. Piccolo gesto, grande igiene karmica.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di infermieri progetta un carrello ospedaliero più pratico. Innovazione: chiedere a chi lavora.",
+      "Interessante"
+    ],
+    [
+      "Un ponte pedonale riduce il tragitto casa-scuola di 20 minuti. Il tempo torna indietro, ma legalmente.",
+      "Cultura"
+    ],
+    [
+      "Un laboratorio scolastico misura la qualità dell'aria e convince il Comune a cambiare strada.",
+      "Politica"
+    ],
+    [
+      "Un astronomo dilettante fotografa una cometa dal balcone. Il cielo entra in condominio.",
+      "Interessante"
+    ],
+    [
+      "Una cooperativa salva un frutteto storico. Le mele hanno più memoria della piattaforma cloud.",
+      "Tech"
+    ],
+    [
+      "Un robot subacqueo trova reti fantasma e le rimuove. Finalmente un bot utile.",
+      "Tech"
+    ],
+    [
+      "Riapre una ferrovia locale chiusa da decenni. Il paese scopre che collegare persone non era vintage.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di nonni insegna riparazioni base agli adolescenti. La manualità torna come spoiler del futuro.",
+      "Interessante"
+    ],
+    [
+      "Una ricerca mostra che il silenzio nei parchi migliora l'umore. Notizia difficile da monetizzare.",
+      "Interessante"
+    ],
+    [
+      "Una donna attraversa l'Europa in treno raccogliendo storie di sconosciuti. Nessun filtro bellezza necessario.",
+      "Interessante"
+    ],
+    [
+      "Un orto urbano produce abbastanza verdure per una mensa. La zucchina fa più welfare di certi comunicati.",
+      "Interessante"
+    ]
+  ],
+  "news_peak": [
+    [
+      "'Ancora 5 minuti e poi smetto'. Promessa fatta 47 volte oggi",
+      "Riflessione"
+    ],
+    [
+      "Tre persone hanno chiuso questa app oggi. Stanno meglio. Tu no",
+      "Statistica"
+    ],
+    [
+      "La tua tisana si è raffreddata. Era già fredda 12 minuti fa",
+      "Cronaca"
+    ],
+    [
+      "Hai messo like a un meme. Era del 2017. Sei in ritardo",
+      "Internet"
+    ],
+    [
+      "Il tuo cervello sta producendo dopamina sintetica. Ti basta",
+      "Bio"
+    ],
+    [
+      "Stai leggendo questo titolo. L'algoritmo ha vinto. Ancora",
+      "Riflessione"
+    ],
+    [
+      "Hai 2 ore di vita in meno rispetto a quando hai aperto l'app",
+      "Tempo"
+    ],
+    [
+      "Ti ricordi cosa volevi cercare 20 minuti fa? No. Eccoci",
+      "Memoria"
+    ],
+    [
+      "Stavi per uscire. Hai aperto questo. Ora è buio fuori",
+      "Riflessione"
+    ],
+    [
+      "Il decoder rotto è ancora rotto. Anche dopo 30 minuti di scroll",
+      "Casa"
+    ],
+    [
+      "La pianta che dovevi annaffiare ti sta osservando. Senza speranza",
+      "Casa"
+    ],
+    [
+      "Quel messaggio importante? Aspetta. Come tutto il resto",
+      "Vita"
+    ],
+    [
+      "Siamo entrati nel tunnel insieme. Solo l'algoritmo conosce l'uscita",
+      "Filosofia"
+    ],
+    [
+      "Hai sbloccato il telefono 47 volte oggi. Mai per qualcosa di importante",
+      "Tech"
+    ],
+    [
+      "Battuto il tuo record personale di rinvii. Congratulazioni cinici",
+      "Achievement"
+    ],
+    [
+      "Il futuro arriva, che tu lo guardi o no. Però intanto scrolla",
+      "Filosofia"
+    ],
+    [
+      "Hai aperto l'app per distrarti. Ora hai solo problemi più aggiornati.",
+      "Riflessione"
+    ],
+    [
+      "Non stai leggendo notizie. Stai controllando se il mondo ha finito di cadere.",
+      "Riflessione"
+    ],
+    [
+      "La buona notizia è che sei informato. La cattiva è che non farai nulla con questa informazione.",
+      "Riflessione"
+    ],
+    [
+      "Questo titolo non ti riguarda. Però ha il tono giusto per sembrarlo.",
+      "Riflessione"
+    ],
+    [
+      "Hai scambiato il riposo per contenuto a bassa intensità.",
+      "Bio"
+    ],
+    [
+      "Il tuo cervello ha chiesto una pausa. Gli hai dato altri sei titoli.",
+      "Bio"
+    ],
+    [
+      "Stai cercando una notizia che giustifichi il fatto che sei ancora qui.",
+      "Riflessione"
+    ],
+    [
+      "Non è dipendenza. È una newsletter emotiva senza tasto unsubscribe.",
+      "Internet"
+    ],
+    [
+      "Hai quasi avuto un pensiero autonomo, ma il feed è intervenuto in tempo.",
+      "Internet"
+    ],
+    [
+      "Il problema non è che scorri. È che ogni tanto trovi qualcosa di buono.",
+      "Design"
+    ],
+    [
+      "Stai facendo manutenzione dell'ansia, non informazione.",
+      "Salute"
+    ],
+    [
+      "Il feed non ti intrattiene: ti tiene in sala d'attesa.",
+      "Riflessione"
+    ],
+    [
+      "Hai trasformato la noia in una procedura con interfaccia.",
+      "Tech"
+    ],
+    [
+      "Ogni titolo promette contesto. Quasi tutti consegnano atmosfera.",
+      "Media"
+    ],
+    [
+      "Ti senti più sveglio solo perché sei meno tranquillo.",
+      "Bio"
+    ],
+    [
+      "La tua attenzione non è rotta: è stata affittata a ore.",
+      "Economia"
+    ],
+    [
+      "La prossima notizia potrebbe essere quella utile. Questo è il trucco, campione.",
+      "Design"
+    ],
+    [
+      "Hai aggiornato il mondo. Non hai aggiornato la tua stanza.",
+      "Casa"
+    ],
+    [
+      "Se smettessi ora, non sapresti cosa ti sei perso. Esatto: niente di misurabile.",
+      "Riflessione"
+    ],
+    [
+      "Questo contenuto non chiede di essere ricordato. Solo consumato.",
+      "Media"
+    ],
+    [
+      "Il tuo pollice ha più disciplina dei tuoi progetti.",
+      "Bio"
+    ],
+    [
+      "Il feed ti conosce abbastanza da non volerti bene.",
+      "Internet"
+    ],
+    [
+      "Hai confuso essere presente con essere raggiungibile.",
+      "Vita"
+    ],
+    [
+      "Siamo tutti molto informati e leggermente inutilizzabili.",
+      "Società"
+    ],
+    [
+      "Hai dato altri dieci minuti a un sistema che non saprebbe pronunciare il tuo nome.",
+      "Tech"
+    ],
+    [
+      "La catastrofe oggi ha thumbnail migliori.",
+      "Media"
+    ],
+    [
+      "Ti stai riposando in un posto progettato per non farti riposare.",
+      "Design"
+    ],
+    [
+      "La tua pace interiore è stata interrotta da un aggiornamento minore.",
+      "Vita"
+    ],
+    [
+      "Hai quasi chiuso. Poi il feed ha tossito una notizia interessante.",
+      "Design"
+    ],
+    [
+      "Non ti manca forza di volontà. Ti manca un'interfaccia che non sia contro di te.",
+      "Design"
+    ],
+    [
+      "Non stai cercando una notizia. Stai cercando un permesso per restare fermo.",
+      "Tech"
+    ],
+    [
+      "Hai letto abbastanza per sentirti coinvolto e troppo poco per fare qualcosa.",
+      "Tech"
+    ],
+    [
+      "Il feed non ti distrae dal vuoto. Lo arreda.",
+      "Riflessione"
+    ],
+    [
+      "Ogni titolo promette contesto. Ti lascia solo umore.",
+      "Riflessione"
+    ],
+    [
+      "Stai aggiornando il mondo come se il mondo stesse aspettando te.",
+      "Tech"
+    ],
+    [
+      "La tua attenzione è diventata un distributore automatico: inserisci ansia, ricevi stimolo.",
+      "Riflessione"
+    ],
+    [
+      "Il problema non è che perdi tempo. È che lo perdi con ottime giustificazioni.",
+      "Riflessione"
+    ],
+    [
+      "Hai trasformato la coscienza civile in una forma elegante di paralisi.",
+      "Tech"
+    ],
+    [
+      "Ancora un titolo e poi basta: autobiografia in sei parole.",
+      "Riflessione"
+    ],
+    [
+      "Il feed è infinito perché la tua insoddisfazione collabora.",
+      "Riflessione"
+    ],
+    [
+      "La notizia importante arriverà subito dopo quella inutile. È così che ti tengono.",
+      "Riflessione"
+    ],
+    [
+      "Ti senti informato perché hai assorbito il tono della catastrofe.",
+      "Tech"
+    ],
+    [
+      "Non hai bisogno di altre prove che il mondo sia complicato. Hai bisogno di chiudere la scheda.",
+      "Tech"
+    ],
+    [
+      "Hai confuso restare aggiornato con restare esposto.",
+      "Tech"
+    ],
+    [
+      "Il tuo cervello non vuole ignorare il mondo. Vuole solo non essere il suo cestino.",
+      "Riflessione"
+    ],
+    [
+      "Ogni scroll è una piccola dichiarazione: “non sono ancora pronto a stare con me”.",
+      "Riflessione"
+    ],
+    [
+      "Hai aperto per due minuti. Ora hai una relazione stabile con il collasso.",
+      "Tech"
+    ],
+    [
+      "La dopamina non è felicità. È il campanello che suona mentre la casa brucia piano.",
+      "Riflessione"
+    ],
+    [
+      "Questa notizia non ti servirà. Ma ti darà un ottimo modo per non fare quella cosa.",
+      "Riflessione"
+    ],
+    [
+      "Stai cercando controllo in un posto progettato per togliertelo con gentilezza.",
+      "Tech"
+    ],
+    [
+      "Il feed ti conosce abbastanza da non rispettarti.",
+      "Riflessione"
+    ],
+    [
+      "La tragedia lontana è diventata arredamento emotivo da tasca.",
+      "Riflessione"
+    ],
+    [
+      "Hai salvato un articolo “da leggere dopo”. Era il suo funerale.",
+      "Tech"
+    ],
+    [
+      "Più capisci il meccanismo, più ti senti intelligente mentre ci caschi.",
+      "Riflessione"
+    ],
+    [
+      "Il mondo non è più urgente dopo questo titolo. Sei solo più stanco.",
+      "Riflessione"
+    ],
+    [
+      "Hai scambiato la profondità con la durata dello scroll.",
+      "Tech"
+    ],
+    [
+      "Il tuo riposo è stato privatizzato e rivenduto come contenuto.",
+      "Riflessione"
+    ],
+    [
+      "Se fosse davvero importante, forse non avrebbe bisogno di lampeggiare.",
+      "Riflessione"
+    ],
+    [
+      "La tua ansia ha trovato un lavoro part-time come editor.",
+      "Lavoro"
+    ],
+    [
+      "Non stai partecipando. Stai assistendo con le mani occupate.",
+      "Tech"
+    ],
+    [
+      "Il feed non mente sempre. È questo il problema.",
+      "Riflessione"
+    ],
+    [
+      "Ogni tanto trovi una cosa bella, e il casinò resta aperto.",
+      "Riflessione"
+    ],
+    [
+      "Hai imparato tre fatti e perso una sera. Bilancio creativo.",
+      "Tech"
+    ],
+    [
+      "Il silenzio ti sembrava vuoto. Il feed ti ha dimostrato che si può fare peggio.",
+      "Riflessione"
+    ],
+    [
+      "Ti meriti una pausa vera, ma hai scelto una pausa che ti misura.",
+      "Tech"
+    ],
+    [
+      "L'algoritmo non ti odia. È indifferente con talento.",
+      "Tech"
+    ],
+    [
+      "Stai diventando una persona aggiornata su cose che non toccherà mai.",
+      "Tech"
+    ],
+    [
+      "Il presente ti chiamava. Hai messo non disturbare per leggere il presente degli altri.",
+      "Tech"
+    ],
+    [
+      "Quello che chiami informazione è spesso solo panico con impaginazione.",
+      "Riflessione"
+    ],
+    [
+      "Il tuo futuro io sta guardando questa scena senza applausi.",
+      "Tech"
+    ]
+  ],
+  "news_brainrot": [
+    [
+      "Studio: uomo con Patrick Bateman negli occhi ha effettivamente più aura degli altri.",
+      "Sigma"
+    ],
+    [
+      "Ricercatori confermano: ascoltare phonk alle 3 di notte aumenta il testosterone del 0.003%.",
+      "Sigma"
+    ],
+    [
+      "Gigachad si rifiuta di commentare. Internet lo segue comunque.",
+      "Sigma"
+    ],
+    [
+      "Uomo in modalità sigma non risponde ai messaggi. Chiama il comportamento 'disciplina'.",
+      "Sigma"
+    ],
+    [
+      "Sigma grindset applicato alla spesa: acquistato latte senza guardare nessuno negli occhi.",
+      "Sigma"
+    ],
+    [
+      "Solo in Ohio: evento normale accade senza conseguenze. Feed deluso.",
+      "Ohio"
+    ],
+    [
+      "Only in Ohio: adolescente fa colazione. Commentatori non si riprendono.",
+      "Ohio"
+    ],
+    [
+      "Studio conferma: il 94% delle cose definite 'only in Ohio' accade anche altrove.",
+      "Ohio"
+    ],
+    [
+      "Uomo dichiara di avere 'aura illimitata'. Confermato da nessuno di competente.",
+      "Sigma"
+    ],
+    [
+      "Breaking: scrollare fino alle 3 di notte non è Ohio, è semplicemente sigma.",
+      "Sigma"
+    ],
+    [
+      "Esperto di grindset spiega che dormire è da NPC. Cade addormentato durante l'intervista.",
+      "Sigma"
+    ],
+    [
+      "Giovane investe tutto in crypto per 'uscire dalla matrix'. La matrix lo ringrazia.",
+      "Sigma"
+    ],
+    [
+      "NPC streamer vende emozioni per 0.03$ l'una. Economia funziona.",
+      "NPC"
+    ],
+    [
+      "Pov: sei un NPC in un gioco dove il protagonista scrolla da 40 minuti.",
+      "NPC"
+    ],
+    [
+      "Uomo con W rizz non sa cosa sia il rizz. Considerato più autentico.",
+      "Rizz"
+    ],
+    [
+      "Ricerca: il 73% degli utenti ha 'no cap fr fr' nel vocabolario attivo senza capirlo.",
+      "Internet"
+    ],
+    [
+      "Influencer caught in 4K mentre guarda il soffitto senza produrre contenuto.",
+      "Internet"
+    ],
+    [
+      "Gyatt alert: esperto di linguistica si dimette.",
+      "Internet"
+    ],
+    [
+      "Studio: touch grass riduce i sintomi da doomscrolling. Nessuno tocca l'erba.",
+      "Scienza"
+    ],
+    [
+      "Uomo in main character energy prende il bus. Nessuno nota nulla.",
+      "NPC"
+    ],
+    [
+      "Skibidi toilet citato in tesi di laurea triennale. Relatore approva.",
+      "Cultura"
+    ],
+    [
+      "TikTok brain confermato come diagnosi ufficiale. Cura: altro TikTok.",
+      "Scienza"
+    ],
+    [
+      "NPC in background di video virale chiede i diritti d'autore.",
+      "NPC"
+    ],
+    [
+      "It's giving: utente non sa cosa stia dando. Continua comunque.",
+      "Internet"
+    ],
+    [
+      "L + ratio + didn't ask + fell off: risposta a notizia sul cambiamento climatico.",
+      "Internet"
+    ],
+    [
+      "Politico subisce ratio su Twitter. Nomina commissione per capire cos'è un ratio.",
+      "Politica"
+    ],
+    [
+      "Utente posta 'ratio' sotto necrologi. Considerato performance art.",
+      "Internet"
+    ],
+    [
+      "Understood the assignment: nessuno ha spiegato qual era il compito.",
+      "Internet"
+    ],
+    [
+      "Main character energy applicato alla fila alle poste. Fila non collabora.",
+      "Costume e società"
+    ],
+    [
+      "Uomo posta thread da 47 tweet su come non perdere tempo. Nessuna ironia rilevata.",
+      "Internet"
+    ]
+  ],
+  "repeatable_news": [
+    [
+      "Déjà-vu informativo: avevi già letto questa cosa. Non ti aveva aiutato allora.",
+      "Déjà-vu"
+    ],
+    [
+      "Aggiornamento: nulla è cambiato, ma ora lo sai con un font diverso.",
+      "Déjà-vu"
+    ],
+    [
+      "La stessa ansia torna in homepage con una foto nuova.",
+      "Déjà-vu"
+    ],
+    [
+      "Questa notizia si ripete perché anche tu ti ripeti. Elegante simmetria.",
+      "Déjà-vu"
+    ],
+    [
+      "Breaking: il feed ha finito le idee prima di te.",
+      "Déjà-vu"
+    ]
+  ],
+  "extra_meh_topics": [
+    "tavolo tecnico",
+    "commissione speciale",
+    "riforma annunciata",
+    "bonus sperimentale",
+    "piano nazionale",
+    "decreto correttivo",
+    "conferenza stampa",
+    "cabina di regia",
+    "protocollo d'intesa",
+    "consultazione pubblica",
+    "fase due",
+    "monitoraggio costante",
+    "emergenza gestita",
+    "strategia condivisa",
+    "fondi europei",
+    "sportello digitale",
+    "portale unico",
+    "campagna informativa",
+    "relazione trimestrale",
+    "nota ministeriale",
+    "indice di fiducia",
+    "mercato immobiliare",
+    "prezzo del pane",
+    "traffico urbano",
+    "sciopero preventivo",
+    "ordinanza comunale",
+    "parcheggio smart",
+    "rotonda provvisoria",
+    "ponte in manutenzione",
+    "metropolitana promessa",
+    "app istituzionale",
+    "call center pubblico",
+    "raccolta differenziata",
+    "bando comunale",
+    "consiglio straordinario",
+    "maggioranza compatta",
+    "opposizione critica",
+    "esperto indipendente",
+    "dossier riservato",
+    "rapporto annuale"
+  ],
+  "extra_meh_endings": [
+    "sarà discusso nella prossima riunione, che servirà a fissare un'altra riunione.",
+    "promette semplificazione e introduce tre nuovi moduli.",
+    "viene definito 'storico' da chi lo ha appena rinviato.",
+    "prevede una piattaforma digitale non ancora online.",
+    "ha ricevuto pareri positivi da persone presenti nella stessa stanza.",
+    "non cambia nulla, ma lo fa con tono istituzionale.",
+    "entra in vigore dopo chiarimenti che nessuno ha letto.",
+    "è stato spiegato in 47 slide e capito da 2 persone.",
+    "sarà monitorato con attenzione, quindi dimenticato con metodo.",
+    "punta a migliorare la vita dei cittadini che riusciranno ad accedere al portale.",
+    "divide gli esperti tra pessimisti e pessimisti con grafici.",
+    "riapre un dibattito chiuso male e mai davvero chiuso.",
+    "arriva in ritardo, ma con comunicato puntuale.",
+    "funziona in teoria, che è il posto dove funziona tutto.",
+    "ha già generato una polemica di servizio.",
+    "è stato salutato con prudente scetticismo e caffè freddo.",
+    "richiede SPID, CIE, PEC e una piccola abiura.",
+    "potrebbe migliorare la situazione o almeno produrre un PDF.",
+    "non risolve il problema, ma gli dà un nome più lungo.",
+    "arriva insieme a una FAQ che peggiora la domanda."
+  ],
+  "extra_interesting": [
+    [
+      "Ricercatori decifrano diario romano: conteneva lamentele sul traffico e sul vicino.",
+      "Storia"
+    ],
+    [
+      "Scoperta una foresta fossile sotto i ghiacci. Ha gestito meglio il tempo di noi.",
+      "Scienza"
+    ],
+    [
+      "Una biblioteca salva 80.000 libri dall'alluvione. Tu non salvi neanche i preferiti.",
+      "Cultura"
+    ],
+    [
+      "Città spegne le insegne di notte e vede tornare le stelle. Concetto rivoluzionario: buio.",
+      "Ambiente"
+    ],
+    [
+      "Medici completano intervento rarissimo. Il paziente ringrazia, internet commenta senza leggere.",
+      "Salute"
+    ],
+    [
+      "Studente costruisce sensore low-cost per l'acqua potabile. Tu stai ancora cercando il caricatore.",
+      "Tech"
+    ],
+    [
+      "Archivio sonoro restituisce la voce di una cantante dimenticata. Il feed la dimenticherà domani.",
+      "Musica"
+    ],
+    [
+      "Orso attraversa tre confini senza documenti e con più determinazione di te.",
+      "Natura"
+    ],
+    [
+      "Paese resta senza internet per 48 ore. Gli abitanti scoprono di avere una piazza.",
+      "Società"
+    ],
+    [
+      "Ritrovato mosaico romano sotto un parcheggio. La civiltà perde, ma con stile.",
+      "Archeologia"
+    ],
+    [
+      "Un villaggio produce energia condivisa e abbassa le bollette. Sembra una fake news, ma utile.",
+      "Energia"
+    ],
+    [
+      "Nonna di 91 anni impara a programmare per sistemare il sito del circolo. Priorità chiare.",
+      "Tech"
+    ],
+    [
+      "Squadra di volontari recupera un sentiero alpino. Ora esiste una via d'uscita, simbolicamente.",
+      "Ambiente"
+    ],
+    [
+      "Nuovo telescopio fotografa galassia lontanissima. Da lì il tuo feed non si vede.",
+      "Spazio"
+    ],
+    [
+      "Ricercatori scoprono batterio che mangia plastica. Ha già più curriculum di molti ministri.",
+      "Scienza"
+    ],
+    [
+      "Bambini restaurano il giardino della scuola. Loro almeno toccano l'erba non ironicamente.",
+      "Locale"
+    ],
+    [
+      "Un ex manager apre una falegnameria e dorme meglio. Il PIL non sa come reagire.",
+      "Vita"
+    ],
+    [
+      "Scoperto manoscritto con ricetta medievale. Prevede meno passaggi del login alla banca.",
+      "Storia"
+    ],
+    [
+      "Startup fallisce ma rilascia il codice open source. Finalmente una sconfitta utile.",
+      "Tech"
+    ],
+    [
+      "Comune trasforma ex centro commerciale in biblioteca. L'algoritmo lo trova poco monetizzabile.",
+      "Cultura"
+    ],
+    [
+      "Ragazza attraversa l'Europa in treno senza prendere aerei. Il tuo viaggio più lungo oggi è stato al frigo.",
+      "Viaggi"
+    ],
+    [
+      "Pescatori liberano una balena impigliata. La balena non ha aperto thread polemici.",
+      "Natura"
+    ],
+    [
+      "Museo rende gratis l'ingresso serale. Tu sei occupato a guardare foto del museo.",
+      "Cultura"
+    ],
+    [
+      "Nuova cura sperimentale dà risultati promettenti. Per una volta, ansia con speranza.",
+      "Salute"
+    ],
+    [
+      "Un paese pianta alberi da frutto pubblici. La civiltà ogni tanto inciampa nel buono.",
+      "Ambiente"
+    ],
+    [
+      "Sonda invia dati da miliardi di chilometri. Il tuo Wi-Fi invece cede in cucina.",
+      "Spazio"
+    ],
+    [
+      "Ricostruito un violino distrutto in guerra. Suona meglio dei comunicati ufficiali.",
+      "Musica"
+    ],
+    [
+      "Atleta corre ultramaratona per beneficenza. Tu hai evitato le scale mobili rotte.",
+      "Sport"
+    ],
+    [
+      "Tradotta una poesia sumera sull'ansia del lavoro. Niente è nuovo, nemmeno il burnout.",
+      "Storia"
+    ],
+    [
+      "Un quartiere elimina le auto davanti alle scuole. I bambini scoprono il rumore dei passi.",
+      "Città"
+    ]
+  ],
+  "extra_peak": [
+    [
+      "Hai aperto l'app per distrarti. Ora hai solo problemi più aggiornati.",
+      "Riflessione"
+    ],
+    [
+      "Non stai leggendo notizie. Stai controllando se il mondo ha finito di cadere.",
+      "Riflessione"
+    ],
+    [
+      "La buona notizia è che sei informato. La cattiva è che non farai nulla con questa informazione.",
+      "Riflessione"
+    ],
+    [
+      "Questo titolo non ti riguarda. Però ha il tono giusto per sembrarlo.",
+      "Riflessione"
+    ],
+    [
+      "Hai scambiato il riposo per contenuto a bassa intensità.",
+      "Bio"
+    ],
+    [
+      "Il tuo cervello ha chiesto una pausa. Gli hai dato altri sei titoli.",
+      "Bio"
+    ],
+    [
+      "Stai cercando una notizia che giustifichi il fatto che sei ancora qui.",
+      "Riflessione"
+    ],
+    [
+      "Non è dipendenza. È una newsletter emotiva senza tasto unsubscribe.",
+      "Internet"
+    ],
+    [
+      "Hai quasi avuto un pensiero autonomo, ma il feed è intervenuto in tempo.",
+      "Internet"
+    ],
+    [
+      "Il problema non è che scorri. È che ogni tanto trovi qualcosa di buono.",
+      "Design"
+    ],
+    [
+      "Stai facendo manutenzione dell'ansia, non informazione.",
+      "Salute"
+    ],
+    [
+      "Il feed non ti intrattiene: ti tiene in sala d'attesa.",
+      "Riflessione"
+    ],
+    [
+      "Hai trasformato la noia in una procedura con interfaccia.",
+      "Tech"
+    ],
+    [
+      "Ogni titolo promette contesto. Quasi tutti consegnano atmosfera.",
+      "Media"
+    ],
+    [
+      "Ti senti più sveglio solo perché sei meno tranquillo.",
+      "Bio"
+    ],
+    [
+      "La tua attenzione non è rotta: è stata affittata a ore.",
+      "Economia"
+    ],
+    [
+      "La prossima notizia potrebbe essere quella utile. Questo è il trucco, campione.",
+      "Design"
+    ],
+    [
+      "Hai aggiornato il mondo. Non hai aggiornato la tua stanza.",
+      "Casa"
+    ],
+    [
+      "Se smettessi ora, non sapresti cosa ti sei perso. Esatto: niente di misurabile.",
+      "Riflessione"
+    ],
+    [
+      "Questo contenuto non chiede di essere ricordato. Solo consumato.",
+      "Media"
+    ],
+    [
+      "Il tuo pollice ha più disciplina dei tuoi progetti.",
+      "Bio"
+    ],
+    [
+      "Il feed ti conosce abbastanza da non volerti bene.",
+      "Internet"
+    ],
+    [
+      "Hai confuso essere presente con essere raggiungibile.",
+      "Vita"
+    ],
+    [
+      "Siamo tutti molto informati e leggermente inutilizzabili.",
+      "Società"
+    ],
+    [
+      "Hai dato altri dieci minuti a un sistema che non saprebbe pronunciare il tuo nome.",
+      "Tech"
+    ],
+    [
+      "La catastrofe oggi ha thumbnail migliori.",
+      "Media"
+    ],
+    [
+      "Ti stai riposando in un posto progettato per non farti riposare.",
+      "Design"
+    ],
+    [
+      "La tua pace interiore è stata interrotta da un aggiornamento minore.",
+      "Vita"
+    ],
+    [
+      "Hai quasi chiuso. Poi il feed ha tossito una notizia interessante.",
+      "Design"
+    ],
+    [
+      "Non ti manca forza di volontà. Ti manca un'interfaccia che non sia contro di te.",
+      "Design"
+    ]
+  ],
+  "extra_brainrot": [
+    [
+      "Ricerca: il 73% degli utenti ha 'no cap fr fr' nel vocabolario attivo senza capirlo.",
+      "Internet"
+    ],
+    [
+      "Influencer caught in 4K mentre guarda il soffitto senza produrre contenuto.",
+      "Internet"
+    ],
+    [
+      "Gyatt alert: esperto di linguistica si dimette.",
+      "Internet"
+    ],
+    [
+      "Studio: touch grass riduce i sintomi da doomscrolling. Nessuno tocca l'erba.",
+      "Scienza"
+    ],
+    [
+      "Uomo in main character energy prende il bus. Nessuno nota nulla.",
+      "NPC"
+    ],
+    [
+      "Skibidi toilet citato in tesi di laurea triennale. Relatore approva.",
+      "Cultura"
+    ],
+    [
+      "TikTok brain confermato come diagnosi ufficiale. Cura: altro TikTok.",
+      "Scienza"
+    ],
+    [
+      "NPC in background di video virale chiede i diritti d'autore.",
+      "NPC"
+    ],
+    [
+      "It's giving: utente non sa cosa stia dando. Continua comunque.",
+      "Internet"
+    ],
+    [
+      "L + ratio + didn't ask + fell off: risposta a notizia sul cambiamento climatico.",
+      "Internet"
+    ],
+    [
+      "Politico subisce ratio su Twitter. Nomina commissione per capire cos'è un ratio.",
+      "Politica"
+    ],
+    [
+      "Utente posta 'ratio' sotto necrologi. Considerato performance art.",
+      "Internet"
+    ],
+    [
+      "Understood the assignment: nessuno ha spiegato qual era il compito.",
+      "Internet"
+    ],
+    [
+      "Main character energy applicato alla fila alle poste. Fila non collabora.",
+      "Costume e società"
+    ],
+    [
+      "Uomo posta thread da 47 tweet su come non perdere tempo. Nessuna ironia rilevata.",
+      "Internet"
+    ],
+    [
+      "It's giving nihilismo esistenziale, ma con transizioni fluide.",
+      "Internet"
+    ],
+    [
+      "Sondaggio: il 67% degli italiani usa 'gasato' senza aver mai sentito gas.",
+      "Costume e società"
+    ],
+    [
+      "Ricerca: 'vibra' ha sostituito 'atmosfera' nel 40% delle conversazioni under 25.",
+      "Costume e società"
+    ],
+    [
+      "Uomo accumula aura points scrollando. Bilancio: -14 QI, +0 aura reale.",
+      "Internet"
+    ],
+    [
+      "Studio: essere 'lowkey' su Instagram richiede in media 4 ore di preparazione.",
+      "Internet"
+    ]
+  ],
+  "extra_news_meh_v28": [
+    [
+      "Il Comune annuncia una nuova piattaforma digitale. Funziona meglio se stampi il modulo.",
+      "Politica"
+    ],
+    [
+      "Conferenza stampa sul futuro della scuola: presente un proiettore del 2009.",
+      "Cultura"
+    ],
+    [
+      "La Regione promette trasporti più efficienti. Il comunicato è arrivato in ritardo.",
+      "Politica"
+    ],
+    [
+      "Nuovo portale pubblico: per accedere serve una password che non puoi creare.",
+      "Tech"
+    ],
+    [
+      "La commissione apre un tavolo tecnico. Il tavolo chiede ferie.",
+      "Lavoro"
+    ],
+    [
+      "Sondaggio nazionale: gli italiani vogliono cambiare tutto, ma dopo pranzo.",
+      "Generale"
+    ],
+    [
+      "Esperti al convegno: la soluzione esiste, ma non nel budget.",
+      "Generale"
+    ],
+    [
+      "Il Ministero presenta una roadmap. La strada è chiusa per lavori.",
+      "Politica"
+    ],
+    [
+      "Aggiornamento dell'app bancaria: ora il panico ha un'animazione più fluida.",
+      "Tech"
+    ],
+    [
+      "Vertice europeo concluso con una dichiarazione molto condivisibile e poco applicabile.",
+      "Tech"
+    ],
+    [
+      "Il traffico migliorerà entro il 2035, assicurano persone che viaggiano con autista.",
+      "Generale"
+    ],
+    [
+      "Nuovo bonus per famiglie: le istruzioni sono più lunghe della gravidanza.",
+      "Generale"
+    ],
+    [
+      "Azienda introduce settimana corta: vale solo nella slide motivazionale.",
+      "Lavoro"
+    ],
+    [
+      "Riforma fiscale semplifica tutto aggiungendo tre acronimi.",
+      "Politica"
+    ],
+    [
+      "Bolletta più chiara: ora capisci precisamente quanto sei triste.",
+      "Generale"
+    ],
+    [
+      "Università apre corso sull'intelligenza artificiale. Le aule non hanno prese elettriche.",
+      "Cultura"
+    ],
+    [
+      "Nuovo piano casa: prevede case, in teoria.",
+      "Generale"
+    ],
+    [
+      "Comune installa panchine smart. Nessuna sa perché esiste.",
+      "Politica"
+    ],
+    [
+      "La privacy policy viene aggiornata: nessuno l'ha letta, tutti hanno accettato.",
+      "Generale"
+    ],
+    [
+      "Allerta meteo rientrata. Resta l'allerta esistenziale.",
+      "Generale"
+    ],
+    [
+      "Inflazione in calo, prezzi no. La matematica chiede discrezione.",
+      "Generale"
+    ],
+    [
+      "Nuova campagna per la lettura: poster enorme davanti a una libreria chiusa.",
+      "Generale"
+    ],
+    [
+      "Il mercato del lavoro cerca giovani esperti con trent'anni di esperienza.",
+      "Lavoro"
+    ],
+    [
+      "Riunione urgente fissata per decidere quando fare la prossima riunione urgente.",
+      "Lavoro"
+    ],
+    [
+      "Un report conferma che i report vengono letti soprattutto da altri report.",
+      "Generale"
+    ],
+    [
+      "La città diventa più verde: aggiunta una pianta nel rendering.",
+      "Generale"
+    ],
+    [
+      "Linea ferroviaria potenziata: il treno ora ritarda con più ambizione.",
+      "Ambiente"
+    ],
+    [
+      "Il nuovo regolamento è semplice: basta leggere le 94 pagine di allegati.",
+      "Generale"
+    ],
+    [
+      "La startup prometteva di rivoluzionare la spesa. Ora vende newsletter.",
+      "Generale"
+    ],
+    [
+      "Esperto rassicura: non è crisi, è una transizione con effetti da crisi.",
+      "Generale"
+    ],
+    [
+      "La palestra comunale riapre. Mancano solo pavimento, porte e fiducia.",
+      "Generale"
+    ],
+    [
+      "I lavori finiranno entro l'anno. Non è stato specificato quale.",
+      "Generale"
+    ],
+    [
+      "Il piano giovani include ascolto, partecipazione e un PDF non compilabile.",
+      "Generale"
+    ],
+    [
+      "Convegno sulla solitudine registra il tutto esaurito online, telecamere spente.",
+      "Generale"
+    ],
+    [
+      "Nuovo algoritmo comunale assegna priorità. Ha scelto se stesso.",
+      "Tech"
+    ],
+    [
+      "Campagna anti-spreco stampata su 80.000 volantini.",
+      "Generale"
+    ],
+    [
+      "Azienda lancia programma benessere: più mail sul benessere, stesso carico di lavoro.",
+      "Tech"
+    ],
+    [
+      "La sanità digitale cresce: anche l'attesa ora ha un QR code.",
+      "Tech"
+    ],
+    [
+      "Tavolo contro il caro affitti ospitato in una sala da 900 euro al giorno.",
+      "Generale"
+    ],
+    [
+      "App educativa riceve premio. Gli studenti continuano a usare la chat di classe.",
+      "Tech"
+    ],
+    [
+      "L'ente chiarisce: il problema è complesso, quindi è di tutti e di nessuno.",
+      "Generale"
+    ],
+    [
+      "Nuova ordinanza sul decoro urbano: vietata la tristezza visibile.",
+      "Generale"
+    ],
+    [
+      "La relazione annuale evidenzia criticità già evidenziate nella relazione annuale.",
+      "Generale"
+    ],
+    [
+      "La banca introduce consulente virtuale: dice le stesse cose, ma senza pausa caffè.",
+      "Generale"
+    ],
+    [
+      "Problemi tecnici al sito delle prenotazioni. La tecnologia avanza a tentoni.",
+      "Generale"
+    ],
+    [
+      "Il festival della sostenibilità distribuisce gadget in plastica riciclata male.",
+      "Generale"
+    ],
+    [
+      "Un nuovo studio scopre che dormire poco fa male. Pubblicato alle 02:13.",
+      "Scienza"
+    ],
+    [
+      "Il governo valuta misure. Le misure valutano di nascondersi.",
+      "Politica"
+    ],
+    [
+      "La città sperimenta bus a chiamata. Nessuno sa chi dovrebbe chiamare chi.",
+      "Generale"
+    ],
+    [
+      "Presentata app per segnalare buche. Crasha appena vede una strada.",
+      "Tech"
+    ],
+    [
+      "L'ufficio stampa corregge il comunicato che correggeva il comunicato.",
+      "Lavoro"
+    ],
+    [
+      "Nuove linee guida per semplificare: entreranno in vigore dopo una fase pilota infinita.",
+      "Generale"
+    ],
+    [
+      "La piattaforma per i concorsi funziona, tranne quando serve.",
+      "Tech"
+    ],
+    [
+      "Il Parlamento discute di futuro digitale usando fascicoli rilegati.",
+      "Politica"
+    ],
+    [
+      "Il bonus psicologo finisce in 42 secondi. Ansia in lista d'attesa.",
+      "Generale"
+    ],
+    [
+      "Inaugurato hub dell'innovazione. Il Wi-Fi chiede una password scritta a mano.",
+      "Tech"
+    ],
+    [
+      "La compagnia telefonica migliora l'assistenza: ora l'attesa ha musica più triste.",
+      "Generale"
+    ],
+    [
+      "L'assemblea approva una mozione per approfondire la possibilità di valutare.",
+      "Tech"
+    ],
+    [
+      "L'osservatorio lancia l'allarme: osservava, ma nessuno osservava l'osservatorio.",
+      "Generale"
+    ],
+    [
+      "Il nuovo piano parcheggi riduce i posti per migliorare l'esperienza spirituale.",
+      "Generale"
+    ],
+    [
+      "Burocrazia semplificata: meno sportelli, più link morti.",
+      "Generale"
+    ],
+    [
+      "L'Italia cresce dello 0,1%. La virgola chiede protezione.",
+      "Generale"
+    ],
+    [
+      "Il servizio clienti risponde dopo 17 giorni: “ci dispiace per l'attesa”.",
+      "Generale"
+    ],
+    [
+      "Le previsioni economiche cambiano: erano previsioni, non promesse.",
+      "Generale"
+    ],
+    [
+      "Il Comune assume un social media manager per comunicare i disservizi in modo empatico.",
+      "Politica"
+    ],
+    [
+      "La riqualificazione urbana parte dal nome del progetto.",
+      "Generale"
+    ],
+    [
+      "Sciopero dei mezzi annunciato con largo anticipo. La rassegnazione ringrazia.",
+      "Generale"
+    ],
+    [
+      "Un sondaggio rivela che tutti vogliono tempo libero, ma nessuno sa dove metterlo.",
+      "Generale"
+    ],
+    [
+      "Il decreto contiene una norma transitoria. Vive lì da dodici anni.",
+      "Politica"
+    ],
+    [
+      "La nuova tessera digitale non sostituisce quella fisica. La affianca, minacciosa.",
+      "Tech"
+    ],
+    [
+      "L'evento gratuito richiede registrazione, conferma, app, badge e perdita di volontà.",
+      "Tech"
+    ],
+    [
+      "Il ministero apre consultazione pubblica. I commenti verranno letti da un file Excel.",
+      "Politica"
+    ],
+    [
+      "Riapre il cantiere fermo dal 2018: era in pausa riflessiva.",
+      "Generale"
+    ],
+    [
+      "L'azienda promette trasparenza. Pubblica un comunicato opaco.",
+      "Lavoro"
+    ],
+    [
+      "Pioggia prevista nel weekend. Il weekend non ha rilasciato dichiarazioni.",
+      "Generale"
+    ],
+    [
+      "La raccolta differenziata migliora: l'umido resta filosoficamente ambiguo.",
+      "Generale"
+    ],
+    [
+      "L'ascensore della stazione è fuori servizio. La modernità prende le scale.",
+      "Generale"
+    ],
+    [
+      "Le ferie sono approvate. Il lavoro viene con te in formato notifica.",
+      "Tech"
+    ],
+    [
+      "Il nuovo piano energetico punta tutto su parole molto energiche.",
+      "Generale"
+    ],
+    [
+      "Aumentano i prezzi dei beni essenziali. Le cose inutili restano competitive.",
+      "Generale"
+    ],
+    [
+      "Confermato il ritardo del progetto. In anticipo sulla comunicazione del ritardo.",
+      "Generale"
+    ],
+    [
+      "L'agenzia pubblica un vademecum: per capirlo serve un altro vademecum.",
+      "Generale"
+    ],
+    [
+      "La smart city introduce cestini intelligenti. I cittadini li interrogano sul senso della vita.",
+      "Generale"
+    ],
+    [
+      "La sicurezza informatica migliora: password consigliata, “non1234”.",
+      "Tech"
+    ],
+    [
+      "Il mercato immobiliare rallenta. Gli affitti no, hanno personalità propria.",
+      "Generale"
+    ],
+    [
+      "Un panel di esperti discute la crisi dell'attenzione per tre ore e mezza.",
+      "Generale"
+    ],
+    [
+      "L'università promuove inclusione digitale. Il modulo non funziona da mobile.",
+      "Tech"
+    ],
+    [
+      "La nuova rotonda migliorerà il traffico creando discussioni infinite.",
+      "Generale"
+    ],
+    [
+      "Servizio online temporaneamente non disponibile dal 2021.",
+      "Generale"
+    ],
+    [
+      "L'azienda taglia costi e li chiama efficienza emotiva.",
+      "Lavoro"
+    ],
+    [
+      "Il Comune installa colonnine elettriche. Sono decorative finché non arriva la corrente.",
+      "Politica"
+    ],
+    [
+      "Gli esperti invitano alla calma. Lo fanno con titoli in maiuscolo.",
+      "Tech"
+    ],
+    [
+      "La nuova campagna salute consiglia di dormire. Sponsorizzata da una app con notifiche.",
+      "Tech"
+    ],
+    [
+      "Il fondo speciale finanzierà idee innovative, purché già dimostrate nel 1998.",
+      "Generale"
+    ],
+    [
+      "Presentato il logo della riforma. La riforma arriverà in un secondo momento.",
+      "Politica"
+    ],
+    [
+      "L'incontro pubblico è partecipato. Parlano sempre gli stessi quattro.",
+      "Generale"
+    ],
+    [
+      "La modulistica cambia formato. Il contenuto resta un labirinto.",
+      "Generale"
+    ],
+    [
+      "Nuovo centro commerciale promette comunità. Vende soprattutto parcheggi.",
+      "Generale"
+    ],
+    [
+      "La commissione etica sull'AI si riunisce su una piattaforma che registra tutto.",
+      "Tech"
+    ],
+    [
+      "La Provincia annuncia manutenzione straordinaria: ordinaria era un concetto troppo audace.",
+      "Ambiente"
+    ],
+    [
+      "Il report sulla povertà viene presentato in una sala con catering notevole.",
+      "Generale"
+    ],
+    [
+      "La app comunale invia notifiche inutili con grande puntualità.",
+      "Tech"
+    ],
+    [
+      "Un nuovo indice misura la felicità urbana. La tua zona non risponde.",
+      "Generale"
+    ],
+    [
+      "La scuola riceve tablet. Mancano docenti, rete e caricabatterie.",
+      "Cultura"
+    ],
+    [
+      "La riunione su Zoom inizia con dieci minuti di “mi sentite?”.",
+      "Lavoro"
+    ],
+    [
+      "Il regolamento privacy protegge i dati chiedendoti di inserirne altri.",
+      "Generale"
+    ],
+    [
+      "La nuova misura è temporanea. Come tutte le cose permanenti all'inizio.",
+      "Generale"
+    ],
+    [
+      "Il sindaco promette ascolto. I microfoni erano spenti.",
+      "Politica"
+    ],
+    [
+      "Apre sportello per il disagio digitale. Prenotazione solo via app.",
+      "Tech"
+    ],
+    [
+      "La città sperimenta semafori intelligenti. Restano rossi per scelta artistica.",
+      "Generale"
+    ],
+    [
+      "La compagnia aerea migliora l'imbarco aggiungendo una fila.",
+      "Generale"
+    ],
+    [
+      "Il portale del lavoro consiglia di aggiornare il curriculum e abbassare le aspettative.",
+      "Lavoro"
+    ],
+    [
+      "La conferenza sul clima finisce con foto di gruppo e aria condizionata forte.",
+      "Ambiente"
+    ],
+    [
+      "La nuova newsletter informa su come ridurre le email.",
+      "Tech"
+    ],
+    [
+      "L'assessore parla di visione. La buca davanti al municipio resta miope.",
+      "Politica"
+    ],
+    [
+      "Il bando premia giovani talenti nati prima del 1990.",
+      "Politica"
+    ],
+    [
+      "La biblioteca estende gli orari: chiude solo quando potresti andarci.",
+      "Cultura"
+    ],
+    [
+      "La città lancia un'app per il turismo lento. Pesa 400 MB.",
+      "Tech"
+    ],
+    [
+      "Il piano anti-smog suggerisce di respirare con moderazione.",
+      "Ambiente"
+    ],
+    [
+      "Il supermercato introduce casse veloci. Il conflitto sociale accelera.",
+      "Generale"
+    ],
+    [
+      "L'azienda chiede feedback anonimo. Il link contiene nome, cognome e reparto.",
+      "Lavoro"
+    ],
+    [
+      "Il nuovo edificio è sostenibile. Tranne per chi lo abita.",
+      "Generale"
+    ],
+    [
+      "La piattaforma di e-learning non carica il corso sulla resilienza.",
+      "Tech"
+    ],
+    [
+      "La conferenza motivazionale inizia con “siamo tutti esausti”.",
+      "Generale"
+    ],
+    [
+      "Un team interfunzionale affronta il problema creando un altro team.",
+      "Generale"
+    ],
+    [
+      "La stampante dell'ufficio è ancora viva e ostile.",
+      "Lavoro"
+    ],
+    [
+      "Il numero verde diventa chatbot grigio.",
+      "Tech"
+    ],
+    [
+      "La città celebra la mobilità dolce. Le piste ciclabili finiscono nei cespugli.",
+      "Generale"
+    ],
+    [
+      "Il calendario condiviso risolve tutto, tranne il tempo.",
+      "Generale"
+    ],
+    [
+      "L'indagine interna conclude che l'indagine esterna servirà.",
+      "Generale"
+    ],
+    [
+      "La pausa pranzo si restringe. La call delle 13:00 si espande.",
+      "Lavoro"
+    ],
+    [
+      "Il nuovo open space favorisce collaborazione e rancore acustico.",
+      "Generale"
+    ],
+    [
+      "La strategia nazionale è ambiziosa. La password del documento è “strategia”.",
+      "Tech"
+    ],
+    [
+      "Il sistema premia il merito, purché abbia già vinto.",
+      "Generale"
+    ],
+    [
+      "La nuova dashboard mostra grafici belli su problemi brutti.",
+      "Generale"
+    ],
+    [
+      "La relazione parla di “criticità note”. Note a chi, non è chiaro.",
+      "Generale"
+    ],
+    [
+      "Il piano ferie è approvato. La casella mail ride piano.",
+      "Tech"
+    ],
+    [
+      "La città lancia il festival del futuro. Biglietti stampati su carta termica.",
+      "Generale"
+    ],
+    [
+      "La nuova policy riduce lo stress vietando di nominarlo.",
+      "Generale"
+    ],
+    [
+      "Aumentano gli abbonamenti. Diminuisce la memoria di averli attivati.",
+      "Generale"
+    ],
+    [
+      "Il quartiere cambia volto. Il tuo affitto cambia personalità.",
+      "Generale"
+    ],
+    [
+      "Il comitato scientifico raccomanda prudenza. Il titolo sceglie panico.",
+      "Generale"
+    ],
+    [
+      "L'app di messaggistica introduce una funzione per ignorare meglio.",
+      "Tech"
+    ],
+    [
+      "Il museo diventa interattivo. Ti chiede subito una mail.",
+      "Tech"
+    ],
+    [
+      "La promessa di semplificazione arriva in tre allegati separati.",
+      "Generale"
+    ],
+    [
+      "La city card non funziona sulla città reale.",
+      "Generale"
+    ],
+    [
+      "La conferenza finisce con “restiamo in contatto”. Nessuno voleva.",
+      "Generale"
+    ],
+    [
+      "Il report trimestrale conferma che il trimestre è successo.",
+      "Generale"
+    ],
+    [
+      "Il Comune cerca volontari per gestire l'emergenza permanente.",
+      "Politica"
+    ],
+    [
+      "Il bando chiede originalità entro un template obbligatorio.",
+      "Politica"
+    ],
+    [
+      "La nuova app per studenti manda notifiche durante gli esami.",
+      "Tech"
+    ],
+    [
+      "I prezzi salgono meno velocemente. Grande vittoria della pendenza.",
+      "Generale"
+    ],
+    [
+      "Il sindacato protesta contro l'automazione usando un modulo automatico.",
+      "Generale"
+    ],
+    [
+      "La riunione ibrida unisce il peggio dei due mondi.",
+      "Lavoro"
+    ],
+    [
+      "La pagina FAQ non contiene la domanda che hai.",
+      "Tech"
+    ],
+    [
+      "Il programma di mentoring assegna un mentore più confuso del mentee.",
+      "Generale"
+    ],
+    [
+      "Il portale sanitario ti fa scegliere una data già passata.",
+      "Generale"
+    ],
+    [
+      "La task force produce una presentazione chiamata “finale_v9_def”.",
+      "Generale"
+    ],
+    [
+      "L'evento sold out era gratuito e nessuno si è presentato.",
+      "Generale"
+    ],
+    [
+      "La nuova metro arriverà. Intanto il rendering è puntualissimo.",
+      "Generale"
+    ],
+    [
+      "La procedura è “snella”: pesa solo 28 passaggi.",
+      "Generale"
+    ],
+    [
+      "Il servizio migliora secondo indicatori scelti dal servizio.",
+      "Generale"
+    ],
+    [
+      "La app del meteo aggiorna la pioggia dopo che sei bagnato.",
+      "Tech"
+    ],
+    [
+      "Il manuale utente comincia con “è intuitivo”. Brutto segno.",
+      "Generale"
+    ],
+    [
+      "Il sistema di ticket chiude il ticket perché non hai risposto mentre dormivi.",
+      "Tech"
+    ],
+    [
+      "La città crea un brand territoriale. Il territorio chiede un geometra.",
+      "Generale"
+    ],
+    [
+      "La consultazione pubblica termina prima che il pubblico lo sappia.",
+      "Tech"
+    ],
+    [
+      "L'ufficio digitale consiglia di telefonare.",
+      "Tech"
+    ],
+    [
+      "Il corso obbligatorio sulla concentrazione ha 64 slide animate.",
+      "Generale"
+    ],
+    [
+      "Il nuovo parcheggio risolve il problema inducendo a non uscire.",
+      "Generale"
+    ]
+  ],
+  "extra_news_interesting_v28": [
+    [
+      "Restauratori trovano un disegno nascosto sotto un affresco. Era un gatto, perché la storia sa essere seria.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori usano droni per riforestare una valle bruciata. Per una volta la tecnologia non chiede attenzione, la restituisce.",
+      "Ambiente"
+    ],
+    [
+      "Un archivio dimenticato rivela lettere d'amore mai spedite. Anche nel 1890 la gente lasciava tutto in bozza.",
+      "Tech"
+    ],
+    [
+      "Medici sviluppano una protesi low cost stampata in 3D per bambini. Il futuro ogni tanto fa il suo lavoro.",
+      "Lavoro"
+    ],
+    [
+      "Una comunità salva un cinema di quartiere comprando una poltrona a testa.",
+      "Interessante"
+    ],
+    [
+      "Scoperta una barriera corallina profonda ancora intatta. La notizia bella dura finché non arriva il paragrafo successivo.",
+      "Ambiente"
+    ],
+    [
+      "Fisici osservano un fenomeno previsto cento anni fa. Tu non avevi previsto neanche la batteria al 3%.",
+      "Scienza"
+    ],
+    [
+      "Una maestra in pensione apre una biblioteca gratuita nel garage. Nessun algoritmo, solo sedie scomode e miracoli.",
+      "Tech"
+    ],
+    [
+      "Archeologi trovano semi antichi ancora germinabili. Perfino i ceci hanno più resilienza di noi.",
+      "Interessante"
+    ],
+    [
+      "Un villaggio senza negozi riapre l'emporio grazie a turni volontari. Il capitalismo guarda, confuso.",
+      "Interessante"
+    ],
+    [
+      "Una ragazza costruisce un filtro per microplastiche con materiali da ferramenta.",
+      "Interessante"
+    ],
+    [
+      "Astronomi fotografano una galassia deformata dalla gravità. Sembra il tuo calendario di maggio.",
+      "Scienza"
+    ],
+    [
+      "Una squadra di studenti vince una gara di robotica con pezzi recuperati da stampanti rotte.",
+      "Tech"
+    ],
+    [
+      "Biologi registrano il canto di una balena mai identificata. Potrebbe essere tristezza, potrebbe essere jazz.",
+      "Tech"
+    ],
+    [
+      "Un paese spegne le insegne di notte e rivede le stelle per la prima volta da anni.",
+      "Interessante"
+    ],
+    [
+      "Trovato un manoscritto medievale pieno di battute ai margini. I copisti erano stanchi come noi.",
+      "Tech"
+    ],
+    [
+      "Una app civica creata da volontari segnala barriere architettoniche meglio del portale ufficiale.",
+      "Tech"
+    ],
+    [
+      "Un agricoltore recupera una varietà di grano quasi scomparsa. Il pane avrà una backstory migliore della tua.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori insegnano a un robot a piegare vestiti. Il robot si licenzia mentalmente.",
+      "Tech"
+    ],
+    [
+      "Un gruppo di anziani ripara biciclette per studenti fuori sede. La logistica della gentilezza funziona.",
+      "Cultura"
+    ],
+    [
+      "Scoperta una nuova specie di orchidea su una parete rocciosa. Non ha chiesto finanziamenti.",
+      "Interessante"
+    ],
+    [
+      "In Islanda testano strade che ricaricano veicoli elettrici. In Italia stiamo ancora litigando sulle buche senzienti.",
+      "Interessante"
+    ],
+    [
+      "Una ragazza traduce fiabe nella lingua dei nonni per non perderla.",
+      "Interessante"
+    ],
+    [
+      "Un ospedale riduce le attese cambiando il modo in cui parla ai pazienti. Rivoluzionario: trattarli da esseri umani.",
+      "Tech"
+    ],
+    [
+      "Un osservatorio amatoriale scopre un asteroide. Il telescopio era in un capanno, non in una slide.",
+      "Interessante"
+    ],
+    [
+      "Un quartiere trasforma un parcheggio vuoto in giardino condiviso. Nessuno ha detto “metaverso”.",
+      "Interessante"
+    ],
+    [
+      "Scienziati mappano i funghi che aiutano le foreste a comunicare. Le radici hanno un gruppo chat migliore.",
+      "Tech"
+    ],
+    [
+      "Un ragazzo inventa un sensore economico per avvisare gli anziani se il gas resta aperto.",
+      "Interessante"
+    ],
+    [
+      "Una libreria itinerante raggiunge paesi senza scuole. Il motore fa rumore, la cosa funziona.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori recuperano audio di una lingua estinta da vecchi cilindri. Il passato manda vocali migliori dei tuoi.",
+      "Scienza"
+    ],
+    [
+      "Un collettivo pulisce un fiume e trova meno rifiuti l'anno dopo. A volte il loop si rompe davvero.",
+      "Ambiente"
+    ],
+    [
+      "Un team medico usa videogiochi per riabilitare pazienti neurologici. Per una volta “ancora una partita” è terapia.",
+      "Interessante"
+    ],
+    [
+      "Un falegname costruisce banchi regolabili per una scuola con fondi raccolti online.",
+      "Cultura"
+    ],
+    [
+      "La NASA riceve dati da una sonda creduta muta. Anche lo spazio ogni tanto risponde in ritardo.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di studenti crea mappe accessibili per chi usa sedie a rotelle.",
+      "Tech"
+    ],
+    [
+      "Trovata una nave romana sotto un campo agricolo. Il contadino chiedeva solo meno sassi.",
+      "Interessante"
+    ],
+    [
+      "Un piccolo comune produce più energia di quanta ne consumi. La bolletta ha avuto un momento spirituale.",
+      "Politica"
+    ],
+    [
+      "Una ricercatrice italiana vince un premio per batterie riciclabili. Il futuro, ma meno usa e getta.",
+      "Interessante"
+    ],
+    [
+      "Un artista restaura insegne storiche invece di sostituirle con LED aggressivi.",
+      "Interessante"
+    ],
+    [
+      "Una scuola introduce un'ora senza telefoni e gli studenti sopravvivono. Alcuni riferiscono pensieri.",
+      "Cultura"
+    ],
+    [
+      "In un parco urbano tornano le lucciole dopo anni. La notte ha ricevuto un aggiornamento buono.",
+      "Ambiente"
+    ],
+    [
+      "Un laboratorio crea mattoni da scarti agricoli. Le case potrebbero puzzare leggermente di buon senso.",
+      "Interessante"
+    ],
+    [
+      "Una biblioteca presta strumenti musicali invece di libri. Il silenzio del quartiere è in trattativa.",
+      "Cultura"
+    ],
+    [
+      "Ricercatori scoprono come alcune piante ricordano periodi di siccità. Le tue invece ricordano che le hai tradite.",
+      "Tech"
+    ],
+    [
+      "Un museo rende consultabili online diari di persone comuni. La storia smette per un attimo di essere solo re e guerre.",
+      "Cultura"
+    ],
+    [
+      "Una città riduce incidenti abbassando davvero la velocità, non solo mettendo cartelli.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di ragazzi ripara computer vecchi per donarli a chi studia.",
+      "Interessante"
+    ],
+    [
+      "Scoperto un pigmento antico più stabile di molti governi.",
+      "Interessante"
+    ],
+    [
+      "Una comunità recupera un sentiero abbandonato. Ora porta da qualche parte, concetto raro.",
+      "Politica"
+    ],
+    [
+      "Un team trova un modo semplice per raffreddare edifici senza consumare energia. Le finestre ascoltano.",
+      "Ambiente"
+    ],
+    [
+      "Un cane addestrato riconosce crisi epilettiche con minuti di anticipo. Migliore notifica push mai creata.",
+      "Tech"
+    ],
+    [
+      "Una classe adotta un torrente e misura i miglioramenti anno dopo anno.",
+      "Interessante"
+    ],
+    [
+      "Restaurata una pellicola muta ritenuta perduta. Parla meno di molti talk show, dice di più.",
+      "Interessante"
+    ],
+    [
+      "Un ospedale pediatrico usa visori per ridurre il dolore durante le procedure. Questa volta distrarsi serve.",
+      "Interessante"
+    ],
+    [
+      "Un quartiere organizza cene condivise per anziani soli. Engagement reale, zero scroll.",
+      "Interessante"
+    ],
+    [
+      "Ricercatori producono cemento che assorbe CO2. Il materiale sembra più responsabile di noi.",
+      "Ambiente"
+    ],
+    [
+      "Un villaggio crea una moneta locale per tenere aperti i negozi. L'economia, ma con facce conosciute.",
+      "Interessante"
+    ],
+    [
+      "Una donna ritrova il diario del padre e lo restituisce alla famiglia dopo 60 anni.",
+      "Interessante"
+    ],
+    [
+      "Una startup fallita libera il suo codice invece di seppellirlo. Piccolo gesto, grande igiene karmica.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di infermieri progetta un carrello ospedaliero più pratico. Innovazione: chiedere a chi lavora.",
+      "Interessante"
+    ],
+    [
+      "Un ponte pedonale riduce il tragitto casa-scuola di 20 minuti. Il tempo torna indietro, ma legalmente.",
+      "Cultura"
+    ],
+    [
+      "Un laboratorio scolastico misura la qualità dell'aria e convince il Comune a cambiare strada.",
+      "Politica"
+    ],
+    [
+      "Un astronomo dilettante fotografa una cometa dal balcone. Il cielo entra in condominio.",
+      "Interessante"
+    ],
+    [
+      "Una cooperativa salva un frutteto storico. Le mele hanno più memoria della piattaforma cloud.",
+      "Tech"
+    ],
+    [
+      "Un robot subacqueo trova reti fantasma e le rimuove. Finalmente un bot utile.",
+      "Tech"
+    ],
+    [
+      "Riapre una ferrovia locale chiusa da decenni. Il paese scopre che collegare persone non era vintage.",
+      "Interessante"
+    ],
+    [
+      "Un gruppo di nonni insegna riparazioni base agli adolescenti. La manualità torna come spoiler del futuro.",
+      "Interessante"
+    ],
+    [
+      "Una ricerca mostra che il silenzio nei parchi migliora l'umore. Notizia difficile da monetizzare.",
+      "Interessante"
+    ],
+    [
+      "Una donna attraversa l'Europa in treno raccogliendo storie di sconosciuti. Nessun filtro bellezza necessario.",
+      "Interessante"
+    ],
+    [
+      "Un orto urbano produce abbastanza verdure per una mensa. La zucchina fa più welfare di certi comunicati.",
+      "Interessante"
+    ]
+  ],
+  "extra_news_peak_v28": [
+    [
+      "Non stai cercando una notizia. Stai cercando un permesso per restare fermo.",
+      "Tech"
+    ],
+    [
+      "Hai letto abbastanza per sentirti coinvolto e troppo poco per fare qualcosa.",
+      "Tech"
+    ],
+    [
+      "Il feed non ti distrae dal vuoto. Lo arreda.",
+      "Riflessione"
+    ],
+    [
+      "Ogni titolo promette contesto. Ti lascia solo umore.",
+      "Riflessione"
+    ],
+    [
+      "Stai aggiornando il mondo come se il mondo stesse aspettando te.",
+      "Tech"
+    ],
+    [
+      "La tua attenzione è diventata un distributore automatico: inserisci ansia, ricevi stimolo.",
+      "Riflessione"
+    ],
+    [
+      "Il problema non è che perdi tempo. È che lo perdi con ottime giustificazioni.",
+      "Riflessione"
+    ],
+    [
+      "Hai trasformato la coscienza civile in una forma elegante di paralisi.",
+      "Tech"
+    ],
+    [
+      "Ancora un titolo e poi basta: autobiografia in sei parole.",
+      "Riflessione"
+    ],
+    [
+      "Il feed è infinito perché la tua insoddisfazione collabora.",
+      "Riflessione"
+    ],
+    [
+      "La notizia importante arriverà subito dopo quella inutile. È così che ti tengono.",
+      "Riflessione"
+    ],
+    [
+      "Ti senti informato perché hai assorbito il tono della catastrofe.",
+      "Tech"
+    ],
+    [
+      "Non hai bisogno di altre prove che il mondo sia complicato. Hai bisogno di chiudere la scheda.",
+      "Tech"
+    ],
+    [
+      "Hai confuso restare aggiornato con restare esposto.",
+      "Tech"
+    ],
+    [
+      "Il tuo cervello non vuole ignorare il mondo. Vuole solo non essere il suo cestino.",
+      "Riflessione"
+    ],
+    [
+      "Ogni scroll è una piccola dichiarazione: “non sono ancora pronto a stare con me”.",
+      "Riflessione"
+    ],
+    [
+      "Hai aperto per due minuti. Ora hai una relazione stabile con il collasso.",
+      "Tech"
+    ],
+    [
+      "La dopamina non è felicità. È il campanello che suona mentre la casa brucia piano.",
+      "Riflessione"
+    ],
+    [
+      "Questa notizia non ti servirà. Ma ti darà un ottimo modo per non fare quella cosa.",
+      "Riflessione"
+    ],
+    [
+      "Stai cercando controllo in un posto progettato per togliertelo con gentilezza.",
+      "Tech"
+    ],
+    [
+      "Il feed ti conosce abbastanza da non rispettarti.",
+      "Riflessione"
+    ],
+    [
+      "La tragedia lontana è diventata arredamento emotivo da tasca.",
+      "Riflessione"
+    ],
+    [
+      "Hai salvato un articolo “da leggere dopo”. Era il suo funerale.",
+      "Tech"
+    ],
+    [
+      "Più capisci il meccanismo, più ti senti intelligente mentre ci caschi.",
+      "Riflessione"
+    ],
+    [
+      "Il mondo non è più urgente dopo questo titolo. Sei solo più stanco.",
+      "Riflessione"
+    ],
+    [
+      "Hai scambiato la profondità con la durata dello scroll.",
+      "Tech"
+    ],
+    [
+      "Il tuo riposo è stato privatizzato e rivenduto come contenuto.",
+      "Riflessione"
+    ],
+    [
+      "Se fosse davvero importante, forse non avrebbe bisogno di lampeggiare.",
+      "Riflessione"
+    ],
+    [
+      "La tua ansia ha trovato un lavoro part-time come editor.",
+      "Lavoro"
+    ],
+    [
+      "Non stai partecipando. Stai assistendo con le mani occupate.",
+      "Tech"
+    ],
+    [
+      "Il feed non mente sempre. È questo il problema.",
+      "Riflessione"
+    ],
+    [
+      "Ogni tanto trovi una cosa bella, e il casinò resta aperto.",
+      "Riflessione"
+    ],
+    [
+      "Hai imparato tre fatti e perso una sera. Bilancio creativo.",
+      "Tech"
+    ],
+    [
+      "Il silenzio ti sembrava vuoto. Il feed ti ha dimostrato che si può fare peggio.",
+      "Riflessione"
+    ],
+    [
+      "Ti meriti una pausa vera, ma hai scelto una pausa che ti misura.",
+      "Tech"
+    ],
+    [
+      "L'algoritmo non ti odia. È indifferente con talento.",
+      "Tech"
+    ],
+    [
+      "Stai diventando una persona aggiornata su cose che non toccherà mai.",
+      "Tech"
+    ],
+    [
+      "Il presente ti chiamava. Hai messo non disturbare per leggere il presente degli altri.",
+      "Tech"
+    ],
+    [
+      "Quello che chiami informazione è spesso solo panico con impaginazione.",
+      "Riflessione"
+    ],
+    [
+      "Il tuo futuro io sta guardando questa scena senza applausi.",
+      "Tech"
+    ]
+  ],
+  "extra_news_brainrot_v28": [
+    [
+      "It's giving nihilismo esistenziale, ma con transizioni fluide.",
+      "Internet"
+    ],
+    [
+      "Sondaggio: il 67% degli italiani usa 'gasato' senza aver mai sentito gas.",
+      "Costume e società"
+    ],
+    [
+      "Ricerca: 'vibra' ha sostituito 'atmosfera' nel 40% delle conversazioni under 25.",
+      "Costume e società"
+    ],
+    [
+      "Uomo accumula aura points scrollando. Bilancio: -14 QI, +0 aura reale.",
+      "Internet"
+    ],
+    [
+      "Studio: essere 'lowkey' su Instagram richiede in media 4 ore di preparazione.",
+      "Internet"
+    ],
+    [
+      "Giovane si definisce 'ghostato'. Amico non sa di essere in una relazione.",
+      "Costume e società"
+    ],
+    [
+      "Skippa il contenuto, skippa il pensiero, skippa il giorno. Feed soddisfatto.",
+      "Internet"
+    ],
+    [
+      "Utente dichiara 'that's so real' a notizia su crollo bancario. Feed applaude.",
+      "Internet"
+    ],
+    [
+      "Breaking: 'aura' non si guadagna scrollando. Feed non commenta.",
+      "Internet"
+    ],
+    [
+      "Tung Tung Tung Sahur firma una petizione per abolire i pensieri lunghi.",
+      "Brainrot"
+    ],
+    [
+      "Tralalero Tralalà nominato ministro dell'attenzione residua.",
+      "Brainrot"
+    ],
+    [
+      "Bombardiro Crocodilo commenta la crisi istituzionale in tre sillabe.",
+      "Brainrot"
+    ],
+    [
+      "Ballerina Cappuccina lancia corso detox digitale. Venduto come NFT.",
+      "Brainrot"
+    ],
+    [
+      "Brr Brr Patapim fonda startup: AI, wellness, blockchain, qualcosa.",
+      "Brainrot"
+    ],
+    [
+      "Lirili Larilà entra nel gruppo lavoro 'attenzione residua'. Esce dopo tre secondi.",
+      "Brainrot"
+    ],
+    [
+      "Esperto dice boh. Pubblico applaude. Feed soddisfatto.",
+      "Brainrot"
+    ],
+    [
+      "Uomo guarda schermo. Schermo guarda uomo. Vince schermo.",
+      "Brainrot"
+    ],
+    [
+      "notizia rimossa per eccesso di significato.",
+      "Brainrot"
+    ],
+    [
+      "breaking: breaking. breaking breaking breaking.",
+      "Brainrot"
+    ]
+  ],
+  "fake_comments": [
+    "utente_842: ‘non so perché l’ho letto ma ora sono coinvolto’",
+    "fonte_nebbia: ‘la fonte è che sono stanco’",
+    "anna_1989: ‘ogni giorno apro per due minuti e ogni giorno sbaglio’",
+    "tecnicamente_vivo: ‘finalmente una notizia che peggiora solo leggermente la giornata’",
+    "uomo_in_homeoffice: ‘ho una call tra 3 minuti e questa informazione non mi serve’",
+    "browser_con_47_tab: ‘salvato per leggerlo dopo, quindi mai’",
+    "ansia_con_wifi: ‘bellissimo, ora posso preoccuparmi in modo più preciso’",
+    "utente_certificato: ‘lo dicevo dal 2019 ma nessuno mi ha ascoltato, incluso me’"
+  ],
+  "brain_msgs": [
+    "Ehi, sono il tuo cervello. Stiamo perdendo tempo. Posso suggerire una pausa?",
+    "Sono ancora io. È passata mezz'ora. Te ne sei accorto?",
+    "Cervello qui. C'è un libro aperto a pagina 47 da tre settimane.",
+    "Il tuo cervello ti scrive. Letteralmente. Stiamo morendo qui dentro.",
+    "Sono io. Ho bisogno di silenzio per almeno 5 minuti. Te lo chiedo gentilmente.",
+    "Cervello: la pianta sta morendo, e anche un po' io. Possiamo fermarci?",
+    "ehi cervello qui. Ho perso un po' di vocabolario, scusa il tono",
+    "ciao io cervello. l'ortografia diventa opzionale dopo un'ora di scroll",
+    "ce qualcosa che dovrei farti ricordare. ma non lo so più. smetti?",
+    "cervello: messaggio importante: ... non ricordo. forse era importante",
+    "io sono il, ehm... il cervello? credo? premi smetti?",
+    "[ERRORE] cervello in standby. premi smetti per riavviare",
+    "msg dal cervell. smet? altrimenti non risp.",
+    "............ smetti? (cervello, mandato a fatica)",
+    "............"
+  ],
+  "brain_ignore_msgs": [
+    "Va bene, restiamo. Tanto la schiena è un concetto borghese.",
+    "Perfetto. Altri sei titoli e magari finalmente capiremo perché siamo tristi.",
+    "Ottima scelta. La dopamina a briciole è pur sempre colazione.",
+    "Mi arrendo con eleganza. Almeno metti il telefono più lontano dalla faccia.",
+    "Non sto più cercando di salvarti. Sto prendendo appunti per il referto.",
+    "Hai confuso consapevolezza con esposizione prolungata al danno.",
+    "La tua attenzione è diventata un monolocale abusivo.",
+    "Siamo oltre il libero arbitrio. Ora è design comportamentale con le icone.",
+    "Pensiero lungo non disponibile nella tua area.",
+    "Ho provato a ricordare una cosa importante. Ora è un meme.",
+    "Tung? No. Smetti. Forse.",
+    "Tralalero, ma con trauma."
+  ],
+  "ads": [
+    {
+      "label": "SPONSORIZZATO",
+      "title": "CALMA SUBITO™",
+      "desc": "Respira meglio in 7 giorni, pagando mensilmente per una funzione automatica.",
+      "cta": "Inizia la prova",
+      "iq": 6,
+      "result": "Hai comprato calma in formato SaaS. +6 QI"
+    },
+    {
+      "label": "PROMO",
+      "title": "Detox Digitale Pro",
+      "desc": "Blocca le app distraenti con un’altra app distraente. Nessuno vede il problema.",
+      "cta": "Installa",
+      "iq": 5,
+      "result": "Hai installato un’app per bloccare le app. Il serpente ha scaricato se stesso. +5 QI"
+    },
+    {
+      "label": "SPONSORIZZATO",
+      "title": "Monaco Premium",
+      "desc": "Meditazioni guidate da una voce che sembra aver letto il GDPR.",
+      "cta": "Abbonati",
+      "iq": 7,
+      "result": "Una voce sintetica ti ha detto di essere presente. Contraddizione utile. +7 QI"
+    },
+    {
+      "label": "PROMO",
+      "title": "Planner Antipanico 2026",
+      "desc": "Per organizzare tutte le cose che continuerai a rimandare con più calligrafia.",
+      "cta": "Compra",
+      "iq": 4,
+      "result": "Hai acquistato un planner. Il futuro ora è in debito con te. +4 QI"
+    },
+    {
+      "label": "SPONSORIZZATO",
+      "title": "Ritiro Silenzioso in Toscana",
+      "desc": "Tre giorni senza notifiche, ma con 19 foto da postare dopo.",
+      "cta": "Prenota",
+      "iq": 12,
+      "result": "Hai prenotato un ritiro silenzioso. Hai ricevuto 14 email di conferma. +12 QI"
+    },
+    {
+      "label": "PROMO",
+      "title": "Smartwatch Mindful",
+      "desc": "Ti interrompe ogni 20 minuti per ricordarti che vieni interrotto troppo.",
+      "cta": "Vedi dettagli",
+      "iq": 5,
+      "result": "Il polso ora vibra per dirti che vibra troppo. Tecnologia matura. +5 QI"
+    },
+    {
+      "label": "SPONSORIZZATO",
+      "title": "Corso “Presenza Totale”",
+      "desc": "18 moduli video per imparare a non guardare video.",
+      "cta": "Inizia",
+      "iq": 8,
+      "result": "Hai usato il capitalismo contro il capitalismo. Risultato moralmente ambiguo. +8 QI"
+    },
+    {
+      "label": "PROMO",
+      "title": "Serenità+ Annuale",
+      "desc": "La pace interiore, ora con rinnovo automatico non rimborsabile.",
+      "cta": "Sblocca pace",
+      "iq": 10,
+      "result": "La tua pace interiore ora ha rinnovo automatico. +10 QI"
+    },
+    {
+      "label": "SPONSORIZZATO",
+      "title": "Libro “Smetti di scrollare”",
+      "desc": "Da leggere sul telefono, così il problema resta comodo.",
+      "cta": "Scarica PDF",
+      "iq": 10,
+      "result": "Hai letto il titolo di un libro contro i titoli. Meta-lucidità ottenuta. +10 QI"
+    },
+    {
+      "label": "PROMO",
+      "title": "Workshop Disconnessione",
+      "desc": "Live streaming su Zoom. Iscriviti tramite app. Conferma via SMS.",
+      "cta": "Prenota posto",
+      "iq": 6,
+      "result": "Hai prenotato una disconnessione online. Il paradosso ti sveglia. +6 QI"
+    },
+    {
+      "label": "SPONSORIZZATO",
+      "title": "Audio Binaurali Focus",
+      "desc": "40Hz di pura promessa. Premi play. Poi scrolla con la musica.",
+      "cta": "Ascolta",
+      "iq": 3,
+      "result": "Hai aggiunto una colonna sonora al problema. Stranamente aiuta poco. +3 QI"
+    },
+    {
+      "label": "PROMO",
+      "title": "Ballerina Cappuccina Detox",
+      "desc": "12 video brevi per recuperare attenzione lunga. Tralalà incluso.",
+      "cta": "Guarda ora",
+      "iq": 4,
+      "result": "Hai chiesto aiuto al brainrot per uscire dal brainrot. Audace. +4 QI"
+    }
+  ]
+}

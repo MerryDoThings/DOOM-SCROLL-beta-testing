@@ -1,0 +1,698 @@
+[
+  {
+    "q": "Perché hai aperto il feed?",
+    "opts": [
+      {
+        "t": "Per capire cosa succede e poi chiudere",
+        "d": 2,
+        "k": "conscious",
+        "fb": "lettura funzionale: quasi sospetta"
+      },
+      {
+        "t": "Per passare due minuti",
+        "d": 0,
+        "k": "neutral",
+        "fb": "bugia socialmente accettata"
+      },
+      {
+        "t": "Perché avevo un pensiero da evitare",
+        "d": -1,
+        "k": "stupid",
+        "fb": "evitamento riconosciuto, danno contenuto"
+      },
+      {
+        "t": "Per sentire il mondo bruciare in tempo reale",
+        "d": -3,
+        "k": "idiot",
+        "fb": "doomscrolling puro, punizione meritata"
+      }
+    ]
+  },
+  {
+    "q": "Cosa farai con questa informazione?",
+    "opts": [
+      {
+        "t": "Una piccola azione concreta",
+        "d": 2,
+        "k": "conscious",
+        "fb": "raro collegamento tra sapere e fare"
+      },
+      {
+        "t": "La terrò come contesto generale",
+        "d": 0,
+        "k": "neutral",
+        "fb": "archiviazione emotiva neutra"
+      },
+      {
+        "t": "La citerò male in una conversazione",
+        "d": -1,
+        "k": "stupid",
+        "fb": "competenza performativa rilevata"
+      },
+      {
+        "t": "Nulla, ma con più ansia",
+        "d": -3,
+        "k": "idiot",
+        "fb": "ansia compressa senza utilità"
+      }
+    ]
+  },
+  {
+    "q": "Quante notizie servono per essere aggiornati?",
+    "opts": [
+      {
+        "t": "Poche, buone, lette davvero",
+        "d": 2,
+        "k": "conscious",
+        "fb": "hai quasi inventato il giornalismo"
+      },
+      {
+        "t": "Dipende dal tema",
+        "d": 0,
+        "k": "neutral",
+        "fb": "risposta prudente, quindi noiosa"
+      },
+      {
+        "t": "Tutte quelle che il feed mi dà",
+        "d": -1,
+        "k": "stupid",
+        "fb": "outsourcing della volontà"
+      },
+      {
+        "t": "Finché non odio il pianeta",
+        "d": -3,
+        "k": "idiot",
+        "fb": "metodo scientifico del disastro"
+      }
+    ]
+  },
+  {
+    "q": "Leggi gli articoli o assorbi il tono dei titoli?",
+    "opts": [
+      {
+        "t": "Leggo, verifico, poi decido",
+        "d": 2,
+        "k": "conscious",
+        "fb": "il feed ti trova poco redditizio"
+      },
+      {
+        "t": "A volte apro l’articolo",
+        "d": 0,
+        "k": "neutral",
+        "fb": "onestà intermedia"
+      },
+      {
+        "t": "Il titolo basta a farmi un’opinione",
+        "d": -1,
+        "k": "stupid",
+        "fb": "democrazia a bassa risoluzione"
+      },
+      {
+        "t": "Commento prima di capire",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato l’ignoranza in servizio pubblico"
+      }
+    ]
+  },
+  {
+    "q": "Quando una notizia ti fa arrabbiare, cosa fai?",
+    "opts": [
+      {
+        "t": "Aspetto, controllo, respiro",
+        "d": 2,
+        "k": "conscious",
+        "fb": "autocontrollo non monetizzabile"
+      },
+      {
+        "t": "La salvo per dopo",
+        "d": 0,
+        "k": "neutral",
+        "fb": "il cimitero dei link ringrazia"
+      },
+      {
+        "t": "La mando a qualcuno con ‘assurdo’",
+        "d": -1,
+        "k": "stupid",
+        "fb": "contagio emotivo leggero"
+      },
+      {
+        "t": "Apro i commenti per soffrire meglio",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai scelto la palude con entusiasmo"
+      }
+    ]
+  },
+  {
+    "q": "Cosa significa ‘restare informati’?",
+    "opts": [
+      {
+        "t": "Capire meglio e dosare l’esposizione",
+        "d": 2,
+        "k": "conscious",
+        "fb": "informazione senza autolesionismo"
+      },
+      {
+        "t": "Sapere abbastanza per orientarmi",
+        "d": 0,
+        "k": "neutral",
+        "fb": "ragionevole, quasi adulto"
+      },
+      {
+        "t": "Non perdere nemmeno un aggiornamento",
+        "d": -1,
+        "k": "stupid",
+        "fb": "FOMO con giacca da cittadino responsabile"
+      },
+      {
+        "t": "Subire notifiche con lessico istituzionale",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai scambiato trauma per dovere civico"
+      }
+    ]
+  },
+  {
+    "q": "Se il feed fosse una persona, che rapporto avreste?",
+    "opts": [
+      {
+        "t": "Conoscente da vedere poco",
+        "d": 2,
+        "k": "conscious",
+        "fb": "confini sani: concetto esotico"
+      },
+      {
+        "t": "Collega fastidioso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "sopportabile a piccole dosi"
+      },
+      {
+        "t": "Amico tossico ma informato",
+        "d": -1,
+        "k": "stupid",
+        "fb": "hai romanticizzato l’algoritmo"
+      },
+      {
+        "t": "Coinquilino abusivo nella mia corteccia",
+        "d": -3,
+        "k": "idiot",
+        "fb": "contratto firmato col pollice"
+      }
+    ]
+  },
+  {
+    "q": "Perché gli sponsor wellness ti tentano?",
+    "opts": [
+      {
+        "t": "Mi ricordano un bisogno reale, ma non li confondo con la cura",
+        "d": 2,
+        "k": "conscious",
+        "fb": "lucidità senza carta di credito"
+      },
+      {
+        "t": "A volte sembrano utili",
+        "d": 0,
+        "k": "neutral",
+        "fb": "il marketing vive di ‘a volte’"
+      },
+      {
+        "t": "Voglio comprare una versione migliore di me",
+        "d": -1,
+        "k": "stupid",
+        "fb": "upgrade identitario in carrello"
+      },
+      {
+        "t": "Pago così non devo cambiare davvero",
+        "d": -3,
+        "k": "idiot",
+        "fb": "capitalismo spirituale in forma larvale"
+      }
+    ]
+  },
+  {
+    "q": "Qual è il segnale che dovresti fermarti?",
+    "opts": [
+      {
+        "t": "Quando ho già capito il punto",
+        "d": 2,
+        "k": "conscious",
+        "fb": "uscita prima del danno: elegante"
+      },
+      {
+        "t": "Quando mi annoio",
+        "d": 0,
+        "k": "neutral",
+        "fb": "soglia tradizionale, non sempre affidabile"
+      },
+      {
+        "t": "Quando finisce il feed",
+        "d": -1,
+        "k": "stupid",
+        "fb": "spoiler: non finisce"
+      },
+      {
+        "t": "Quando il telefono cade sulla faccia",
+        "d": -3,
+        "k": "idiot",
+        "fb": "diagnosi biomeccanica tardiva"
+      }
+    ]
+  },
+  {
+    "q": "Il doomscrolling ti rende più preparato?",
+    "opts": [
+      {
+        "t": "Solo se trasformo l’informazione in scelte",
+        "d": 2,
+        "k": "conscious",
+        "fb": "hai scoperto il passaggio mancante"
+      },
+      {
+        "t": "Un po’, forse",
+        "d": 0,
+        "k": "neutral",
+        "fb": "risposta gelatinosa"
+      },
+      {
+        "t": "Sì, perché so più titoli",
+        "d": -1,
+        "k": "stupid",
+        "fb": "titoli non sono conoscenza, sono trailer"
+      },
+      {
+        "t": "No, ma almeno soffro aggiornato",
+        "d": -3,
+        "k": "idiot",
+        "fb": "sofferenza premium in tempo reale"
+      }
+    ]
+  },
+  {
+    "q": "Cosa cerchi davvero qui dentro?",
+    "opts": [
+      {
+        "t": "Un limite",
+        "d": 2,
+        "k": "conscious",
+        "fb": "il cervello ha applaudito piano"
+      },
+      {
+        "t": "Distrazione",
+        "d": 0,
+        "k": "neutral",
+        "fb": "onestà basica"
+      },
+      {
+        "t": "Una scusa per non iniziare altro",
+        "d": -1,
+        "k": "stupid",
+        "fb": "procrastinazione con feed incorporato"
+      },
+      {
+        "t": "Una ragione esterna per sentirmi così",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai esternalizzato il malessere"
+      }
+    ]
+  },
+  {
+    "q": "Come capisci che una notizia è importante?",
+    "opts": [
+      {
+        "t": "Impatto reale, fonti, contesto",
+        "d": 2,
+        "k": "conscious",
+        "fb": "quasi fastidiosamente corretto"
+      },
+      {
+        "t": "La vedo su più fonti",
+        "d": 0,
+        "k": "neutral",
+        "fb": "non male, non basta"
+      },
+      {
+        "t": "Ha tante maiuscole",
+        "d": -1,
+        "k": "stupid",
+        "fb": "tipografia del panico"
+      },
+      {
+        "t": "Mi fa venire voglia di urlare",
+        "d": -3,
+        "k": "idiot",
+        "fb": "l’amigdala non è un fact-checker"
+      }
+    ]
+  },
+  {
+    "q": "Perché hai aperto il feed?",
+    "opts": [
+      {
+        "t": "Per evitare un pensiero specifico",
+        "d": 2,
+        "k": "conscious",
+        "fb": "il pensiero specifico è ancora lì"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Per informarmi",
+        "d": -1,
+        "k": "stupid",
+        "fb": "il pensiero specifico è ancora lì"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Quante notizie servono per sentirsi preparati?",
+    "opts": [
+      {
+        "t": "Una buona sintesi e poi basta",
+        "d": 2,
+        "k": "conscious",
+        "fb": "tutte era la trappola"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Tutte, in ordine casuale",
+        "d": -1,
+        "k": "stupid",
+        "fb": "tutte era la trappola"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Cosa farai con questa informazione?",
+    "opts": [
+      {
+        "t": "Una micro-azione concreta",
+        "d": 2,
+        "k": "conscious",
+        "fb": "ansia compressa archiviata"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "La conserverò come ansia compressa",
+        "d": -1,
+        "k": "stupid",
+        "fb": "ansia compressa archiviata"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Hai letto l'articolo o solo il titolo?",
+    "opts": [
+      {
+        "t": "Ho letto abbastanza da capire",
+        "d": 2,
+        "k": "conscious",
+        "fb": "il tono non è conoscenza"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Ho assorbito il tono e mi basta",
+        "d": -1,
+        "k": "stupid",
+        "fb": "il tono non è conoscenza"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Cosa cerchi davvero?",
+    "opts": [
+      {
+        "t": "Un limite per fermarmi",
+        "d": 2,
+        "k": "conscious",
+        "fb": "la ragione esterna non ti salverà"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Una ragione esterna per sentirmi così",
+        "d": -1,
+        "k": "stupid",
+        "fb": "la ragione esterna non ti salverà"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Quando una notizia ti agita, cosa sarebbe utile?",
+    "opts": [
+      {
+        "t": "Fermarmi e capire se posso agire",
+        "d": 2,
+        "k": "conscious",
+        "fb": "la correlazione non cura"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Leggerne altre 14 correlate",
+        "d": -1,
+        "k": "stupid",
+        "fb": "la correlazione non cura"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Il feed ti sta aiutando?",
+    "opts": [
+      {
+        "t": "Non in questo momento",
+        "d": 2,
+        "k": "conscious",
+        "fb": "aggiornato non significa meglio"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Sì, mi tiene aggiornato",
+        "d": -1,
+        "k": "stupid",
+        "fb": "aggiornato non significa meglio"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Cos'è una pausa?",
+    "opts": [
+      {
+        "t": "Nessun contenuto per qualche minuto",
+        "d": 2,
+        "k": "conscious",
+        "fb": "contenuto leggero pesa comunque"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Scrollare contenuti più leggeri",
+        "d": -1,
+        "k": "stupid",
+        "fb": "contenuto leggero pesa comunque"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Perché quel titolo sembra importante?",
+    "opts": [
+      {
+        "t": "Perché ha conseguenze reali per me",
+        "d": 2,
+        "k": "conscious",
+        "fb": "il maiuscolo non è urgenza"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Perché è scritto in maiuscolo emotivo",
+        "d": -1,
+        "k": "stupid",
+        "fb": "il maiuscolo non è urgenza"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "La prossima notizia potrebbe essere utile?",
+    "opts": [
+      {
+        "t": "Forse, ma non serve inseguirla ora",
+        "d": 2,
+        "k": "conscious",
+        "fb": "il forse è il gancio"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Sì, quindi continuo",
+        "d": -1,
+        "k": "stupid",
+        "fb": "il forse è il gancio"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Cosa stai rimandando?",
+    "opts": [
+      {
+        "t": "Una cosa precisa che so benissimo",
+        "d": 2,
+        "k": "conscious",
+        "fb": "multitasking era la maschera"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Niente, multitasking",
+        "d": -1,
+        "k": "stupid",
+        "fb": "multitasking era la maschera"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  },
+  {
+    "q": "Stai scegliendo tu il ritmo?",
+    "opts": [
+      {
+        "t": "No, sto reagendo a stimoli",
+        "d": 2,
+        "k": "conscious",
+        "fb": "cliccare non è sempre scegliere"
+      },
+      {
+        "t": "Non saprei, ma almeno ci penso",
+        "d": 0,
+        "k": "neutral",
+        "fb": "neutralità dignitosa"
+      },
+      {
+        "t": "Certo, clicco io",
+        "d": -1,
+        "k": "stupid",
+        "fb": "cliccare non è sempre scegliere"
+      },
+      {
+        "t": "Apro altre 14 notizie per decidere",
+        "d": -3,
+        "k": "idiot",
+        "fb": "hai trasformato il dubbio in carburante"
+      }
+    ]
+  }
+]
