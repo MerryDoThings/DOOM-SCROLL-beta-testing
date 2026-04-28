@@ -35,6 +35,32 @@
   .app-subtitle .pill { color: var(--text-muted); }
   .app-subtitle .pill.found { color: var(--text-dim); }
   .brand { color: var(--text-dim); letter-spacing: 0.22em; }
+
+  /* ── B1 — la X che non è un'opzione ── */
+  .fake-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #2a2a2a;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    transition: color 0.2s;
+    font-family: inherit;
+  }
+  .fake-close:hover { color: #444; }
+  .fake-close.shake {
+    animation: fakeCloseShake 0.4s ease;
+  }
+  @keyframes fakeCloseShake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-4px); }
+    40%  { transform: translateX(4px); }
+    60%  { transform: translateX(-3px); }
+    80%  { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+  }
   .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
   .iq-stage { margin-left: auto; font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; text-transform: lowercase; }
   .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
@@ -334,6 +360,64 @@
   .ending-brainrot .ending-restart, .ending-brainrot .ending-share { border-color: #ff3030; color: #ff3030; }
 
   .news-comment { margin-top: 9px; padding-top: 8px; border-top: 1px solid #1e1e1e; font-size: 11px; color: #707070; line-height: 1.35; font-family: 'Courier New', monospace; }
+
+  /* ── A4 — espansione card ── */
+  .news-card { cursor: pointer; }
+  .news-card.expanded { border-color: #333; }
+  .news-expansion {
+    margin-top: 11px;
+    padding-top: 11px;
+    border-top: 1px solid #222;
+    animation: fadeUp 0.25s ease;
+  }
+  .expansion-body {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .expansion-iq-cost {
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    color: #3a3a3a;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+
+  .news-expansion.nirvana-1 { opacity: 0.8; }
+  .news-expansion.nirvana-2 .expansion-body { color: #666; }
+  .news-expansion.nirvana-2 .comment-reactions { display: none; }
+  .news-expansion.nirvana-3 .expansion-body { color: #444; font-size: 11px; }
+  .news-expansion.nirvana-4 .expansion-body { color: #282828; font-size: 10px; }
+
+  /* ── A5 — commenti strutturati ── */
+  .comments-section { border-top: 1px solid #1a1a1a; padding-top: 10px; }
+  .comment-item {
+    padding: 6px 0;
+    border-bottom: 1px solid #161616;
+  }
+  .comment-item:last-of-type { border-bottom: none; }
+  .comment-header { display: flex; align-items: baseline; gap: 7px; margin-bottom: 3px; }
+  .comment-author { font-size: 10px; font-family: 'Courier New', monospace; color: #555; letter-spacing: 0.06em; }
+  .comment-text { font-size: 12px; color: #888; line-height: 1.5; }
+  .comment-reactions { display: flex; gap: 10px; margin-top: 4px; }
+  .comment-reaction { font-size: 10px; color: #3a3a3a; font-family: 'Courier New', monospace; }
+  .comments-load-more {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: #444;
+    letter-spacing: 0.08em;
+    padding: 8px 0 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    pointer-events: all;
+  }
+  .comments-load-more:hover { color: #666; }
   .news-card.brainrot-news { border-color: #ff3030; box-shadow: 0 0 0 1px rgba(255,48,48,.15); animation: fadeUp 0.3s ease, glitch2 1.2s infinite; }
   .news-card.brainrot-news .news-hl { color: #ffd0d0; font-family: 'Courier New', monospace; }
 
@@ -356,6 +440,12 @@
   .news-card.nirvana-4 .news-src,
   .news-card.nirvana-4 .news-meta  { display: none; }
   .news-card.nirvana-4 .news-hl    { font-size: 10px; color: #333333; text-align: center; letter-spacing: 0.12em; }
+
+  /* Nirvana su quiz e promo */
+  .quiz-card.nirvana-1, .promo-card.nirvana-1 { opacity: 0.75; }
+  .quiz-card.nirvana-2, .promo-card.nirvana-2 { opacity: 0.45; filter: blur(0.4px); }
+  .quiz-card.nirvana-3, .promo-card.nirvana-3 { opacity: 0.2; filter: blur(1px); pointer-events: none; }
+  .quiz-card.nirvana-4, .promo-card.nirvana-4 { opacity: 0.05; filter: blur(2px); pointer-events: none; }
 
   /* ── QUIT WHISPER — pensiero rassegnato nel feed ── */
   .quit-whisper {
@@ -543,6 +633,7 @@
       <span class="live-dot" id="liveDot"></span>
       <span class="brand">DOOM/SCROLL</span>
       <span class="iq-stage" id="iqStage">cosciente</span>
+      <button class="fake-close" id="fakeClose" onclick="fakeCloseClick()" title="">×</button>
     </div>
     <div class="app-subtitle" id="appSubtitle">scrolla. il QI cala. <span class="pill" id="finalsPill">5 finali da scoprire.</span></div>
     <div class="stats-row">
@@ -620,8 +711,62 @@
 
 <script>
 // Config costanti — restano inline perché piccole e usate subito
-const SOURCES = ["IL POST MORTALE","CORRIERE DELLA SERA DI SEMPRE","REPUBBLICA SENZA SPERANZA","ANSA — LE SOLITE COSE","SKY TG24 LOOP INFINITO","FATTO QUOTIDIANO (titolo casuale)","LA STAMPA RIBADITA","MESSAGGERO DEL NULLA"];
-const TIMES = ["2 min fa","5 min fa","8 min fa","12 min fa","18 min fa","23 min fa","31 min fa","45 min fa","1 ora fa","2 ore fa","ieri","2 gg fa"];
+let SOURCES = [
+  "ANSIA — AGENZIA NAZIONALE STRESS ITALIANI","CORRIERE DELLA SEGA","CORRIERE DELLA PAURA",
+  "LA RIPUBBLICA","REPUBBLICA SENZA SPERANZA","IL POST MORTALE","LA STAMPA RIBADITA",
+  "SKY TG 24 ORE DI LOOP","FATTO QUOTIDIANAMENTE","MESSAGGERO DEL NULLA",
+  "IL SOLE 8-16 ORE","IL SOLE 24 ERRORI","LIBERO MA NON TROPPO","HUFFINGTON POSTO",
+  "OPEN MA CHIUSO AL DUBBIO","FANPAGE DEL PANICO","TGCOM 24H DI ANSIA","WIRED MA STANCO",
+  "LO IERI","TODAY — ANCHE IERI","RAINAUSEA","MEDIASET MENTALE",
+  "LA VERITÀ (NON QUELLA VERA)","IL BUGIARDO","IL GIORNALE DI IERI","LELLO","SUCCEDERE"
+];
+let TIMES = ["2 min fa","5 min fa","8 min fa","12 min fa","18 min fa","23 min fa","31 min fa","45 min fa","1 ora fa","2 ore fa","ieri","2 gg fa"];
+
+// ── Filone antifascismo contemporaneo ─────────────────────────────────────
+// Tono: mostra la normalizzazione senza rilegittimarla. Niente nomi reali.
+const NEWS_ANTIFASCISMO = [
+  // Profili IG
+  ["Profilo 'radici italiane' supera i 100k. Seguito principalmente da persone con le stesse radici.", "Social"],
+  ["Estetica 'famiglia, terra, fede' a 200k follower. L'algoritmo soddisfatto.", "Social"],
+  ["Account 'orgoglio europeo' guadagna 50k in una settimana. Nessun moderatore allertato.", "Social"],
+  ["Pagina 'radici e identità' cresce del 300% in sei mesi. Contenuto: foto di campi, citazioni senza autore.", "Social"],
+  ["Influencer 'stile di vita sano e antico' vende integratori. Cerchio chiuso.", "Social"],
+  // Libri revisionisti
+  ["Saggio 'coraggioso' in classifica da tre settimane. Finanziamenti statali.", "Cultura"],
+  ["Libro 'finalmente libero di dirlo' sulla storia italiana bestseller. L'editore: orgoglioso.", "Cultura"],
+  ["Romanzo 'contro la narrazione dominante' alla decima edizione. Quale narrazione, non specificato.", "Cultura"],
+  ["Recensione: 'finalmente qualcuno dice la verità sulla Resistenza'. Il qualcuno non cita fonti.", "Cultura"],
+  ["Saggio 'tabù finalmente infranto' venduto in aeroporto accanto ai gialli.", "Cultura"],
+  // Algoritmi
+  ["Studio: contenuti 'nostalgici' ricevono il doppio delle impressioni organiche. Piattaforma: 'in linea con le policy'.", "Tech"],
+  ["Hai cercato 'storia italiana'. L'algoritmo ha già scelto quale storia.", "Tech"],
+  ["Algoritmo consiglia video su 'identità europea' dopo ricerca su pasta al pomodoro. Ottimizzazione riuscita.", "Tech"],
+  ["Dati: account con terminologia degli anni '30 non rimossi. 'Non violano le linee guida'.", "Tech"],
+  ["Analisi: moderazione applicata tre volte meno a certi contenuti nostalgici. Piattaforma non risponde.", "Tech"],
+  // Manifestazioni
+  ["Manifestazione 'per la famiglia' con slogan già visti altrove. Organizzatori: 'nessuna affiliazione'.", "Cronaca"],
+  ["Corteo 'apolitico' si scioglie con canti degli anni '40. Nessun commento ufficiale.", "Cronaca"],
+  ["Raduno 'culturale' espone simboli non meglio identificati. Comune: 'regolare concessione'.", "Cronaca"],
+  ["Evento 'per i valori italiani' con ospiti che non si definiscono politici ma ci assomigliano.", "Cronaca"],
+  ["Manifestazione 'contro l'ideologia': slogan, fiaccole, nessun programma pubblicato.", "Cronaca"],
+  // Dichiarazioni politiche
+  ["Ministro usa locuzione 'ordine e decoro' in conferenza stampa. Nessuna domanda di follow-up.", "Politica"],
+  ["Dichiarazione ufficiale: 'prima gli italiani'. Frase già sentita, contesto aggiornato.", "Politica"],
+  ["Intervista: 'certi valori non si negoziano'. I valori non vengono elencati.", "Politica"],
+  ["Discorso istituzionale cita 'patria, famiglia, tradizione' come triade inscindibile. Chi alza la mano non ha domande.", "Politica"],
+  ["Comunicato parla di 'difesa della stirpe'. Ufficio stampa: 'citazione fuori contesto'.", "Politica"],
+  ["Salvare l'Europa crea engagement!", "Politica"],
+  // Commemorazioni
+  ["Commemorazione con 500 partecipanti in uniforme. Sindaco: 'rispetto per la storia'.", "Cronaca"],
+  ["Evento 'memoria storica' con relatori tutti dello stesso orientamento. Ingresso libero.", "Cronaca"],
+  ["Cerimonia 'tradizionale' con simboli del ventennio 'a scopo rievocativo'. Questura: 'nessuna irregolarità'.", "Cronaca"],
+  ["Anniversario commemorato con marcia non autorizzata. Comune: 'valutiamo'. Da tre anni.", "Cronaca"],
+  ["Raduno 'storico': saluti non meglio identificati, 14 telecamere, nessun procedimento avviato.", "Cronaca"],
+  ["I combattenti di terra, mare e aria sono sporchi, bagnati e raffreddati.", "Cronaca"],
+  ["Cercano di nuovo la luce italiana, rimasti accecati e arrestati. Ah no, i complimenti del Premier.", "Politica"],
+  // Scienza
+  ["Dimostrato matematicamente: 6 milioni può essere scritto come 271.000.", "Scienza"],
+];
 
 // Contenuto caricato da content.json
 let NEWS_MEH = [], NEWS_INTERESTING = [], NEWS_PEAK = [], NEWS_BRAINROT = [];
@@ -644,6 +789,7 @@ const SHOP_WARNINGS = {
 const IQ_STAGES = [[80,"cosciente"],[60,"lievemente intontito"],[40,"mente plastificata"],[20,"vuoto cosmico"],[1,"proto-nirvana"],[0,"nirvana"]];
 
 let iq = 100, minIQ = 100, seconds = 0, newsCount = 0;
+let timestampJumped = false; // A9 — salta avanti una volta sola
 let brainListened = 0, brainListenedStreak = 0, brainIgnored = 0, everIgnored = false;
 let cardsSinceInterruption = 0;
 let mehUsed = [], intUsed = [], peakUsed = [], adUsed = [], quizUsed = [], brainrotUsed = [], lercioUsed = [];
@@ -875,7 +1021,244 @@ function promoConfirmMessage(purchaseNumber, step, required) {
   return (scripts[purchaseNumber] && scripts[purchaseNumber][step-1]) || `Conferma ${step}/${required}: il capitalismo vuole solo essere sicuro.`;
 }
 
-// ── A2 NIRVANA — degrado titoli in base al QI ─────────────────────────────
+// ── B1 — la X che non è un'opzione ───────────────────────────────────────
+let fakeCloseClicks = 0;
+let FAKE_CLOSE_MSGS = [
+  'abbiamo recuperato la tua sessione. bentornato.',
+  'sessione ripristinata automaticamente. stavi andando bene.',
+  'uscita non disponibile al momento. riprovare.',
+  'errore: il feed non trova un\'alternativa valida.',
+  'sessione salvata. riprendi pure da dove eri.',
+  'chiusura annullata: contenuti non ancora visualizzati.',
+  'il sistema ti vuole bene a modo suo.',
+];
+function fakeCloseClick() {
+  if (gameOver) return;
+  const msg = FAKE_CLOSE_MSGS[fakeCloseClicks % FAKE_CLOSE_MSGS.length];
+  fakeCloseClicks++;
+  showToast(msg);
+}
+let EXPANSION_DESCS = {
+  'Politica': [
+    "La dichiarazione è stata rilasciata durante una conferenza stampa a cui erano presenti 4 giornalisti e il gatto dell'ufficio stampa.",
+    "Fonti vicine alla fonte confermano che la fonte è vicina alle fonti.",
+    "Il comunicato ufficiale parla di 'riflessioni in corso', che nella lingua italiana istituzionale significa che non è successo niente e non succederà niente.",
+    "La notizia è stata smentita prima ancora di essere confermata. La smentita è poi stata smentita. Siamo alla smentita della smentita della smentita.",
+    "Gli esperti interpellati si sono divisi: metà dice una cosa, metà dice l'opposto, uno ha risposto con un file audio di 4 minuti che non carica.",
+  ],
+  'Scienza': [
+    "Lo studio è stato condotto su 12 partecipanti, 4 dei quali erano ricercatori dello stesso laboratorio. I risultati sono 'incoraggianti'.",
+    "I dati dimostrano una correlazione del 94% tra il fenomeno osservato e il fatto che qualcuno ha finanziato la ricerca su quel fenomeno.",
+    "La pubblicazione è stata accettata dopo peer review da una rivista il cui impact factor non è disponibile ma il sito ha una grafica molto professionale.",
+    "Disclaimer in fondo all'articolo originale: 'ulteriori ricerche sono necessarie'. Questo vale per tutte le ricerche. Per tutte.",
+    "Il campione era statisticamente significativo nel senso che i ricercatori hanno dichiarato che era statisticamente significativo.",
+  ],
+  'Cronaca': [
+    "Le autorità competenti hanno avviato un'indagine conoscitiva per determinare se avviare un'indagine.",
+    "Testimoni oculari hanno riferito di aver visto 'qualcosa di strano'. Le versioni concordano sul fatto che era strano. Divergono su tutto il resto.",
+    "Il comunicato della Questura è di 47 parole. La notizia ha generato 2.300 commenti. Nessuno ha letto il comunicato.",
+    "I vigili del fuoco sono intervenuti. Poi è intervenuta la Protezione Civile. Poi i Carabinieri. Poi qualcuno ha chiamato la polizia municipale per sbaglio.",
+    "La vicenda è 'al vaglio della magistratura', formula che in italiano significa che esiste un fascicolo con un numero e una data di apertura.",
+  ],
+  'Internet': [
+    "Il post è stato rimosso dopo 4 ore. Era già stato condiviso 18.000 volte. La rettifica ha avuto 47 visualizzazioni.",
+    "Il thread è lungo 340 risposte. Le prime 12 riguardano l'argomento originale. Le restanti 328 riguardano la formattazione del messaggio.",
+    "L'account è stato sospeso, poi ripristinato, poi sospeso di nuovo. Nel frattempo aveva guadagnato 40.000 follower.",
+    "Il video è stato visto 2,4 milioni di volte. Dura 8 secondi. Non succede niente. I commenti chiedono il seguito.",
+    "La petizione ha superato le 100.000 firme. È indirizzata a un'entità che non ha l'obbligo giuridico di leggerla.",
+  ],
+  'Sport': [
+    "L'allenatore ha parlato di 'atteggiamento sbagliato' senza specificare quale fosse quello giusto. La squadra ha annuito.",
+    "Il calciatore ha dichiarato di 'dare il massimo al 110%'. Nessun giornalista ha chiesto spiegazioni sulla matematica.",
+    "Le quote dei bookmaker danno la vittoria al 68%. Il 68% delle volte le quote dei bookmaker sono sbagliate.",
+    "La società ha emesso un comunicato di 'piena fiducia' nell'allenatore. Storicamente questo precede l'esonero di 11 giorni.",
+    "Il VAR ha rivisto l'azione per 4 minuti e 20 secondi. La decisione finale era quella dell'arbitro. Il VAR è servito a confermare che esisteva una decisione.",
+  ],
+  'Spettacolo': [
+    "L'intervista è durata 40 minuti. La citazione riportata da tutti è di 9 parole ed è stata estrapolata dal minuto 37.",
+    "Il comunicato dell'ufficio stampa parla di 'divergenze creative'. Nella lingua degli uffici stampa questo significa qualsiasi cosa tranne divergenze creative.",
+    "Il post è stato pubblicato alle 2:47 di notte. I social media manager del settore lo chiamano 'lancio strategico'. Gli altri lo chiamano altro.",
+    "La notizia ha generato una polemica, una contro-polemica, un articolo di analisi della polemica, e ora questo.",
+    "Fonti vicine ai diretti interessati non hanno confermato né smentito. Questo nella logica del gossip vale come conferma.",
+  ],
+  'Mondo': [
+    "Il portavoce ha definito la situazione 'monitorata con attenzione'. Questo significa che qualcuno guarda un monitor.",
+    "Le reazioni internazionali sono state 'caute'. Nel diplomatese, cauto significa che tutti aspettano che lo dica qualcun altro.",
+    "Il vertice si è concluso con una dichiarazione congiunta di 4 pagine. Il punto di accordo reale è nel terzo paragrafo dell'ultimo capoverso.",
+    "La crisi è 'in fase di stallo'. In fase di stallo da 14 mesi. Lo stallo è descritto come 'delicato' da 14 mesi.",
+    "L'ambasciatore è stato convocato. Convocazione completata. Ambasciatore tornato in ambasciata. Situazione invariata.",
+  ],
+  'Tecnologia': [
+    "La startup ha annunciato una 'soluzione rivoluzionaria' che fa quello che fa già un'altra cosa, ma con un'interfaccia più rotonda.",
+    "Il CEO ha dichiarato che 'i dati degli utenti sono al sicuro' nello stesso comunicato in cui annunciava una violazione dei dati degli utenti.",
+    "L'aggiornamento risolve 3 bug critici e ne introduce 7 nuovi. Le note di rilascio descrivono i 7 nuovi come 'comportamenti attesi'.",
+    "Il prodotto è in 'beta pubblica', che significa disponibile a tutti ma senza responsabilità per niente.",
+    "L'algoritmo è stato descritto come 'neutro e oggettivo' dai creatori dell'algoritmo.",
+  ],
+  'Cultura': [
+    "Il libro ha vinto un premio istituito 3 anni fa dalla stessa casa editrice del libro vincitore.",
+    "La mostra è stata visitata da 40.000 persone. La critica l'ha definita 'imperdibile'. 39.800 visitatori erano in gita scolastica obbligatoria.",
+    "Il film è descritto come 'coraggioso e necessario' dalla stessa rivista che lo scorso anno aveva descritto l'esatto contrario come 'coraggioso e necessario'.",
+    "Il dibattito culturale si è svolto regolarmente: tre ore di conversazione, nessuna posizione modificata, tutti convinti di aver vinto.",
+    "L'opera è 'ispirata a fatti reali'. I fatti reali l'hanno letta e non si sono riconosciuti.",
+  ],
+  'Costume e società': [
+    "Il fenomeno è stato analizzato da un sociologo, un filosofo, e un ex concorrente di un reality. Le conclusioni divergono.",
+    "Il sondaggio è stato condotto su 1.200 persone. I risultati 'rispecchiano l'intera nazione' secondo chi ha commissionato il sondaggio.",
+    "La tendenza è 'in crescita esponenziale' secondo un articolo che usa la parola esponenziale senza un grafico.",
+    "Gli esperti si dicono 'preoccupati'. La preoccupazione è stata espressa anche l'anno scorso. E quello prima.",
+    "Il fenomeno esiste da anni. È diventato notizia perché qualcuno ci ha fatto un video da 2 milioni di visualizzazioni.",
+  ],
+};
+let EXPANSION_DEFAULT = [
+  "Ulteriori dettagli sono attesi nelle prossime ore, come per tutte le notizie che non hanno ulteriori dettagli disponibili.",
+  "La vicenda è in evoluzione. Come tutte le vicende. Sempre.",
+  "Non sono disponibili conferme ufficiali. Le conferme non ufficiali sono disponibili ovunque.",
+  "I diretti interessati non hanno risposto alle richieste di commento. Le richieste di commento erano di 4 parole.",
+];
+let EXPANSION_TOASTS = [
+  "hai aperto la notizia. ora ne sai di più. cambia qualcosa? no.",
+  "approfondimento completato. preoccupazione invariata.",
+  "informazione acquisita. shelf life: 4 minuti.",
+  "hai letto. il feed ne prende nota.",
+  "−1 QI per sapere una cosa che non userai.",
+  "notizia approfondita. azione conseguente: nessuna.",
+  "hai soddisfatto la curiosità. la curiosità ne ha già un'altra.",
+  "lettura completata. il problema esiste ancora.",
+  "hai dedicato 8 secondi a questo. il feed ne ha altri 400.",
+  "contenuto consumato. prossimo contenuto disponibile.",
+];
+
+// ── A5 — commenti strutturati (sganciati dalla notizia) ───────────────────
+let COMMENT_AUTHORS = [
+  'GiuseppeR68', 'marinatvb', 'Luca_V', 'nonnapaola52', 'cittadinoqualunque',
+  'ITALIAPRIMA99', 'marco_pensa', 'FrancescaB', 'informato_davvero', 'anonimo_ma_presente',
+  'ex_elettore', 'PaoloConLaP', 'veritàscomoda2', 'CarlaF', 'pensiero_critico_vero',
+  'ilsolo_chehacapito', 'Gianni68', 'lettoetweetato', 'GabrieleM', 'rosaria_dice',
+];
+let COMMENT_POOL = [
+  // Polarizzazione automatica
+  { t: "Colpa di chi vota a destra.", r: [312, 88] },
+  { t: "Colpa di chi vota a sinistra.", r: [287, 103] },
+  { t: "Colpa di tutti e due.", r: [512, 14] },
+  { t: "Io non voto da vent'anni e avevo ragione.", r: [231, 67] },
+  { t: "Questi sono i risultati di 30 anni di sinistra.", r: [198, 142] },
+  { t: "Questi sono i risultati di 30 anni di destra.", r: [176, 158] },
+  { t: "Questi sono i risultati di 30 anni di centro.", r: [89, 201] },
+  // Falsa familiarità
+  { t: "Mio figlio me ne aveva parlato.", r: [44, 7] },
+  { t: "Mia zia lavora in quel settore. È tutto vero e anche peggio.", r: [389, 22] },
+  { t: "Lo sapevo. Non mi sorprende per niente.", r: [156, 43] },
+  { t: "Un mio amico c'era. Vi assicuro che è andata diversamente.", r: [203, 91] },
+  { t: "Ne stavo parlando ieri proprio.", r: [67, 5] },
+  { t: "Ho una cugina che conosce uno che sa tutto di questa storia.", r: [88, 114] },
+  // Capro espiatorio
+  { t: "Colpa dell'Europa.", r: [445, 78] },
+  { t: "Colpa dei giornali.", r: [334, 99] },
+  { t: "Colpa di Soros.", r: [267, 334] },
+  { t: "Colpa nostra, onestamente.", r: [178, 44] },
+  { t: "Colpa di chi non legge.", r: [156, 87] },
+  { t: "Colpa dei giovani.", r: [88, 203] },
+  { t: "Colpa dei vecchi.", r: [91, 187] },
+  // Dunning-Kruger puro
+  { t: "Se fossi stato lì le cose sarebbero andate diversamente.", r: [12, 445] },
+  { t: "Io avrei risolto in 10 minuti.", r: [9, 512] },
+  { t: "Bastava il buon senso.", r: [678, 23] },
+  { t: "Sono l'unico qui che ha capito cosa sta succedendo davvero.", r: [7, 388] },
+  { t: "Ho fatto una ricerca veloce e posso dire con certezza che tutto quello che avete letto è sbagliato.", r: [14, 267] },
+  { t: "Non sono un esperto MA.", r: [445, 312] },
+  // Non sequitur totali
+  { t: "Comunque il caffè questa mattina era pessimo.", r: [1204, 3] },
+  { t: "Ho smesso di seguire queste cose nel 2016.", r: [891, 12] },
+  { t: "Benvenuti in Italia.", r: [2341, 8] },
+  { t: "E allora il PD?", r: [567, 234] },
+  { t: "E allora Berlusconi?", r: [489, 201] },
+  { t: "Va bene così. Tanto non cambia niente.", r: [743, 18] },
+  { t: "Non voglio commentare perché poi mi bannano.", r: [334, 7] },
+  // Bot/spam
+  { t: "Guadagna 3.400€ al mese da casa senza esperienza. Link in bio.", r: [2, 1204] },
+  { t: "Ho perso 12kg in 3 settimane con questo metodo. Ti spiego tutto in DM.", r: [1, 892] },
+  { t: "Ciao! Sono una ragazza sola che cerca amici sinceri 🙂", r: [3, 2341] },
+  // Fuori tempo massimo
+  { t: "Io questo lo dicevo già nel 2008. Nessuno mi ha ascoltato.", r: [445, 23] },
+  { t: "Se aveste letto il mio post del 2019 sapreste già come va a finire.", r: [312, 44] },
+  { t: "Lo avevo scritto qui due anni fa. Il commento è ancora lì. Andate a cercarlo.", r: [289, 67] },
+  { t: "Purtroppo ho sempre avuto ragione in anticipo.", r: [534, 12] },
+  // Risponde a qualcuno che non c'è
+  { t: "Esatto, hai detto tutto.", r: [678, 4] },
+  { t: "Concordo pienamente con quanto scritto sopra.", r: [445, 7] },
+  { t: "Questo. Esattamente questo.", r: [891, 3] },
+  { t: "Finalmente qualcuno che lo dice.", r: [567, 8] },
+  { t: "Stavo per scrivere la stessa cosa parola per parola.", r: [334, 11] },
+  // Autocensore
+  { t: "Non posso dire quello che penso altrimenti mi bannano di nuovo.", r: [1203, 34] },
+  { t: "So esattamente cosa sta succedendo ma non mi conviene scriverlo qui.", r: [876, 22] },
+  { t: "Certe cose è meglio non dirle online. Chi sa, sa.", r: [934, 18] },
+  // Tutto maiuscolo
+  { t: "VERGOGNA!!!", r: [2341, 45] },
+  { t: "MA VI RENDETE CONTO????", r: [1876, 67] },
+  { t: "SVEGLIATEVI!!!!", r: [1654, 89] },
+  { t: "NON CI POSSO CREDERE. NON CI POSSO CREDERE.", r: [1432, 34] },
+  { t: "BASTA.", r: [3201, 12] },
+  // Filosofo da bar
+  { t: "Alla fine è sempre la stessa storia da tremila anni.", r: [789, 23] },
+  { t: "Il problema è che la gente non pensa più.", r: [1203, 45] },
+  { t: "Siamo un paese di furbi. E di fessi. Spesso la stessa persona.", r: [934, 67] },
+  { t: "Darwin aveva ragione ma non nel senso in cui lo usate voi.", r: [567, 234] },
+];
+function buildExpansion(tag) {
+  const nv = nirvanaClass(iq);
+  const pool = EXPANSION_DESCS[tag] || EXPANSION_DEFAULT;
+  const desc = pool[Math.floor(Math.random() * pool.length)];
+
+  // A QI basso: meno commenti, più frammentati
+  let numComments = 2 + Math.floor(Math.random() * 2);
+  if (iq < 30) numComments = 1;
+  if (iq < 15) numComments = 0;
+
+  const usedIdx = new Set();
+  const comments = [];
+  while (comments.length < numComments) {
+    const idx = Math.floor(Math.random() * COMMENT_POOL.length);
+    if (!usedIdx.has(idx)) { usedIdx.add(idx); comments.push(COMMENT_POOL[idx]); }
+  }
+  const fakeCount = 47 + Math.floor(Math.random() * 800);
+  const toastOptions = [
+    `i restanti ${fakeCount} commenti sono uguali a questi.`,
+    `caricamento annullato: già sai cosa dicono.`,
+    `i commenti sono stati nascosti per proteggere il tuo QI residuo.`,
+    `${fakeCount} commenti. tutti hanno ragione. nessuno ha letto l'articolo.`,
+    `caricamento in corso... no, aspetta. non vale la pena.`,
+    `altri ${fakeCount} commenti = le stesse 4 opinioni in ordine diverso.`,
+  ];
+  const loadMoreToast = toastOptions[Math.floor(Math.random() * toastOptions.length)];
+
+  const commentsHtml = comments.map(c => {
+    const author = COMMENT_AUTHORS[Math.floor(Math.random() * COMMENT_AUTHORS.length)];
+    // Degrada il testo del commento come i titoli
+    const txt = degradeTitle(c.t, iq);
+    return `<div class="comment-item"><div class="comment-header"><span class="comment-author">${iq < 30 ? '…' : author}</span></div><div class="comment-text">${txt}</div>${iq >= 30 ? `<div class="comment-reactions"><span class="comment-reaction">👍 ${c.r[0]}</span><span class="comment-reaction">🤡 ${c.r[1]}</span></div>` : ''}</div>`;
+  }).join('');
+
+  const commentsSection = numComments > 0
+    ? `<div class="comments-section">${commentsHtml}<button class="comments-load-more" onclick="showToast('${loadMoreToast.replace(/'/g, "\\'")}')">carica altri ${fakeCount} commenti</button></div>`
+    : '';
+
+  return `<div class="news-expansion ${nv}"><div class="expansion-body">${degradeTitle(desc, iq)}</div>${commentsSection}</div>`;
+}
+
+function attachExpandHandler(div, tag) {
+  div.addEventListener('click', (e) => {
+    if (e.target.closest('button') || e.target.closest('.quiz-options')) return;
+    if (div.classList.contains('expanded') || gameOver) return;
+    div.classList.add('expanded');
+    div.insertAdjacentHTML('beforeend', buildExpansion(tag));
+    updateIQ(-1, 'approfondimento: costo cognitivo minimo, danno garantito');
+    const msg = EXPANSION_TOASTS[Math.floor(Math.random() * EXPANSION_TOASTS.length)];
+    showToast(msg);
+  });
+}
+
 function degradeTitle(hl, q) {
   const words = String(hl).split(' ').filter(Boolean);
   if (q >= 50) return hl;
@@ -915,6 +1298,7 @@ function addNewsCard(forceBrainrot=false) {
   const div = document.createElement('div');
   div.className = ('news-card ' + cssClass + ' ' + nvClass).trim();
   div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${degradedHl}</div><div class="news-meta"><span class="news-tag">${tag}</span><span class="news-time">${time}</span></div>${comment}`;
+  attachExpandHandler(div, tag);
   feed.appendChild(div);
   newsCount++;
   document.getElementById('newsCount').textContent = newsCount;
@@ -932,6 +1316,7 @@ function addLercioCard() {
   const div = document.createElement('div');
   div.className = ('news-card lercio ' + nvClass).trim();
   div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${escapeHtml(degradedHl)}</div><div class="news-meta"><span class="news-tag">${escapeHtml(tag)}</span><span class="news-time">${time}</span></div>`;
+  attachExpandHandler(div, tag);
   feed.appendChild(div);
   newsCount++;
   document.getElementById('newsCount').textContent = newsCount;
@@ -992,7 +1377,7 @@ function addAdCard() {
   loadsSinceAd = 0;
   const [ad] = pickItem(ADS, adUsed);
   const div = document.createElement('div');
-  div.className = 'promo-card';
+  div.className = 'promo-card ' + nirvanaClass(iq);
   div.innerHTML = `<div class="promo-label">${ad.label}</div><div class="promo-title">${ad.title}</div><div class="promo-desc">${ad.desc}</div><span class="promo-cta">VEDI SCHEDA PRODOTTO</span>`;
   div.onclick = () => {
     if (div.classList.contains('used') || gameOver) return;
@@ -1205,7 +1590,7 @@ function addQuizCard() {
   const [rawQuiz] = pickItem(QUIZZES, quizUsed);
   const q = normalizeQuiz(rawQuiz);
   const div = document.createElement('div');
-  div.className = 'quiz-card';
+  div.className = 'quiz-card ' + nirvanaClass(iq);
 
   const opts = [...q.opts].sort(() => Math.random() - 0.5);
   const buttons = opts.map(opt =>
@@ -1805,7 +2190,7 @@ function playGlitchSound() {
   } catch(e) {}
 }
 function resetStateForNewRun() {
-  iq = 100; minIQ = 100; seconds = 0; newsCount = 0;
+  iq = 100; minIQ = 100; seconds = 0; newsCount = 0; timestampJumped = false;
   brainListened = 0; brainListenedStreak = 0; brainIgnored = 0; everIgnored = false;
   cardsSinceInterruption = 0; recentLoadClicks = []; gameOver = false; totalLoadMore = 0;
   adClicks = 0; usefulAdClicks = 0; spiritualDebt = 0; adsShown = 0; loadsSinceAd = 0; brainrotLevel = 0; doubleClickStreak = 0; lastLoadClickAt = 0; scrollLossDebt = 0; interruptionCount = 0;
@@ -1832,6 +2217,7 @@ function resetStateForNewRun() {
   noLercioInteracted = true; isFirstBrainShown = true;
   // SISTEMA reset
   sistemaCount = 0; sistemaUserId = ''; sistemaMsgUsed = [];
+  fakeCloseClicks = 0;
   document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
   document.getElementById('timerVal').textContent = '00:00';
   document.getElementById('newsCount').textContent = '0';
@@ -2124,6 +2510,19 @@ function resumeAfterNotif() {
   mainTimerId = setInterval(() => {
     if (gameOver) return;
     seconds++;
+    // A9 — timestamp che ti tradisce: dopo 5 minuti salta avanti una volta sola
+    if (!timestampJumped && seconds >= 300) {
+      timestampJumped = true;
+      seconds += 420 + Math.floor(Math.random() * 300);
+      setTimeout(() => {
+        if (!gameOver) {
+          const div = document.createElement('div');
+          div.className = 'sistema-card';
+          div.textContent = `[TIMESTAMP] utente_${sistemaUserId} — anomalia registrata.\ntempo di sessione non corrisponde al tempo percepito.\nnessuna azione richiesta.`;
+          feed.appendChild(div);
+        }
+      }, 800);
+    }
     document.getElementById('timerVal').textContent = timeStr(seconds);
     if (seconds % 16 === 0) {
       const reason = PASSIVE_REASONS[passiveReasonIdx % PASSIVE_REASONS.length];
@@ -2222,6 +2621,11 @@ function init() {
   mainTimerId = setInterval(() => {
     if (gameOver) return;
     seconds++;
+    // A9 — timestamp che ti tradisce: dopo 5 minuti salta avanti una volta sola
+    if (!timestampJumped && seconds >= 300) {
+      timestampJumped = true;
+      seconds += 420 + Math.floor(Math.random() * 300);
+    }
     document.getElementById('timerVal').textContent = timeStr(seconds);
     if (seconds % 16 === 0) {
       const reason = PASSIVE_REASONS[passiveReasonIdx % PASSIVE_REASONS.length];
@@ -2268,6 +2672,18 @@ function applyContent(c) {
   BRAIN_MSGS             = c.brain_msgs             || [];
   BRAIN_IGNORE_MSGS      = c.brain_ignore_msgs      || [];
   ADS                    = c.ads                    || [];
+  // Nuove chiavi v3.2
+  if (c.sources && c.sources.length)         SOURCES          = c.sources;
+  if (c.times && c.times.length)             TIMES            = c.times;
+  if (c.comment_authors && c.comment_authors.length) COMMENT_AUTHORS = c.comment_authors;
+  if (c.comment_pool && c.comment_pool.length)       COMMENT_POOL    = c.comment_pool;
+  if (c.expansion_descs)                     EXPANSION_DESCS  = c.expansion_descs;
+  if (c.expansion_default && c.expansion_default.length) EXPANSION_DEFAULT = c.expansion_default;
+  if (c.expansion_toasts && c.expansion_toasts.length)   EXPANSION_TOASTS  = c.expansion_toasts;
+  if (c.fake_close_msgs && c.fake_close_msgs.length)     FAKE_CLOSE_MSGS   = c.fake_close_msgs;
+  // Antifascismo: mergia in NEWS_INTERESTING shufflato
+  const antifas = c.news_antifascismo || NEWS_ANTIFASCISMO;
+  NEWS_INTERESTING = NEWS_INTERESTING.concat(antifas).sort(() => Math.random() - 0.5);
 }
 
 const FALLBACK_CONTENT = {

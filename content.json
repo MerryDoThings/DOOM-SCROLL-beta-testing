@@ -4629,5 +4629,715 @@
       "iq": 4,
       "result": "Hai chiesto aiuto al brainrot per uscire dal brainrot. Audace. +4 QI"
     }
+  ],
+  "sources": [
+    "ANSIA — AGENZIA NAZIONALE STRESS ITALIANI",
+    "CORRIERE DELLA SEGA",
+    "CORRIERE DELLA PAURA",
+    "LA RIPUBBLICA",
+    "REPUBBLICA SENZA SPERANZA",
+    "IL POST MORTALE",
+    "LA STAMPA RIBADITA",
+    "SKY TG 24 ORE DI LOOP",
+    "FATTO QUOTIDIANAMENTE",
+    "MESSAGGERO DEL NULLA",
+    "IL SOLE 8-16 ORE",
+    "IL SOLE 24 ERRORI",
+    "LIBERO MA NON TROPPO",
+    "HUFFINGTON POSTO",
+    "OPEN MA CHIUSO AL DUBBIO",
+    "FANPAGE DEL PANICO",
+    "TGCOM 24H DI ANSIA",
+    "WIRED MA STANCO",
+    "LO IERI",
+    "TODAY — ANCHE IERI",
+    "RAINAUSEA",
+    "MEDIASET MENTALE",
+    "LA VERITÀ (NON QUELLA VERA)",
+    "IL BUGIARDO",
+    "IL GIORNALE DI IERI",
+    "LELLO",
+    "SUCCEDERE"
+  ],
+  "times": [
+    "2 min fa",
+    "5 min fa",
+    "8 min fa",
+    "12 min fa",
+    "18 min fa",
+    "23 min fa",
+    "31 min fa",
+    "45 min fa",
+    "1 ora fa",
+    "2 ore fa",
+    "ieri",
+    "2 gg fa"
+  ],
+  "news_antifascismo": [
+    [
+      "Profilo 'radici italiane' supera i 100k. Seguito principalmente da persone con le stesse radici.",
+      "Social"
+    ],
+    [
+      "Estetica 'famiglia, terra, fede' a 200k follower. L'algoritmo soddisfatto.",
+      "Social"
+    ],
+    [
+      "Account 'orgoglio europeo' guadagna 50k in una settimana. Nessun moderatore allertato.",
+      "Social"
+    ],
+    [
+      "Pagina 'radici e identità' cresce del 300% in sei mesi. Contenuto: foto di campi, citazioni senza autore.",
+      "Social"
+    ],
+    [
+      "Influencer 'stile di vita sano e antico' vende integratori. Cerchio chiuso.",
+      "Social"
+    ],
+    [
+      "Saggio 'coraggioso' in classifica da tre settimane. Finanziamenti statali.",
+      "Cultura"
+    ],
+    [
+      "Libro 'finalmente libero di dirlo' sulla storia italiana bestseller. L'editore: orgoglioso.",
+      "Cultura"
+    ],
+    [
+      "Romanzo 'contro la narrazione dominante' alla decima edizione. Quale narrazione, non specificato.",
+      "Cultura"
+    ],
+    [
+      "Recensione: 'finalmente qualcuno dice la verità sulla Resistenza'. Il qualcuno non cita fonti.",
+      "Cultura"
+    ],
+    [
+      "Saggio 'tabù finalmente infranto' venduto in aeroporto accanto ai gialli.",
+      "Cultura"
+    ],
+    [
+      "Studio: contenuti 'nostalgici' ricevono il doppio delle impressioni organiche. Piattaforma: 'in linea con le policy'.",
+      "Tech"
+    ],
+    [
+      "Hai cercato 'storia italiana'. L'algoritmo ha già scelto quale storia.",
+      "Tech"
+    ],
+    [
+      "Algoritmo consiglia video su 'identità europea' dopo ricerca su pasta al pomodoro. Ottimizzazione riuscita.",
+      "Tech"
+    ],
+    [
+      "Dati: account con terminologia degli anni '30 non rimossi. 'Non violano le linee guida'.",
+      "Tech"
+    ],
+    [
+      "Analisi: moderazione applicata tre volte meno a certi contenuti nostalgici. Piattaforma non risponde.",
+      "Tech"
+    ],
+    [
+      "Manifestazione 'per la famiglia' con slogan già visti altrove. Organizzatori: 'nessuna affiliazione'.",
+      "Cronaca"
+    ],
+    [
+      "Corteo 'apolitico' si scioglie con canti degli anni '40. Nessun commento ufficiale.",
+      "Cronaca"
+    ],
+    [
+      "Raduno 'culturale' espone simboli non meglio identificati. Comune: 'regolare concessione'.",
+      "Cronaca"
+    ],
+    [
+      "Evento 'per i valori italiani' con ospiti che non si definiscono politici ma ci assomigliano.",
+      "Cronaca"
+    ],
+    [
+      "Manifestazione 'contro l'ideologia': slogan, fiaccole, nessun programma pubblicato.",
+      "Cronaca"
+    ],
+    [
+      "Ministro usa locuzione 'ordine e decoro' in conferenza stampa. Nessuna domanda di follow-up.",
+      "Politica"
+    ],
+    [
+      "Dichiarazione ufficiale: 'prima gli italiani'. Frase già sentita, contesto aggiornato.",
+      "Politica"
+    ],
+    [
+      "Intervista: 'certi valori non si negoziano'. I valori non vengono elencati.",
+      "Politica"
+    ],
+    [
+      "Discorso istituzionale cita 'patria, famiglia, tradizione' come triade inscindibile. Chi alza la mano non ha domande.",
+      "Politica"
+    ],
+    [
+      "Comunicato parla di 'difesa della stirpe'. Ufficio stampa: 'citazione fuori contesto'.",
+      "Politica"
+    ],
+    [
+      "Salvare l'Europa crea engagement!",
+      "Politica"
+    ],
+    [
+      "Commemorazione con 500 partecipanti in uniforme. Sindaco: 'rispetto per la storia'.",
+      "Cronaca"
+    ],
+    [
+      "Evento 'memoria storica' con relatori tutti dello stesso orientamento. Ingresso libero.",
+      "Cronaca"
+    ],
+    [
+      "Cerimonia 'tradizionale' con simboli del ventennio 'a scopo rievocativo'. Questura: 'nessuna irregolarità'.",
+      "Cronaca"
+    ],
+    [
+      "Anniversario commemorato con marcia non autorizzata. Comune: 'valutiamo'. Da tre anni.",
+      "Cronaca"
+    ],
+    [
+      "Raduno 'storico': saluti non meglio identificati, 14 telecamere, nessun procedimento avviato.",
+      "Cronaca"
+    ],
+    [
+      "I combattenti di terra, mare e aria sono sporchi, bagnati e raffreddati.",
+      "Cronaca"
+    ],
+    [
+      "Cercano di nuovo la luce italiana, rimasti accecati e arrestati. Ah no, i complimenti del Premier.",
+      "Politica"
+    ],
+    [
+      "Dimostrato matematicamente: 6 milioni può essere scritto come 271.000.",
+      "Scienza"
+    ]
+  ],
+  "comment_authors": [
+    "GiuseppeR68",
+    "marinatvb",
+    "Luca_V",
+    "nonnapaola52",
+    "cittadinoqualunque",
+    "ITALIAPRIMA99",
+    "marco_pensa",
+    "FrancescaB",
+    "informato_davvero",
+    "anonimo_ma_presente",
+    "ex_elettore",
+    "PaoloConLaP",
+    "veritàscomoda2",
+    "CarlaF",
+    "pensiero_critico_vero",
+    "ilsolo_chehacapito",
+    "Gianni68",
+    "lettoetweetato",
+    "GabrieleM",
+    "rosaria_dice"
+  ],
+  "comment_pool": [
+    {
+      "t": "Colpa di chi vota a destra.",
+      "r": [
+        312,
+        88
+      ]
+    },
+    {
+      "t": "Colpa di chi vota a sinistra.",
+      "r": [
+        287,
+        103
+      ]
+    },
+    {
+      "t": "Colpa di tutti e due.",
+      "r": [
+        512,
+        14
+      ]
+    },
+    {
+      "t": "Io non voto da vent'anni e avevo ragione.",
+      "r": [
+        231,
+        67
+      ]
+    },
+    {
+      "t": "Questi sono i risultati di 30 anni di sinistra.",
+      "r": [
+        198,
+        142
+      ]
+    },
+    {
+      "t": "Questi sono i risultati di 30 anni di destra.",
+      "r": [
+        176,
+        158
+      ]
+    },
+    {
+      "t": "Questi sono i risultati di 30 anni di centro.",
+      "r": [
+        89,
+        201
+      ]
+    },
+    {
+      "t": "Mio figlio me ne aveva parlato.",
+      "r": [
+        44,
+        7
+      ]
+    },
+    {
+      "t": "Mia zia lavora in quel settore. È tutto vero e anche peggio.",
+      "r": [
+        389,
+        22
+      ]
+    },
+    {
+      "t": "Lo sapevo. Non mi sorprende per niente.",
+      "r": [
+        156,
+        43
+      ]
+    },
+    {
+      "t": "Un mio amico c'era. Vi assicuro che è andata diversamente.",
+      "r": [
+        203,
+        91
+      ]
+    },
+    {
+      "t": "Ne stavo parlando ieri proprio.",
+      "r": [
+        67,
+        5
+      ]
+    },
+    {
+      "t": "Ho una cugina che conosce uno che sa tutto di questa storia.",
+      "r": [
+        88,
+        114
+      ]
+    },
+    {
+      "t": "Colpa dell'Europa.",
+      "r": [
+        445,
+        78
+      ]
+    },
+    {
+      "t": "Colpa dei giornali.",
+      "r": [
+        334,
+        99
+      ]
+    },
+    {
+      "t": "Colpa di Soros.",
+      "r": [
+        267,
+        334
+      ]
+    },
+    {
+      "t": "Colpa nostra, onestamente.",
+      "r": [
+        178,
+        44
+      ]
+    },
+    {
+      "t": "Colpa di chi non legge.",
+      "r": [
+        156,
+        87
+      ]
+    },
+    {
+      "t": "Colpa dei giovani.",
+      "r": [
+        88,
+        203
+      ]
+    },
+    {
+      "t": "Colpa dei vecchi.",
+      "r": [
+        91,
+        187
+      ]
+    },
+    {
+      "t": "Se fossi stato lì le cose sarebbero andate diversamente.",
+      "r": [
+        12,
+        445
+      ]
+    },
+    {
+      "t": "Io avrei risolto in 10 minuti.",
+      "r": [
+        9,
+        512
+      ]
+    },
+    {
+      "t": "Bastava il buon senso.",
+      "r": [
+        678,
+        23
+      ]
+    },
+    {
+      "t": "Sono l'unico qui che ha capito cosa sta succedendo davvero.",
+      "r": [
+        7,
+        388
+      ]
+    },
+    {
+      "t": "Ho fatto una ricerca veloce e posso dire con certezza che tutto quello che avete letto è sbagliato.",
+      "r": [
+        14,
+        267
+      ]
+    },
+    {
+      "t": "Non sono un esperto MA.",
+      "r": [
+        445,
+        312
+      ]
+    },
+    {
+      "t": "Comunque il caffè questa mattina era pessimo.",
+      "r": [
+        1204,
+        3
+      ]
+    },
+    {
+      "t": "Ho smesso di seguire queste cose nel 2016.",
+      "r": [
+        891,
+        12
+      ]
+    },
+    {
+      "t": "Benvenuti in Italia.",
+      "r": [
+        2341,
+        8
+      ]
+    },
+    {
+      "t": "E allora il PD?",
+      "r": [
+        567,
+        234
+      ]
+    },
+    {
+      "t": "E allora Berlusconi?",
+      "r": [
+        489,
+        201
+      ]
+    },
+    {
+      "t": "Va bene così. Tanto non cambia niente.",
+      "r": [
+        743,
+        18
+      ]
+    },
+    {
+      "t": "Non voglio commentare perché poi mi bannano di nuovo.",
+      "r": [
+        334,
+        7
+      ]
+    },
+    {
+      "t": "Primo commento.",
+      "r": [
+        2,
+        890
+      ]
+    },
+    {
+      "t": "Guadagna 3.400€ al mese da casa senza esperienza. Link in bio.",
+      "r": [
+        2,
+        1204
+      ]
+    },
+    {
+      "t": "Ho perso 12kg in 3 settimane con questo metodo. Ti spiego tutto in DM.",
+      "r": [
+        1,
+        892
+      ]
+    },
+    {
+      "t": "Ciao! Sono una ragazza sola che cerca amici sinceri 🙂",
+      "r": [
+        3,
+        2341
+      ]
+    },
+    {
+      "t": "Io questo lo dicevo già nel 2008. Nessuno mi ha ascoltato.",
+      "r": [
+        445,
+        23
+      ]
+    },
+    {
+      "t": "Se aveste letto il mio post del 2019 sapreste già come va a finire.",
+      "r": [
+        312,
+        44
+      ]
+    },
+    {
+      "t": "Lo avevo scritto qui due anni fa. Il commento è ancora lì. Andate a cercarlo.",
+      "r": [
+        289,
+        67
+      ]
+    },
+    {
+      "t": "Purtroppo ho sempre avuto ragione in anticipo.",
+      "r": [
+        534,
+        12
+      ]
+    },
+    {
+      "t": "Esatto, hai detto tutto.",
+      "r": [
+        678,
+        4
+      ]
+    },
+    {
+      "t": "Concordo pienamente con quanto scritto sopra.",
+      "r": [
+        445,
+        7
+      ]
+    },
+    {
+      "t": "Questo. Esattamente questo.",
+      "r": [
+        891,
+        3
+      ]
+    },
+    {
+      "t": "Finalmente qualcuno che lo dice.",
+      "r": [
+        567,
+        8
+      ]
+    },
+    {
+      "t": "Stavo per scrivere la stessa cosa parola per parola.",
+      "r": [
+        334,
+        11
+      ]
+    },
+    {
+      "t": "Non posso dire quello che penso altrimenti mi bannano di nuovo.",
+      "r": [
+        1203,
+        34
+      ]
+    },
+    {
+      "t": "So esattamente cosa sta succedendo ma non mi conviene scriverlo qui.",
+      "r": [
+        876,
+        22
+      ]
+    },
+    {
+      "t": "Certe cose è meglio non dirle online. Chi sa, sa.",
+      "r": [
+        934,
+        18
+      ]
+    },
+    {
+      "t": "VERGOGNA!!!",
+      "r": [
+        2341,
+        45
+      ]
+    },
+    {
+      "t": "MA VI RENDETE CONTO????",
+      "r": [
+        1876,
+        67
+      ]
+    },
+    {
+      "t": "SVEGLIATEVI!!!!",
+      "r": [
+        1654,
+        89
+      ]
+    },
+    {
+      "t": "NON CI POSSO CREDERE. NON CI POSSO CREDERE.",
+      "r": [
+        1432,
+        34
+      ]
+    },
+    {
+      "t": "BASTA.",
+      "r": [
+        3201,
+        12
+      ]
+    },
+    {
+      "t": "Alla fine è sempre la stessa storia da tremila anni.",
+      "r": [
+        789,
+        23
+      ]
+    },
+    {
+      "t": "Il problema è che la gente non pensa più.",
+      "r": [
+        1203,
+        45
+      ]
+    },
+    {
+      "t": "Siamo un paese di furbi. E di fessi. Spesso la stessa persona.",
+      "r": [
+        934,
+        67
+      ]
+    },
+    {
+      "t": "Darwin aveva ragione ma non nel senso in cui lo usate voi.",
+      "r": [
+        567,
+        234
+      ]
+    }
+  ],
+  "expansion_descs": {
+    "Politica": [
+      "La dichiarazione è stata rilasciata durante una conferenza stampa a cui erano presenti 4 giornalisti e il gatto dell'ufficio stampa.",
+      "Fonti vicine alla fonte confermano che la fonte è vicina alle fonti.",
+      "Il comunicato ufficiale parla di 'riflessioni in corso', che nella lingua italiana istituzionale significa che non è successo niente e non succederà niente.",
+      "La notizia è stata smentita prima ancora di essere confermata. La smentita è poi stata smentita. Siamo alla smentita della smentita della smentita.",
+      "Gli esperti interpellati si sono divisi: metà dice una cosa, metà dice l'opposto, uno ha risposto con un file audio di 4 minuti che non carica."
+    ],
+    "Scienza": [
+      "Lo studio è stato condotto su 12 partecipanti, 4 dei quali erano ricercatori dello stesso laboratorio. I risultati sono 'incoraggianti'.",
+      "I dati dimostrano una correlazione del 94% tra il fenomeno osservato e il fatto che qualcuno ha finanziato la ricerca su quel fenomeno.",
+      "La pubblicazione è stata accettata dopo peer review da una rivista il cui impact factor non è disponibile ma il sito ha una grafica molto professionale.",
+      "Disclaimer in fondo all'articolo originale: 'ulteriori ricerche sono necessarie'. Questo vale per tutte le ricerche. Per tutte.",
+      "Il campione era statisticamente significativo nel senso che i ricercatori hanno dichiarato che era statisticamente significativo."
+    ],
+    "Cronaca": [
+      "Le autorità competenti hanno avviato un'indagine conoscitiva per determinare se avviare un'indagine.",
+      "Testimoni oculari hanno riferito di aver visto 'qualcosa di strano'. Le versioni concordano sul fatto che era strano. Divergono su tutto il resto.",
+      "Il comunicato della Questura è di 47 parole. La notizia ha generato 2.300 commenti. Nessuno ha letto il comunicato.",
+      "I vigili del fuoco sono intervenuti. Poi è intervenuta la Protezione Civile. Poi i Carabinieri. Poi qualcuno ha chiamato la polizia municipale per sbaglio.",
+      "La vicenda è 'al vaglio della magistratura', formula che in italiano significa che esiste un fascicolo con un numero e una data di apertura."
+    ],
+    "Internet": [
+      "Il post è stato rimosso dopo 4 ore. Era già stato condiviso 18.000 volte. La rettifica ha avuto 47 visualizzazioni.",
+      "Il thread è lungo 340 risposte. Le prime 12 riguardano l'argomento originale. Le restanti 328 riguardano la formattazione del messaggio.",
+      "L'account è stato sospeso, poi ripristinato, poi sospeso di nuovo. Nel frattempo aveva guadagnato 40.000 follower.",
+      "Il video è stato visto 2,4 milioni di volte. Dura 8 secondi. Non succede niente. I commenti chiedono il seguito.",
+      "La petizione ha superato le 100.000 firme. È indirizzata a un'entità che non ha l'obbligo giuridico di leggerla."
+    ],
+    "Sport": [
+      "L'allenatore ha parlato di 'atteggiamento sbagliato' senza specificare quale fosse quello giusto. La squadra ha annuito.",
+      "Il calciatore ha dichiarato di 'dare il massimo al 110%'. Nessun giornalista ha chiesto spiegazioni sulla matematica.",
+      "Le quote dei bookmaker danno la vittoria al 68%. Il 68% delle volte le quote dei bookmaker sono sbagliate.",
+      "La società ha emesso un comunicato di 'piena fiducia' nell'allenatore. Storicamente questo precede l'esonero di 11 giorni.",
+      "Il VAR ha rivisto l'azione per 4 minuti e 20 secondi. La decisione finale era quella dell'arbitro."
+    ],
+    "Spettacolo": [
+      "L'intervista è durata 40 minuti. La citazione riportata da tutti è di 9 parole ed è stata estrapolata dal minuto 37.",
+      "Il comunicato dell'ufficio stampa parla di 'divergenze creative'. Nella lingua degli uffici stampa questo significa qualsiasi cosa tranne divergenze creative.",
+      "Il post è stato pubblicato alle 2:47 di notte. I social media manager del settore lo chiamano 'lancio strategico'.",
+      "La notizia ha generato una polemica, una contro-polemica, un articolo di analisi della polemica, e ora questo.",
+      "Fonti vicine ai diretti interessati non hanno confermato né smentito. Questo nella logica del gossip vale come conferma."
+    ],
+    "Mondo": [
+      "Il portavoce ha definito la situazione 'monitorata con attenzione'. Questo significa che qualcuno guarda un monitor.",
+      "Le reazioni internazionali sono state 'caute'. Nel diplomatese, cauto significa che tutti aspettano che lo dica qualcun altro.",
+      "Il vertice si è concluso con una dichiarazione congiunta di 4 pagine. Il punto di accordo reale è nel terzo paragrafo dell'ultimo capoverso.",
+      "La crisi è 'in fase di stallo'. In fase di stallo da 14 mesi. Lo stallo è descritto come 'delicato' da 14 mesi.",
+      "L'ambasciatore è stato convocato. Convocazione completata. Ambasciatore tornato in ambasciata. Situazione invariata."
+    ],
+    "Tecnologia": [
+      "La startup ha annunciato una 'soluzione rivoluzionaria' che fa quello che fa già un'altra cosa, ma con un'interfaccia più rotonda.",
+      "Il CEO ha dichiarato che 'i dati degli utenti sono al sicuro' nello stesso comunicato in cui annunciava una violazione dei dati degli utenti.",
+      "L'aggiornamento risolve 3 bug critici e ne introduce 7 nuovi. Le note di rilascio descrivono i 7 nuovi come 'comportamenti attesi'.",
+      "Il prodotto è in 'beta pubblica', che significa disponibile a tutti ma senza responsabilità per niente.",
+      "L'algoritmo è stato descritto come 'neutro e oggettivo' dai creatori dell'algoritmo."
+    ],
+    "Cultura": [
+      "Il libro ha vinto un premio istituito 3 anni fa dalla stessa casa editrice del libro vincitore.",
+      "La mostra è stata visitata da 40.000 persone. La critica l'ha definita 'imperdibile'. 39.800 visitatori erano in gita scolastica obbligatoria.",
+      "Il film è descritto come 'coraggioso e necessario' dalla stessa rivista che lo scorso anno aveva descritto l'esatto contrario come 'coraggioso e necessario'.",
+      "Il dibattito culturale si è svolto regolarmente: tre ore di conversazione, nessuna posizione modificata, tutti convinti di aver vinto.",
+      "L'opera è 'ispirata a fatti reali'. I fatti reali l'hanno letta e non si sono riconosciuti."
+    ],
+    "Costume e società": [
+      "Il fenomeno è stato analizzato da un sociologo, un filosofo, e un ex concorrente di un reality. Le conclusioni divergono.",
+      "Il sondaggio è stato condotto su 1.200 persone. I risultati 'rispecchiano l'intera nazione' secondo chi ha commissionato il sondaggio.",
+      "La tendenza è 'in crescita esponenziale' secondo un articolo che usa la parola esponenziale senza un grafico.",
+      "Gli esperti si dicono 'preoccupati'. La preoccupazione è stata espressa anche l'anno scorso. E quello prima.",
+      "Il fenomeno esiste da anni. È diventato notizia perché qualcuno ci ha fatto un video da 2 milioni di visualizzazioni."
+    ]
+  },
+  "expansion_default": [
+    "Ulteriori dettagli sono attesi nelle prossime ore, come per tutte le notizie che non hanno ulteriori dettagli disponibili.",
+    "La vicenda è in evoluzione. Come tutte le vicende. Sempre.",
+    "Non sono disponibili conferme ufficiali. Le conferme non ufficiali sono disponibili ovunque.",
+    "I diretti interessati non hanno risposto alle richieste di commento. Le richieste di commento erano di 4 parole."
+  ],
+  "expansion_toasts": [
+    "hai aperto la notizia. ora ne sai di più. cambia qualcosa? no.",
+    "approfondimento completato. preoccupazione invariata.",
+    "informazione acquisita. shelf life: 4 minuti.",
+    "hai letto. il feed ne prende nota.",
+    "−1 QI per sapere una cosa che non userai.",
+    "notizia approfondita. azione conseguente: nessuna.",
+    "hai soddisfatto la curiosità. la curiosità ne ha già un'altra.",
+    "lettura completata. il problema esiste ancora.",
+    "hai dedicato 8 secondi a questo. il feed ne ha altri 400.",
+    "contenuto consumato. prossimo contenuto disponibile."
+  ],
+  "fake_close_msgs": [
+    "abbiamo recuperato la tua sessione. bentornato.",
+    "sessione ripristinata automaticamente. stavi andando bene.",
+    "uscita non disponibile al momento. riprovare.",
+    "errore: il feed non trova un'alternativa valida.",
+    "sessione salvata. riprendi pure da dove eri.",
+    "chiusura annullata: contenuti non ancora visualizzati.",
+    "il sistema ti vuole bene a modo suo."
   ]
 }
