@@ -36,6 +36,38 @@
   .app-subtitle .pill.found { color: var(--text-dim); }
   .brand { color: var(--text-dim); letter-spacing: 0.22em; }
 
+  /* ── A7 — header che degrada col QI ── */
+  /* QI < 50: leggermente sbiadito */
+  body.hd-1 .header { border-bottom-color: #1a1a1a; }
+  body.hd-1 .stat-val { color: #aaaaaa; }
+  body.hd-1 .stat-lbl { opacity: 0.6; }
+  body.hd-1 .progress-lbl { opacity: 0.5; }
+
+  /* QI < 30: compresso, label spariscono */
+  body.hd-2 .header { padding: 8px 0 6px; border-bottom-color: #111; }
+  body.hd-2 .app-subtitle { display: none; }
+  body.hd-2 .stat-lbl { display: none; }
+  body.hd-2 .stat-val { font-size: 18px; color: #777; }
+  body.hd-2 .stats-row { gap: 4px; }
+  body.hd-2 .progress-lbl { display: none; }
+  body.hd-2 .brand { opacity: 0.5; letter-spacing: 0.1em; }
+  body.hd-2 .iq-stage { display: none; }
+
+  /* QI < 15: quasi sparito, solo una riga */
+  body.hd-3 .header { padding: 4px 0; border-bottom-color: #0d0d0d; }
+  body.hd-3 .app-title { margin-bottom: 2px; }
+  body.hd-3 .app-subtitle { display: none; }
+  body.hd-3 .stats-row { display: none; }
+  body.hd-3 .progress-bar { display: none; }
+  body.hd-3 .progress-lbl { display: none; }
+  body.hd-3 .brand { opacity: 0.2; font-size: 9px; letter-spacing: 0.08em; }
+  body.hd-3 .live-dot { display: none; }
+  body.hd-3 .iq-stage { display: none; }
+  body.hd-3 .fake-close { display: none; }
+
+  /* QI < 5: header invisibile */
+  body.hd-4 .header { opacity: 0; pointer-events: none; height: 0; padding: 0; overflow: hidden; border: none; }
+
   /* ── B1 — la X che non è un'opzione ── */
   .fake-close {
     margin-left: auto;
@@ -868,6 +900,33 @@ const SISTEMA_MSGS = [
 
 const feed = document.getElementById('feed');
 const STORAGE_KEY = 'doomscroll_finales';
+const STATS_KEY   = 'doomscroll_stats';
+
+// ── A11 — statistiche cumulative ─────────────────────────────────────────
+function getStats() {
+  try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{}'); } catch { return {}; }
+}
+function saveStats(patch) {
+  const s = getStats();
+  const updated = Object.assign({}, s, patch);
+  try { localStorage.setItem(STATS_KEY, JSON.stringify(updated)); } catch {}
+}
+function incrementStats(sessionData) {
+  const s = getStats();
+  saveStats({
+    sessions:     (s.sessions     || 0) + 1,
+    totalSeconds: (s.totalSeconds || 0) + sessionData.seconds,
+    totalQILost:  (s.totalQILost  || 0) + (100 - sessionData.iqFinal),
+    totalSpent:   (s.totalSpent   || 0) + sessionData.adClicks,
+    lastEnding:   sessionData.ending,
+  });
+}
+function flushAll() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(STATS_KEY);
+  localStorage.removeItem('doomscroll_played');
+  showToast('flush completato. tutto dimenticato.');
+}
 
 function showToast(msg, kind='') {
   const wrap = document.getElementById('toastWrap');
@@ -974,6 +1033,10 @@ function updateIQDisplay() {
   else if (iq < 40) iqEl.style.color = '#ff6060';
   else if (iq < 60) iqEl.style.color = '#ff9040';
   else iqEl.style.color = 'var(--red)';
+  // A7 — header degrada col QI
+  const hdClass = iq < 5 ? 'hd-4' : iq < 15 ? 'hd-3' : iq < 30 ? 'hd-2' : iq < 50 ? 'hd-1' : '';
+  document.body.classList.remove('hd-1','hd-2','hd-3','hd-4');
+  if (hdClass) document.body.classList.add(hdClass);
 }
 function updateIQ(delta, reason='') {
   if (gameOver) return;
@@ -1253,9 +1316,8 @@ function attachExpandHandler(div, tag) {
     if (div.classList.contains('expanded') || gameOver) return;
     div.classList.add('expanded');
     div.insertAdjacentHTML('beforeend', buildExpansion(tag));
-    updateIQ(-1, 'approfondimento: costo cognitivo minimo, danno garantito');
     const msg = EXPANSION_TOASTS[Math.floor(Math.random() * EXPANSION_TOASTS.length)];
-    showToast(msg);
+    updateIQ(-1, msg);
   });
 }
 
@@ -1963,6 +2025,7 @@ function doTriggerEnding(type) {
   const ALL = ['nirvana','smetti','quit','brainrot','capitalismo'];
   const NAMES = { nirvana:'Nirvana', smetti:'Smetti davvero', quit:'Quit definitivo', brainrot:'Brainrot\u2122', capitalismo:'Capitalismo spirituale' };
   if (type !== 'santo') unlockFinal(type);
+  incrementStats({ seconds, iqFinal: iq, adClicks, ending: type });
   const unlocked = getUnlocked();
   const finalsList = ALL.map(f => unlocked.includes(f) ? '\u2713 ' + NAMES[f] : '\uD83D\uDD12 ???').join('  \u00b7  ');
 
@@ -2002,12 +2065,58 @@ function doTriggerEnding(type) {
           vendono a 9,99 al mese.<br>
           <em>tu ci sei arrivato gratis, per caso, scrollando.</em>
           <br><br>
-          la pace che senti adesso non \xe8 tua.<br>
-          \xe8 assenza.
+          la pace che senti adesso non è tua.<br>
+          è assenza.
         </div>
+        <div id="nirvanaZombies"></div>
         ${stats}
       </div>`;
     playZenSound();
+    // A10 — il finale che non finisce
+    const zombieCards = [
+      ["il feed non si è fermato.", "Attualità"],
+      ["nessuno ti stava aspettando.", "Cronaca"],
+      [".", ""],
+    ];
+    let zi = 0;
+    const zombieInterval = setInterval(() => {
+      if (zi >= zombieCards.length) { clearInterval(zombieInterval); return; }
+      const container = document.getElementById('nirvanaZombies');
+      if (!container) { clearInterval(zombieInterval); return; }
+      const [hl, tag] = zombieCards[zi++];
+      const d = document.createElement('div');
+      d.className = 'news-card nirvana-4';
+      d.style.animation = 'fadeUp 0.6s ease';
+      d.innerHTML = `<div class="news-hl" style="color:#1a1a1a;font-size:11px;text-align:center">${hl}</div>`;
+      container.appendChild(d);
+    }, 3500);
+    // Blocca restart per 20s, poi schermo nero
+    const restartBtn = overlay.querySelector('.ending-restart');
+    if (restartBtn) {
+      restartBtn.disabled = true;
+      restartBtn.style.opacity = '0.2';
+      restartBtn.style.cursor = 'default';
+      let countdown = 20;
+      restartBtn.textContent = `ricomincia (${countdown}s)`;
+      const cdInterval = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(cdInterval);
+          // Schermo nero vero
+          overlay.style.transition = 'background 3s ease';
+          overlay.style.background = '#000000';
+          overlay.style.color = '#000000';
+          setTimeout(() => {
+            restartBtn.disabled = false;
+            restartBtn.style.opacity = '0.15';
+            restartBtn.style.cursor = 'pointer';
+            restartBtn.textContent = 'ricomincia';
+          }, 3000);
+        } else {
+          restartBtn.textContent = `ricomincia (${countdown}s)`;
+        }
+      }, 1000);
+    }
 
   // ── SMETTI ─────────────────────────────────────────────────────────────────
   } else if (type === 'smetti') {
@@ -2219,6 +2328,7 @@ function resetStateForNewRun() {
   sistemaCount = 0; sistemaUserId = ''; sistemaMsgUsed = [];
   fakeCloseClicks = 0;
   document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
+  document.body.classList.remove('hd-1','hd-2','hd-3','hd-4');
   document.getElementById('timerVal').textContent = '00:00';
   document.getElementById('newsCount').textContent = '0';
   updateIQDisplay();
@@ -2238,15 +2348,24 @@ function restartGame() {
 function showSplash() {
   isReturningPlayer = !!localStorage.getItem('doomscroll_played');
   const unlocked = getUnlocked();
+  const st = getStats();
+  const sessionN = (st.sessions || 0) + 1;
   const inner = document.getElementById('splashInner');
   if (isReturningPlayer) {
+    const totalTime = st.totalSeconds ? timeStr(st.totalSeconds) : '—';
+    const totalQI   = st.totalQILost  ? st.totalQILost + ' punti' : '—';
+    const totalEuro = st.totalSpent   ? '€' + (st.totalSpent * 7).toFixed(0) : '—';
+    const lastEnd   = st.lastEnding   ? st.lastEnding : null;
     inner.innerHTML = `
       <div class="splash-brand">DOOM/SCROLL</div>
-      <div class="splash-headline">rieccoci.</div>
+      <div class="splash-headline">sessione ${sessionN}.</div>
       <div class="splash-rules">
         <div class="splash-rule highlight">il feed ricorda che sei già stato qui.</div>
-        <div class="splash-rule">il cervello pure.</div>
-        ${unlocked.length > 0 ? `<div class="splash-rule">${unlocked.length}/5 finali sbloccati. ${unlocked.length < 5 ? `ne mancano ${5 - unlocked.length}.` : 'tutti trovati. scrolli per sport.'}</div>` : ''}
+        ${lastEnd ? `<div class="splash-rule">ultima sessione: finale "${lastEnd}".</div>` : ''}
+        <div class="splash-rule">tempo totale perso: ${totalTime}</div>
+        <div class="splash-rule">qi totale sprecato: ${totalQI}</div>
+        <div class="splash-rule">soldi sprecati in acquisti: ${totalEuro}</div>
+        ${unlocked.length > 0 ? `<div class="splash-rule">${unlocked.length}/5 finali sbloccati.</div>` : ''}
       </div>
       <button class="splash-cta" onclick="startGame()">ricomincia a scrollare</button>`;
   } else {
@@ -2596,17 +2715,21 @@ function init() {
   }, 90000);
   // Sessione 2: riconosce il ritorno
   if (isReturningPlayer) {
+    const st2 = getStats();
+    const sessionN2 = st2.sessions || '?';
+    const lastEnd2  = st2.lastEnding || null;
     const sub = document.getElementById('appSubtitle');
-    if (sub) sub.innerHTML = 'rieccoci. il feed ti aspettava. <span class="pill" id="finalsPill"></span>';
+    if (sub) sub.innerHTML = `sessione ${sessionN2}. il feed ti aspettava. <span class="pill" id="finalsPill"></span>`;
     updateFinalsPill();
-    // Prima card che sa che sei tornato
     const returnCard = document.createElement('div');
     returnCard.className = 'news-card peak';
-    returnCard.innerHTML = `<div class="news-src">IL FEED — MEMORIA PERSISTENTE</div><div class="news-hl">utente noto: sessione precedente rilevata. benvenuto di nuovo in quello che non riesci a smettere di fare.</div><div class="news-meta"><span class="news-tag">Ritorno</span><span class="news-time">adesso</span></div>`;
+    const hl = lastEnd2
+      ? `utente noto. ultima sessione: finale "${lastEnd2}". bentornato in quello che non riesci a smettere di fare.`
+      : `utente noto: sessione precedente rilevata. benvenuto di nuovo in quello che non riesci a smettere di fare.`;
+    returnCard.innerHTML = `<div class="news-src">IL FEED — MEMORIA PERSISTENTE</div><div class="news-hl">${hl}</div><div class="news-meta"><span class="news-tag">Sessione ${sessionN2}</span><span class="news-time">adesso</span></div>`;
     feed.appendChild(returnCard);
     newsCount++;
     document.getElementById('newsCount').textContent = newsCount;
-    // cervello scrive subito
     if (brainTimerId) clearTimeout(brainTimerId);
     brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 4000);
   }
@@ -2640,7 +2763,13 @@ function init() {
 
 // Tasto Esc chiude le modal aperte (igiene UX): cervello e shop.
 // Non chiude la schermata di finale, che è intenzionalmente bloccante.
+// ── FLUSH command — digita "flush" durante il gioco per resettare tutto ──
+let flushBuffer = '';
 document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') {
+    flushBuffer = (flushBuffer + e.key).slice(-5).toLowerCase();
+    if (flushBuffer === 'flush') { flushBuffer = ''; flushAll(); }
+  }
   if (e.key !== 'Escape') return;
   const shop = document.getElementById('shopOverlay');
   if (shop && shop.classList.contains('active')) { closeProductPage(); return; }
