@@ -213,9 +213,10 @@
   .ending-progress { margin-top: 18px; font-size: 11px; font-family: 'Courier New', monospace; letter-spacing: 0.1em; opacity: 0.6; }
   .ending-finals { font-size: 10px; margin-top: 5px; font-family: 'Courier New', monospace; letter-spacing: 0.04em; opacity: 0.45; line-height: 1.7; }
   .ending-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
-  .ending-restart, .ending-share { padding: 11px 24px; background: transparent; border: 1px solid currentColor; color: currentColor; cursor: pointer; font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 5px; transition: opacity 0.2s; }
-  .ending-restart:hover, .ending-share:hover { opacity: 0.65; }
+  .ending-restart, .ending-share, .ending-save { padding: 11px 24px; background: transparent; border: 1px solid currentColor; color: currentColor; cursor: pointer; font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 5px; transition: opacity 0.2s; }
+  .ending-restart:hover, .ending-share:hover, .ending-save:hover { opacity: 0.65; }
   .ending-share.copied { opacity: 0.4; }
+  .ending-save.saving { opacity: 0.4; pointer-events: none; }
 
   /* ── NIRVANA — quasi vuoto, freddo, cinico ── */
   .ending-overlay.ending-nirvana { background: #060606; color: #cccccc; flex-direction: column; animation: fadeIn 2s ease; }
@@ -226,7 +227,7 @@
   .ending-nirvana .e-body { font-size: 14px; line-height: 2; color: #888; max-width: 340px; margin: 0 auto; }
   .ending-nirvana .e-body em { color: #555; font-style: normal; display: block; margin-top: 8px; }
   .ending-nirvana .ending-stats { border-color: #222; }
-  .ending-nirvana .ending-restart, .ending-nirvana .ending-share { border-color: #333; color: #555; }
+  .ending-nirvana .ending-restart, .ending-nirvana .ending-share, .ending-nirvana .ending-save { border-color: #333; color: #555; }
 
   /* ── SMETTI — diagnosi cinica, clinical ── */
   .ending-overlay.ending-smetti { background: #0f0f0f; color: #e0e0e0; flex-direction: column; }
@@ -370,7 +371,7 @@
     opacity: 0;
     animation: quitFadeIn 1.5s ease 11.2s forwards;
   }
-  .ending-quit .ending-restart, .ending-quit .ending-share { border-color: #2a5a2a; color: #6ab06a; }
+  .ending-quit .ending-restart, .ending-quit .ending-share, .ending-quit .ending-save { border-color: #2a5a2a; color: #6ab06a; }
 
   /* ── CAPITALISMO SPIRITUALE — wellness landing page ── */
   .ending-overlay.ending-capitalismo { background: #faf5e8; color: #2a1a00; flex-direction: column; }
@@ -389,7 +390,7 @@
   .ending-capitalismo .e-cta { display: block; width: 100%; max-width: 280px; margin: 12px auto 0; padding: 14px; background: #c8920a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; cursor: default; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
   .ending-capitalismo .e-fine-print { font-size: 10px; color: #b0a080; margin-top: 8px; font-style: italic; }
   .ending-capitalismo .ending-stats { border-color: #e8d0a0; color: #8a6a30; }
-  .ending-capitalismo .ending-restart, .ending-capitalismo .ending-share { border-color: #d4a040; color: #8a6a30; }
+  .ending-capitalismo .ending-restart, .ending-capitalismo .ending-share, .ending-capitalismo .ending-save { border-color: #d4a040; color: #8a6a30; }
 
   /* ── BRAINROT — chaos ── */
   .ending-overlay.ending-brainrot { background: #000; color: #fff; flex-direction: column; overflow: hidden; }
@@ -404,7 +405,7 @@
   .ending-brainrot .e-frag.dim { color: #555; font-size: 11px; }
   .ending-brainrot .e-frag.mid { color: #ff9040; font-size: 16px; }
   .ending-brainrot .ending-stats { border-color: #333; opacity: 0.4; }
-  .ending-brainrot .ending-restart, .ending-brainrot .ending-share { border-color: #ff3030; color: #ff3030; }
+  .ending-brainrot .ending-restart, .ending-brainrot .ending-share, .ending-brainrot .ending-save { border-color: #ff3030; color: #ff3030; }
 
   .news-comment { margin-top: 9px; padding-top: 8px; border-top: 1px solid #1e1e1e; font-size: 11px; color: #707070; line-height: 1.35; font-family: 'Courier New', monospace; }
 
@@ -625,7 +626,7 @@
   .ending-santo .e-title { font-size: 14px; color: #888; font-family: 'Courier New', monospace; letter-spacing: 0.25em; margin-bottom: 24px; }
   .ending-santo .e-body { font-size: 13px; color: #aaa; line-height: 2.2; max-width: 320px; margin: 0 auto; font-family: 'Courier New', monospace; }
   .ending-santo .ending-stats { border-color: #ddd; color: #bbb; }
-  .ending-santo .ending-restart, .ending-santo .ending-share { border-color: #ccc; color: #aaa; }
+  .ending-santo .ending-restart, .ending-santo .ending-share, .ending-santo .ending-save { border-color: #ccc; color: #aaa; }
 
   /* ── CAPITALISMO MORPH ── */
   body.morph-1 { --bg: #0d0c0a; --bg-card: #130f0a; --border: #2e261a; }
@@ -2018,24 +2019,20 @@ function buildShareText(type) {
 
 async function shareEnding(type, btn) {
   const text = buildShareText(type);
-  // Web Share API funziona bene su mobile (apre il foglio di condivisione nativo).
   if (navigator.share) {
     try {
       await navigator.share({ title: 'DOOM/SCROLL', text });
       return;
     } catch (err) {
-      // L'utente ha annullato. Su molti browser è AbortError: niente fallback, è una scelta consapevole.
       if (err && err.name === 'AbortError') return;
     }
   }
-  // Fallback per desktop e browser senza Web Share: copia negli appunti.
   try {
     await navigator.clipboard.writeText(text);
     btn.textContent = 'copiato negli appunti';
     btn.classList.add('copied');
     setTimeout(() => { btn.textContent = 'condividi'; btn.classList.remove('copied'); }, 2400);
   } catch {
-    // Browser molto vecchi: ultimo fallback con textarea.
     const ta = document.createElement('textarea');
     ta.value = text;
     ta.style.position = 'fixed'; ta.style.opacity = '0';
@@ -2045,6 +2042,122 @@ async function shareEnding(type, btn) {
     catch { btn.textContent = 'copia non supportata'; }
     document.body.removeChild(ta);
     setTimeout(() => { btn.textContent = 'condividi'; btn.classList.remove('copied'); }, 2400);
+  }
+}
+
+// ── A8 — screenshot finale → PNG ─────────────────────────────────────────
+function saveEndingPNG(type, btn) {
+  btn.classList.add('saving');
+  btn.textContent = '...';
+
+  const S = 1080;
+  const canvas = document.createElement('canvas');
+  canvas.width = S; canvas.height = S;
+  const ctx = canvas.getContext('2d');
+
+  const mono = "'Courier New', monospace";
+
+  const themes = {
+    nirvana:     { bg:'#060606', fg:'#333333', accent:'#222222', label:'#2a2a2a' },
+    smetti:      { bg:'#0f0f0f', fg:'#cccccc', accent:'#e03535', label:'#555555' },
+    quit:        { bg:'#050a05', fg:'#4a8a4a', accent:'#c8f0c8', label:'#2e4e2e' },
+    brainrot:    { bg:'#000000', fg:'#ff3030', accent:'#dddddd', label:'#ff3030' },
+    capitalismo: { bg:'#faf5e8', fg:'#2a1a00', accent:'#c8920a', label:'#8a6a30' },
+    santo:       { bg:'#f8f8f5', fg:'#1a1a1a', accent:'#888888', label:'#aaaaaa' },
+  };
+  const t = themes[type] || themes.nirvana;
+
+  // Sfondo
+  ctx.fillStyle = t.bg;
+  ctx.fillRect(0, 0, S, S);
+
+  // Bordo sottile
+  ctx.strokeStyle = t.label;
+  ctx.lineWidth = 1;
+  ctx.strokeRect(32, 32, S-64, S-64);
+
+  // Brand in alto
+  ctx.fillStyle = t.label;
+  ctx.font = `400 22px ${mono}`;
+  ctx.letterSpacing = '8px';
+  ctx.textAlign = 'center';
+  ctx.fillText('DOOM/SCROLL', S/2, 88);
+
+  // Titolo grande per ogni finale
+  const titles = {
+    nirvana:     ['0', 'QI RESIDUO'],
+    smetti:      ['HAI', 'SMESSO.'],
+    quit:        ['QUIT', 'DEFINITIVO'],
+    brainrot:    ['BRAIN', 'ROT™'],
+    capitalismo: ['CAPITALISMO', 'SPIRITUALE'],
+    santo:       ['LA VIA', 'DEL SANTO'],
+  };
+  const [t1, t2] = titles[type] || ['?', '?'];
+
+  if (type === 'nirvana') {
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = `700 320px ${mono}`;
+    ctx.letterSpacing = '-8px';
+    ctx.textAlign = 'center';
+    ctx.fillText('0', S/2, 560);
+    ctx.font = `400 18px ${mono}`;
+    ctx.letterSpacing = '6px';
+    ctx.fillStyle = t.label;
+    ctx.fillText('QI RESIDUO', S/2, 620);
+  } else {
+    ctx.fillStyle = t.accent;
+    ctx.font = `700 96px ${mono}`;
+    ctx.letterSpacing = '-2px';
+    ctx.textAlign = 'center';
+    ctx.fillText(t1, S/2, 460);
+    ctx.fillText(t2, S/2, 570);
+  }
+
+  // Linea separatore
+  ctx.strokeStyle = t.label;
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(120, 660); ctx.lineTo(S-120, 660);
+  ctx.stroke();
+
+  // Statistiche sessione
+  ctx.font = `400 17px ${mono}`;
+  ctx.fillStyle = t.label;
+  ctx.letterSpacing = '1px';
+  const statLines = [
+    `tempo perso  ${timeStr(seconds)}`,
+    `qi finale  ${iq}/100`,
+    `cose viste  ${newsCount}`,
+  ];
+  statLines.forEach((line, i) => {
+    ctx.textAlign = 'center';
+    ctx.fillText(line, S/2, 710 + i*36);
+  });
+
+  // Data in basso
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('it-IT', { day:'2-digit', month:'2-digit', year:'numeric' });
+  ctx.font = `400 13px ${mono}`;
+  ctx.fillStyle = t.label;
+  ctx.letterSpacing = '2px';
+  ctx.fillText(dateStr, S/2, S-52);
+
+  // Download
+  try {
+    canvas.toBlob(blob => {
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `doomscroll-${type}-${Date.now()}.png`;
+      a.click();
+      URL.revokeObjectURL(url);
+      btn.textContent = 'salvato ✓';
+      setTimeout(() => { btn.textContent = 'salva ricordo'; btn.classList.remove('saving'); }, 2000);
+    }, 'image/png');
+  } catch(e) {
+    btn.textContent = 'salva ricordo';
+    btn.classList.remove('saving');
+    showToast('salvataggio non supportato su questo browser.');
   }
 }
 
@@ -2087,6 +2200,7 @@ function doTriggerEnding(type) {
     <div class="ending-finals">${finalsList}</div>
     <div class="ending-actions">
       <button class="ending-share" onclick="shareEnding('${type}', this)">condividi</button>
+      <button class="ending-save" onclick="saveEndingPNG('${type}', this)">salva ricordo</button>
       <button class="ending-restart" onclick="restartGame()">ricomincia</button>
     </div>`;
 
