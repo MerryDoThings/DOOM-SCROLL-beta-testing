@@ -93,7 +93,22 @@
     80%  { transform: translateX(3px); }
     100% { transform: translateX(0); }
   }
-  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; cursor: pointer; }
+
+  /* ── B2 — commentary mode ── */
+  body.commentary .live-dot { background: #4a8a4a; box-shadow: 0 0 6px #4a8a4a88; }
+  body.commentary .news-card::after,
+  body.commentary .promo-card::after,
+  body.commentary .quiz-card::after {
+    content: attr(data-pool) ' · ' attr(data-tag);
+    display: block;
+    margin-top: 8px;
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    color: #2e4e2e;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
   .iq-stage { margin-left: auto; font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; text-transform: lowercase; }
   .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
   .stat { background: #161616; border: 1px solid #252525; border-radius: 8px; padding: 8px 10px; text-align: center; }
@@ -503,11 +518,12 @@
   .promo-card.used { opacity: 0.72; border-style: solid; cursor: default; }
   .promo-result { margin-top: 9px; padding-top: 8px; border-top: 1px dashed #4a3a22; font-size: 11px; color: #d8bd77; line-height: 1.4; font-family: 'Courier New', monospace; }
   .toast-wrap { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 190; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
-  .toast { background: rgba(12,12,12,.96); border: 1px solid #333; color: #d8d8d8; border-radius: 8px; padding: 12px 16px; margin-top: 8px; font-size: 13px; font-family: 'Courier New', monospace; box-shadow: 0 8px 28px rgba(0,0,0,.35); animation: toastIn .18s ease, toastOut .4s ease 3s forwards; line-height: 1.5; }
+  .toast { background: rgba(12,12,12,.96); border: 1px solid #333; color: #d8d8d8; border-radius: 8px; padding: 12px 16px; margin-top: 8px; font-size: 13px; font-family: 'Courier New', monospace; box-shadow: 0 8px 28px rgba(0,0,0,.35); animation: toastIn .35s cubic-bezier(.22,.68,0,1.2) forwards, toastOut .5s ease 3s forwards; line-height: 1.5; will-change: transform, opacity; }
+  .toast.removing { animation: toastOut .3s ease forwards !important; }
   .toast.good { border-color: #315a31; color: #a9d6a9; }
   .toast.bad { border-color: #5a3131; color: #e0a0a0; }
-  @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
-  @keyframes toastOut { to { opacity: 0; transform: translateY(8px); } }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(6px); } }
 
   .shop-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 180; padding: 18px; background: rgba(0,0,0,.88); animation: fadeIn .18s ease; }
   .shop-overlay.active { display: flex; }
@@ -662,7 +678,7 @@
   <div class="header">
     <div class="morph-banner" id="morphBanner">✦ MINDFLOW™ PRO — la tua lucidità, ora in abbonamento ✦</div>
     <div class="app-title">
-      <span class="live-dot" id="liveDot"></span>
+      <span class="live-dot" id="liveDot" onclick="liveDotClick()"></span>
       <span class="brand">DOOM/SCROLL</span>
       <span class="iq-stage" id="iqStage">cosciente</span>
       <button class="fake-close" id="fakeClose" onclick="fakeCloseClick()" title="">×</button>
@@ -930,9 +946,12 @@ function flushAll() {
 
 function showToast(msg, kind='') {
   const wrap = document.getElementById('toastWrap');
-  // Max 2 toast contemporanei: rimuove il più vecchio se necessario
   const existing = wrap.querySelectorAll('.toast');
-  if (existing.length >= 2) existing[0].remove();
+  if (existing.length >= 2) {
+    const old = existing[0];
+    old.classList.add('removing');
+    setTimeout(() => old.remove(), 320);
+  }
   const div = document.createElement('div');
   div.className = 'toast ' + kind;
   div.textContent = msg;
@@ -1269,6 +1288,20 @@ let COMMENT_POOL = [
   { t: "Siamo un paese di furbi. E di fessi. Spesso la stessa persona.", r: [934, 67] },
   { t: "Darwin aveva ragione ma non nel senso in cui lo usate voi.", r: [567, 234] },
 ];
+// ── B2 — commentary mode ─────────────────────────────────────────────────
+let commentaryClicks = 0;
+let commentaryActive = false;
+function liveDotClick() {
+  if (gameOver) return;
+  commentaryClicks++;
+  if (commentaryClicks >= 7) {
+    commentaryClicks = 0;
+    commentaryActive = !commentaryActive;
+    document.body.classList.toggle('commentary', commentaryActive);
+    showToast(commentaryActive ? 'modalità lettura attiva.' : 'modalità lettura disattivata.');
+  }
+}
+
 function buildExpansion(tag) {
   const nv = nirvanaClass(iq);
   const pool = EXPANSION_DESCS[tag] || EXPANSION_DEFAULT;
@@ -1340,14 +1373,14 @@ function nirvanaClass(q) {
 }
 
 function addNewsCard(forceBrainrot=false) {
-  let item, cssClass;
+  let item, cssClass, poolName;
   if (forceBrainrot || brainrotLevel >= 4 || (brainrotLevel >= 2 && Math.random() < 0.22)) {
-    [item] = pickItem(NEWS_BRAINROT, brainrotUsed, REPEATABLE_NEWS); cssClass = 'brainrot-news';
+    [item] = pickItem(NEWS_BRAINROT, brainrotUsed, REPEATABLE_NEWS); cssClass = 'brainrot-news'; poolName = 'brainrot';
   } else {
     const r = Math.random();
-    if (r < 0.5) { [item] = pickItem(NEWS_MEH, mehUsed, REPEATABLE_NEWS); cssClass = ''; }
-    else if (r < 0.8) { [item] = pickItem(NEWS_INTERESTING, intUsed, REPEATABLE_NEWS); cssClass = 'interesting'; }
-    else { [item] = pickItem(NEWS_PEAK, peakUsed, REPEATABLE_NEWS); cssClass = 'peak'; }
+    if (r < 0.5) { [item] = pickItem(NEWS_MEH, mehUsed, REPEATABLE_NEWS); cssClass = ''; poolName = 'meh'; }
+    else if (r < 0.8) { [item] = pickItem(NEWS_INTERESTING, intUsed, REPEATABLE_NEWS); cssClass = 'interesting'; poolName = 'interesting'; }
+    else { [item] = pickItem(NEWS_PEAK, peakUsed, REPEATABLE_NEWS); cssClass = 'peak'; poolName = 'peak'; }
   }
   const [hl, tag] = Array.isArray(item) ? item : [item, 'Attualità'];
   const degradedHl = degradeTitle(hl, iq);
@@ -1359,6 +1392,8 @@ function addNewsCard(forceBrainrot=false) {
     : '';
   const div = document.createElement('div');
   div.className = ('news-card ' + cssClass + ' ' + nvClass).trim();
+  div.dataset.pool = poolName;
+  div.dataset.tag = tag;
   div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${degradedHl}</div><div class="news-meta"><span class="news-tag">${tag}</span><span class="news-time">${time}</span></div>${comment}`;
   attachExpandHandler(div, tag);
   feed.appendChild(div);
@@ -1377,6 +1412,8 @@ function addLercioCard() {
   const time = TIMES[Math.floor(Math.random()*TIMES.length)];
   const div = document.createElement('div');
   div.className = ('news-card lercio ' + nvClass).trim();
+  div.dataset.pool = 'lercio';
+  div.dataset.tag = tag;
   div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${escapeHtml(degradedHl)}</div><div class="news-meta"><span class="news-tag">${escapeHtml(tag)}</span><span class="news-time">${time}</span></div>`;
   attachExpandHandler(div, tag);
   feed.appendChild(div);
@@ -1440,6 +1477,8 @@ function addAdCard() {
   const [ad] = pickItem(ADS, adUsed);
   const div = document.createElement('div');
   div.className = 'promo-card ' + nirvanaClass(iq);
+  div.dataset.pool = 'ads';
+  div.dataset.tag = 'wellness';
   div.innerHTML = `<div class="promo-label">${ad.label}</div><div class="promo-title">${ad.title}</div><div class="promo-desc">${ad.desc}</div><span class="promo-cta">VEDI SCHEDA PRODOTTO</span>`;
   div.onclick = () => {
     if (div.classList.contains('used') || gameOver) return;
@@ -1653,6 +1692,8 @@ function addQuizCard() {
   const q = normalizeQuiz(rawQuiz);
   const div = document.createElement('div');
   div.className = 'quiz-card ' + nirvanaClass(iq);
+  div.dataset.pool = 'quiz';
+  div.dataset.tag = 'sondaggio';
 
   const opts = [...q.opts].sort(() => Math.random() - 0.5);
   const buttons = opts.map(opt =>
@@ -2329,6 +2370,8 @@ function resetStateForNewRun() {
   fakeCloseClicks = 0;
   document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
   document.body.classList.remove('hd-1','hd-2','hd-3','hd-4');
+  document.body.classList.remove('commentary');
+  commentaryClicks = 0; commentaryActive = false;
   document.getElementById('timerVal').textContent = '00:00';
   document.getElementById('newsCount').textContent = '0';
   updateIQDisplay();
