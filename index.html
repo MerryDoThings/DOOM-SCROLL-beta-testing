@@ -28,7 +28,7 @@
     --red: #e03535; --red-bg: #1a0a0a; --green: #4ca84a; --green-bg: #0a1a0a;
   }
   body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; overflow-x: hidden; }
-  #app { max-width: 480px; margin: 0 auto; padding: 0 12px 80px; }
+  #app { max-width: 480px; margin: 0 auto; padding: 0 12px 115px; }
   .header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 0 10px; z-index: 50; }
   .app-title { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; font-family: 'Courier New', monospace; }
   .app-subtitle { font-size: 10px; color: var(--text-faint); margin: 0 0 10px; font-family: 'Courier New', monospace; letter-spacing: 0.05em; line-height: 1.5; }
@@ -61,6 +61,34 @@
   .news-card.lercio .news-src { color: #c8920a; letter-spacing: 0.12em; }
   .news-card.lercio .news-tag { background: #1e1800; color: #c8920a; border-color: #2e2400; }
   .news-card.lercio::before { content: 'SATIRA'; display: inline-block; font-size: 9px; font-family: 'Courier New', monospace; color: #c8920a; background: #2a1e00; border: 1px solid #3a2c00; border-radius: 3px; padding: 1px 5px; letter-spacing: 0.12em; margin-bottom: 7px; }
+
+  /* ── SISTEMA — settima voce. Monospace, fredda, mai sarcastica. ── */
+  .sistema-card {
+    background: #0b0b0b;
+    border: 1px solid #1e1e1e;
+    border-left: 2px solid #404040;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 10.5px;
+    color: #888888;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    white-space: pre-line;
+    animation: fadeUp 0.4s ease;
+    cursor: default;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 4px 14px rgba(0,0,0,0.7);
+  }
+  .sistema-card::before {
+    content: 'SISTEMA';
+    display: block;
+    font-size: 8px;
+    color: #555555;
+    letter-spacing: 0.28em;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+  }
   .promo-card { background: linear-gradient(135deg, #21180b 0%, #1a1a1a 58%, #17100c 100%); border: 1px dashed #b9822d; border-radius: 10px; padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; animation: fadeUp 0.3s ease; box-shadow: 0 0 0 1px rgba(185,130,45,.12); }
   .promo-card::before { content: 'SPONSOR WELLNESS / TRAPPOLA DI LUCIDITÀ'; display: block; font-size: 10px; color: #d8bd77; letter-spacing: .16em; font-family: 'Courier New', monospace; margin-bottom: 7px; opacity: .9; }
   .promo-card:hover { border-color: #666; }
@@ -139,7 +167,7 @@
   .ending-smetti .e-conclusion strong { color: #e03535; font-weight: normal; }
 
   /* ── QUIT — epico, lento, monumentale ── */
-  .ending-overlay.ending-quit { background: #050a05; color: #c8f0c8; flex-direction: column; position: relative; overflow: hidden; animation: quitPulse 8s ease-in-out infinite; }
+  .ending-overlay.ending-quit { background: #050a05; color: #c8f0c8; flex-direction: column; overflow-y: auto; animation: quitPulse 8s ease-in-out infinite; }
   @keyframes quitPulse {
     0%, 100% { background: #050a05; }
     50% { background: #081208; }
@@ -174,14 +202,14 @@
     white-space: nowrap;
     border-right: 2px solid #6aff6a;
     width: 0;
-    animation: quitTyping 2s steps(20, end) 1.2s forwards, quitCursor 0.8s step-end infinite 3.2s;
+    animation: quitTyping 2s steps(15, end) 1.2s forwards, quitCursor 0.8s step-end infinite 3.2s;
     margin-left: auto;
     margin-right: auto;
     display: inline-block;
   }
   @keyframes quitTyping {
     from { width: 0; }
-    to { width: 11ch; }
+    to { width: 15ch; }
   }
   @keyframes quitCursor {
     50% { border-color: transparent; }
@@ -194,7 +222,7 @@
     margin-bottom: 40px;
     text-transform: uppercase;
     opacity: 0;
-    animation: quitFadeIn 1.5s ease 3.5s forwards;
+    animation: quitFadeIn 1.5s ease 3.4s forwards;
   }
   /* Conquiste come iscrizioni monumentali, niente icone */
   .ending-quit .e-monument {
@@ -219,8 +247,8 @@
   .ending-quit .e-line:nth-child(1) { animation-delay: 4.5s; }
   .ending-quit .e-line:nth-child(2) { animation-delay: 5.5s; }
   .ending-quit .e-line:nth-child(3) { animation-delay: 6.5s; }
-  .ending-quit .e-line:nth-child(4) { animation-delay: 7.5s; }
-  .ending-quit .e-line:nth-child(5) { animation-delay: 8.8s; }
+  .ending-quit .e-line:nth-child(4) { animation-delay: 7.4s; }
+  .ending-quit .e-line:nth-child(5) { animation-delay: 8.2s; }
   @keyframes quitLineIn {
     to { opacity: 1; transform: translateY(0); }
   }
@@ -236,7 +264,7 @@
     border-bottom: 1px solid #2a5a2a;
     text-align: center;
     opacity: 0;
-    animation: quitFadeIn 2s ease 10s forwards;
+    animation: quitFadeIn 2s ease 9.2s forwards;
   }
   .ending-quit .e-tombstone-label {
     font-family: 'Courier New', monospace;
@@ -259,15 +287,15 @@
     border-color: #1a3a1a;
     color: #4a8a4a;
     opacity: 0;
-    animation: quitFadeIn 1.5s ease 11s forwards;
+    animation: quitFadeIn 1.5s ease 10.2s forwards;
   }
   .ending-quit .ending-progress, .ending-quit .ending-finals {
     opacity: 0;
-    animation: quitFadeIn 1.5s ease 11.5s forwards;
+    animation: quitFadeIn 1.5s ease 10.7s forwards;
   }
   .ending-quit .ending-actions {
     opacity: 0;
-    animation: quitFadeIn 1.5s ease 12s forwards;
+    animation: quitFadeIn 1.5s ease 11.2s forwards;
   }
   .ending-quit .ending-restart, .ending-quit .ending-share { border-color: #2a5a2a; color: #6ab06a; }
 
@@ -308,10 +336,52 @@
   .news-comment { margin-top: 9px; padding-top: 8px; border-top: 1px solid #1e1e1e; font-size: 11px; color: #707070; line-height: 1.35; font-family: 'Courier New', monospace; }
   .news-card.brainrot-news { border-color: #ff3030; box-shadow: 0 0 0 1px rgba(255,48,48,.15); animation: fadeUp 0.3s ease, glitch2 1.2s infinite; }
   .news-card.brainrot-news .news-hl { color: #ffd0d0; font-family: 'Courier New', monospace; }
+
+  /* ── NIRVANA — degrado progressivo del feed ── */
+  .news-card.nirvana-1 .news-src { opacity: 0.45; }
+  .news-card.nirvana-1 .news-tag { opacity: 0.35; }
+  .news-card.nirvana-1 .news-hl  { color: #cccccc; }
+
+  .news-card.nirvana-2 .news-src  { opacity: 0.15; }
+  .news-card.nirvana-2 .news-tag  { display: none; }
+  .news-card.nirvana-2 .news-hl   { font-size: 12px; color: #999999; }
+
+  .news-card.nirvana-3 .news-src,
+  .news-card.nirvana-3 .news-tag,
+  .news-card.nirvana-3 .news-time { display: none; }
+  .news-card.nirvana-3 .news-hl   { font-size: 11px; color: #666666; letter-spacing: 0.04em; }
+  .news-card.nirvana-3             { border-color: #161616; padding: 8px 14px; }
+
+  .news-card.nirvana-4             { background: transparent; border-color: transparent; padding: 4px 14px; }
+  .news-card.nirvana-4 .news-src,
+  .news-card.nirvana-4 .news-meta  { display: none; }
+  .news-card.nirvana-4 .news-hl    { font-size: 10px; color: #333333; text-align: center; letter-spacing: 0.12em; }
+
+  /* ── QUIT WHISPER — pensiero rassegnato nel feed ── */
+  .quit-whisper {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #2e4e2e;
+    padding: 6px 0 14px;
+    letter-spacing: 0.18em;
+    animation: fadeUp 1.2s ease;
+  }
+
+  /* ── BRAINROT BUTTON HINT ── */
+  .load-more[data-hint]::after {
+    content: attr(data-hint);
+    display: block;
+    font-size: 9px;
+    color: #3a3a3a;
+    margin-top: 5px;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+  }
   .promo-card.used { opacity: 0.72; border-style: solid; cursor: default; }
   .promo-result { margin-top: 9px; padding-top: 8px; border-top: 1px dashed #4a3a22; font-size: 11px; color: #d8bd77; line-height: 1.4; font-family: 'Courier New', monospace; }
-  .toast-wrap { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 300; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
-  .toast { background: rgba(12,12,12,.96); border: 1px solid #333; color: #d8d8d8; border-radius: 8px; padding: 12px 16px; margin-top: 8px; font-size: 13px; font-family: 'Courier New', monospace; box-shadow: 0 8px 28px rgba(0,0,0,.35); animation: toastIn .18s ease, toastOut .4s ease 5s forwards; line-height: 1.5; }
+  .toast-wrap { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 190; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
+  .toast { background: rgba(12,12,12,.96); border: 1px solid #333; color: #d8d8d8; border-radius: 8px; padding: 12px 16px; margin-top: 8px; font-size: 13px; font-family: 'Courier New', monospace; box-shadow: 0 8px 28px rgba(0,0,0,.35); animation: toastIn .18s ease, toastOut .4s ease 3s forwards; line-height: 1.5; }
   .toast.good { border-color: #315a31; color: #a9d6a9; }
   .toast.bad { border-color: #5a3131; color: #e0a0a0; }
   @keyframes toastIn { from { opacity: 0; transform: translateY(8px); } to { opacity: 1; transform: translateY(0); } }
@@ -601,11 +671,18 @@ let ambientOscillators = [], ambientNoise = null;
 // Santo tracking (sesto finale segreto)
 let allQuizConscious = true;     // diventa false al primo quiz non-conscious
 let noAdsBought = true;          // diventa false al primo acquisto
+let quizAnsweredCount = 0;       // quanti quiz sono stati risposti (santo richiede almeno 1)
 let brainListenedFirst = false;  // diventa true se ascolti la PRIMA volta
 let noLercioInteracted = true;   // diventa false se clicchi una card lercio
 let isFirstBrainShown = true;
 let isReturningPlayer = false;
 let passiveReasonIdx = 0;
+
+// SISTEMA state
+let sistemaCount = 0;
+let sistemaUserId = '';
+let sistemaMsgUsed = [];
+const SISTEMA_MAX = 7;
 
 const PASSIVE_REASONS = [
   'il tempo passa anche senza che tu faccia niente',
@@ -620,16 +697,46 @@ const PASSIVE_REASONS = [
   'nessun valore prodotto. nessun punto assegnato.',
 ].sort(() => Math.random() - 0.5);
 
+// Messaggi del SISTEMA: freddi, monospace, mai sarcastici esplicitamente.
+// Chiamano l'utente per ID. Osservano. Non giudicano. Registrano.
+const SISTEMA_MSGS = [
+  `[LOG] sessione attiva · durata: {TIME} · elementi caricati: {NEWS} · qi residuo: {IQ}\nutente_{ID} — nessuna azione di chiusura rilevata.`,
+  `[MONITOR] utente_{ID} in sessione da {TIME}.\nnessun segnale di interruzione volontaria.\nregistrazione aggiornata.`,
+  `[STATUS] utente_{ID} — elementi caricati: {NEWS} · annunci visualizzati: {ADS_SHOWN}\ncomportamento nella norma del profilo.`,
+  `[PATTERN] utente_{ID} — rilevata modalità "so che non dovrei, carico comunque".\nfrequenza nel segmento: 84%.`,
+  `[SEGMENT] utente_{ID} inserito in: utenti_consapevoli_del_problema / sottocategoria: continua_comunque.\n31% della base attiva. segmento più popoloso.`,
+  `[CLASSIFY] utente_{ID} legge i messaggi del sistema.\nnon modifica il comportamento dopo la lettura.\nclassificazione: standard.`,
+  `[META] stai leggendo questo. il feed è ancora aperto.\nil sistema non rileva conflitti.\nnessun intervento necessario.`,
+  `[LOG] 8 secondi stimati per la lettura di questo messaggio.\nil feed ha continuato durante la pausa.\nsessione invariata.`,
+  `[NOTICE] notifica recapitata a utente_{ID}.\nlettura: confermata. azione conseguente: nessuna.\ndato acquisito.`,
+  `[BRAIN_EVENT] cervello contattato {BRAIN_LISTENED}x. risposta: ascolto.\ncervello ignorato {BRAIN_IGNORED}x. risposta: "tra un po'".\nbilancio: in elaborazione.`,
+  `[REPORT] utente_{ID} conosce l'uscita.\nha scelto di non usarla {LOADS} volte.\nnessuna anomalia.`,
+  `[STAT] su 100 utenti con profilo simile a utente_{ID}:\n17 hanno chiuso la sessione in questo momento.\n83 hanno caricato altro.`,
+  `[BENCHMARK] durata media sessione per profilo analogo: 4:20.\nutente_{ID}: {TIME}.\ndelta: registrato.`,
+  `[SYS] nessun allarme attivo.\nil feed funziona correttamente.\nutente_{ID} funziona correttamente.\ntutto funziona correttamente.`,
+  `[INFO] il sistema non ha preferenze su cosa tu faccia.\nil sistema registra.`,
+  `[FINE SESSIONE NON RILEVATA]\nutente_{ID} — ultimo aggiornamento: {TIME}.\nprossimo aggiornamento: tra poco.`,
+  `[NOTA] questo è il {SISTEMA_N}° messaggio del sistema in questa sessione.\nnessuna risposta attesa.`,
+  `[LOOP] sessione → contenuto → scroll → sessione → contenuto → scroll\nutente_{ID}: iterazione {LOADS}.`,
+];
+
 const feed = document.getElementById('feed');
 const STORAGE_KEY = 'doomscroll_finales';
 
 function showToast(msg, kind='') {
   const wrap = document.getElementById('toastWrap');
+  // Max 2 toast contemporanei: rimuove il più vecchio se necessario
+  const existing = wrap.querySelectorAll('.toast');
+  if (existing.length >= 2) existing[0].remove();
   const div = document.createElement('div');
   div.className = 'toast ' + kind;
   div.textContent = msg;
   wrap.appendChild(div);
-  setTimeout(() => div.remove(), 5600);
+  setTimeout(() => div.remove(), 3600);
+}
+
+function clearToasts() {
+  document.getElementById('toastWrap').innerHTML = '';
 }
 
 function pickItem(items, used, fallbackItems=null) {
@@ -768,6 +875,25 @@ function promoConfirmMessage(purchaseNumber, step, required) {
   return (scripts[purchaseNumber] && scripts[purchaseNumber][step-1]) || `Conferma ${step}/${required}: il capitalismo vuole solo essere sicuro.`;
 }
 
+// ── A2 NIRVANA — degrado titoli in base al QI ─────────────────────────────
+function degradeTitle(hl, q) {
+  const words = String(hl).split(' ').filter(Boolean);
+  if (q >= 50) return hl;
+  if (q >= 30) return words.slice(0, 7).join(' ') + (words.length > 7 ? '…' : '');
+  if (q >= 15) return words.slice(0, 3).join(' ') + '…';
+  if (q >= 5)  return words.slice(0, 2).join(' ');
+  // QI < 5: una parola a caso tra le prime 5 — il cervello non processa più sequenze
+  return words[Math.floor(Math.random() * Math.min(words.length, 5))] || '…';
+}
+
+function nirvanaClass(q) {
+  if (q >= 50) return '';
+  if (q >= 30) return 'nirvana-1';
+  if (q >= 15) return 'nirvana-2';
+  if (q >= 5)  return 'nirvana-3';
+  return 'nirvana-4';
+}
+
 function addNewsCard(forceBrainrot=false) {
   let item, cssClass;
   if (forceBrainrot || brainrotLevel >= 4 || (brainrotLevel >= 2 && Math.random() < 0.22)) {
@@ -779,14 +905,16 @@ function addNewsCard(forceBrainrot=false) {
     else { [item] = pickItem(NEWS_PEAK, peakUsed, REPEATABLE_NEWS); cssClass = 'peak'; }
   }
   const [hl, tag] = Array.isArray(item) ? item : [item, 'Attualità'];
+  const degradedHl = degradeTitle(hl, iq);
+  const nvClass = nirvanaClass(iq);
   const src = cssClass === 'brainrot-news' ? 'REDAZIONE SEMANTICAMENTE INSTABILE' : SOURCES[Math.floor(Math.random()*SOURCES.length)];
   const time = TIMES[Math.floor(Math.random()*TIMES.length)];
   const comment = (Math.random() < 0.25 && FAKE_COMMENTS.length > 0)
     ? `<div class="news-comment">${FAKE_COMMENTS[Math.floor(Math.random()*FAKE_COMMENTS.length)] || ''}</div>`
     : '';
   const div = document.createElement('div');
-  div.className = 'news-card ' + cssClass;
-  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${hl}</div><div class="news-meta"><span class="news-tag">${tag}</span><span class="news-time">${time}</span></div>${comment}`;
+  div.className = ('news-card ' + cssClass + ' ' + nvClass).trim();
+  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${degradedHl}</div><div class="news-meta"><span class="news-tag">${tag}</span><span class="news-time">${time}</span></div>${comment}`;
   feed.appendChild(div);
   newsCount++;
   document.getElementById('newsCount').textContent = newsCount;
@@ -797,15 +925,64 @@ function addLercioCard() {
   if (!LERCIO_NEWS || LERCIO_NEWS.length === 0) { addNewsCard(); return; }
   const [item] = pickItem(LERCIO_NEWS, lercioUsed);
   const [hl, tag] = Array.isArray(item) ? item : [item, 'Satira'];
+  const degradedHl = degradeTitle(hl, iq);
+  const nvClass = nirvanaClass(iq);
   const src = SOURCES[Math.floor(Math.random()*SOURCES.length)];
   const time = TIMES[Math.floor(Math.random()*TIMES.length)];
   const div = document.createElement('div');
-  div.className = 'news-card lercio';
-  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${escapeHtml(hl)}</div><div class="news-meta"><span class="news-tag">${escapeHtml(tag)}</span><span class="news-time">${time}</span></div>`;
+  div.className = ('news-card lercio ' + nvClass).trim();
+  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${escapeHtml(degradedHl)}</div><div class="news-meta"><span class="news-tag">${escapeHtml(tag)}</span><span class="news-time">${time}</span></div>`;
   feed.appendChild(div);
   newsCount++;
   document.getElementById('newsCount').textContent = newsCount;
   cardsSinceInterruption++;
+}
+
+// ── A2 QUIT WHISPER — voce rassegnata nel feed dopo ignoranze post-ascolto ─
+const QUIT_WHISPER_MSGS = [
+  'ci risiamo.',
+  'lo so.',
+  'okay.',
+  'quando sei pronto.',
+  '.',
+];
+
+function addQuitWhisper() {
+  // Appare solo se hai già ascoltato il cervello almeno una volta
+  if (brainListened < 1) return;
+  const idx = Math.min(brainIgnored - 1, QUIT_WHISPER_MSGS.length - 1);
+  const div = document.createElement('div');
+  div.className = 'quit-whisper';
+  div.textContent = QUIT_WHISPER_MSGS[idx];
+  feed.appendChild(div);
+}
+function initSistemaId() {
+  sistemaUserId = String(1000 + Math.floor(Math.random() * 9000));
+}
+
+function formatSistemaMsg(template) {
+  return template
+    .replace(/{ID}/g, sistemaUserId)
+    .replace(/{TIME}/g, timeStr(seconds))
+    .replace(/{IQ}/g, iq)
+    .replace(/{NEWS}/g, newsCount)
+    .replace(/{ADS_SHOWN}/g, adsShown)
+    .replace(/{LOADS}/g, totalLoadMore || 1)
+    .replace(/{BRAIN_LISTENED}/g, brainListened)
+    .replace(/{BRAIN_IGNORED}/g, brainIgnored)
+    .replace(/{SISTEMA_N}/g, sistemaCount + 1);
+}
+
+function addSistemaCard() {
+  if (sistemaCount >= SISTEMA_MAX || gameOver) return;
+  const [rawMsg] = pickItem(SISTEMA_MSGS, sistemaMsgUsed);
+  const msg = formatSistemaMsg(rawMsg);
+  sistemaCount++;
+  const div = document.createElement('div');
+  div.className = 'sistema-card';
+  div.textContent = msg;
+  feed.appendChild(div);
+  // Non conta come news, non resetta cardsSinceInterruption
 }
 
 
@@ -963,6 +1140,8 @@ function completePromoPurchase() {
   result.textContent = ad.result + (adClicks >= 3 ? ' // Hint: forse ascoltare il cervello era la versione gratis.' : '');
   div.appendChild(result);
   updateIQ(ad.iq, 'lucidità con ricevuta fiscale');
+  // SISTEMA registra il primo acquisto
+  if (adClicks === 1) addSistemaCard();
   // Metamorfosi capitalismo progressiva
   if (adClicks >= 3) applyCapitalismoMorph(Math.min(adClicks - 1, 4));
   if (!gameOver && adClicks >= 5 && iq >= 35) {
@@ -1053,6 +1232,7 @@ function addQuizCard() {
 
       // traccia via del santo: solo conscious conta
       if (kind !== 'conscious') allQuizConscious = false;
+      quizAnsweredCount++;
 
       const sign = delta > 0 ? '+' : '';
       fb.textContent = `// ${text} — ${sign}${delta} QI`;
@@ -1119,6 +1299,16 @@ function setBrainrotButton(btn) {
 
   btn.textContent = label;
   btn.className = 'load-more' + (effectiveLevel ? ' glitch-' + Math.min(effectiveLevel, 3) : '');
+
+  // Hint fase discovery: dopo 3 click veloci ma prima che degeneri davvero
+  const n2 = recentLoadClicks.length;
+  if (n2 >= 3 && n2 < 12 && effectiveLevel < 2) {
+    btn.dataset.hint = 'più veloce succede qualcosa →';
+  } else if (n2 >= 12 && effectiveLevel < 3) {
+    btn.dataset.hint = 'qualcosa sta succedendo.';
+  } else {
+    delete btn.dataset.hint;
+  }
 }
 
 function onLoadMore(btn, event) {
@@ -1141,6 +1331,9 @@ function onLoadMore(btn, event) {
   loadsSinceAd++;
   spendScrollIQ();
   if (gameOver) return;
+  // SISTEMA: prima comparsa al 2° load, poi ogni 4° load
+  if (totalLoadMore === 2 && sistemaCount === 0) addSistemaCard();
+  else if (totalLoadMore > 2 && totalLoadMore % 4 === 0) addSistemaCard();
   btn.remove();
 
   try {
@@ -1282,7 +1475,9 @@ function listenBrain() {
   brainListenedStreak++;
   showToast(`cervello ascoltato: ${Math.min(brainListenedStreak,3)}/3`, 'good');
   if (brainListenedStreak >= 3) {
-    if (usefulAdClicks >= 2 && adClicks < 5) triggerEnding('quit');
+    // Opzione D: quit = si era "scivolato" (cervello ignorato almeno 1x, o acquistato qualcosa)
+    // smetti = via pulita senza mai cedere
+    if (everIgnored || adClicks >= 1) triggerEnding('quit');
     else triggerEnding('smetti');
     return;
   }
@@ -1296,6 +1491,9 @@ function ignoreBrain() {
   everIgnored = true;
   brainListenedStreak = 0;
   updateIQ(-4, 'il cervello prende nota del tradimento');
+  addQuitWhisper();
+  // SISTEMA nota le ignoranze ripetute
+  if (brainIgnored === 2) addSistemaCard();
   scheduleNextBrain('ignore');
 }
 
@@ -1365,9 +1563,12 @@ async function shareEnding(type, btn) {
 function triggerEnding(type) {
   if (gameOver) return;
   gameOver = true;
+  clearToasts();
   document.getElementById('brainOverlay').classList.remove('active');
+  // Nasconde subito il feed — evita il flash tra prefinal e schermata finale
+  document.getElementById('app').style.visibility = 'hidden';
   // Check sesto finale segreto — la via del santo
-  if (type === 'smetti' && allQuizConscious && noAdsBought && brainListenedFirst && noLercioInteracted) {
+  if (type === 'smetti' && allQuizConscious && noAdsBought && brainListenedFirst && noLercioInteracted && quizAnsweredCount >= 1) {
     type = 'santo';
   }
   showPreFinalThenEnding(type);
@@ -1613,6 +1814,7 @@ function resetStateForNewRun() {
   passiveReasonIdx = 0;
   lastStage = '';
   feed.innerHTML = '';
+  document.getElementById('app').style.visibility = 'visible';
   document.getElementById('endingOverlay').className = 'ending-overlay';
   document.getElementById('endingOverlay').innerHTML = '';
   document.getElementById('brainOverlay').classList.remove('active');
@@ -1626,8 +1828,10 @@ function resetStateForNewRun() {
   // v3 reset
   pressureLevel = 0; eventAt8minDone = false; capitalismoMorphLevel = 0;
   notificationShown = false; notificationReplied = false; notificationIgnored = false;
-  convStep = 0; allQuizConscious = true; noAdsBought = true; brainListenedFirst = false;
+  convStep = 0; allQuizConscious = true; noAdsBought = true; brainListenedFirst = false; quizAnsweredCount = 0;
   noLercioInteracted = true; isFirstBrainShown = true;
+  // SISTEMA reset
+  sistemaCount = 0; sistemaUserId = ''; sistemaMsgUsed = [];
   document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
   document.getElementById('timerVal').textContent = '00:00';
   document.getElementById('newsCount').textContent = '0';
@@ -1980,12 +2184,17 @@ function showPreFinalThenEnding(type) {
   // 3.8s: abbastanza da leggere 3 frasi, con l'animazione che finisce naturalmente
   setTimeout(() => {
     overlay.classList.remove('active');
-    setTimeout(() => doTriggerEnding(type), 200);
+    doTriggerEnding(type);
   }, 3800);
 }
 
 function init() {
   updateFinalsPill();
+  initSistemaId();
+  // Timer idle: se l'utente non clicca load-more per 90s, SISTEMA appare lo stesso
+  setTimeout(() => {
+    if (!gameOver && sistemaCount === 0) addSistemaCard();
+  }, 90000);
   // Sessione 2: riconosce il ritorno
   if (isReturningPlayer) {
     const sub = document.getElementById('appSubtitle');
