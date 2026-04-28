@@ -129,11 +129,10 @@
   .news-card.peak { border-left: 2px solid var(--red); }
   .news-card.peak .news-hl { color: #ffdddd; font-style: italic; }
   .news-card.interesting .news-tag { background: #131c13; color: #6fa66f; border-color: #1c2c1c; }
-  .news-card.lercio { border-left: 2px solid #d4a017; background: #131108; }
+  .news-card.lercio { border: 2px solid #2a2a2a; background: #111; }
   .news-card.lercio .news-hl { color: #fff8e8; }
-  .news-card.lercio .news-src { color: #c8920a; letter-spacing: 0.12em; }
-  .news-card.lercio .news-tag { background: #1e1800; color: #c8920a; border-color: #2e2400; }
-  .news-card.lercio::before { content: 'SATIRA'; display: inline-block; font-size: 9px; font-family: 'Courier New', monospace; color: #c8920a; background: #2a1e00; border: 1px solid #3a2c00; border-radius: 3px; padding: 1px 5px; letter-spacing: 0.12em; margin-bottom: 7px; }
+  .news-card.lercio .news-src { color: #888; letter-spacing: 0.12em; }
+  .news-card.lercio .news-tag { background: #1a1a1a; color: #777; border-color: #222; }
 
   /* ── SISTEMA — settima voce. Monospace, fredda, mai sarcastica. ── */
   .sistema-card {
@@ -2144,16 +2143,13 @@ function saveEndingPNG(type, btn) {
 
   // Download
   try {
-    canvas.toBlob(blob => {
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = `doomscroll-${type}-${Date.now()}.png`;
-      a.click();
-      URL.revokeObjectURL(url);
-      btn.textContent = 'salvato ✓';
-      setTimeout(() => { btn.textContent = 'salva ricordo'; btn.classList.remove('saving'); }, 2000);
-    }, 'image/png');
+    const dataUrl = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = `doomscroll-${type}-${Date.now()}.png`;
+    a.click();
+    btn.textContent = 'salvato ✓';
+    setTimeout(() => { btn.textContent = 'salva ricordo'; btn.classList.remove('saving'); }, 2000);
   } catch(e) {
     btn.textContent = 'salva ricordo';
     btn.classList.remove('saving');
