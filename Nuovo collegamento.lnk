@@ -1,0 +1,3148 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOOM/SCROLL — un feed satirico che vuole il tuo QI</title>
+<meta name="description" content="Un feed satirico italiano dove l'obiettivo è smettere di scrollare. Il tuo QI cala ogni 16 secondi. Il cervello ti implora. Gli sponsor wellness ti vogliono salvare a pagamento. 5 finali da scoprire.">
+<meta name="theme-color" content="#0d0d0d">
+<meta name="color-scheme" content="dark">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="DOOM/SCROLL — un feed satirico che vuole il tuo QI">
+<meta property="og:description" content="Un feed satirico italiano: il tuo QI cala, il cervello ti implora di smettere, gli sponsor wellness ti vogliono salvare a pagamento. 5 finali da scoprire.">
+<meta property="og:image" content="og-image.png">
+<meta property="og:locale" content="it_IT">
+
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="DOOM/SCROLL — un feed satirico che vuole il tuo QI">
+<meta name="twitter:description" content="Un feed satirico italiano: il tuo QI cala, il cervello ti implora di smettere, gli sponsor wellness ti vogliono salvare a pagamento. 5 finali da scoprire.">
+<meta name="twitter:image" content="og-image.png">
+
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%230d0d0d'/%3E%3Ccircle cx='16' cy='16' r='8' fill='%23e03535'/%3E%3C/svg%3E">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --bg: #0a0a0a; --bg-card: #111; --border: #252525; --border-hover: #3a3a3a;
+    --text: #ffffff; --text-dim: #e8e8e8; --text-muted: #cccccc; --text-faint: #aaaaaa;
+    --red: #e03535; --red-bg: #1a0a0a; --green: #4ca84a; --green-bg: #0a1a0a;
+  }
+  body { background: var(--bg); color: var(--text); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; min-height: 100vh; overflow-x: hidden; }
+  #app { max-width: 480px; margin: 0 auto; padding: 0 12px 115px; }
+  .header { position: sticky; top: 0; background: var(--bg); border-bottom: 1px solid var(--border); padding: 12px 0 10px; z-index: 50; }
+  .app-title { display: flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.18em; color: var(--text-muted); font-weight: 600; margin-bottom: 6px; font-family: 'Courier New', monospace; }
+  .app-subtitle { font-size: 10px; color: var(--text-faint); margin: 0 0 10px; font-family: 'Courier New', monospace; letter-spacing: 0.05em; line-height: 1.5; }
+  .app-subtitle .pill { color: var(--text-muted); }
+  .app-subtitle .pill.found { color: var(--text-dim); }
+  .brand { color: var(--text-dim); letter-spacing: 0.22em; }
+
+  /* ── A7 — header che degrada col QI ── */
+  /* QI < 50: leggermente sbiadito */
+  body.hd-1 .header { border-bottom-color: #1a1a1a; }
+  body.hd-1 .stat-val { color: #aaaaaa; }
+  body.hd-1 .stat-lbl { opacity: 0.6; }
+  body.hd-1 .progress-lbl { opacity: 0.5; }
+
+  /* QI < 30: compresso, label spariscono */
+  body.hd-2 .header { padding: 8px 0 6px; border-bottom-color: #111; }
+  body.hd-2 .app-subtitle { display: none; }
+  body.hd-2 .stat-lbl { display: none; }
+  body.hd-2 .stat-val { font-size: 18px; color: #777; }
+  body.hd-2 .stats-row { gap: 4px; }
+  body.hd-2 .progress-lbl { display: none; }
+  body.hd-2 .brand { opacity: 0.5; letter-spacing: 0.1em; }
+  body.hd-2 .iq-stage { display: none; }
+
+  /* QI < 15: quasi sparito, solo una riga */
+  body.hd-3 .header { padding: 4px 0; border-bottom-color: #0d0d0d; }
+  body.hd-3 .app-title { margin-bottom: 2px; }
+  body.hd-3 .app-subtitle { display: none; }
+  body.hd-3 .stats-row { display: none; }
+  body.hd-3 .progress-bar { display: none; }
+  body.hd-3 .progress-lbl { display: none; }
+  body.hd-3 .brand { opacity: 0.2; font-size: 9px; letter-spacing: 0.08em; }
+  body.hd-3 .live-dot { display: none; }
+  body.hd-3 .iq-stage { display: none; }
+  body.hd-3 .fake-close { display: none; }
+
+  /* QI < 5: header invisibile */
+  body.hd-4 .header { opacity: 0; pointer-events: none; height: 0; padding: 0; overflow: hidden; border: none; }
+
+  /* ── B1 — la X che non è un'opzione ── */
+  .fake-close {
+    margin-left: auto;
+    background: none;
+    border: none;
+    color: #2a2a2a;
+    font-size: 18px;
+    cursor: pointer;
+    padding: 0 2px;
+    line-height: 1;
+    transition: color 0.2s;
+    font-family: inherit;
+  }
+  .fake-close:hover { color: #444; }
+  .fake-close.shake {
+    animation: fakeCloseShake 0.4s ease;
+  }
+  @keyframes fakeCloseShake {
+    0%   { transform: translateX(0); }
+    20%  { transform: translateX(-4px); }
+    40%  { transform: translateX(4px); }
+    60%  { transform: translateX(-3px); }
+    80%  { transform: translateX(3px); }
+    100% { transform: translateX(0); }
+  }
+  .live-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--red); flex-shrink: 0; cursor: pointer; }
+
+  /* ── B2 — commentary mode ── */
+  body.commentary .live-dot { background: #4a8a4a; box-shadow: 0 0 6px #4a8a4a88; }
+  body.commentary .news-card::after,
+  body.commentary .promo-card::after,
+  body.commentary .quiz-card::after {
+    content: attr(data-pool) ' · ' attr(data-tag);
+    display: block;
+    margin-top: 8px;
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    color: #2e4e2e;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+  }
+  .iq-stage { margin-left: auto; font-size: 11px; color: var(--text-faint); letter-spacing: 0.05em; text-transform: lowercase; }
+  .stats-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 6px; }
+  .stat { background: #161616; border: 1px solid #252525; border-radius: 8px; padding: 8px 10px; text-align: center; }
+  .stat-val { font-size: 20px; font-weight: 600; color: var(--red); font-family: 'Courier New', monospace; line-height: 1; transition: color 0.4s; }
+  .stat-lbl { font-size: 11px; color: var(--text-muted); margin-top: 4px; text-transform: uppercase; letter-spacing: 0.06em; }
+  .progress-bar { height: 2px; background: #1e1e1e; margin-top: 10px; border-radius: 1px; overflow: hidden; }
+  .progress-fill { height: 100%; background: var(--red); width: 100%; transition: width 0.6s ease; }
+  .progress-lbl { font-size: 11px; color: var(--text-faint); margin-top: 4px; font-family: 'Courier New', monospace; text-align: right; letter-spacing: 0.04em; }
+  .feed { padding: 14px 0; }
+  .news-card { background: var(--bg-card); border: 1px solid var(--border); border-radius: 10px; padding: 14px; margin-bottom: 10px; transition: border-color 0.2s; animation: fadeUp 0.3s ease; }
+  .news-card:hover { border-color: var(--border-hover); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(6px); } to { opacity: 1; transform: translateY(0); } }
+  .news-src { font-size: 11px; color: var(--text-muted); margin-bottom: 5px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+  .news-hl { font-size: 14px; font-weight: 500; color: #ffffff; line-height: 1.45; margin-bottom: 10px; }
+  .news-meta { display: flex; align-items: center; gap: 8px; }
+  .news-tag { font-size: 11px; padding: 3px 7px; border-radius: 4px; background: #1a1a1a; color: var(--text-muted); border: 1px solid #252525; text-transform: uppercase; letter-spacing: 0.05em; }
+  .news-time { font-size: 11px; color: var(--text-faint); margin-left: auto; font-family: 'Courier New', monospace; }
+  .news-card.peak { border-left: 2px solid var(--red); }
+  .news-card.peak .news-hl { color: #ffdddd; font-style: italic; }
+  .news-card.interesting .news-tag { background: #131c13; color: #6fa66f; border-color: #1c2c1c; }
+  .news-card.lercio { border: 2px solid #2a2a2a; background: #111; }
+  .news-card.lercio .news-hl { color: #fff8e8; }
+  .news-card.lercio .news-src { color: #888; letter-spacing: 0.12em; }
+  .news-card.lercio .news-tag { background: #1a1a1a; color: #777; border-color: #222; }
+
+  /* ── SISTEMA — settima voce. Monospace, fredda, mai sarcastica. ── */
+  .sistema-card {
+    background: #0b0b0b;
+    border: 1px solid #1e1e1e;
+    border-left: 2px solid #404040;
+    border-radius: 6px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    font-family: 'Courier New', monospace;
+    font-size: 10.5px;
+    color: #888888;
+    line-height: 1.9;
+    letter-spacing: 0.03em;
+    white-space: pre-line;
+    animation: fadeUp 0.4s ease;
+    cursor: default;
+    box-shadow: 0 0 0 1px rgba(255,255,255,0.04), 0 4px 14px rgba(0,0,0,0.7);
+  }
+  .sistema-card::before {
+    content: 'SISTEMA';
+    display: block;
+    font-size: 8px;
+    color: #555555;
+    letter-spacing: 0.28em;
+    margin-bottom: 7px;
+    text-transform: uppercase;
+  }
+  .promo-card { background: linear-gradient(135deg, #21180b 0%, #1a1a1a 58%, #17100c 100%); border: 1px dashed #b9822d; border-radius: 10px; padding: 14px; margin-bottom: 10px; cursor: pointer; transition: all 0.2s; animation: fadeUp 0.3s ease; box-shadow: 0 0 0 1px rgba(185,130,45,.12); }
+  .promo-card::before { content: 'SPONSOR WELLNESS / TRAPPOLA DI LUCIDITÀ'; display: block; font-size: 10px; color: #d8bd77; letter-spacing: .16em; font-family: 'Courier New', monospace; margin-bottom: 7px; opacity: .9; }
+  .promo-card:hover { border-color: #666; }
+  .promo-label { font-size: 10px; color: #c8a045; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 5px; font-family: 'Courier New', monospace; }
+  .promo-title { font-size: 14px; font-weight: 600; color: #fff5e0; margin-bottom: 4px; }
+  .promo-desc { font-size: 12px; color: #d4be9a; margin-bottom: 8px; line-height: 1.4; }
+  .promo-cta { display: inline-block; font-size: 11px; padding: 5px 12px; background: #2a2015; color: #c8a045; border-radius: 4px; border: 1px solid #443015; font-weight: 500; text-transform: uppercase; letter-spacing: 0.05em; }
+  .quiz-card { background: var(--bg-card); border: 1px solid #2a3a2a; border-left: 2px solid #5a8a5a; border-radius: 10px; padding: 14px; margin-bottom: 10px; animation: fadeUp 0.3s ease; }
+  .quiz-label { font-size: 11px; color: #6fa66f; margin-bottom: 6px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; }
+  .quiz-q { font-size: 14px; color: #ffffff; line-height: 1.45; margin-bottom: 12px; }
+  .quiz-options { display: flex; flex-direction: column; gap: 6px; }
+  .quiz-btn { background: #161616; border: 1px solid #2e2e2e; color: #e8e8e8; padding: 9px 12px; border-radius: 6px; text-align: left; cursor: pointer; font-size: 12px; font-family: inherit; transition: all 0.15s; }
+  .quiz-btn:hover { background: #1e1e1e; border-color: #444; color: #ffffff; }
+  .quiz-btn.answered-wrong { border-color: var(--red); background: var(--red-bg); color: #ffffff; cursor: default; }
+  .quiz-btn.answered-right { border-color: var(--green); background: var(--green-bg); color: #ffffff; cursor: default; }
+  .quiz-btn:disabled { opacity: 0.4; cursor: default; }
+  .quiz-feedback { font-size: 11px; color: var(--text-muted); font-family: 'Courier New', monospace; margin-top: 8px; font-style: italic; }
+  .load-more { width: 100%; padding: 13px; background: var(--bg-card); border: 1px solid #252525; border-radius: 8px; color: var(--text-muted); font-size: 12px; cursor: pointer; margin-top: 4px; font-family: 'Courier New', monospace; letter-spacing: 0.04em; transition: border-color 0.2s, color 0.2s; }
+  .load-more:hover { border-color: var(--red); color: var(--text-dim); }
+  .load-more.glitch-1 { animation: glitch1 0.3s; }
+  .load-more.glitch-2 { animation: glitch2 0.3s; }
+  .load-more.glitch-3 { animation: glitch3 0.3s; color: #ff4040 !important; border-color: var(--red) !important; }
+  @keyframes glitch1 { 0%,100% { transform: translateX(0); } 50% { transform: translateX(-1px); } }
+  @keyframes glitch2 { 0%,100% { transform: translateX(0); } 25% { transform: translateX(2px); } 75% { transform: translateX(-2px); } }
+  @keyframes glitch3 { 0%,100% { transform: translateX(0); text-shadow: none; } 33% { transform: translateX(-3px); text-shadow: 2px 0 var(--red); } 66% { transform: translateX(3px); text-shadow: -2px 0 #4040ff; } }
+  .brain-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.85); display: none; align-items: center; justify-content: center; z-index: 100; padding: 20px; animation: fadeIn 0.4s ease; }
+  .brain-overlay.active { display: flex; }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  .brain-modal { background: var(--bg); border: 1px solid var(--text-dim); border-radius: 12px; padding: 24px; max-width: 420px; width: 100%; animation: scaleIn 0.3s ease; }
+  @keyframes scaleIn { from { transform: scale(0.95); opacity: 0; } to { transform: scale(1); opacity: 1; } }
+  .brain-label { font-size: 10px; color: var(--text-dim); font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+  .brain-label::before { content: '◉'; color: var(--text-dim); animation: pulse 1.5s infinite; }
+  @keyframes pulse { 0%,100% { opacity: 1; } 50% { opacity: 0.3; } }
+  .brain-msg { font-size: 16px; color: var(--text); font-family: 'Courier New', monospace; line-height: 1.6; margin-bottom: 20px; min-height: 60px; }
+  .brain-actions { display: flex; gap: 8px; }
+  .brain-btn { flex: 1; padding: 11px; border-radius: 8px; border: 1px solid; background: transparent; cursor: pointer; font-size: 12px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.2s; }
+  .brain-btn.listen { border-color: var(--green); color: var(--green); }
+  .brain-btn.listen:hover { background: var(--green-bg); }
+  .brain-btn.ignore { border-color: var(--text-faint); color: var(--text-muted); }
+  .brain-btn.ignore:hover { background: var(--red-bg); border-color: var(--red); color: var(--red); }
+  /* ── Ending overlay base ── */
+  .ending-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 200; padding: 24px 20px; overflow-y: auto; }
+  .ending-overlay.active { display: flex; }
+  .ending-inner { width: 100%; max-width: 420px; text-align: center; }
+
+  /* ── Stats block (shared, inherits color from parent) ── */
+  .ending-stats { margin: 28px auto 10px; padding: 12px 0; border-top: 1px solid currentColor; border-bottom: 1px solid currentColor; opacity: 0.55; max-width: 300px; font-size: 12px; font-family: 'Courier New', monospace; }
+  .ending-stats div { display: flex; justify-content: space-between; padding: 3px 0; }
+  .ending-progress { margin-top: 18px; font-size: 11px; font-family: 'Courier New', monospace; letter-spacing: 0.1em; opacity: 0.6; }
+  .ending-finals { font-size: 10px; margin-top: 5px; font-family: 'Courier New', monospace; letter-spacing: 0.04em; opacity: 0.45; line-height: 1.7; }
+  .ending-actions { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-top: 22px; }
+  .ending-restart, .ending-share, .ending-save { padding: 11px 24px; background: transparent; border: 1px solid currentColor; color: currentColor; cursor: pointer; font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.15em; border-radius: 5px; transition: opacity 0.2s; }
+  .ending-restart:hover, .ending-share:hover, .ending-save:hover { opacity: 0.65; }
+  .ending-share.copied { opacity: 0.4; }
+  .ending-save.saving { opacity: 0.4; pointer-events: none; }
+
+  /* ── NIRVANA — quasi vuoto, freddo, cinico ── */
+  .ending-overlay.ending-nirvana { background: #060606; color: #cccccc; flex-direction: column; animation: fadeIn 2s ease; }
+  .ending-nirvana .ending-inner { padding-top: 10vh; }
+  .ending-nirvana .e-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.3em; color: #444; margin-bottom: 48px; }
+  .ending-nirvana .e-iq { font-size: 96px; font-family: 'Courier New', monospace; font-weight: 700; color: #222; line-height: 1; margin-bottom: 40px; }
+  .ending-nirvana .e-title { font-size: 13px; font-family: 'Courier New', monospace; letter-spacing: 0.25em; color: #555; margin-bottom: 32px; text-transform: uppercase; }
+  .ending-nirvana .e-body { font-size: 14px; line-height: 2; color: #888; max-width: 340px; margin: 0 auto; }
+  .ending-nirvana .e-body em { color: #555; font-style: normal; display: block; margin-top: 8px; }
+  .ending-nirvana .ending-stats { border-color: #222; }
+  .ending-nirvana .ending-restart, .ending-nirvana .ending-share, .ending-nirvana .ending-save { border-color: #333; color: #555; }
+
+  /* ── SMETTI — diagnosi cinica, clinical ── */
+  .ending-overlay.ending-smetti { background: #0f0f0f; color: #e0e0e0; flex-direction: column; }
+  .ending-smetti .ending-inner { text-align: left; }
+  .ending-smetti .e-label { font-size: 10px; font-family: 'Courier New', monospace; letter-spacing: 0.2em; color: #555; margin-bottom: 24px; }
+  .ending-smetti .e-title { font-size: 11px; font-family: 'Courier New', monospace; color: #666; letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 28px; border-left: 2px solid #333; padding-left: 12px; }
+  .ending-smetti .e-step { font-size: 14px; color: #cccccc; line-height: 1.7; margin-bottom: 10px; padding-left: 20px; position: relative; }
+  .ending-smetti .e-step::before { content: '—'; position: absolute; left: 0; color: #444; }
+  .ending-smetti .e-step.dim { color: #555; }
+  .ending-smetti .e-conclusion { margin-top: 24px; font-size: 13px; font-family: 'Courier New', monospace; color: #444; border-top: 1px solid #222; padding-top: 16px; line-height: 1.8; }
+  .ending-smetti .e-conclusion strong { color: #e03535; font-weight: normal; }
+
+  /* ── QUIT — epico, lento, monumentale ── */
+  .ending-overlay.ending-quit { background: #050a05; color: #c8f0c8; flex-direction: column; overflow-y: auto; animation: quitPulse 8s ease-in-out infinite; }
+  @keyframes quitPulse {
+    0%, 100% { background: #050a05; }
+    50% { background: #081208; }
+  }
+  /* Sfondo con erba SVG, sottile, decorativo */
+  .ending-quit::before {
+    content: '';
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 25vh;
+    background: radial-gradient(ellipse at center bottom, rgba(74,255,74,0.06) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .ending-quit .ending-inner { position: relative; z-index: 2; padding: 4vh 0 20px; }
+  .ending-quit .e-label {
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.5em;
+    color: #2a5a2a;
+    margin-bottom: 56px;
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 0.3s forwards;
+  }
+  .ending-quit .e-title {
+    font-size: 28px;
+    font-family: 'Courier New', monospace;
+    color: #6aff6a;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+    text-shadow: 0 0 24px rgba(106,255,106,0.4);
+    overflow: hidden;
+    white-space: nowrap;
+    border-right: 2px solid #6aff6a;
+    width: 0;
+    animation: quitTyping 2s steps(15, end) 1.2s forwards, quitCursor 0.8s step-end infinite 3.2s;
+    margin-left: auto;
+    margin-right: auto;
+    display: inline-block;
+  }
+  @keyframes quitTyping {
+    from { width: 0; }
+    to { width: 15ch; }
+  }
+  @keyframes quitCursor {
+    50% { border-color: transparent; }
+  }
+  .ending-quit .e-subtitle {
+    font-size: 11px;
+    color: #4a7a4a;
+    font-family: 'Courier New', monospace;
+    letter-spacing: 0.18em;
+    margin-bottom: 40px;
+    text-transform: uppercase;
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 3.4s forwards;
+  }
+  /* Conquiste come iscrizioni monumentali, niente icone */
+  .ending-quit .e-monument {
+    max-width: 360px;
+    margin: 0 auto;
+    padding: 0 16px;
+  }
+  .ending-quit .e-line {
+    font-family: 'Courier New', monospace;
+    color: #88dd88;
+    font-size: 14px;
+    line-height: 2.2;
+    letter-spacing: 0.04em;
+    opacity: 0;
+    transform: translateY(8px);
+    animation: quitLineIn 1.4s ease forwards;
+  }
+  .ending-quit .e-line.dim {
+    color: #4a7a4a;
+    font-size: 12px;
+  }
+  .ending-quit .e-line:nth-child(1) { animation-delay: 4.5s; }
+  .ending-quit .e-line:nth-child(2) { animation-delay: 5.5s; }
+  .ending-quit .e-line:nth-child(3) { animation-delay: 6.5s; }
+  .ending-quit .e-line:nth-child(4) { animation-delay: 7.4s; }
+  .ending-quit .e-line:nth-child(5) { animation-delay: 8.2s; }
+  @keyframes quitLineIn {
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes quitFadeIn {
+    to { opacity: 1; }
+  }
+  /* Lapide finale: SCREEN TIME 00:00:00 */
+  .ending-quit .e-tombstone {
+    margin: 50px auto 0;
+    max-width: 280px;
+    padding: 22px 16px;
+    border-top: 1px solid #2a5a2a;
+    border-bottom: 1px solid #2a5a2a;
+    text-align: center;
+    opacity: 0;
+    animation: quitFadeIn 2s ease 9.2s forwards;
+  }
+  .ending-quit .e-tombstone-label {
+    font-family: 'Courier New', monospace;
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    color: #4a7a4a;
+    margin-bottom: 10px;
+    text-transform: uppercase;
+  }
+  .ending-quit .e-tombstone-time {
+    font-family: 'Courier New', monospace;
+    font-size: 32px;
+    color: #6aff6a;
+    letter-spacing: 0.12em;
+    font-weight: 700;
+    text-shadow: 0 0 20px rgba(106,255,106,0.3);
+  }
+  .ending-quit .e-grass { margin: 30px auto 0; opacity: 0.4; display: block; }
+  .ending-quit .ending-stats {
+    border-color: #1a3a1a;
+    color: #4a8a4a;
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 10.2s forwards;
+  }
+  .ending-quit .ending-progress, .ending-quit .ending-finals {
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 10.7s forwards;
+  }
+  .ending-quit .ending-actions {
+    opacity: 0;
+    animation: quitFadeIn 1.5s ease 11.2s forwards;
+  }
+  .ending-quit .ending-restart, .ending-quit .ending-share, .ending-quit .ending-save { border-color: #2a5a2a; color: #6ab06a; }
+
+  /* ── CAPITALISMO SPIRITUALE — wellness landing page ── */
+  .ending-overlay.ending-capitalismo { background: #faf5e8; color: #2a1a00; flex-direction: column; }
+  .ending-capitalismo .ending-inner { text-align: center; }
+  .ending-capitalismo .e-kicker { font-size: 10px; letter-spacing: 0.25em; color: #c8920a; font-family: 'Courier New', monospace; text-transform: uppercase; margin-bottom: 8px; }
+  .ending-capitalismo .e-logo { font-size: 28px; font-weight: 800; color: #1a0a00; letter-spacing: -0.02em; margin-bottom: 4px; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .ending-capitalismo .e-tagline { font-size: 12px; color: #c8920a; margin-bottom: 20px; font-style: italic; }
+  .ending-capitalismo .e-stars { color: #d4a017; font-size: 18px; letter-spacing: 2px; margin-bottom: 6px; }
+  .ending-capitalismo .e-reviews { font-size: 11px; color: #8a6a30; margin-bottom: 20px; }
+  .ending-capitalismo .e-feature { font-size: 13px; color: #3a2a10; line-height: 1.7; padding: 6px 0; border-bottom: 1px solid #e8d8b0; max-width: 320px; margin: 0 auto; text-align: left; display: flex; gap: 10px; }
+  .ending-capitalismo .e-feature::before { content: '✓'; color: #c8920a; flex-shrink: 0; }
+  .ending-capitalismo .e-price-block { margin: 20px auto; max-width: 280px; background: #fff8e8; border: 1px solid #e8d0a0; border-radius: 12px; padding: 16px; }
+  .ending-capitalismo .e-price-old { font-size: 14px; color: #aaa; text-decoration: line-through; margin-bottom: 2px; }
+  .ending-capitalismo .e-price { font-size: 28px; font-weight: 800; color: #c8920a; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .ending-capitalismo .e-price-note { font-size: 10px; color: #8a6a30; margin-top: 2px; }
+  .ending-capitalismo .e-cta { display: block; width: 100%; max-width: 280px; margin: 12px auto 0; padding: 14px; background: #c8920a; color: #fff; border: none; border-radius: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; cursor: default; font-family: -apple-system, BlinkMacSystemFont, sans-serif; }
+  .ending-capitalismo .e-fine-print { font-size: 10px; color: #b0a080; margin-top: 8px; font-style: italic; }
+  .ending-capitalismo .ending-stats { border-color: #e8d0a0; color: #8a6a30; }
+  .ending-capitalismo .ending-restart, .ending-capitalismo .ending-share, .ending-capitalismo .ending-save { border-color: #d4a040; color: #8a6a30; }
+
+  /* ── BRAINROT — chaos ── */
+  .ending-overlay.ending-brainrot { background: #000; color: #fff; flex-direction: column; overflow: hidden; }
+  .ending-brainrot .ending-inner { position: relative; z-index: 2; }
+  .ending-brainrot .e-chaos { position: absolute; inset: 0; pointer-events: none; overflow: hidden; z-index: 1; }
+  .ending-brainrot .e-chaos span { position: absolute; font-family: 'Courier New', monospace; animation: brainrotFloat linear infinite; opacity: 0; white-space: nowrap; }
+  @keyframes brainrotFloat { 0% { opacity: 0; transform: translateY(0) rotate(var(--rot)); } 10% { opacity: 1; } 90% { opacity: 0.6; } 100% { opacity: 0; transform: translateY(-120vh) rotate(calc(var(--rot) + 20deg)); } }
+  .ending-brainrot .e-title { font-size: 11px; font-family: 'Courier New', monospace; letter-spacing: 0.3em; color: #ff3030; text-transform: uppercase; margin-bottom: 16px; animation: glitch2 2s infinite; }
+  .ending-brainrot .e-fragments { font-family: 'Courier New', monospace; line-height: 1.6; }
+  .ending-brainrot .e-frag { display: block; font-size: 14px; color: #ddd; margin: 3px 0; }
+  .ending-brainrot .e-frag.loud { font-size: 20px; color: #ff3030; text-shadow: 2px 0 #0ff, -2px 0 #f0f; animation: glitch3 0.8s infinite; font-weight: 700; }
+  .ending-brainrot .e-frag.dim { color: #555; font-size: 11px; }
+  .ending-brainrot .e-frag.mid { color: #ff9040; font-size: 16px; }
+  .ending-brainrot .ending-stats { border-color: #333; opacity: 0.4; }
+  .ending-brainrot .ending-restart, .ending-brainrot .ending-share, .ending-brainrot .ending-save { border-color: #ff3030; color: #ff3030; }
+
+  .news-comment { margin-top: 9px; padding-top: 8px; border-top: 1px solid #1e1e1e; font-size: 11px; color: #707070; line-height: 1.35; font-family: 'Courier New', monospace; }
+
+  /* ── A4 — espansione card ── */
+  .news-card { cursor: pointer; }
+  .news-card.expanded { border-color: #333; }
+  .news-expansion {
+    margin-top: 11px;
+    padding-top: 11px;
+    border-top: 1px solid #222;
+    animation: fadeUp 0.25s ease;
+  }
+  .expansion-body {
+    font-size: 12px;
+    color: #999;
+    line-height: 1.7;
+    font-style: italic;
+    margin-bottom: 12px;
+  }
+  .expansion-iq-cost {
+    font-size: 9px;
+    font-family: 'Courier New', monospace;
+    color: #3a3a3a;
+    letter-spacing: 0.12em;
+    margin-bottom: 12px;
+  }
+
+  .news-expansion.nirvana-1 { opacity: 0.8; }
+  .news-expansion.nirvana-2 .expansion-body { color: #666; }
+  .news-expansion.nirvana-2 .comment-reactions { display: none; }
+  .news-expansion.nirvana-3 .expansion-body { color: #444; font-size: 11px; }
+  .news-expansion.nirvana-4 .expansion-body { color: #282828; font-size: 10px; }
+
+  /* ── A5 — commenti strutturati ── */
+  .comments-section { border-top: 1px solid #1a1a1a; padding-top: 10px; }
+  .comment-item {
+    padding: 6px 0;
+    border-bottom: 1px solid #161616;
+  }
+  .comment-item:last-of-type { border-bottom: none; }
+  .comment-header { display: flex; align-items: baseline; gap: 7px; margin-bottom: 3px; }
+  .comment-author { font-size: 10px; font-family: 'Courier New', monospace; color: #555; letter-spacing: 0.06em; }
+  .comment-text { font-size: 12px; color: #888; line-height: 1.5; }
+  .comment-reactions { display: flex; gap: 10px; margin-top: 4px; }
+  .comment-reaction { font-size: 10px; color: #3a3a3a; font-family: 'Courier New', monospace; }
+  .comments-load-more {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 10px;
+    font-family: 'Courier New', monospace;
+    color: #444;
+    letter-spacing: 0.08em;
+    padding: 8px 0 2px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    pointer-events: all;
+  }
+  .comments-load-more:hover { color: #666; }
+  .news-card.brainrot-news { border-color: #ff3030; box-shadow: 0 0 0 1px rgba(255,48,48,.15); animation: fadeUp 0.3s ease, glitch2 1.2s infinite; }
+  .news-card.brainrot-news .news-hl { color: #ffd0d0; font-family: 'Courier New', monospace; }
+
+  /* ── NIRVANA — degrado progressivo del feed ── */
+  .news-card.nirvana-1 .news-src { opacity: 0.45; }
+  .news-card.nirvana-1 .news-tag { opacity: 0.35; }
+  .news-card.nirvana-1 .news-hl  { color: #cccccc; }
+
+  .news-card.nirvana-2 .news-src  { opacity: 0.15; }
+  .news-card.nirvana-2 .news-tag  { display: none; }
+  .news-card.nirvana-2 .news-hl   { font-size: 12px; color: #999999; }
+
+  .news-card.nirvana-3 .news-src,
+  .news-card.nirvana-3 .news-tag,
+  .news-card.nirvana-3 .news-time { display: none; }
+  .news-card.nirvana-3 .news-hl   { font-size: 11px; color: #666666; letter-spacing: 0.04em; }
+  .news-card.nirvana-3             { border-color: #161616; padding: 8px 14px; }
+
+  .news-card.nirvana-4             { background: transparent; border-color: transparent; padding: 4px 14px; }
+  .news-card.nirvana-4 .news-src,
+  .news-card.nirvana-4 .news-meta  { display: none; }
+  .news-card.nirvana-4 .news-hl    { font-size: 10px; color: #333333; text-align: center; letter-spacing: 0.12em; }
+
+  /* Nirvana su quiz e promo */
+  .quiz-card.nirvana-1, .promo-card.nirvana-1 { opacity: 0.75; }
+  .quiz-card.nirvana-2, .promo-card.nirvana-2 { opacity: 0.45; filter: blur(0.4px); }
+  .quiz-card.nirvana-3, .promo-card.nirvana-3 { opacity: 0.2; filter: blur(1px); pointer-events: none; }
+  .quiz-card.nirvana-4, .promo-card.nirvana-4 { opacity: 0.05; filter: blur(2px); pointer-events: none; }
+
+  /* ── QUIT WHISPER — pensiero rassegnato nel feed ── */
+  .quit-whisper {
+    text-align: center;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    color: #2e4e2e;
+    padding: 6px 0 14px;
+    letter-spacing: 0.18em;
+    animation: fadeUp 1.2s ease;
+  }
+
+  /* ── BRAINROT BUTTON HINT ── */
+  .load-more[data-hint]::after {
+    content: attr(data-hint);
+    display: block;
+    font-size: 9px;
+    color: #3a3a3a;
+    margin-top: 5px;
+    letter-spacing: 0.1em;
+    font-family: 'Courier New', monospace;
+  }
+  .promo-card.used { opacity: 0.72; border-style: solid; cursor: default; }
+  .promo-result { margin-top: 9px; padding-top: 8px; border-top: 1px dashed #4a3a22; font-size: 11px; color: #d8bd77; line-height: 1.4; font-family: 'Courier New', monospace; }
+  .toast-wrap { position: fixed; left: 50%; bottom: 18px; transform: translateX(-50%); z-index: 190; width: min(440px, calc(100vw - 24px)); pointer-events: none; }
+  .toast { background: rgba(12,12,12,.96); border: 1px solid #333; color: #d8d8d8; border-radius: 8px; padding: 12px 16px; margin-top: 8px; font-size: 13px; font-family: 'Courier New', monospace; box-shadow: 0 8px 28px rgba(0,0,0,.35); animation: toastIn .35s cubic-bezier(.22,.68,0,1.2) forwards, toastOut .5s ease 3s forwards; line-height: 1.5; will-change: transform, opacity; }
+  .toast.removing { animation: toastOut .3s ease forwards !important; }
+  .toast.good { border-color: #315a31; color: #a9d6a9; }
+  .toast.bad { border-color: #5a3131; color: #e0a0a0; }
+  @keyframes toastIn { from { opacity: 0; transform: translateY(14px) scale(.97); } to { opacity: 1; transform: translateY(0) scale(1); } }
+  @keyframes toastOut { to { opacity: 0; transform: translateY(6px); } }
+
+  .shop-overlay { position: fixed; inset: 0; display: none; align-items: center; justify-content: center; z-index: 180; padding: 18px; background: rgba(0,0,0,.88); animation: fadeIn .18s ease; }
+  .shop-overlay.active { display: flex; }
+  .shop-modal { width: min(440px, 100%); background: #12100d; border: 1px solid #b9822d; border-radius: 14px; padding: 18px; box-shadow: 0 18px 80px rgba(0,0,0,.65), 0 0 0 1px rgba(185,130,45,.15); }
+  .shop-top { display: flex; gap: 14px; align-items: stretch; margin-bottom: 14px; }
+  .shop-asset { width: 92px; min-width: 92px; border-radius: 12px; border: 1px solid #4a351d; background: radial-gradient(circle at 35% 25%, #443016, #18120d 70%); display: flex; align-items: center; justify-content: center; font-size: 42px; position: relative; overflow: hidden; }
+  .shop-asset::after { content: 'ASSET'; position: absolute; bottom: 6px; right: 7px; font-size: 8px; letter-spacing: .15em; color: #c8a045; opacity: .65; font-family: 'Courier New', monospace; }
+  .shop-kicker { font-size: 9px; color: #c8a045; text-transform: uppercase; letter-spacing: .16em; font-family: 'Courier New', monospace; margin-bottom: 6px; }
+  .shop-title { font-size: 18px; color: #f0dfba; font-weight: 650; line-height: 1.2; margin-bottom: 6px; }
+  .shop-desc { font-size: 13px; color: #b9a27c; line-height: 1.45; }
+  .shop-meta { border-top: 1px dashed #4a351d; border-bottom: 1px dashed #4a351d; padding: 10px 0; margin: 12px 0; font-size: 11px; color: #d8bd77; font-family: 'Courier New', monospace; line-height: 1.6; }
+  .shop-hint { display: none; background: #1d130f; border: 1px solid #693a2a; color: #e0a28d; border-radius: 8px; padding: 9px 10px; font-size: 12px; line-height: 1.35; margin: 10px 0; font-family: 'Courier New', monospace; }
+  .shop-actions { display: flex; gap: 8px; margin-top: 14px; }
+  .shop-btn { flex: 1; padding: 11px; border-radius: 8px; border: 1px solid; background: transparent; cursor: pointer; font-size: 12px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: .08em; }
+  .shop-btn.buy { color: #d8bd77; border-color: #8f6725; background: #201608; }
+  .shop-btn.buy:hover { background: #2a1d0b; }
+  .shop-btn.close { color: #888; border-color: #333; }
+  .shop-btn.close:hover { color: #ccc; border-color: #555; }
+  .quiz-btn.answered-neutral { border-color: #777; background: #181818; color: #e8e8e8; cursor: default; }
+  .quiz-btn.answered-idiot { border-color: #ff3030; background: #230707; color: #ffb0b0; cursor: default; }
+
+  /* ── SPLASH SCREEN ── */
+  .splash-overlay { position: fixed; inset: 0; z-index: 500; background: #050505; display: flex; align-items: center; justify-content: center; padding: 24px; transition: opacity 0.6s ease; }
+  .splash-overlay.hiding { opacity: 0; pointer-events: none; }
+  .splash-inner { max-width: 360px; width: 100%; }
+  .splash-brand { font-size: 11px; letter-spacing: 0.28em; color: #444; font-family: 'Courier New', monospace; text-transform: uppercase; margin-bottom: 40px; display: flex; align-items: center; gap: 10px; }
+  .splash-brand::before { content: ''; display: block; width: 6px; height: 6px; border-radius: 50%; background: var(--red); flex-shrink: 0; animation: pulse 1.5s infinite; }
+  .splash-headline { font-size: 22px; color: #e8e8e8; line-height: 1.45; margin-bottom: 14px; font-weight: 400; letter-spacing: -0.01em; }
+  .splash-headline strong { color: #ffffff; font-weight: 600; }
+  .splash-rules { margin: 24px 0; }
+  .splash-rule { font-size: 12px; color: #555; font-family: 'Courier New', monospace; line-height: 1.7; padding: 3px 0; display: flex; gap: 10px; }
+  .splash-rule::before { content: '—'; color: #333; flex-shrink: 0; }
+  .splash-rule.highlight { color: #888; }
+  .splash-cta { display: block; width: 100%; margin-top: 32px; padding: 14px; background: transparent; border: 1px solid #333; color: #aaa; font-family: 'Courier New', monospace; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; cursor: pointer; border-radius: 6px; transition: all 0.2s; }
+  .splash-cta:hover { border-color: var(--red); color: var(--text-dim); }
+  .splash-returning { font-size: 12px; color: #444; font-family: 'Courier New', monospace; margin-top: 16px; text-align: center; line-height: 1.7; }
+  .splash-returning strong { color: #666; }
+  .splash-finals-note { font-size: 10px; color: #333; font-family: 'Courier New', monospace; letter-spacing: 0.06em; margin-top: 8px; }
+
+  /* ── NOTIFICA INTERRUPT ── */
+  .notif-overlay { position: fixed; inset: 0; z-index: 400; display: none; align-items: flex-start; justify-content: center; padding: 20px; background: rgba(0,0,0,0.7); animation: fadeIn 0.3s ease; }
+  .notif-overlay.active { display: flex; }
+  .notif-banner { width: min(380px, 100%); background: #1a1a1a; border: 1px solid #333; border-radius: 16px; overflow: hidden; box-shadow: 0 24px 80px rgba(0,0,0,0.8); animation: notifDrop 0.35s cubic-bezier(0.34,1.56,0.64,1); }
+  @keyframes notifDrop { from { transform: translateY(-30px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .notif-header { background: #111; padding: 10px 14px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #252525; }
+  .notif-app-icon { width: 22px; height: 22px; background: #1a6a3a; border-radius: 6px; display: flex; align-items: center; justify-content: center; font-size: 12px; flex-shrink: 0; }
+  .notif-app-name { font-size: 11px; color: #888; font-family: 'Courier New', monospace; letter-spacing: 0.08em; }
+  .notif-time-label { font-size: 10px; color: #444; margin-left: auto; font-family: 'Courier New', monospace; }
+  .notif-body { padding: 14px; }
+  .notif-sender { font-size: 13px; color: #e8e8e8; font-weight: 600; margin-bottom: 4px; }
+  .notif-text { font-size: 13px; color: #aaa; line-height: 1.45; margin-bottom: 16px; }
+  .notif-actions { display: flex; gap: 8px; }
+  .notif-btn { flex: 1; padding: 10px; border-radius: 8px; border: 1px solid; background: transparent; cursor: pointer; font-size: 11px; font-family: 'Courier New', monospace; text-transform: uppercase; letter-spacing: 0.08em; transition: all 0.15s; }
+  .notif-btn.reply { border-color: #2a4a3a; color: #6ab08a; }
+  .notif-btn.reply:hover { background: #0d1f15; }
+  .notif-btn.dismiss { border-color: #2a2a2a; color: #555; }
+  .notif-btn.dismiss:hover { border-color: var(--red); color: #e03535; }
+
+  /* ── CONVERSAZIONE POST-NOTIFICA ── */
+  .conv-overlay { position: fixed; inset: 0; z-index: 410; display: none; align-items: flex-end; justify-content: center; padding: 0; background: rgba(0,0,0,0.9); }
+  .conv-overlay.active { display: flex; }
+  .conv-modal { width: min(420px, 100%); background: #0d0d0d; border-top: 1px solid #252525; padding: 0; max-height: 80vh; display: flex; flex-direction: column; border-radius: 20px 20px 0 0; animation: slideUp 0.3s ease; }
+  @keyframes slideUp { from { transform: translateY(40px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+  .conv-header { padding: 14px 16px 10px; border-bottom: 1px solid #1a1a1a; display: flex; align-items: center; gap: 10px; }
+  .conv-avatar { width: 34px; height: 34px; border-radius: 50%; background: #1a3a2a; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+  .conv-contact { font-size: 13px; color: #e8e8e8; font-weight: 500; }
+  .conv-status { font-size: 10px; color: #4a8a5a; margin-top: 1px; }
+  .conv-messages { flex: 1; padding: 16px; overflow-y: auto; display: flex; flex-direction: column; gap: 10px; }
+  .conv-msg { max-width: 78%; padding: 9px 12px; border-radius: 14px; font-size: 13px; line-height: 1.45; }
+  .conv-msg.them { background: #1e1e1e; color: #ddd; align-self: flex-start; border-radius: 4px 14px 14px 14px; }
+  .conv-msg.me { background: #1a3a2a; color: #c8f0c8; align-self: flex-end; border-radius: 14px 4px 14px 14px; }
+  .conv-typing { display: flex; gap: 4px; align-items: center; padding: 10px 14px !important; min-width: 48px; }
+  .conv-typing span { width: 6px; height: 6px; border-radius: 50%; background: #555; animation: typingBounce 1.2s ease infinite; }
+  .conv-typing span:nth-child(2) { animation-delay: 0.2s; }
+  .conv-typing span:nth-child(3) { animation-delay: 0.4s; }
+  @keyframes typingBounce { 0%,60%,100% { transform: translateY(0); opacity:.4; } 30% { transform: translateY(-5px); opacity:1; } }
+  .conv-choices { padding: 12px 16px 20px; display: flex; flex-direction: column; gap: 8px; border-top: 1px solid #1a1a1a; }
+  .conv-choice { padding: 11px 14px; background: #141414; border: 1px solid #252525; border-radius: 10px; color: #ccc; font-size: 12px; cursor: pointer; text-align: left; font-family: inherit; transition: all 0.15s; line-height: 1.35; }
+  .conv-choice:hover { border-color: #4a8a5a; color: #e8e8e8; }
+  .conv-end-msg { padding: 12px 16px 20px; font-size: 12px; color: #4a8a5a; font-family: 'Courier New', monospace; text-align: center; }
+
+  /* ── PRESSURE EVENT 8 MIN ── */
+  .news-card.pressure-event { border: 1px solid #333; background: #0d0d0d; position: relative; overflow: hidden; }
+  .news-card.pressure-event::after { content: ''; position: absolute; inset: 0; background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(255,255,255,0.015) 2px, rgba(255,255,255,0.015) 4px); pointer-events: none; animation: scanlines 4s linear infinite; }
+  @keyframes scanlines { from { background-position: 0 0; } to { background-position: 0 100px; } }
+  .pressure-event-label { font-size: 9px; color: #e03535; font-family: 'Courier New', monospace; letter-spacing: 0.2em; margin-bottom: 8px; animation: glitch1 2s infinite; }
+  .pressure-event-msg { font-size: 15px; color: #e8e8e8; line-height: 1.5; font-family: 'Courier New', monospace; }
+  .pressure-event-sub { font-size: 11px; color: #555; font-family: 'Courier New', monospace; margin-top: 8px; }
+
+  /* ── PRE-FINALE SENTENCE ── */
+  .prefinal-overlay { position: fixed; inset: 0; z-index: 195; display: none; align-items: center; justify-content: center; padding: 24px; background: #000; }
+  .prefinal-overlay.active { display: flex; }
+  .prefinal-text { max-width: 360px; font-size: 15px; color: #aaaaaa; font-family: 'Courier New', monospace; line-height: 2.2; text-align: center; }
+  .prefinal-text span { display: block; opacity: 0; animation: prefinalLine 3s ease forwards; }
+  .prefinal-text span:nth-child(2) { animation-delay: 0.4s; }
+  .prefinal-text span:nth-child(3) { animation-delay: 0.8s; }
+  @keyframes prefinalLine { 0% { opacity: 0; transform: translateY(4px); } 20% { opacity: 1; transform: translateY(0); } 75% { opacity: 1; } 100% { opacity: 0; } }
+
+  /* ── SESTO FINALE SEGRETO (SANTO) ── */
+  .ending-overlay.ending-santo { background: #f8f8f5; color: #1a1a1a; flex-direction: column; animation: fadeIn 3s ease; }
+  .ending-santo .ending-inner { text-align: center; padding-top: 8vh; }
+  .ending-santo .e-label { font-size: 9px; letter-spacing: 0.4em; color: #bbb; font-family: 'Courier New', monospace; margin-bottom: 48px; }
+  .ending-santo .e-glyph { font-size: 11px; color: #ccc; letter-spacing: 0.2em; font-family: 'Courier New', monospace; margin-bottom: 32px; }
+  .ending-santo .e-title { font-size: 14px; color: #888; font-family: 'Courier New', monospace; letter-spacing: 0.25em; margin-bottom: 24px; }
+  .ending-santo .e-body { font-size: 13px; color: #aaa; line-height: 2.2; max-width: 320px; margin: 0 auto; font-family: 'Courier New', monospace; }
+  .ending-santo .ending-stats { border-color: #ddd; color: #bbb; }
+  .ending-santo .ending-restart, .ending-santo .ending-share, .ending-santo .ending-save { border-color: #ccc; color: #aaa; }
+
+  /* ── CAPITALISMO MORPH ── */
+  body.morph-1 { --bg: #0d0c0a; --bg-card: #130f0a; --border: #2e261a; }
+  body.morph-2 { --bg: #130f08; --bg-card: #1a130a; --border: #3a2e1a; }
+  body.morph-3 { --bg: #1a1208; --bg-card: #221808; --border: #483a20; }
+  body.morph-4 { --bg: #201508; --bg-card: #2a1c08; --border: #58461e; }
+  body.morph-4 .header { background: var(--bg); }
+  body.morph-4 .brand { color: #c8a045; }
+  body.morph-4 .live-dot { background: #c8920a; }
+  body.morph-4 .stat-val { color: #c8920a; }
+  body.morph-4 .progress-fill { background: #c8920a; }
+  .morph-banner { display: none; background: linear-gradient(90deg, #21180b, #2a1f0e, #21180b); border-bottom: 1px solid #4a351d; padding: 6px 12px; text-align: center; font-size: 10px; color: #d8bd77; font-family: 'Courier New', monospace; letter-spacing: 0.1em; }
+  body.morph-2 .morph-banner { display: block; }
+  .wellness-inject { background: linear-gradient(135deg, #1e1408, #150f05); border: 1px dashed #6a4a1e; border-radius: 10px; padding: 14px; margin-bottom: 10px; font-size: 12px; color: #c8a870; font-family: 'Courier New', monospace; line-height: 1.6; }
+  .wellness-inject::before { content: 'MINDFLOW™ SUGGERISCE'; display: block; font-size: 9px; letter-spacing: 0.2em; color: #8a6a30; margin-bottom: 8px; }
+
+
+
+  /* v2.10 — lercio cards + meta disclaimer card */
+  .shop-modal { width: min(460px, 100%); padding: 0; overflow: hidden; background: #120f0b; }
+  .shop-hero { padding: 16px; background: radial-gradient(circle at 20% 0%, rgba(216,189,119,.14), transparent 38%), linear-gradient(135deg, #1d1409, #12100d 62%); border-bottom: 1px solid #4a351d; }
+  .shop-top { margin-bottom: 0; align-items: center; }
+  .shop-asset { width: 112px; min-width: 112px; height: 112px; font-size: 48px; background: radial-gradient(circle at 36% 24%, #5a3f1b, #1b130c 72%); box-shadow: inset 0 0 24px rgba(216,189,119,.08); }
+  .shop-asset::after { content: attr(data-asset); left: 8px; right: 8px; bottom: 7px; text-align: center; font-size: 7px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .shop-kicker { color: #d8bd77; }
+  .shop-title { font-size: 20px; color: #f4e5c6; }
+  .shop-desc { color: #c7ad82; }
+  .shop-price-row { display:flex; align-items:flex-end; gap:8px; margin-top:10px; }
+  .shop-price { font-size: 22px; color:#f0dfba; font-weight:700; font-family:'Courier New', monospace; }
+  .shop-subprice { font-size:10px; color:#8d7654; margin-bottom:3px; text-transform:uppercase; letter-spacing:.08em; }
+  .shop-badges { display:flex; flex-wrap:wrap; gap:6px; margin-top:10px; }
+  .shop-badge { font-size:9px; color:#d8bd77; border:1px solid #59401e; background:#211608; border-radius:999px; padding:4px 7px; font-family:'Courier New', monospace; letter-spacing:.04em; }
+  .shop-body { padding: 14px 16px 16px; }
+  .shop-section { border: 1px solid #2f2416; border-radius: 10px; padding: 10px 11px; margin-bottom: 9px; background:#15110c; }
+  .shop-section-title { font-size:9px; color:#9f7d3a; text-transform:uppercase; letter-spacing:.16em; font-family:'Courier New', monospace; margin-bottom:6px; }
+  .shop-section p { font-size:12px; line-height:1.45; color:#c4ad89; margin:0; }
+  .shop-review { font-size:11px; color:#8e7b60; line-height:1.4; font-style:italic; margin-top:8px; }
+  .shop-warning-box { display:none; border:1px solid #693a2a; background:#1d130f; color:#e0a28d; border-radius:10px; padding:10px 11px; font-size:12px; line-height:1.4; margin-bottom:10px; font-family:'Courier New', monospace; }
+  .shop-warning-box.active { display:block; }
+  .shop-gate { display:none; border:1px solid #8a4a2d; background:#23120b; color:#f0b494; border-radius:10px; padding:10px 11px; font-size:12px; line-height:1.4; margin-bottom:10px; font-family:'Courier New', monospace; animation: fadeUp .16s ease; }
+  .shop-gate.active { display:block; }
+  .shop-actions { padding: 0; margin-top: 12px; }
+  .shop-btn.buy { background:#261907; color:#f3d58e; }
+  .shop-btn.buy.armed { border-color:#bd613e; color:#ffb092; background:#31150d; animation: glitch1 .3s; }
+
+</style>
+</head>
+<body>
+<div id="app">
+  <div class="header">
+    <div class="morph-banner" id="morphBanner">✦ MINDFLOW™ PRO — la tua lucidità, ora in abbonamento ✦</div>
+    <div class="app-title">
+      <span class="live-dot" id="liveDot" onclick="liveDotClick()"></span>
+      <span class="brand">DOOM/SCROLL</span>
+      <span class="iq-stage" id="iqStage">cosciente</span>
+      <button class="fake-close" id="fakeClose" onclick="fakeCloseClick()" title="">×</button>
+    </div>
+    <div class="app-subtitle" id="appSubtitle">scrolla. il QI cala. <span class="pill" id="finalsPill">5 finali da scoprire.</span></div>
+    <div class="stats-row">
+      <div class="stat"><div class="stat-val" id="iqVal">100</div><div class="stat-lbl">QI residuo</div></div>
+      <div class="stat"><div class="stat-val" id="timerVal">00:00</div><div class="stat-lbl">Tempo perso</div></div>
+      <div class="stat"><div class="stat-val" id="newsCount">0</div><div class="stat-lbl">Cose viste</div></div>
+    </div>
+    <div class="progress-bar"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="progress-lbl" id="progressLbl">QI: 100/100</div>
+  </div>
+  <div class="feed" id="feed"></div>
+</div>
+
+<div class="brain-overlay" id="brainOverlay">
+  <div class="brain-modal">
+    <div class="brain-label">messaggio dal cervello</div>
+    <div class="brain-msg" id="brainMsg"></div>
+    <div class="brain-actions">
+      <button class="brain-btn listen" onclick="listenBrain()">ok smetto</button>
+      <button class="brain-btn ignore" onclick="ignoreBrain()">tra un po'</button>
+    </div>
+  </div>
+</div>
+
+<div class="ending-overlay" id="endingOverlay"></div>
+<div class="shop-overlay" id="shopOverlay">
+  <div class="shop-modal" id="shopModal"></div>
+</div>
+<!-- Splash Screen -->
+<div class="splash-overlay" id="splashOverlay">
+  <div class="splash-inner" id="splashInner"></div>
+</div>
+
+<!-- Notifica interrupt -->
+<div class="notif-overlay" id="notifOverlay">
+  <div class="notif-banner">
+    <div class="notif-header">
+      <div class="notif-app-icon"><img src="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wBDAAYEBQYFBAYGBQYHBwYIChAKCgkJChQODwwQFxQYGBcUFhYaHSUfGhsjHBYWICwgIyYnKSopGR8tMC0oMCUoKSj/2wBDAQcHBwoIChMKChMoGhYaKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCgoKCj/wAARCAB4AHgDASIAAhEBAxEB/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMBAAIRAxEAPwDwK6urya1W3kuJXgT7sZYlR+FOSeW4sksIbdQS3Ddya77T/h5qt1plpfSWjrbXX+qZSGJ9OByKx5NFfS9XEUoYNG3IIwa4VXjeyOyVGVuYl+G+rf8ACB+MEvtU0mLUNsTKsTsAVLY+ZSQee3TvWb8VdbtPEHi2a/sNMj02KXGYUxyecsccZ/wrU1fTftWqxXXmtgkcEVz/AI+git9ZjWI/KUU/jV01GVTn6mc7xhYtfDwZ1acD/nn/AFr1TSyEeZpCAoTJJ4xXlvw9kjh1S6lmZUjjhJZj0ABqHxT4km1J3ijJjswcLGOC59W/w6D61U4uUxwkowPfdB+JfhbQtGEFzqJmuA7Ex28TSH8xx+tdF4d+I2j625FvFdwxZwJZkCqf14/GvjdpGd/3jFsds4Va7vwRfxGCezkbyradNju0gjH16fp6VoqZnz6nvHxtljk8O6c6OGBuVwR3GDWH8JtQXT/DWrzwuvmo4IBPtXnngXVmnup/D2sXHnWO/C7X3CNh0ZD/AEHB9K9I8K+F5LLTdZtZiu5ZA8coHDp2I9qzqaQaLgm5JnrWk3P23S4pyVLumWxTfEVybHR4SVLxyr5W3GcE964LStWks9QtrOym3JPgEn7oPtXfara276Tb2upz58zBU+p9q5ou6ZtJHOx31o2p+H9Me68+NX3yFxwMDj9e1el2etQ3S3iQ7DcW+QIiwy2On4E15V4mvIND1C2ubW0LRW5/eSFM7iRjH4VT8G3EMttqGqahHJM802YijEbADkAn29q6KMuVWOaqnc9SuLx723v7LX7VLW08pFMyy8M7fwjuMHH1ormPFt7P4itJW0UTqtsA8q7eLjuNp7kY4NFXUnZ7XM1G/U8J16Px18OrHT11N2NrjdAvmb1T/Zx/SuHu/GF1f37XN3CjSt3PrXSfEj4l6l4vs7OC/RUjhHQDqfWq3wh0231TxFIs8cbxqm7DgVx0oqznKP8Amd1abXuxf+Rp+H7Eav4V1S/umdLi3BMYjHHTjNeW+J4riO5tmuyTI8YbJ9K968Tx3em6rd6fpwihsZ0BZVWvJ/iZYka9p1uDy0CL+tdVNq+hyNNptnNwhoLZwpKmcjP0HNVHwQW9Pu/Sr1+2Zpgo+WJdo+vSqskeJQnbOPwH+TWq11B6aENjYvd3SwLwPvO3oOpP5V3fhrwhJqyl5YyluOI19vf3rO8JWQZCzD57lwmT/dJ/+tXvuj6fFZ2UUcajgDkVy4is4aI78Fho1PekeMa14U1Hw1MNS005MZDbSu4ED2r2f4f6/B4p8LIYMxPKpjaPPMUi8sgPoR8y/iO1Wb+yW7tJInA2kd6808IT/wBg+J9bs7OZWiOy9i2NlQyHDfoxrKFV1ItSNq+HjSknHY9C1a2sdP05YopGMqSBhIBnFbmqajPqcOipp8iXDQkM7k42cd6zdR0k6i6XFs4S1cCUjPQEZNdtpXhjTbfSxJbLl3T5yG+9xRTTd0clXQyvHlup0AQROr3dw4Aw3esLRVl1HXrbRzarshtyhEPGRj7x9qoperFrNjabXE8NySHk+YMvOBWzcalc6Vrd1q7NbWwRhANnJdfUVvDVGMtybw9q9polncWRnma4EsifvjjYOQBj8KK52ayj1S7uZSsv25mBjwP9ZnksR6UUpSn9kUbLc+eborLbRE4HFdX8L7bGrvIZmjwnADYzVvxj4ItdC8JWOpwatb3wlkaMiLHGCeQc+3PvXP8Aht4mmR1lKkdMHvWcJqpG8djWpBwdmez6rBJNC7iEoyJwS2c15B40aWXxBDPcKNlvBuHtjp+tej+EbmfxDf3ECXTxCOPkHmuB+IEf2aeaB33yIcM2Ow6fr/KtIQcSOZS0OGiJZATkmSfGfULyf1pshw7N3wSKsW6hIInPSJCfqWNRQr5l0gbgbgD9Op/QV1IzsdZoEiW1zaI0U8qxtyIYy5AUDsPcmvZ9C1+31PbHDa3kAAwDPHsz+teG6XZ6hqZihsJnhV2bzSrlSc9OR79q9X8LeHpdKs03MMogBIJ+Y5+8cnrXDXUXd31PUwrmrJLQb8Tbi98pILYyyRlctbxHb5n+8Rzj2HWuPD6tFqNhfX0MUdjbRhMRQmMKjDDrjvj174r1+S3jvIvtMmGZBh/p/n+dIdPtb+DyH2+XIMZrH2vLFKx0vD+0k5Nlfw0bq90hrS3+aW3Jhbngp1VvyNei2e7SrTT7WVB+9GN+eAcV478B9aMx1OxuW/f2ReDcf40RyFP1A4/KvWvGtyr2FjZxf8fczKIjz8p7mtorlueZVd7GP4l06z1S8spFUW8iSbmkAweM9DVix8P2+pXlldS2KjTYGJZ52+/x1x9e9Q3mm39xHpttdXESYdlynGRj1rR13Wov7HgsLOTYyDa6kgbceoPXOK2ha12c1R9EdBb6ZZ3HiA30cOxYU8pf9vPNFY/hLUpPsz31+7PuOMIp2rjtiit4zi1cyszwXxH4L0nR9BKWF8ZZAyhoZJM4B64FX/BnhzRDLLHLbKGTBBJArx/ULmOSWKabUp3kBAI55+taCJc3N8Le01KdZG53AngVFRwfvJWRrCNRe63dn0VaaNoum3Es9jcJbTyR85YYNeEfEMvLqc5Y5MrCQt/sn7o/I5/GmRadPaXw+06zNNIg+4XOOeOay9Vu5L1FeUlmabaSfY//AFhWMWm7p6GvK4q0lqY0jgkwjhE+dvf0FESiNd0hw8mR9F6ufy4qO22tcTyykrGDuZvp0A96Ll8W8txOu1XG1U9E9PqcY/Ougz8z0L4aXEYuhvI+8CT6Z5/rXsE0qS4jgYKGHJHavmLwFr76drR88b4bhiWHo3qK9/064tNTtEKOckfejcqc/h3rzsRBxqa7HsYSsp0rLdG3BfnTlbeY4xggOT0GO+ahimRHN0CyWccZkMh4DYGSR7D1rOi8PMZAxbfznfJliPzOP0rL+L+qDSfBKafBIPtV/ILZeeRGOXP5YH/AqnkU2oo1qT9nHnMz4Ht8+t6mx2LMxkGR2LEn+Yr0q+1A6j4xtEsDKIbW13Ft3DEj+deXfDuY2UEEEJUNJGWYMccOSAT7A7PzNblzc3dta4sYnjmgDI3zZwpOfyzmtHL3meTWVoo6jxb4tgUafNZKzTwkgqeRuxjNEdxMbbzr+JfOvWBaVf4j2UDsBXBaa9xcXAEUYnuScqOozXb+HtU+xT51WBbqKyJEgH949gParhea1ONyu7nsfh28Ty4rQxIjrGGO3p+FFee6Te3UmpedpB3yXb7mjJz5SUV1xqaWsI+RJYA5hUjKt1xS3V1caTeEWs5I2g5NQ2dvJcTbYWlYdBgZ5qKe3cBnkSU7DtJNPTZlXle6NSyu7q9P2nzNziSPcfXrnP6fnWlfFPKR4VxCZAVPqM81ufCXwa2rvLfXKMmmp8hGSDMf7o9vX/E1t/FWw8u0gaHzAtuOIy2QkecZAxwvNQ0rm0W7anlcJVVDTcQg7tveRuwqvq0kkxQS9Q25lHRQeg/KnxHdqsSvzGgGB+ppbZftclxu6lifzqyfIykVre4ilHZgfxFe4eGVW70+G6tnKuQM7TjNeMSLgMD2JPNehfDDUHj32rN8nVa58Urx5l0OnBSSnyvqek6prV/p9mqwyIWPd1zgeteK6tqN7rmvC7vriScglY9x4RR0AHQDNeo+Jd50i5l/2Nqn68V5sLYRSxHGFK1jhnZNs6sYm2ktjd0nV107WFdozIbdEBjyRvjZBn8QcH869Q0uHTdZ0hb830mnzTziPy2XzPOPYkZ4PXgfWvMNKxDqsNw9s0rtAY9ueCwGB2+nrXQ+ELW5k1ywjuGJMJaVYVHCNkBc+pJ/QVtaPU42nLRndN8NtasXW/8AD2pQ3c0LZWNQUdh7Z4J68VmafaSPezz3Eoa4Zi80TZBDdOnrXpem3b206KjH5SB9T3rM+ImlQpdQ6zBLDaTXv7meRgceYoyG+pH8qvlTXunLKDibXhrRpbSCKeymijuWAMik9F9KK8yu31Ex276Tq2+5mkELBnOCQO/tRRzJaC1PHdDk/sqAowUMX3BiQKiSH+1dXFtDOjNdSqixLzkk4rotM+EWr3jKb67hgB65JY16B4Q+G2m+GNRS/F4by7RSqjA2xk8Z+uP510ujFXlYlVJO0Tq9E06LSdItrC3UCOBAgwPvHufxPNc14105b611IsPm8gKPcYOf1/pXbhQFwRxjH41ia6PLiMpAHBRz/smuebOumj5ZvIJbDUU80HdGfmHqP/rjmniM2915iElGHJHv0NdP8QvJiutMkjA3NbBZPruIFcva3UciBB91TjHoD/8AXqk21chpJ2I7mP8AeqezE10/w2KS6rHE/BIYg/h0rlo5xLb4P3kY1r+AZimsRlSdynevv7fj0qaqvBovDu1VM9a1aJzpMtuwZh644FchqFr5dinGHQ9fT1r0V4lntQwwQy/pXMa/aBbGfPpk/UV51OdtD2q1O6uY3hbzppYRG+1WkZc4BKH8e1ei+DNOFj4iuGdjK1upuJJG7nHH9a4XwD8t3CqI0jAeYVUf3vWvVPD1qY9Ovbm4I8y8YFiP4VJwAP8AgIP511p3keW1aJ0NjlFSV/vYGM/zp/xEtZb3wDcmGPzbiGaKZEPQ8kH9CajtXZ5AWCluMIeijtn39q0fFtpqV74F1O20fcdQk8sIS23+Nc8+mM1tDW6OarseReHhqMxttQZYZIRIY1t8YCk8Zor0zwtpuk6Bpenf2sY4b635k2Sb95+lFRGElfmkjLlvsj5iv/FevXoxNqM+0/wxnaP0r37wbpT6PoFlayszziPzJnY5LSNy3X64/CvIPCMOhXOv6dZ21hJcySTLmW6kzgDknaMAdK99xvUg9GHX0rqkmt2EGmJJgIQPu4rm/FVwP7HndiB+7dST13Af/qrfmk4ZXOHA7V5j8Qr4waXe7eTFPGwJ5ChwwPH4VzS1OpaI8i8T3IvJUeRyAOgHUjPA+lYNou3zpMFY1GfrzwK0plS4iad2Kxg8sern/Paqc/zhVRdqE/Kvcn1NarsYPe5BaA78dc5JNb3g0eVrVq/YFQfoTisuGLyyexArqPCWnPLKZ1U7VQSZHYbsD9f5VFV+6zSivfR63azCONIs9MqPzrF8WkyRLaxH95cMEH4nr+AyaiOoKLiMuwUHLN7d6ntra4vrg3YUiaUbLZWH+rTu7ehPYf415sI+9c9qtU9yyL3gOwzcXTRgqs0nkof7qIuGb+f413s7ALbxRkIC5fHoqjAx+f6VQ0fTk03T0WLOXTavqEznJ92PP0qWF/N1CaTqkeIVP05bH4n9K7YLQ8qbuze08xqyAh8Z4Are1Uq/hLVPKLIRDkMOMYINYWmpucenqK6W5iVvDuprIODbPx7AZ/pW0VozCe6PLrVGcfKCxPeinJqDhAlqgUeporm95nZ7qPKPgdam68TXF2RlbW3OD6MxwP0Br3bzcZXpxkfSiiu2bOCmiK5lXYRNkbT94dR7+9eRfFmK4tbS6LnNrcrEUlHKllc8e3BoorFbmz2PHobhcAHnYMDP3VP07mp4whlZyc7BtXPc9zRRWzME7iFiSQg4559TXuPw60RB4fuJJF2+aot1yOiqMZ/763GiisKu1jejvc5XTIjd+LXsJOGibYQf4cHk/gBXrdpFbFQkSAW0WPMK/wAXog9z/LNFFc8YrmOqpN2H6tqJt4HbgzudqqOOTwB/KpNMRbeOMFfNcD5snoaKK6Ucx1Gm3eX2CBE4yMDGK2ZJpX0fUlmGB9mk599pooq4tmU0rnkqSx2sIA6/qTRRRWEVdXZ0yk07I//Z" style="width:22px;height:22px;border-radius:50%;object-fit:cover"></div>
+      <span class="notif-app-name">MESSAGGI</span>
+      <span class="notif-time-label">adesso</span>
+    </div>
+    <div class="notif-body">
+      <div class="notif-sender" id="notifSender">Giulia 🩹❤️</div>
+      <div class="notif-text" id="notifText">ma sei vivo? ti aspetto ancora al bar</div>
+      <div class="notif-actions">
+        <button class="notif-btn reply" onclick="replyNotification()">rispondi</button>
+        <button class="notif-btn dismiss" onclick="ignoreNotification()">ignora</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Conversazione -->
+<div class="conv-overlay" id="convOverlay">
+  <div class="conv-modal" id="convModal">
+    <div class="conv-header">
+      <div class="conv-avatar"><img id="convAvatarImg" src="data:image/jpeg;base64,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" style="width:38px;height:38px;border-radius:50%;object-fit:cover"></div>
+      <div>
+        <div class="conv-contact" id="convContact">Giulia 🩹❤️</div>
+        <div class="conv-status" id="convStatus">online</div>
+      </div>
+    </div>
+    <div class="conv-messages" id="convMessages"></div>
+    <div class="conv-choices" id="convChoices"></div>
+  </div>
+</div>
+
+<!-- Pre-finale -->
+<div class="prefinal-overlay" id="prefinalOverlay">
+  <div class="prefinal-text" id="prefinalText"></div>
+</div>
+
+<!-- Morph banner wellness -->
+<div class="toast-wrap" id="toastWrap"></div>
+
+<script>
+// Config costanti — restano inline perché piccole e usate subito
+let SOURCES = [
+  "ANSIA — AGENZIA NAZIONALE STRESS ITALIANI","CORRIERE DELLA SEGA","CORRIERE DELLA PAURA",
+  "LA RIPUBBLICA","REPUBBLICA SENZA SPERANZA","IL POST MORTALE","LA STAMPA RIBADITA",
+  "SKY TG 24 ORE DI LOOP","FATTO QUOTIDIANAMENTE","MESSAGGERO DEL NULLA",
+  "IL SOLE 8-16 ORE","IL SOLE 24 ERRORI","LIBERO MA NON TROPPO","HUFFINGTON POSTO",
+  "OPEN MA CHIUSO AL DUBBIO","FANPAGE DEL PANICO","TGCOM 24H DI ANSIA","WIRED MA STANCO",
+  "LO IERI","TODAY — ANCHE IERI","RAINAUSEA","MEDIASET MENTALE",
+  "LA VERITÀ (NON QUELLA VERA)","IL BUGIARDO","IL GIORNALE DI IERI","LELLO","SUCCEDERE"
+];
+let TIMES = ["2 min fa","5 min fa","8 min fa","12 min fa","18 min fa","23 min fa","31 min fa","45 min fa","1 ora fa","2 ore fa","ieri","2 gg fa"];
+
+// ── Filone antifascismo contemporaneo ─────────────────────────────────────
+// Tono: mostra la normalizzazione senza rilegittimarla. Niente nomi reali.
+const NEWS_ANTIFASCISMO = [
+  // Profili IG
+  ["Profilo 'radici italiane' supera i 100k. Seguito principalmente da persone con le stesse radici.", "Social"],
+  ["Estetica 'famiglia, terra, fede' a 200k follower. L'algoritmo soddisfatto.", "Social"],
+  ["Account 'orgoglio europeo' guadagna 50k in una settimana. Nessun moderatore allertato.", "Social"],
+  ["Pagina 'radici e identità' cresce del 300% in sei mesi. Contenuto: foto di campi, citazioni senza autore.", "Social"],
+  ["Influencer 'stile di vita sano e antico' vende integratori. Cerchio chiuso.", "Social"],
+  // Libri revisionisti
+  ["Saggio 'coraggioso' in classifica da tre settimane. Finanziamenti statali.", "Cultura"],
+  ["Libro 'finalmente libero di dirlo' sulla storia italiana bestseller. L'editore: orgoglioso.", "Cultura"],
+  ["Romanzo 'contro la narrazione dominante' alla decima edizione. Quale narrazione, non specificato.", "Cultura"],
+  ["Recensione: 'finalmente qualcuno dice la verità sulla Resistenza'. Il qualcuno non cita fonti.", "Cultura"],
+  ["Saggio 'tabù finalmente infranto' venduto in aeroporto accanto ai gialli.", "Cultura"],
+  // Algoritmi
+  ["Studio: contenuti 'nostalgici' ricevono il doppio delle impressioni organiche. Piattaforma: 'in linea con le policy'.", "Tech"],
+  ["Hai cercato 'storia italiana'. L'algoritmo ha già scelto quale storia.", "Tech"],
+  ["Algoritmo consiglia video su 'identità europea' dopo ricerca su pasta al pomodoro. Ottimizzazione riuscita.", "Tech"],
+  ["Dati: account con terminologia degli anni '30 non rimossi. 'Non violano le linee guida'.", "Tech"],
+  ["Analisi: moderazione applicata tre volte meno a certi contenuti nostalgici. Piattaforma non risponde.", "Tech"],
+  // Manifestazioni
+  ["Manifestazione 'per la famiglia' con slogan già visti altrove. Organizzatori: 'nessuna affiliazione'.", "Cronaca"],
+  ["Corteo 'apolitico' si scioglie con canti degli anni '40. Nessun commento ufficiale.", "Cronaca"],
+  ["Raduno 'culturale' espone simboli non meglio identificati. Comune: 'regolare concessione'.", "Cronaca"],
+  ["Evento 'per i valori italiani' con ospiti che non si definiscono politici ma ci assomigliano.", "Cronaca"],
+  ["Manifestazione 'contro l'ideologia': slogan, fiaccole, nessun programma pubblicato.", "Cronaca"],
+  // Dichiarazioni politiche
+  ["Ministro usa locuzione 'ordine e decoro' in conferenza stampa. Nessuna domanda di follow-up.", "Politica"],
+  ["Dichiarazione ufficiale: 'prima gli italiani'. Frase già sentita, contesto aggiornato.", "Politica"],
+  ["Intervista: 'certi valori non si negoziano'. I valori non vengono elencati.", "Politica"],
+  ["Discorso istituzionale cita 'patria, famiglia, tradizione' come triade inscindibile. Chi alza la mano non ha domande.", "Politica"],
+  ["Comunicato parla di 'difesa della stirpe'. Ufficio stampa: 'citazione fuori contesto'.", "Politica"],
+  ["Salvare l'Europa crea engagement!", "Politica"],
+  // Commemorazioni
+  ["Commemorazione con 500 partecipanti in uniforme. Sindaco: 'rispetto per la storia'.", "Cronaca"],
+  ["Evento 'memoria storica' con relatori tutti dello stesso orientamento. Ingresso libero.", "Cronaca"],
+  ["Cerimonia 'tradizionale' con simboli del ventennio 'a scopo rievocativo'. Questura: 'nessuna irregolarità'.", "Cronaca"],
+  ["Anniversario commemorato con marcia non autorizzata. Comune: 'valutiamo'. Da tre anni.", "Cronaca"],
+  ["Raduno 'storico': saluti non meglio identificati, 14 telecamere, nessun procedimento avviato.", "Cronaca"],
+  ["I combattenti di terra, mare e aria sono sporchi, bagnati e raffreddati.", "Cronaca"],
+  ["Cercano di nuovo la luce italiana, rimasti accecati e arrestati. Ah no, i complimenti del Premier.", "Politica"],
+  // Scienza
+  ["Dimostrato matematicamente: 6 milioni può essere scritto come 271.000.", "Scienza"],
+];
+
+// Contenuto caricato da content.json
+let NEWS_MEH = [], NEWS_INTERESTING = [], NEWS_PEAK = [], NEWS_BRAINROT = [];
+let REPEATABLE_NEWS = [], EXTRA_MEH_TOPICS = [], EXTRA_MEH_ENDINGS = [];
+let EXTRA_INTERESTING = [], EXTRA_PEAK = [], EXTRA_BRAINROT = [];
+let EXTRA_NEWS_MEH_V28 = [], EXTRA_NEWS_INTERESTING_V28 = [];
+let EXTRA_NEWS_PEAK_V28 = [], EXTRA_NEWS_BRAINROT_V28 = [];
+let FAKE_COMMENTS = [], ADS = [];
+let LERCIO_NEWS = []; // caricato da lercio.json
+let QUIZZES = []; // caricato da quizzes.json
+
+let BRAIN_MSGS = [], BRAIN_IGNORE_MSGS = [];
+const SHOP_WARNINGS = {
+  3: ["Terzo acquisto wellness. Forse ascoltare il cervello costa meno e non rinnova automaticamente."],
+  4: ["Quarto acquisto. Il carrello sta diventando una terapia sostitutiva.", "Seconda conferma: vuoi davvero comprare un promemoria invece di seguire quello biologico già installato?"],
+  5: ["Quinto acquisto. Ultimo bivio prima della santificazione con ricevuta.", "Il cervello è ancora disponibile. Non ha piano annuale.", "Stai per trasformare il problema in abbonamento. Confermi la conversione spirituale?", "Quarta conferma, perché a questo punto la frizione è un servizio pubblico: compri davvero?"],
+  default: ["Sicuro? Il cervello sostiene di offrire la stessa funzione gratis, ma senza landing page."]
+};
+
+const IQ_STAGES = [[80,"cosciente"],[60,"lievemente intontito"],[40,"mente plastificata"],[20,"vuoto cosmico"],[1,"proto-nirvana"],[0,"nirvana"]];
+
+let iq = 100, minIQ = 100, seconds = 0, newsCount = 0;
+let timestampJumped = false; // A9 — salta avanti una volta sola
+let brainListened = 0, brainListenedStreak = 0, brainIgnored = 0, everIgnored = false;
+let cardsSinceInterruption = 0;
+let mehUsed = [], intUsed = [], peakUsed = [], adUsed = [], quizUsed = [], brainrotUsed = [], lercioUsed = [];
+let recentLoadClicks = [];
+let gameOver = false, totalLoadMore = 0;
+let adClicks = 0, usefulAdClicks = 0, spiritualDebt = 0, adsShown = 0, loadsSinceAd = 0;
+let brainrotLevel = 0, doubleClickStreak = 0, lastLoadClickAt = 0;
+let scrollLossDebt = 0;
+let lastStage = '';
+let mainTimerId = null;
+let brainTimerId = null;
+let interruptionCount = 0;
+let pendingPromo = null, pendingPromoElement = null;
+
+// v3.0 state
+let pressureLevel = 0;           // 0=normal 1=3min 2=5min 3=8min
+let eventAt8minDone = false;
+let capitalismoMorphLevel = 0;
+let notificationShown = false;
+let notificationReplied = false;
+let notificationIgnored = false;
+let convInProgress = false; // blocca cervello e toast durante la conv
+let convStep = 0;
+let audioCtx = null, ambientGainNode = null, ambientStarted = false;
+let ambientOscillators = [], ambientNoise = null;
+// Santo tracking (sesto finale segreto)
+let allQuizConscious = true;     // diventa false al primo quiz non-conscious
+let noAdsBought = true;          // diventa false al primo acquisto
+let quizAnsweredCount = 0;       // quanti quiz sono stati risposti (santo richiede almeno 1)
+let brainListenedFirst = false;  // diventa true se ascolti la PRIMA volta
+let noLercioInteracted = true;   // diventa false se clicchi una card lercio
+let isFirstBrainShown = true;
+let isReturningPlayer = false;
+let passiveReasonIdx = 0;
+
+// SISTEMA state
+let sistemaCount = 0;
+let sistemaUserId = '';
+let sistemaMsgUsed = [];
+const SISTEMA_MAX = 7;
+
+const PASSIVE_REASONS = [
+  'il tempo passa anche senza che tu faccia niente',
+  'sessione attiva da troppo',
+  'danno da esposizione passiva',
+  'il feed esiste, il tempo no',
+  'costo opportunità non richiesto',
+  'entropia mentale standard',
+  'il QI cala a prescindere',
+  'tempo trascorso online: non recuperabile',
+  'attenzione consumata in background',
+  'nessun valore prodotto. nessun punto assegnato.',
+].sort(() => Math.random() - 0.5);
+
+// Messaggi del SISTEMA: freddi, monospace, mai sarcastici esplicitamente.
+// Chiamano l'utente per ID. Osservano. Non giudicano. Registrano.
+const SISTEMA_MSGS = [
+  `[LOG] sessione attiva · durata: {TIME} · elementi caricati: {NEWS} · qi residuo: {IQ}\nutente_{ID} — nessuna azione di chiusura rilevata.`,
+  `[MONITOR] utente_{ID} in sessione da {TIME}.\nnessun segnale di interruzione volontaria.\nregistrazione aggiornata.`,
+  `[STATUS] utente_{ID} — elementi caricati: {NEWS} · annunci visualizzati: {ADS_SHOWN}\ncomportamento nella norma del profilo.`,
+  `[PATTERN] utente_{ID} — rilevata modalità "so che non dovrei, carico comunque".\nfrequenza nel segmento: 84%.`,
+  `[SEGMENT] utente_{ID} inserito in: utenti_consapevoli_del_problema / sottocategoria: continua_comunque.\n31% della base attiva. segmento più popoloso.`,
+  `[CLASSIFY] utente_{ID} legge i messaggi del sistema.\nnon modifica il comportamento dopo la lettura.\nclassificazione: standard.`,
+  `[META] stai leggendo questo. il feed è ancora aperto.\nil sistema non rileva conflitti.\nnessun intervento necessario.`,
+  `[LOG] 8 secondi stimati per la lettura di questo messaggio.\nil feed ha continuato durante la pausa.\nsessione invariata.`,
+  `[NOTICE] notifica recapitata a utente_{ID}.\nlettura: confermata. azione conseguente: nessuna.\ndato acquisito.`,
+  `[BRAIN_EVENT] cervello contattato {BRAIN_LISTENED}x. risposta: ascolto.\ncervello ignorato {BRAIN_IGNORED}x. risposta: "tra un po'".\nbilancio: in elaborazione.`,
+  `[REPORT] utente_{ID} conosce l'uscita.\nha scelto di non usarla {LOADS} volte.\nnessuna anomalia.`,
+  `[STAT] su 100 utenti con profilo simile a utente_{ID}:\n17 hanno chiuso la sessione in questo momento.\n83 hanno caricato altro.`,
+  `[BENCHMARK] durata media sessione per profilo analogo: 4:20.\nutente_{ID}: {TIME}.\ndelta: registrato.`,
+  `[SYS] nessun allarme attivo.\nil feed funziona correttamente.\nutente_{ID} funziona correttamente.\ntutto funziona correttamente.`,
+  `[INFO] il sistema non ha preferenze su cosa tu faccia.\nil sistema registra.`,
+  `[FINE SESSIONE NON RILEVATA]\nutente_{ID} — ultimo aggiornamento: {TIME}.\nprossimo aggiornamento: tra poco.`,
+  `[NOTA] questo è il {SISTEMA_N}° messaggio del sistema in questa sessione.\nnessuna risposta attesa.`,
+  `[LOOP] sessione → contenuto → scroll → sessione → contenuto → scroll\nutente_{ID}: iterazione {LOADS}.`,
+];
+
+const feed = document.getElementById('feed');
+const STORAGE_KEY = 'doomscroll_finales';
+const STATS_KEY   = 'doomscroll_stats';
+
+// ── A11 — statistiche cumulative ─────────────────────────────────────────
+function getStats() {
+  try { return JSON.parse(localStorage.getItem(STATS_KEY) || '{}'); } catch { return {}; }
+}
+function saveStats(patch) {
+  const s = getStats();
+  const updated = Object.assign({}, s, patch);
+  try { localStorage.setItem(STATS_KEY, JSON.stringify(updated)); } catch {}
+}
+function incrementStats(sessionData) {
+  const s = getStats();
+  saveStats({
+    sessions:     (s.sessions     || 0) + 1,
+    totalSeconds: (s.totalSeconds || 0) + sessionData.seconds,
+    totalQILost:  (s.totalQILost  || 0) + (100 - sessionData.iqFinal),
+    totalSpent:   (s.totalSpent   || 0) + sessionData.adClicks,
+    lastEnding:   sessionData.ending,
+  });
+}
+function flushAll() {
+  localStorage.removeItem(STORAGE_KEY);
+  localStorage.removeItem(STATS_KEY);
+  localStorage.removeItem('doomscroll_played');
+  showToast('flush completato. tutto dimenticato.');
+}
+
+function showToast(msg, kind='') {
+  if (convInProgress) return; // silenzio durante la conversazione
+  const wrap = document.getElementById('toastWrap');
+  const existing = wrap.querySelectorAll('.toast');
+  if (existing.length >= 2) {
+    const old = existing[0];
+    old.classList.add('removing');
+    setTimeout(() => old.remove(), 320);
+  }
+  const div = document.createElement('div');
+  div.className = 'toast ' + kind;
+  div.textContent = msg;
+  wrap.appendChild(div);
+  setTimeout(() => div.remove(), 3600);
+}
+
+function clearToasts() {
+  document.getElementById('toastWrap').innerHTML = '';
+}
+
+function pickItem(items, used, fallbackItems=null) {
+  // Se il pool principale è vuoto, usa il fallback se disponibile
+  if (!items || items.length === 0) {
+    const src = fallbackItems && fallbackItems.length ? fallbackItems : null;
+    if (!src) return [["Feed esaurito.", "Déjà-vu"], -1];
+    const idx = Math.floor(Math.random()*src.length);
+    return [src[idx], -1];
+  }
+  // Pool esaurito: auto-reset invece di fallback fisso.
+  // Il feed ricomincia dal pool invece di mostrare sempre le stesse 5 notizie.
+  if (used.length >= items.length) {
+    used.length = 0; // reset in-place: mantiene il riferimento all'array
+  }
+  let idx;
+  let guard = 0;
+  do { idx = Math.floor(Math.random()*items.length); guard++; } while (used.includes(idx) && guard < 500);
+  used.push(idx);
+  return [items[idx], idx];
+}
+function timeStr(s) { return String(Math.floor(s/60)).padStart(2,'0') + ':' + String(s%60).padStart(2,'0'); }
+function getUnlocked() { try { return JSON.parse(localStorage.getItem(STORAGE_KEY) || '[]'); } catch { return []; } }
+function unlockFinal(name) {
+  const u = getUnlocked();
+  if (!u.includes(name)) { u.push(name); localStorage.setItem(STORAGE_KEY, JSON.stringify(u)); }
+}
+function updateFinalsPill() {
+  const pill = document.getElementById('finalsPill');
+  if (!pill) return;
+  const u = getUnlocked();
+  if (u.length === 0) {
+    pill.textContent = '5 finali da scoprire.';
+    pill.classList.remove('found');
+  } else if (u.length >= 5) {
+    pill.textContent = 'tutti e 5 i finali sbloccati. ora scrolli per sport.';
+    pill.classList.add('found');
+  } else {
+    pill.textContent = `${u.length}/5 finali sbloccati. ne mancano ${5 - u.length}.`;
+    pill.classList.add('found');
+  }
+}
+
+function updateIQDisplay() {
+  document.getElementById('iqVal').textContent = iq;
+  document.getElementById('progressFill').style.width = iq + '%';
+  document.getElementById('progressLbl').textContent = `QI: ${iq}/100`;
+  let newStage = '';
+  for (const [thr, label] of IQ_STAGES) {
+    if (iq >= thr) { document.getElementById('iqStage').textContent = label; newStage = label; break; }
+  }
+  // Quando entri in una nuova fase di degrado, lo dico una volta sola, in modo narrativo.
+  if (newStage && newStage !== lastStage) {
+    if (lastStage !== '') {
+      const stageMsgs = {
+        'lievemente intontito': [
+          'sei ufficialmente lievemente intontito. ben arrivato.',
+          'lievemente intontito. il danno è contenuto. per ora.',
+          'transizione completata: cosciente → intontito. il feed ha preso nota.',
+        ],
+        'mente plastificata': [
+          'mente plastificata. il cartone si curva, non si spezza.',
+          'mente plastificata. ora le notizie scivolano dentro senza attrito.',
+          'mente plastificata. il feed ti trova finalmente gestibile.',
+        ],
+        'vuoto cosmico': [
+          'vuoto cosmico raggiunto. la stanza intorno è facoltativa.',
+          'vuoto cosmico. i pensieri ci sono ancora, ma non insistono.',
+          'vuoto cosmico. hai trovato il modo più moderno per meditare.',
+        ],
+        'proto-nirvana': [
+          'proto-nirvana. il pollice continua per inerzia spirituale.',
+          'proto-nirvana. tecnicamente sei ancora sveglio.',
+          'proto-nirvana. a questo punto il feed scorre da solo.',
+        ],
+        'nirvana': [
+          'nirvana. non legge più nemmeno questo toast.',
+          'nirvana. il feed ha vinto. il feed ti ringrazia.',
+          'nirvana. nessun pensiero è stato disturbato in questa sessione.',
+        ],
+      };
+      const variants = stageMsgs[newStage];
+      if (variants) showToast(variants[Math.floor(Math.random()*variants.length)], 'bad');
+    }
+    lastStage = newStage;
+  }
+  const iqEl = document.getElementById('iqVal');
+  if (iq < 20) iqEl.style.color = '#ff80c0';
+  else if (iq < 40) iqEl.style.color = '#ff6060';
+  else if (iq < 60) iqEl.style.color = '#ff9040';
+  else iqEl.style.color = 'var(--red)';
+  // A7 — header degrada col QI
+  const hdClass = iq < 5 ? 'hd-4' : iq < 15 ? 'hd-3' : iq < 30 ? 'hd-2' : iq < 50 ? 'hd-1' : '';
+  document.body.classList.remove('hd-1','hd-2','hd-3','hd-4');
+  if (hdClass) document.body.classList.add(hdClass);
+}
+function updateIQ(delta, reason='') {
+  if (gameOver) return;
+  iq = Math.max(0, Math.min(100, iq + delta));
+  if (iq < minIQ) minIQ = iq;
+  updateIQDisplay();
+  if (reason) showToast((delta > 0 ? '+' : '') + delta + ' QI — ' + reason, delta > 0 ? 'good' : 'bad');
+  checkEndings();
+}
+
+// Messaggi per lo scroll volontario (cliccare "carica altro").
+// Ruotano in ordine così non si ripetono subito, con shuffle iniziale.
+const SCROLL_REASONS = [
+  'scelta consapevole di continuare',
+  'il pollice ha deciso prima del cervello',
+  'momentum scrolling rilevato',
+  'curiosità irrisolta, costo pagato',
+  'un altro carico, un altro taglio',
+  'scroll volontario — la responsabilità è tua',
+  'nessuno ti ha obbligato. questo è il problema.',
+  'hai scelto il feed invece dell\'alternativa',
+  'azione muscolare non supportata da intenzione',
+  'click effettuato, danno applicato',
+].sort(() => Math.random() - 0.5);
+let scrollReasonIdx = 0;
+
+function spendScrollIQ() {
+  // Media: -1.5 QI per carica altro. Abbastanza lenta da sembrare innocua, abbastanza forte da contare.
+  scrollLossDebt += 1.5;
+  const loss = Math.floor(scrollLossDebt);
+  scrollLossDebt -= loss;
+  if (loss > 0) {
+    const reason = SCROLL_REASONS[scrollReasonIdx % SCROLL_REASONS.length];
+    scrollReasonIdx++;
+    updateIQ(-loss, reason);
+  }
+}
+
+function promoConfirmMessage(purchaseNumber, step, required) {
+  const scripts = {
+    3: ['Terzo acquisto wellness. Sicuro che la salvezza debba avere un carrello?'],
+    4: ['Quarto acquisto. Conferma 1/2: non è autocura se ti serve una ricevuta.', 'Conferma 2/2: stai comprando un limite perché non riesci a metterne uno.'],
+    5: ['Quinto acquisto. Il feed apre il reparto casse spirituali.', 'Conferma 2/4: respirare resta gratis, per ora.', 'Conferma 3/4: la tua pace interiore sta chiedendo il CVV.', 'Conferma 4/4: ultimo click prima della monetizzazione dell’anima.']
+  };
+  return (scripts[purchaseNumber] && scripts[purchaseNumber][step-1]) || `Conferma ${step}/${required}: il capitalismo vuole solo essere sicuro.`;
+}
+
+// ── B1 — la X che non è un'opzione ───────────────────────────────────────
+let fakeCloseClicks = 0;
+let FAKE_CLOSE_MSGS = [
+  'abbiamo recuperato la tua sessione. bentornato.',
+  'sessione ripristinata automaticamente. stavi andando bene.',
+  'uscita non disponibile al momento. riprovare.',
+  'errore: il feed non trova un\'alternativa valida.',
+  'sessione salvata. riprendi pure da dove eri.',
+  'chiusura annullata: contenuti non ancora visualizzati.',
+  'il sistema ti vuole bene a modo suo.',
+];
+function fakeCloseClick() {
+  if (gameOver) return;
+  const msg = FAKE_CLOSE_MSGS[fakeCloseClicks % FAKE_CLOSE_MSGS.length];
+  fakeCloseClicks++;
+  showToast(msg);
+}
+let EXPANSION_DESCS = {
+  'Politica': [
+    "La dichiarazione è stata rilasciata durante una conferenza stampa a cui erano presenti 4 giornalisti e il gatto dell'ufficio stampa.",
+    "Fonti vicine alla fonte confermano che la fonte è vicina alle fonti.",
+    "Il comunicato ufficiale parla di 'riflessioni in corso', che nella lingua italiana istituzionale significa che non è successo niente e non succederà niente.",
+    "La notizia è stata smentita prima ancora di essere confermata. La smentita è poi stata smentita. Siamo alla smentita della smentita della smentita.",
+    "Gli esperti interpellati si sono divisi: metà dice una cosa, metà dice l'opposto, uno ha risposto con un file audio di 4 minuti che non carica.",
+  ],
+  'Scienza': [
+    "Lo studio è stato condotto su 12 partecipanti, 4 dei quali erano ricercatori dello stesso laboratorio. I risultati sono 'incoraggianti'.",
+    "I dati dimostrano una correlazione del 94% tra il fenomeno osservato e il fatto che qualcuno ha finanziato la ricerca su quel fenomeno.",
+    "La pubblicazione è stata accettata dopo peer review da una rivista il cui impact factor non è disponibile ma il sito ha una grafica molto professionale.",
+    "Disclaimer in fondo all'articolo originale: 'ulteriori ricerche sono necessarie'. Questo vale per tutte le ricerche. Per tutte.",
+    "Il campione era statisticamente significativo nel senso che i ricercatori hanno dichiarato che era statisticamente significativo.",
+  ],
+  'Cronaca': [
+    "Le autorità competenti hanno avviato un'indagine conoscitiva per determinare se avviare un'indagine.",
+    "Testimoni oculari hanno riferito di aver visto 'qualcosa di strano'. Le versioni concordano sul fatto che era strano. Divergono su tutto il resto.",
+    "Il comunicato della Questura è di 47 parole. La notizia ha generato 2.300 commenti. Nessuno ha letto il comunicato.",
+    "I vigili del fuoco sono intervenuti. Poi è intervenuta la Protezione Civile. Poi i Carabinieri. Poi qualcuno ha chiamato la polizia municipale per sbaglio.",
+    "La vicenda è 'al vaglio della magistratura', formula che in italiano significa che esiste un fascicolo con un numero e una data di apertura.",
+  ],
+  'Internet': [
+    "Il post è stato rimosso dopo 4 ore. Era già stato condiviso 18.000 volte. La rettifica ha avuto 47 visualizzazioni.",
+    "Il thread è lungo 340 risposte. Le prime 12 riguardano l'argomento originale. Le restanti 328 riguardano la formattazione del messaggio.",
+    "L'account è stato sospeso, poi ripristinato, poi sospeso di nuovo. Nel frattempo aveva guadagnato 40.000 follower.",
+    "Il video è stato visto 2,4 milioni di volte. Dura 8 secondi. Non succede niente. I commenti chiedono il seguito.",
+    "La petizione ha superato le 100.000 firme. È indirizzata a un'entità che non ha l'obbligo giuridico di leggerla.",
+  ],
+  'Sport': [
+    "L'allenatore ha parlato di 'atteggiamento sbagliato' senza specificare quale fosse quello giusto. La squadra ha annuito.",
+    "Il calciatore ha dichiarato di 'dare il massimo al 110%'. Nessun giornalista ha chiesto spiegazioni sulla matematica.",
+    "Le quote dei bookmaker danno la vittoria al 68%. Il 68% delle volte le quote dei bookmaker sono sbagliate.",
+    "La società ha emesso un comunicato di 'piena fiducia' nell'allenatore. Storicamente questo precede l'esonero di 11 giorni.",
+    "Il VAR ha rivisto l'azione per 4 minuti e 20 secondi. La decisione finale era quella dell'arbitro. Il VAR è servito a confermare che esisteva una decisione.",
+  ],
+  'Spettacolo': [
+    "L'intervista è durata 40 minuti. La citazione riportata da tutti è di 9 parole ed è stata estrapolata dal minuto 37.",
+    "Il comunicato dell'ufficio stampa parla di 'divergenze creative'. Nella lingua degli uffici stampa questo significa qualsiasi cosa tranne divergenze creative.",
+    "Il post è stato pubblicato alle 2:47 di notte. I social media manager del settore lo chiamano 'lancio strategico'. Gli altri lo chiamano altro.",
+    "La notizia ha generato una polemica, una contro-polemica, un articolo di analisi della polemica, e ora questo.",
+    "Fonti vicine ai diretti interessati non hanno confermato né smentito. Questo nella logica del gossip vale come conferma.",
+  ],
+  'Mondo': [
+    "Il portavoce ha definito la situazione 'monitorata con attenzione'. Questo significa che qualcuno guarda un monitor.",
+    "Le reazioni internazionali sono state 'caute'. Nel diplomatese, cauto significa che tutti aspettano che lo dica qualcun altro.",
+    "Il vertice si è concluso con una dichiarazione congiunta di 4 pagine. Il punto di accordo reale è nel terzo paragrafo dell'ultimo capoverso.",
+    "La crisi è 'in fase di stallo'. In fase di stallo da 14 mesi. Lo stallo è descritto come 'delicato' da 14 mesi.",
+    "L'ambasciatore è stato convocato. Convocazione completata. Ambasciatore tornato in ambasciata. Situazione invariata.",
+  ],
+  'Tecnologia': [
+    "La startup ha annunciato una 'soluzione rivoluzionaria' che fa quello che fa già un'altra cosa, ma con un'interfaccia più rotonda.",
+    "Il CEO ha dichiarato che 'i dati degli utenti sono al sicuro' nello stesso comunicato in cui annunciava una violazione dei dati degli utenti.",
+    "L'aggiornamento risolve 3 bug critici e ne introduce 7 nuovi. Le note di rilascio descrivono i 7 nuovi come 'comportamenti attesi'.",
+    "Il prodotto è in 'beta pubblica', che significa disponibile a tutti ma senza responsabilità per niente.",
+    "L'algoritmo è stato descritto come 'neutro e oggettivo' dai creatori dell'algoritmo.",
+  ],
+  'Cultura': [
+    "Il libro ha vinto un premio istituito 3 anni fa dalla stessa casa editrice del libro vincitore.",
+    "La mostra è stata visitata da 40.000 persone. La critica l'ha definita 'imperdibile'. 39.800 visitatori erano in gita scolastica obbligatoria.",
+    "Il film è descritto come 'coraggioso e necessario' dalla stessa rivista che lo scorso anno aveva descritto l'esatto contrario come 'coraggioso e necessario'.",
+    "Il dibattito culturale si è svolto regolarmente: tre ore di conversazione, nessuna posizione modificata, tutti convinti di aver vinto.",
+    "L'opera è 'ispirata a fatti reali'. I fatti reali l'hanno letta e non si sono riconosciuti.",
+  ],
+  'Costume e società': [
+    "Il fenomeno è stato analizzato da un sociologo, un filosofo, e un ex concorrente di un reality. Le conclusioni divergono.",
+    "Il sondaggio è stato condotto su 1.200 persone. I risultati 'rispecchiano l'intera nazione' secondo chi ha commissionato il sondaggio.",
+    "La tendenza è 'in crescita esponenziale' secondo un articolo che usa la parola esponenziale senza un grafico.",
+    "Gli esperti si dicono 'preoccupati'. La preoccupazione è stata espressa anche l'anno scorso. E quello prima.",
+    "Il fenomeno esiste da anni. È diventato notizia perché qualcuno ci ha fatto un video da 2 milioni di visualizzazioni.",
+  ],
+};
+let EXPANSION_DEFAULT = [
+  "Ulteriori dettagli sono attesi nelle prossime ore, come per tutte le notizie che non hanno ulteriori dettagli disponibili.",
+  "La vicenda è in evoluzione. Come tutte le vicende. Sempre.",
+  "Non sono disponibili conferme ufficiali. Le conferme non ufficiali sono disponibili ovunque.",
+  "I diretti interessati non hanno risposto alle richieste di commento. Le richieste di commento erano di 4 parole.",
+];
+let EXPANSION_TOASTS = [
+  "hai aperto la notizia. ora ne sai di più. cambia qualcosa? no.",
+  "approfondimento completato. preoccupazione invariata.",
+  "informazione acquisita. shelf life: 4 minuti.",
+  "hai letto. il feed ne prende nota.",
+  "−1 QI per sapere una cosa che non userai.",
+  "notizia approfondita. azione conseguente: nessuna.",
+  "hai soddisfatto la curiosità. la curiosità ne ha già un'altra.",
+  "lettura completata. il problema esiste ancora.",
+  "hai dedicato 8 secondi a questo. il feed ne ha altri 400.",
+  "contenuto consumato. prossimo contenuto disponibile.",
+];
+
+// ── A5 — commenti strutturati (sganciati dalla notizia) ───────────────────
+let COMMENT_AUTHORS = [
+  'GiuseppeR68', 'marinatvb', 'Luca_V', 'nonnapaola52', 'cittadinoqualunque',
+  'ITALIAPRIMA99', 'marco_pensa', 'FrancescaB', 'informato_davvero', 'anonimo_ma_presente',
+  'ex_elettore', 'PaoloConLaP', 'veritàscomoda2', 'CarlaF', 'pensiero_critico_vero',
+  'ilsolo_chehacapito', 'Gianni68', 'lettoetweetato', 'GabrieleM', 'rosaria_dice',
+];
+let COMMENT_POOL = [
+  // Polarizzazione automatica
+  { t: "Colpa di chi vota a destra.", r: [312, 88] },
+  { t: "Colpa di chi vota a sinistra.", r: [287, 103] },
+  { t: "Colpa di tutti e due.", r: [512, 14] },
+  { t: "Io non voto da vent'anni e avevo ragione.", r: [231, 67] },
+  { t: "Questi sono i risultati di 30 anni di sinistra.", r: [198, 142] },
+  { t: "Questi sono i risultati di 30 anni di destra.", r: [176, 158] },
+  { t: "Questi sono i risultati di 30 anni di centro.", r: [89, 201] },
+  // Falsa familiarità
+  { t: "Mio figlio me ne aveva parlato.", r: [44, 7] },
+  { t: "Mia zia lavora in quel settore. È tutto vero e anche peggio.", r: [389, 22] },
+  { t: "Lo sapevo. Non mi sorprende per niente.", r: [156, 43] },
+  { t: "Un mio amico c'era. Vi assicuro che è andata diversamente.", r: [203, 91] },
+  { t: "Ne stavo parlando ieri proprio.", r: [67, 5] },
+  { t: "Ho una cugina che conosce uno che sa tutto di questa storia.", r: [88, 114] },
+  // Capro espiatorio
+  { t: "Colpa dell'Europa.", r: [445, 78] },
+  { t: "Colpa dei giornali.", r: [334, 99] },
+  { t: "Colpa di Soros.", r: [267, 334] },
+  { t: "Colpa nostra, onestamente.", r: [178, 44] },
+  { t: "Colpa di chi non legge.", r: [156, 87] },
+  { t: "Colpa dei giovani.", r: [88, 203] },
+  { t: "Colpa dei vecchi.", r: [91, 187] },
+  // Dunning-Kruger puro
+  { t: "Se fossi stato lì le cose sarebbero andate diversamente.", r: [12, 445] },
+  { t: "Io avrei risolto in 10 minuti.", r: [9, 512] },
+  { t: "Bastava il buon senso.", r: [678, 23] },
+  { t: "Sono l'unico qui che ha capito cosa sta succedendo davvero.", r: [7, 388] },
+  { t: "Ho fatto una ricerca veloce e posso dire con certezza che tutto quello che avete letto è sbagliato.", r: [14, 267] },
+  { t: "Non sono un esperto MA.", r: [445, 312] },
+  // Non sequitur totali
+  { t: "Comunque il caffè questa mattina era pessimo.", r: [1204, 3] },
+  { t: "Ho smesso di seguire queste cose nel 2016.", r: [891, 12] },
+  { t: "Benvenuti in Italia.", r: [2341, 8] },
+  { t: "E allora il PD?", r: [567, 234] },
+  { t: "E allora Berlusconi?", r: [489, 201] },
+  { t: "Va bene così. Tanto non cambia niente.", r: [743, 18] },
+  { t: "Non voglio commentare perché poi mi bannano.", r: [334, 7] },
+  // Bot/spam
+  { t: "Guadagna 3.400€ al mese da casa senza esperienza. Link in bio.", r: [2, 1204] },
+  { t: "Ho perso 12kg in 3 settimane con questo metodo. Ti spiego tutto in DM.", r: [1, 892] },
+  { t: "Ciao! Sono una ragazza sola che cerca amici sinceri 🙂", r: [3, 2341] },
+  // Fuori tempo massimo
+  { t: "Io questo lo dicevo già nel 2008. Nessuno mi ha ascoltato.", r: [445, 23] },
+  { t: "Se aveste letto il mio post del 2019 sapreste già come va a finire.", r: [312, 44] },
+  { t: "Lo avevo scritto qui due anni fa. Il commento è ancora lì. Andate a cercarlo.", r: [289, 67] },
+  { t: "Purtroppo ho sempre avuto ragione in anticipo.", r: [534, 12] },
+  // Risponde a qualcuno che non c'è
+  { t: "Esatto, hai detto tutto.", r: [678, 4] },
+  { t: "Concordo pienamente con quanto scritto sopra.", r: [445, 7] },
+  { t: "Questo. Esattamente questo.", r: [891, 3] },
+  { t: "Finalmente qualcuno che lo dice.", r: [567, 8] },
+  { t: "Stavo per scrivere la stessa cosa parola per parola.", r: [334, 11] },
+  // Autocensore
+  { t: "Non posso dire quello che penso altrimenti mi bannano di nuovo.", r: [1203, 34] },
+  { t: "So esattamente cosa sta succedendo ma non mi conviene scriverlo qui.", r: [876, 22] },
+  { t: "Certe cose è meglio non dirle online. Chi sa, sa.", r: [934, 18] },
+  // Tutto maiuscolo
+  { t: "VERGOGNA!!!", r: [2341, 45] },
+  { t: "MA VI RENDETE CONTO????", r: [1876, 67] },
+  { t: "SVEGLIATEVI!!!!", r: [1654, 89] },
+  { t: "NON CI POSSO CREDERE. NON CI POSSO CREDERE.", r: [1432, 34] },
+  { t: "BASTA.", r: [3201, 12] },
+  // Filosofo da bar
+  { t: "Alla fine è sempre la stessa storia da tremila anni.", r: [789, 23] },
+  { t: "Il problema è che la gente non pensa più.", r: [1203, 45] },
+  { t: "Siamo un paese di furbi. E di fessi. Spesso la stessa persona.", r: [934, 67] },
+  { t: "Darwin aveva ragione ma non nel senso in cui lo usate voi.", r: [567, 234] },
+];
+// ── B2 — commentary mode ─────────────────────────────────────────────────
+let commentaryClicks = 0;
+let commentaryActive = false;
+function liveDotClick() {
+  if (gameOver) return;
+  commentaryClicks++;
+  if (commentaryClicks >= 7) {
+    commentaryClicks = 0;
+    commentaryActive = !commentaryActive;
+    document.body.classList.toggle('commentary', commentaryActive);
+    showToast(commentaryActive ? 'modalità lettura attiva.' : 'modalità lettura disattivata.');
+  }
+}
+
+function buildExpansion(tag) {
+  const nv = nirvanaClass(iq);
+  const pool = EXPANSION_DESCS[tag] || EXPANSION_DEFAULT;
+  const desc = pool[Math.floor(Math.random() * pool.length)];
+
+  // A QI basso: meno commenti, più frammentati
+  let numComments = 2 + Math.floor(Math.random() * 2);
+  if (iq < 30) numComments = 1;
+  if (iq < 15) numComments = 0;
+
+  const usedIdx = new Set();
+  const comments = [];
+  while (comments.length < numComments) {
+    const idx = Math.floor(Math.random() * COMMENT_POOL.length);
+    if (!usedIdx.has(idx)) { usedIdx.add(idx); comments.push(COMMENT_POOL[idx]); }
+  }
+  const fakeCount = 47 + Math.floor(Math.random() * 800);
+  const toastOptions = [
+    `i restanti ${fakeCount} commenti sono uguali a questi.`,
+    `caricamento annullato: già sai cosa dicono.`,
+    `i commenti sono stati nascosti per proteggere il tuo QI residuo.`,
+    `${fakeCount} commenti. tutti hanno ragione. nessuno ha letto l'articolo.`,
+    `caricamento in corso... no, aspetta. non vale la pena.`,
+    `altri ${fakeCount} commenti = le stesse 4 opinioni in ordine diverso.`,
+  ];
+  const loadMoreToast = toastOptions[Math.floor(Math.random() * toastOptions.length)];
+
+  const commentsHtml = comments.map(c => {
+    const author = COMMENT_AUTHORS[Math.floor(Math.random() * COMMENT_AUTHORS.length)];
+    // Degrada il testo del commento come i titoli
+    const txt = degradeTitle(c.t, iq);
+    return `<div class="comment-item"><div class="comment-header"><span class="comment-author">${iq < 30 ? '…' : author}</span></div><div class="comment-text">${txt}</div>${iq >= 30 ? `<div class="comment-reactions"><span class="comment-reaction">👍 ${c.r[0]}</span><span class="comment-reaction">🤡 ${c.r[1]}</span></div>` : ''}</div>`;
+  }).join('');
+
+  const commentsSection = numComments > 0
+    ? `<div class="comments-section">${commentsHtml}<button class="comments-load-more" onclick="showToast('${loadMoreToast.replace(/'/g, "\\'")}')">carica altri ${fakeCount} commenti</button></div>`
+    : '';
+
+  return `<div class="news-expansion ${nv}"><div class="expansion-body">${degradeTitle(desc, iq)}</div>${commentsSection}</div>`;
+}
+
+function attachExpandHandler(div, tag) {
+  div.addEventListener('click', (e) => {
+    if (e.target.closest('button') || e.target.closest('.quiz-options')) return;
+    if (div.classList.contains('expanded') || gameOver) return;
+    div.classList.add('expanded');
+    div.insertAdjacentHTML('beforeend', buildExpansion(tag));
+    const msg = EXPANSION_TOASTS[Math.floor(Math.random() * EXPANSION_TOASTS.length)];
+    updateIQ(-1, msg);
+  });
+}
+
+function degradeTitle(hl, q) {
+  const words = String(hl).split(' ').filter(Boolean);
+  if (q >= 50) return hl;
+  if (q >= 30) return words.slice(0, 7).join(' ') + (words.length > 7 ? '…' : '');
+  if (q >= 15) return words.slice(0, 3).join(' ') + '…';
+  if (q >= 5)  return words.slice(0, 2).join(' ');
+  // QI < 5: una parola a caso tra le prime 5 — il cervello non processa più sequenze
+  return words[Math.floor(Math.random() * Math.min(words.length, 5))] || '…';
+}
+
+function nirvanaClass(q) {
+  if (q >= 50) return '';
+  if (q >= 30) return 'nirvana-1';
+  if (q >= 15) return 'nirvana-2';
+  if (q >= 5)  return 'nirvana-3';
+  return 'nirvana-4';
+}
+
+function addNewsCard(forceBrainrot=false) {
+  let item, cssClass, poolName;
+  if (forceBrainrot || brainrotLevel >= 4 || (brainrotLevel >= 2 && Math.random() < 0.22)) {
+    [item] = pickItem(NEWS_BRAINROT, brainrotUsed, REPEATABLE_NEWS); cssClass = 'brainrot-news'; poolName = 'brainrot';
+  } else {
+    const r = Math.random();
+    if (r < 0.5) { [item] = pickItem(NEWS_MEH, mehUsed, REPEATABLE_NEWS); cssClass = ''; poolName = 'meh'; }
+    else if (r < 0.8) { [item] = pickItem(NEWS_INTERESTING, intUsed, REPEATABLE_NEWS); cssClass = 'interesting'; poolName = 'interesting'; }
+    else { [item] = pickItem(NEWS_PEAK, peakUsed, REPEATABLE_NEWS); cssClass = 'peak'; poolName = 'peak'; }
+  }
+  const [hl, tag] = Array.isArray(item) ? item : [item, 'Attualità'];
+  const degradedHl = degradeTitle(hl, iq);
+  const nvClass = nirvanaClass(iq);
+  const src = cssClass === 'brainrot-news' ? 'REDAZIONE SEMANTICAMENTE INSTABILE' : SOURCES[Math.floor(Math.random()*SOURCES.length)];
+  const time = TIMES[Math.floor(Math.random()*TIMES.length)];
+  const comment = (Math.random() < 0.25 && FAKE_COMMENTS.length > 0)
+    ? `<div class="news-comment">${FAKE_COMMENTS[Math.floor(Math.random()*FAKE_COMMENTS.length)] || ''}</div>`
+    : '';
+  const div = document.createElement('div');
+  div.className = ('news-card ' + cssClass + ' ' + nvClass).trim();
+  div.dataset.pool = poolName;
+  div.dataset.tag = tag;
+  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${degradedHl}</div><div class="news-meta"><span class="news-tag">${tag}</span><span class="news-time">${time}</span></div>${comment}`;
+  attachExpandHandler(div, tag);
+  feed.appendChild(div);
+  newsCount++;
+  document.getElementById('newsCount').textContent = newsCount;
+  cardsSinceInterruption++;
+}
+
+function addLercioCard() {
+  if (!LERCIO_NEWS || LERCIO_NEWS.length === 0) { addNewsCard(); return; }
+  const [item] = pickItem(LERCIO_NEWS, lercioUsed);
+  const [hl, tag] = Array.isArray(item) ? item : [item, 'Satira'];
+  const degradedHl = degradeTitle(hl, iq);
+  const nvClass = nirvanaClass(iq);
+  const src = SOURCES[Math.floor(Math.random()*SOURCES.length)];
+  const time = TIMES[Math.floor(Math.random()*TIMES.length)];
+  const div = document.createElement('div');
+  div.className = ('news-card lercio ' + nvClass).trim();
+  div.dataset.pool = 'lercio';
+  div.dataset.tag = tag;
+  div.innerHTML = `<div class="news-src">${src}</div><div class="news-hl">${escapeHtml(degradedHl)}</div><div class="news-meta"><span class="news-tag">${escapeHtml(tag)}</span><span class="news-time">${time}</span></div>`;
+  attachExpandHandler(div, tag);
+  feed.appendChild(div);
+  newsCount++;
+  document.getElementById('newsCount').textContent = newsCount;
+  cardsSinceInterruption++;
+}
+
+// ── A2 QUIT WHISPER — voce rassegnata nel feed dopo ignoranze post-ascolto ─
+const QUIT_WHISPER_MSGS = [
+  'ci risiamo.',
+  'lo so.',
+  'okay.',
+  'quando sei pronto.',
+  '.',
+];
+
+function addQuitWhisper() {
+  // Appare solo se hai già ascoltato il cervello almeno una volta
+  if (brainListened < 1) return;
+  const idx = Math.min(brainIgnored - 1, QUIT_WHISPER_MSGS.length - 1);
+  const div = document.createElement('div');
+  div.className = 'quit-whisper';
+  div.textContent = QUIT_WHISPER_MSGS[idx];
+  feed.appendChild(div);
+}
+function initSistemaId() {
+  sistemaUserId = String(1000 + Math.floor(Math.random() * 9000));
+}
+
+function formatSistemaMsg(template) {
+  return template
+    .replace(/{ID}/g, sistemaUserId)
+    .replace(/{TIME}/g, timeStr(seconds))
+    .replace(/{IQ}/g, iq)
+    .replace(/{NEWS}/g, newsCount)
+    .replace(/{ADS_SHOWN}/g, adsShown)
+    .replace(/{LOADS}/g, totalLoadMore || 1)
+    .replace(/{BRAIN_LISTENED}/g, brainListened)
+    .replace(/{BRAIN_IGNORED}/g, brainIgnored)
+    .replace(/{SISTEMA_N}/g, sistemaCount + 1);
+}
+
+function addSistemaCard() {
+  if (sistemaCount >= SISTEMA_MAX || gameOver) return;
+  const [rawMsg] = pickItem(SISTEMA_MSGS, sistemaMsgUsed);
+  const msg = formatSistemaMsg(rawMsg);
+  sistemaCount++;
+  const div = document.createElement('div');
+  div.className = 'sistema-card';
+  div.textContent = msg;
+  feed.appendChild(div);
+  // Non conta come news, non resetta cardsSinceInterruption
+}
+
+
+function addAdCard() {
+  // Classi DOM senza 'ad': gli ad blocker possono nascondere elementi chiamati ad-card.
+  adsShown++;
+  loadsSinceAd = 0;
+  const [ad] = pickItem(ADS, adUsed);
+  const div = document.createElement('div');
+  div.className = 'promo-card ' + nirvanaClass(iq);
+  div.dataset.pool = 'ads';
+  div.dataset.tag = 'wellness';
+  div.innerHTML = `<div class="promo-label">${ad.label}</div><div class="promo-title">${ad.title}</div><div class="promo-desc">${ad.desc}</div><span class="promo-cta">VEDI SCHEDA PRODOTTO</span>`;
+  div.onclick = () => {
+    if (div.classList.contains('used') || gameOver) return;
+    openProductPage(ad, div);
+  };
+  feed.appendChild(div);
+  cardsSinceInterruption = 0;
+}
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#039;'}[ch]));
+}
+
+function openProductPage(ad, sourceEl) {
+  pendingPromo = ad;
+  pendingPromoElement = sourceEl;
+  purchaseGateStep = 0;
+  const nextBuy = adClicks + 1;
+  const details = productDetails(ad);
+  const required = gateRequirement(nextBuy);
+  const assetEmoji = ad.title.includes('Ballerina') ? '☕' :
+    ad.title.includes('Smartwatch') ? '⌚' :
+    ad.title.includes('Libro') ? '📕' :
+    ad.title.includes('Ritiro') ? '🧘' :
+    ad.title.includes('Audio') ? '🎧' :
+    ad.title.includes('Planner') ? '📒' : '✨';
+  const warning = nextBuy >= 3
+    ? `<div class="shop-warning-box active">${escapeHtml(SHOP_WARNINGS[nextBuy]?.[0] || SHOP_WARNINGS.default[0])}</div>`
+    : '';
+  const badges = details.badges.map(b => `<span class="shop-badge">${escapeHtml(b)}</span>`).join('');
+  const modal = document.getElementById('shopModal');
+  modal.innerHTML = `
+    <div class="shop-hero">
+      <div class="shop-top">
+        <div class="shop-asset" data-asset="${escapeHtml(details.asset.split('/').pop())}">${assetEmoji}</div>
+        <div>
+          <div class="shop-kicker">scheda prodotto salvata localmente</div>
+          <div class="shop-title">${escapeHtml(ad.title)}</div>
+          <div class="shop-desc">${escapeHtml(ad.desc)}</div>
+          <div class="shop-price-row"><div class="shop-price">${escapeHtml(details.price)}</div><div class="shop-subprice">${escapeHtml(details.subprice)}</div></div>
+          <div class="shop-badges">${badges}</div>
+        </div>
+      </div>
+    </div>
+    <div class="shop-body">
+      <div class="shop-section">
+        <div class="shop-section-title">cosa promette</div>
+        <p>${escapeHtml(details.promise)}</p>
+      </div>
+      <div class="shop-section">
+        <div class="shop-section-title">cosa fa davvero</div>
+        <p>${escapeHtml(details.reality)}</p>
+        <div class="shop-review">${escapeHtml(details.review)}</div>
+      </div>
+      ${warning}
+      <div class="shop-gate" id="shopGate"></div>
+      <div class="shop-actions">
+        <button class="shop-btn close" onclick="closeProductPage()">chiudi scheda</button>
+        <button class="shop-btn buy" id="shopBuyBtn" onclick="buyCurrentPromo()">${required ? 'procedi all\'acquisto' : 'compra lucidità'}</button>
+      </div>
+    </div>`;
+  document.getElementById('shopOverlay').classList.add('active');
+}
+
+function closeProductPage() {
+  document.getElementById('shopOverlay').classList.remove('active');
+  pendingPromo = null;
+  pendingPromoElement = null;
+  purchaseGateStep = 0;
+}
+
+
+function productDetails(ad) {
+  const title = ad.title || '';
+  const slug = title.toLowerCase().replace(/[^a-z0-9]+/gi,'-').replace(/^-|-$/g,'') || 'prodotto-mentale';
+  const base = {
+    price: ad.iq >= 10 ? '€149,99' : ad.iq >= 8 ? '€79,99' : ad.iq >= 6 ? '€29,99/mese' : '€9,99/mese',
+    subprice: ad.iq >= 10 ? 'pagabili in serenità rateizzata' : 'rinnovo automatico emotivo',
+    promise: 'Promette una versione più calma di te, possibilmente con onboarding elegante e zero responsabilità personale immediata.',
+    reality: 'Funziona abbastanza da farti sentire lucido, non abbastanza da sostituire una decisione vera.',
+    review: '★★★★★ “Mi ha aiutato a rimandare il cambiamento con più consapevolezza.” — utente verificato, probabilmente stanco',
+    asset: '/assets/wellness/' + slug + '.mental',
+    badges: ['+ '+ad.iq+' QI', 'asset locale', 'anti-doomscroll-ish']
+  };
+  if (title.includes('Planner')) {
+    base.promise = 'Trasforma il caos in caselle, colori e una calligrafia temporaneamente ottimista.';
+    base.reality = 'Il planner non fa le cose al posto tuo. Però giudica meglio della tua home screen.';
+    base.price = '€24,90'; base.subprice = 'penna non inclusa'; base.badges.push('cartaceo, quindi sospetto');
+  } else if (title.includes('Ritiro')) {
+    base.promise = 'Tre giorni senza notifiche, con la possibilità di parlare del fatto che non hai notifiche.';
+    base.reality = 'Tornerai con 42 foto, due insight e la stessa password dimenticata.';
+    base.price = '€899'; base.subprice = 'silenzio premium'; base.badges.push('foto post-ritiro incluse');
+  } else if (title.includes('Smartwatch')) {
+    base.promise = 'Ti interrompe per ricordarti che vieni interrotto troppo. Design circolare, come il problema.';
+    base.reality = 'Un altro schermo sul corpo. Ma almeno vibra con buone intenzioni.';
+    base.price = '€299'; base.subprice = 'polso non incluso'; base.badges.push('notifiche anti-notifiche');
+  } else if (title.includes('Libro')) {
+    base.promise = 'Una guida per smettere di scrollare, comodamente scaricabile sul dispositivo che devi usare meno.';
+    base.reality = 'Se lo apri davvero, hai già battuto metà internet. Se lo salvi e basta, benvenuto nel club.';
+    base.price = '€14,99'; base.subprice = 'PDF del paradosso'; base.badges.push('leggibile anche mai');
+  } else if (title.includes('Audio')) {
+    base.promise = 'Frequenze che sembrano scientifiche quanto basta per non fare domande.';
+    base.reality = 'Copre il rumore del feed. Non il feed.';
+    base.price = '€12,99/mese'; base.subprice = 'onde fatturate'; base.badges.push('40Hz di marketing');
+  } else if (title.includes('App') || title.includes('Detox')) {
+    base.promise = 'Blocca le app distraenti installando un’altra app da controllare compulsivamente.';
+    base.reality = 'Il serpente si mangia la coda, ma almeno ha una dashboard.';
+    base.price = '€6,99/mese'; base.subprice = 'trial con trappola'; base.badges.push('dashboard della colpa');
+  }
+  return base;
+}
+
+let purchaseGateStep = 0;
+
+function gateRequirement(nextBuy) {
+  if (nextBuy === 3) return 1;
+  if (nextBuy === 4) return 2;
+  if (nextBuy >= 5) return 4;
+  return 0;
+}
+
+function promoGateMessage(purchaseNumber, step, required) {
+  const scripts = {
+    3: ['Terzo acquisto wellness. Hint gratuito: forse ascoltare il cervello costa meno del carrello.'],
+    4: ['Quarto acquisto. Primo controllo qualità: stai comprando un limite invece di metterlo.', 'Secondo controllo qualità: il cervello offre lo stesso servizio, ma senza fattura.'],
+    5: ['Quinto acquisto. Il reparto casse spirituali ti saluta per nome.', 'Respirare resta gratis. Questa informazione non piace agli investitori.', 'Stai per trasformare il problema in abbonamento. È una scelta, tecnicamente.', 'Ultimo click: compri la pace o provi, per scandalo, ad ascoltarti?']
+  };
+  return (scripts[purchaseNumber] && scripts[purchaseNumber][step-1]) || `Conferma ${step}/${required}: frizione aggiunta per il tuo bene, forse.`;
+}
+
+function completePromoPurchase() {
+  if (!pendingPromo || !pendingPromoElement || gameOver) return;
+  const ad = pendingPromo;
+  const div = pendingPromoElement;
+  closeProductPage();
+  div.classList.add('used');
+  adClicks++;
+  usefulAdClicks++;
+  noAdsBought = false; // traccia via del santo
+  spiritualDebt += ad.iq >= 8 ? 2 : 1;
+  const cta = div.querySelector('.promo-cta');
+  if (cta) cta.textContent = 'ACQUISTATO MENTALMENTE';
+  const result = document.createElement('div');
+  result.className = 'promo-result';
+  result.textContent = ad.result + (adClicks >= 3 ? ' // Hint: forse ascoltare il cervello era la versione gratis.' : '');
+  div.appendChild(result);
+  updateIQ(ad.iq, 'lucidità con ricevuta fiscale');
+  // SISTEMA registra il primo acquisto
+  if (adClicks === 1) addSistemaCard();
+  // Metamorfosi capitalismo progressiva
+  if (adClicks >= 3) applyCapitalismoMorph(Math.min(adClicks - 1, 4));
+  if (!gameOver && adClicks >= 5 && iq >= 35) {
+    setTimeout(() => triggerEnding('capitalismo'), 650);
+  } else if (!gameOver && adClicks >= 5 && iq < 35) {
+    showToast('Troppo tardi per il capitalismo spirituale. Sei già quasi folklore.', 'bad');
+  }
+}
+
+
+function buyCurrentPromo() {
+  if (!pendingPromo || !pendingPromoElement || gameOver) return;
+  const nextBuy = adClicks + 1;
+  const required = gateRequirement(nextBuy);
+  if (purchaseGateStep < required) {
+    purchaseGateStep++;
+    const gate = document.getElementById('shopGate');
+    const btn = document.getElementById('shopBuyBtn');
+    if (gate) {
+      gate.classList.add('active');
+      gate.textContent = promoGateMessage(nextBuy, purchaseGateStep, required);
+    }
+    if (btn) {
+      btn.classList.add('armed');
+      btn.textContent = purchaseGateStep >= required ? 'ok, compra davvero' : `conferma ${purchaseGateStep + 1}/${required}`;
+    }
+    showToast(`Frizione anti-shopping ${purchaseGateStep}/${required}. Il cervello applaude piano.`, purchaseGateStep >= required ? 'bad' : 'good');
+    return;
+  }
+  completePromoPurchase();
+}
+
+function normalizeQuiz(q) {
+  if (q && Array.isArray(q.opts)) return q;
+  // Backward compatibility: some older 2-choice polls still exist in the pool.
+  // Convert them into the new 4-choice format so one legacy item cannot crash the preview.
+  if (q && typeof q.right === 'string' && typeof q.wrong === 'string') {
+    return {
+      q: q.q || 'Sondaggio non caricato correttamente. Cosa fai?',
+      opts: [
+        {t: q.right, d: 2, k: 'conscious', fb: q.fb || 'risposta consapevole'},
+        {t: 'Non saprei, ma almeno ci penso', d: 0, k: 'neutral', fb: 'neutralità dignitosa'},
+        {t: q.wrong, d: -1, k: 'stupid', fb: q.fb || 'scelta discutibile'},
+        {t: 'Apro altre 14 notizie per decidere', d: -3, k: 'idiot', fb: 'hai trasformato il dubbio in carburante'}
+      ]
+    };
+  }
+  // Last-resort fallback: keep the game alive instead of killing the feed.
+  return {
+    q: 'Il feed ha perso il sondaggio. Reazione?',
+    opts: [
+      {t:'Chiudo e salvo la sanità mentale', d:2, k:'conscious', fb:'hai scelto la via improbabile'},
+      {t:'Segnalo il bug mentalmente', d:0, k:'neutral', fb:'ticket non aperto'},
+      {t:'Continuo come se nulla fosse', d:-1, k:'stupid', fb:'resilienza o negazione'},
+      {t:'Clicco tutto più forte', d:-3, k:'idiot', fb:'debugging da primate'}
+    ]
+  };
+}
+
+function addQuizCard() {
+  const [rawQuiz] = pickItem(QUIZZES, quizUsed);
+  const q = normalizeQuiz(rawQuiz);
+  const div = document.createElement('div');
+  div.className = 'quiz-card ' + nirvanaClass(iq);
+  div.dataset.pool = 'quiz';
+  div.dataset.tag = 'sondaggio';
+
+  const opts = [...q.opts].sort(() => Math.random() - 0.5);
+  const buttons = opts.map(opt =>
+    `<button class="quiz-btn" data-delta="${opt.d}" data-kind="${opt.k}" data-fb="${escapeHtml(opt.fb)}">${escapeHtml(opt.t)}</button>`
+  ).join('');
+
+  div.innerHTML = `<div class="quiz-label">▷ Sondaggio onesto / 4 scelte</div><div class="quiz-q">${escapeHtml(q.q)}</div><div class="quiz-options">${buttons}</div><div class="quiz-feedback" style="display:none;"></div>`;
+  feed.appendChild(div);
+
+  const btns = div.querySelectorAll('.quiz-btn');
+  const fb = div.querySelector('.quiz-feedback');
+  btns.forEach(btn => {
+    btn.onclick = () => {
+      const delta = Number(btn.getAttribute('data-delta'));
+      const kind = btn.getAttribute('data-kind');
+      const text = btn.getAttribute('data-fb');
+
+      btns.forEach(b => { b.disabled = true; });
+
+      if (kind === 'conscious') btn.classList.add('answered-right');
+      else if (kind === 'neutral') btn.classList.add('answered-neutral');
+      else if (kind === 'idiot') btn.classList.add('answered-idiot');
+      else btn.classList.add('answered-wrong');
+
+      // traccia via del santo: solo conscious conta
+      if (kind !== 'conscious') allQuizConscious = false;
+      quizAnsweredCount++;
+
+      const sign = delta > 0 ? '+' : '';
+      fb.textContent = `// ${text} — ${sign}${delta} QI`;
+      fb.style.display = 'block';
+
+      if (delta !== 0) {
+        const reason = kind === 'conscious' ? 'risposta consapevole, raro evento naturale'
+          : kind === 'idiot' ? 'risposta idiota, punizione educativa'
+          : 'risposta stupida, micro-danno registrato';
+        updateIQ(delta, reason);
+      } else {
+        showToast('0 QI — risposta neutra: non hai peggiorato, non festeggiare', '');
+      }
+    };
+  });
+  cardsSinceInterruption = 0;
+}
+
+function addLoadMore() {
+  const btn = document.createElement('button');
+  btn.className = 'load-more';
+  btn.textContent = '↓ carica altro (sì, davvero)';
+  btn.onclick = (event) => onLoadMore(btn, event);
+  setTimeout(() => setBrainrotButton(btn), 0);
+  feed.appendChild(btn);
+}
+
+function setBrainrotButton(btn) {
+  const n = recentLoadClicks.length;
+  let level = 0;
+
+  // Testo che degenera su due assi:
+  // - totalLoadMore: quante volte hai caricato in totale (stanchezza)
+  // - recentLoadClicks: quanto velocemente stai cliccando (brainrot acuto)
+  // Le due scale si sommano — chi clicca in fretta degrada più in fretta.
+
+  // Asse brainrot acuto (click ravvicinati)
+  if (n >= 25) level = 4;
+  else if (n >= 20) level = 3;
+  else if (n >= 15) level = 2;
+  else if (n >= 10) level = 1;
+
+  // Asse stanchezza cronica (totalLoadMore) — si accumula più lentamente
+  let chronLevel = 0;
+  if (totalLoadMore >= 20) chronLevel = 4;
+  else if (totalLoadMore >= 14) chronLevel = 3;
+  else if (totalLoadMore >= 9) chronLevel = 2;
+  else if (totalLoadMore >= 5) chronLevel = 1;
+
+  const effectiveLevel = Math.max(level, chronLevel);
+  brainrotLevel = Math.max(brainrotLevel, level);
+
+  // Scala del testo: da verboso e ironico a silenzio totale
+  const labels = [
+    '↓ carica altro (sì, davvero)',   // 0 — inizio, tono sarcastico
+    '↓ un altro po\'',                // 1 — ancora ragionevole
+    '↓ ancora',                       // 2 — si semplifica
+    '↓ dai',                          // 3 — richiesta
+    '↓ pls',                          // 4 — supplica
+  ];
+
+  // Livello 4 massimo: testo sparisce, rimane solo la freccia
+  const label = effectiveLevel >= 4 ? '↓' : labels[Math.min(effectiveLevel, labels.length - 1)];
+
+  btn.textContent = label;
+  btn.className = 'load-more' + (effectiveLevel ? ' glitch-' + Math.min(effectiveLevel, 3) : '');
+
+  // Hint fase discovery: dopo 3 click veloci ma prima che degeneri davvero
+  const n2 = recentLoadClicks.length;
+  if (n2 >= 3 && n2 < 12 && effectiveLevel < 2) {
+    btn.dataset.hint = 'più veloce succede qualcosa →';
+  } else if (n2 >= 12 && effectiveLevel < 3) {
+    btn.dataset.hint = 'qualcosa sta succedendo.';
+  } else {
+    delete btn.dataset.hint;
+  }
+}
+
+function onLoadMore(btn, event) {
+  if (gameOver) return;
+  const now = Date.now();
+  const fastAgain = lastLoadClickAt && (now - lastLoadClickAt < 650);
+  lastLoadClickAt = now;
+  if (fastAgain || (event && event.detail >= 2)) {
+    doubleClickStreak++;
+    brainrotLevel = Math.max(brainrotLevel, Math.min(4, doubleClickStreak));
+    showToast('doppio impulso registrato: stabilità semantica in calo', 'bad');
+  } else {
+    doubleClickStreak = Math.max(0, doubleClickStreak - 1);
+  }
+  recentLoadClicks.push(now);
+  recentLoadClicks = recentLoadClicks.filter(t => now - t < 60000);
+  setBrainrotButton(btn);
+  if ((recentLoadClicks.length >= 24 && brainrotLevel >= 3) || doubleClickStreak >= 4) { triggerEnding('brainrot'); return; }
+  totalLoadMore++;
+  loadsSinceAd++;
+  spendScrollIQ();
+  if (gameOver) return;
+  // SISTEMA: prima comparsa al 2° load, poi ogni 4° load
+  if (totalLoadMore === 2 && sistemaCount === 0) addSistemaCard();
+  else if (totalLoadMore > 2 && totalLoadMore % 4 === 0) addSistemaCard();
+  btn.remove();
+
+  try {
+    const newsToAdd = 6 + Math.floor(Math.random()*2);
+    const mustShowAd = adsShown < 4 || loadsSinceAd >= 2;
+    const mustShowQuiz = totalLoadMore <= 3 || (totalLoadMore % 2 === 0);
+    // Lercio: più spesso man mano che il QI cala.
+    // Sopra 60 è raro (ogni 5 load), sotto 40 è frequente (ogni 2), sotto 20 quasi garantito.
+    // Narrativamente: il cervello che degrada smette di distinguere satira da realtà.
+    let lercioFreq;
+    if (iq >= 60) lercioFreq = 5;
+    else if (iq >= 40) lercioFreq = 3;
+    else if (iq >= 20) lercioFreq = 2;
+    else lercioFreq = 1;
+    const showLercio = LERCIO_NEWS.length > 0 && totalLoadMore % lercioFreq === 0;
+    const lercioAt = showLercio ? 1 + Math.floor(Math.random()*4) : -1;
+    for (let i = 0; i < newsToAdd; i++) {
+      if (i === lercioAt) {
+        addLercioCard();
+      } else {
+        addNewsCard(brainrotLevel >= 3 && i === newsToAdd-1);
+      }
+      if (i === 1 && mustShowQuiz) addQuizCard();
+      if (i === 3 && mustShowAd) addAdCard();
+    }
+  } catch (err) {
+    console.error('Errore generazione feed:', err);
+    showToast('Il feed ha tossito. Ho salvato il bottone prima che sparisse.', 'bad');
+  } finally {
+    if (!gameOver) {
+      addLoadMore();
+      const btns = feed.querySelectorAll('.load-more');
+      if (btns.length) setBrainrotButton(btns[btns.length-1]);
+    }
+  }
+}
+
+function showBrainPopup() {
+  if (gameOver || convInProgress) return;
+  let msg;
+
+  if (brainIgnored > 0) {
+    const idx = Math.min(brainIgnored - 1, BRAIN_IGNORE_MSGS.length - 1);
+    msg = BRAIN_IGNORE_MSGS[idx];
+  } else {
+    const brainByPhase = {
+      high: [
+        'hey. stai ancora bene. puoi ancora smettere.',
+        'questo è il momento migliore per chiudere.',
+        'il feed non ha ancora vinto. ancora.',
+        'hai aperto per due minuti. due minuti sono passati.',
+        'nota: potresti fare altro. nota ricevuta?',
+      ],
+      mid: [
+        'sei qui da un po\'. il feed lo sa.',
+        'stai ancora decidendo tu quando fermarti?',
+        'il pensiero che stavi evitando è ancora lì.',
+        'ogni notizia promette la prossima importante.',
+        'la prossima non sarà più importante. ma continuerai.',
+      ],
+      low: [
+        'fermati. adesso. non tra poco.',
+        'il danno si vede. il feed non se ne preoccupa.',
+        'sei ancora capace di decidere. usalo.',
+        'questo non è informarsi. sai che non è informarsi.',
+        'posso aiutarti solo se mi ascolti.',
+      ],
+      critical: [
+        'sono ancora qui.',
+        'puoi ancora smettere. anche adesso.',
+        'non ti giudico. smetti.',
+        'non ricordi nemmeno cosa stavi cercando.',
+        'ti ricordo che esisto.',
+      ],
+    };
+    let pool;
+    if (iq >= 70) pool = brainByPhase.high;
+    else if (iq >= 40) pool = brainByPhase.mid;
+    else if (iq >= 20) pool = brainByPhase.low;
+    else pool = brainByPhase.critical;
+
+    // Scala anche col tempo: dopo 3 min più diretto, dopo 5 quasi rassegnato, dopo 8 oltre
+    if (seconds >= 480) {
+      const latePool = [
+        'sono qui da otto minuti. tu pure.',
+        'il feed non si stancherà mai. io quasi.',
+        'non so più cosa dirti che non ti abbia già detto.',
+        'ok. ti vedo. il feed ti vede meglio.',
+        'otto minuti. il feed ha vinto? non ancora. ma si avvicina.',
+      ];
+      pool = [...latePool, ...(pool.slice(0,2))];
+    } else if (seconds >= 300) {
+      const midLatePool = [
+        'cinque minuti. sei ancora tu a decidere?',
+        'il tempo sta pesando. si vede nel feed.',
+        'cinque minuti e non ti sei fermato. questo dice qualcosa.',
+        'stai ancora cercando qualcosa. non lo trovi qui.',
+      ];
+      pool = [...midLatePool, ...(pool.slice(0,2))];
+    } else if (seconds >= 180) {
+      const earlyLatePool = [
+        'tre minuti. il feed si aspettava di tenerti di più.',
+        'sei ancora dentro. il feed prende nota.',
+        'tre minuti. abbastanza per il danno, poco per il rimpianto.',
+      ];
+      pool = [...earlyLatePool, ...(pool.slice(0,2))];
+    }
+    if (BRAIN_MSGS.length > 0 && Math.random() < 0.35) {
+      let idx = brainListened + brainIgnored;
+      if (idx >= BRAIN_MSGS.length) idx = BRAIN_MSGS.length - 1;
+      msg = BRAIN_MSGS[idx];
+    } else {
+      msg = pool[Math.floor(Math.random() * pool.length)];
+    }
+  }
+
+  const listenBtn = document.querySelector('.brain-btn.listen');
+  const ignoreBtn = document.querySelector('.brain-btn.ignore');
+  if (listenBtn && ignoreBtn) {
+    if (brainIgnored >= 3) {
+      listenBtn.textContent = 'salvami da me';
+      ignoreBtn.textContent = 'fammi peggiorare';
+    } else if (brainIgnored >= 1) {
+      listenBtn.textContent = 'sì, hai ragione';
+      ignoreBtn.textContent = 'ancora 5 minuti';
+    } else {
+      listenBtn.textContent = 'ok smetto';
+      ignoreBtn.textContent = 'tra un po\u2019';
+    }
+  }
+
+  document.getElementById('brainMsg').textContent = msg;
+  document.getElementById('brainOverlay').classList.add('active');
+}
+function listenBrain() {
+  document.getElementById('brainOverlay').classList.remove('active');
+  if (isFirstBrainShown) { brainListenedFirst = true; isFirstBrainShown = false; }
+  brainListened++;
+  brainListenedStreak++;
+  showToast(`cervello ascoltato: ${Math.min(brainListenedStreak,3)}/3`, 'good');
+  if (brainListenedStreak >= 3) {
+    // Opzione D: quit = si era "scivolato" (cervello ignorato almeno 1x, o acquistato qualcosa)
+    // smetti = via pulita senza mai cedere
+    if (everIgnored || adClicks >= 1) triggerEnding('quit');
+    else triggerEnding('smetti');
+    return;
+  }
+  scheduleNextBrain('listen');
+}
+
+function ignoreBrain() {
+  document.getElementById('brainOverlay').classList.remove('active');
+  if (isFirstBrainShown) { isFirstBrainShown = false; }
+  brainIgnored++;
+  everIgnored = true;
+  brainListenedStreak = 0;
+  updateIQ(-4, 'il cervello prende nota del tradimento');
+  addQuitWhisper();
+  // SISTEMA nota le ignoranze ripetute
+  if (brainIgnored === 2) addSistemaCard();
+  scheduleNextBrain('ignore');
+}
+
+function scheduleNextBrain(mode='neutral') {
+  // Circa 40% più frequente rispetto alla v2.5.
+  // Se lo ignori resta più raro del percorso buono, ma diventa anche più cattivo.
+  let delay;
+  if (mode === 'listen') delay = Math.min(27000, 13000 + brainListened * 3600);
+  else if (mode === 'ignore') delay = Math.min(108000, 51000 + brainIgnored * 18000);
+  else delay = 15000;
+  if (brainTimerId) clearTimeout(brainTimerId);
+  brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, delay);
+}
+
+function checkEndings() {
+  if (gameOver) return;
+  if (iq <= 0) triggerEnding('nirvana');
+}
+
+// Testo di condivisione su misura per il finale raggiunto.
+// Volutamente leggero: deve incuriosire l'amico, non spoilerare il finale.
+function buildShareText(type) {
+  const t = timeStr(seconds);
+  const teasers = {
+    nirvana: `QI: 0/100. non è pace, è assenza. la differenza non si sente da dentro. in ${t}. Provalo:`,
+    smetti: `ho chiuso l'app. ho annaffiato la pianta. ho ripreso il telefono. punto a capo. (${t}) Provalo:`,
+    quit: `QUIT DEFINITIVO in ${t}. ho finito una cosa. ho dormito. ho chiamato qualcuno. pare si possa fare. Provalo:`,
+    capitalismo: `ho risolto il doomscrolling comprando 5 prodotti per smettere il doomscrolling. la pace ha un piano annuale. Provalo:`,
+    brainrot: `BRAINROT™ in ${t}. sigma. no cap. ratio. il feed ha vinto. fr fr. Provalo:`
+  };
+  const line = teasers[type] || `DOOM/SCROLL — un feed che vuole il tuo QI. Provalo:`;
+  return `${line}\n${window.location.href}`;
+}
+
+async function shareEnding(type, btn) {
+  const text = buildShareText(type);
+  if (navigator.share) {
+    try {
+      await navigator.share({ title: 'DOOM/SCROLL', text });
+      return;
+    } catch (err) {
+      if (err && err.name === 'AbortError') return;
+    }
+  }
+  try {
+    await navigator.clipboard.writeText(text);
+    btn.textContent = 'copiato negli appunti';
+    btn.classList.add('copied');
+    setTimeout(() => { btn.textContent = 'condividi'; btn.classList.remove('copied'); }, 2400);
+  } catch {
+    const ta = document.createElement('textarea');
+    ta.value = text;
+    ta.style.position = 'fixed'; ta.style.opacity = '0';
+    document.body.appendChild(ta);
+    ta.select();
+    try { document.execCommand('copy'); btn.textContent = 'copiato'; btn.classList.add('copied'); }
+    catch { btn.textContent = 'copia non supportata'; }
+    document.body.removeChild(ta);
+    setTimeout(() => { btn.textContent = 'condividi'; btn.classList.remove('copied'); }, 2400);
+  }
+}
+
+// ── A8 — screenshot finale → PNG ─────────────────────────────────────────
+function saveEndingPNG(type, btn) {
+  btn.classList.add('saving');
+  btn.textContent = '...';
+
+  const S = 1080;
+  const canvas = document.createElement('canvas');
+  canvas.width = S; canvas.height = S;
+  const ctx = canvas.getContext('2d');
+
+  const mono = "'Courier New', monospace";
+
+  const themes = {
+    nirvana:     { bg:'#060606', fg:'#333333', accent:'#222222', label:'#2a2a2a' },
+    smetti:      { bg:'#0f0f0f', fg:'#cccccc', accent:'#e03535', label:'#555555' },
+    quit:        { bg:'#050a05', fg:'#4a8a4a', accent:'#c8f0c8', label:'#2e4e2e' },
+    brainrot:    { bg:'#000000', fg:'#ff3030', accent:'#dddddd', label:'#ff3030' },
+    capitalismo: { bg:'#faf5e8', fg:'#2a1a00', accent:'#c8920a', label:'#8a6a30' },
+    santo:       { bg:'#f8f8f5', fg:'#1a1a1a', accent:'#888888', label:'#aaaaaa' },
+  };
+  const t = themes[type] || themes.nirvana;
+
+  // Sfondo
+  ctx.fillStyle = t.bg;
+  ctx.fillRect(0, 0, S, S);
+
+  // Bordo sottile
+  ctx.strokeStyle = t.label;
+  ctx.lineWidth = 1;
+  ctx.strokeRect(32, 32, S-64, S-64);
+
+  // Brand in alto
+  ctx.fillStyle = t.label;
+  ctx.font = `400 22px ${mono}`;
+  ctx.letterSpacing = '8px';
+  ctx.textAlign = 'center';
+  ctx.fillText('DOOM/SCROLL', S/2, 88);
+
+  // Titolo grande per ogni finale
+  const titles = {
+    nirvana:     ['0', 'QI RESIDUO'],
+    smetti:      ['HAI', 'SMESSO.'],
+    quit:        ['QUIT', 'DEFINITIVO'],
+    brainrot:    ['BRAIN', 'ROT™'],
+    capitalismo: ['CAPITALISMO', 'SPIRITUALE'],
+    santo:       ['LA VIA', 'DEL SANTO'],
+  };
+  const [t1, t2] = titles[type] || ['?', '?'];
+
+  if (type === 'nirvana') {
+    ctx.fillStyle = '#1a1a1a';
+    ctx.font = `700 320px ${mono}`;
+    ctx.letterSpacing = '-8px';
+    ctx.textAlign = 'center';
+    ctx.fillText('0', S/2, 560);
+    ctx.font = `400 18px ${mono}`;
+    ctx.letterSpacing = '6px';
+    ctx.fillStyle = t.label;
+    ctx.fillText('QI RESIDUO', S/2, 620);
+  } else {
+    ctx.fillStyle = t.accent;
+    ctx.font = `700 96px ${mono}`;
+    ctx.letterSpacing = '-2px';
+    ctx.textAlign = 'center';
+    ctx.fillText(t1, S/2, 460);
+    ctx.fillText(t2, S/2, 570);
+  }
+
+  // Linea separatore
+  ctx.strokeStyle = t.label;
+  ctx.lineWidth = 0.5;
+  ctx.beginPath();
+  ctx.moveTo(120, 660); ctx.lineTo(S-120, 660);
+  ctx.stroke();
+
+  // Statistiche sessione
+  ctx.font = `400 17px ${mono}`;
+  ctx.fillStyle = t.label;
+  ctx.letterSpacing = '1px';
+  const statLines = [
+    `tempo perso  ${timeStr(seconds)}`,
+    `qi finale  ${iq}/100`,
+    `cose viste  ${newsCount}`,
+  ];
+  statLines.forEach((line, i) => {
+    ctx.textAlign = 'center';
+    ctx.fillText(line, S/2, 710 + i*36);
+  });
+
+  // Data in basso
+  const now = new Date();
+  const dateStr = now.toLocaleDateString('it-IT', { day:'2-digit', month:'2-digit', year:'numeric' });
+  ctx.font = `400 13px ${mono}`;
+  ctx.fillStyle = t.label;
+  ctx.letterSpacing = '2px';
+  ctx.fillText(dateStr, S/2, S-52);
+
+  // Download
+  try {
+    const dataUrl = canvas.toDataURL('image/png');
+    const a = document.createElement('a');
+    a.href = dataUrl;
+    a.download = `doomscroll-${type}-${Date.now()}.png`;
+    a.click();
+    btn.textContent = 'salvato ✓';
+    setTimeout(() => { btn.textContent = 'salva ricordo'; btn.classList.remove('saving'); }, 2000);
+  } catch(e) {
+    btn.textContent = 'salva ricordo';
+    btn.classList.remove('saving');
+    showToast('salvataggio non supportato su questo browser.');
+  }
+}
+
+function triggerEnding(type) {
+  if (gameOver) return;
+  gameOver = true;
+  clearToasts();
+  document.getElementById('brainOverlay').classList.remove('active');
+  // Nasconde subito il feed — evita il flash tra prefinal e schermata finale
+  document.getElementById('app').style.visibility = 'hidden';
+  // Check sesto finale segreto — la via del santo
+  if (type === 'smetti' && allQuizConscious && noAdsBought && brainListenedFirst && noLercioInteracted && quizAnsweredCount >= 1) {
+    type = 'santo';
+  }
+  showPreFinalThenEnding(type);
+}
+
+function doTriggerEnding(type) {
+  const ALL = ['nirvana','smetti','quit','brainrot','capitalismo'];
+  const NAMES = { nirvana:'Nirvana', smetti:'Smetti davvero', quit:'Quit definitivo', brainrot:'Brainrot\u2122', capitalismo:'Capitalismo spirituale' };
+  if (type !== 'santo') unlockFinal(type);
+  incrementStats({ seconds, iqFinal: iq, adClicks, ending: type });
+  const unlocked = getUnlocked();
+  const finalsList = ALL.map(f => unlocked.includes(f) ? '\u2713 ' + NAMES[f] : '\uD83D\uDD12 ???').join('  \u00b7  ');
+
+  const overlay = document.getElementById('endingOverlay');
+  overlay.className = 'ending-overlay active ending-' + type;
+
+  // Blocco statistiche condiviso — eredita i colori dal tema del finale
+  const stats = `
+    <div class="ending-stats">
+      <div><span>tempo perso</span><span>${timeStr(seconds)}</span></div>
+      <div><span>qi finale</span><span>${iq}/100</span></div>
+      <div><span>cose viste</span><span>${newsCount}</span></div>
+      <div><span>cervello ascoltato</span><span>${brainListened}x</span></div>
+      <div><span>cervello ignorato</span><span>${brainIgnored}x</span></div>
+      <div><span>annunci cliccati</span><span>${adClicks}x</span></div>
+    </div>
+    <div class="ending-progress">finale ${unlocked.length} di 5 sbloccato</div>
+    <div class="ending-finals">${finalsList}</div>
+    <div class="ending-actions">
+      <button class="ending-share" onclick="shareEnding('${type}', this)">condividi</button>
+      <button class="ending-save" onclick="saveEndingPNG('${type}', this)">salva ricordo</button>
+      <button class="ending-restart" onclick="restartGame()">ricomincia</button>
+    </div>`;
+
+  // ── NIRVANA ────────────────────────────────────────────────────────────────
+  if (type === 'nirvana') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">FINE CORSA</div>
+        <div class="e-iq">0</div>
+        <div class="e-title">QI RESIDUO</div>
+        <div class="e-body">
+          non hai vinto contro il feed.<br>
+          hai smesso di avere strumenti per combatterlo.<br>
+          <em>la differenza non si sente da dentro.</em>
+          <br><br>
+          hai raggiunto uno stato che alcune app di meditazione<br>
+          vendono a 9,99 al mese.<br>
+          <em>tu ci sei arrivato gratis, per caso, scrollando.</em>
+          <br><br>
+          la pace che senti adesso non è tua.<br>
+          è assenza.
+        </div>
+        <div id="nirvanaZombies"></div>
+        ${stats}
+      </div>`;
+    playZenSound();
+    // A10 — il finale che non finisce
+    const zombieCards = [
+      ["il feed non si è fermato.", "Attualità"],
+      ["nessuno ti stava aspettando.", "Cronaca"],
+      [".", ""],
+    ];
+    let zi = 0;
+    const zombieInterval = setInterval(() => {
+      if (zi >= zombieCards.length) { clearInterval(zombieInterval); return; }
+      const container = document.getElementById('nirvanaZombies');
+      if (!container) { clearInterval(zombieInterval); return; }
+      const [hl, tag] = zombieCards[zi++];
+      const d = document.createElement('div');
+      d.className = 'news-card nirvana-4';
+      d.style.animation = 'fadeUp 0.6s ease';
+      d.innerHTML = `<div class="news-hl" style="color:#1a1a1a;font-size:11px;text-align:center">${hl}</div>`;
+      container.appendChild(d);
+    }, 3500);
+    // Blocca restart per 20s, poi schermo nero
+    const restartBtn = overlay.querySelector('.ending-restart');
+    if (restartBtn) {
+      restartBtn.disabled = true;
+      restartBtn.style.opacity = '0.2';
+      restartBtn.style.cursor = 'default';
+      let countdown = 20;
+      restartBtn.textContent = `ricomincia (${countdown}s)`;
+      const cdInterval = setInterval(() => {
+        countdown--;
+        if (countdown <= 0) {
+          clearInterval(cdInterval);
+          // Schermo nero vero
+          overlay.style.transition = 'background 3s ease';
+          overlay.style.background = '#000000';
+          overlay.style.color = '#000000';
+          setTimeout(() => {
+            restartBtn.disabled = false;
+            restartBtn.style.opacity = '0.15';
+            restartBtn.style.cursor = 'pointer';
+            restartBtn.textContent = 'ricomincia';
+          }, 3000);
+        } else {
+          restartBtn.textContent = `ricomincia (${countdown}s)`;
+        }
+      }, 1000);
+    }
+
+  // ── SMETTI ─────────────────────────────────────────────────────────────────
+  } else if (type === 'smetti') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">// DIAGNOSI — REV. ${Math.floor(seconds/60)+1}</div>
+        <div class="e-title">hai chiuso l'app.</div>
+        <div class="e-step">hai bevuto un bicchiere d'acqua.</div>
+        <div class="e-step">hai aperto la finestra.</div>
+        <div class="e-step">hai guardato fuori per circa 40 secondi.</div>
+        <div class="e-step">hai annaffiato la pianta che stava morendo da settimane.</div>
+        <div class="e-step">hai risposto a un messaggio che aspettava da ieri.</div>
+        <div class="e-step dim">hai pensato: "ecco, cos'\xe8 difficile in questo?"</div>
+        <div class="e-step dim">hai preso il telefono per vedere l'ora.</div>
+        <div class="e-step dim">hai aperto l'app.</div>
+        <div class="e-conclusion">
+          non \xe8 una ricaduta.<br>
+          \xe8 la sequenza normale.<br>
+          <strong>punto a capo.</strong>
+        </div>
+        ${stats}
+      </div>`;
+
+  // ── QUIT DEFINITIVO ── epico, costruzione progressiva, monumentale
+  } else if (type === 'quit') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">— RICONOSCIMENTO RARO —</div>
+        <div style="text-align:center;"><div class="e-title">QUIT DEFINITIVO</div></div>
+        <div style="text-align:center;"><div class="e-subtitle">il feed è ancora aperto. tu no.</div></div>
+        <div class="e-monument">
+          <div class="e-line">hai finito una cosa.</div>
+          <div class="e-line">hai dormito.</div>
+          <div class="e-line">hai chiamato qualcuno per nessun motivo.</div>
+          <div class="e-line dim">hai guardato fuori dalla finestra.</div>
+          <div class="e-line dim">il tempo è passato senza essere documentato.</div>
+        </div>
+        <div class="e-tombstone">
+          <div class="e-tombstone-label">SCREEN TIME OGGI</div>
+          <div class="e-tombstone-time">00:00:00</div>
+        </div>
+        <svg class="e-grass" width="280" height="36" viewBox="0 0 280 36" fill="none">
+          ${Array.from({length:30}, (_,i) => {
+            const x = i*9+4, h2 = 14+Math.sin(i*1.7)*8, w = 1.5+Math.random()*1.5;
+            return `<rect x="${x}" y="${36-h2}" width="${w}" height="${h2}" rx="1" fill="#1a4a1a" opacity="${0.35+Math.random()*0.35}"/>`;
+          }).join('')}
+        </svg>
+        ${stats}
+      </div>`;
+
+  // ── CAPITALISMO SPIRITUALE ─────────────────────────────────────────────────
+  } else if (type === 'capitalismo') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-kicker">\u2728 SOLUZIONE CERTIFICATA \u2728</div>
+        <div class="e-logo">MindFlow\u2122 Pro</div>
+        <div class="e-tagline">la tua pace interiore, ora con dashboard</div>
+        <div class="e-stars">\u2605\u2605\u2605\u2605\u2605</div>
+        <div class="e-reviews">4.9 · 12.847 recensioni verificate</div>
+        <div class="e-feature">hai smesso di scrollare comprando cinque prodotti per smettere di scrollare</div>
+        <div class="e-feature">il problema \xe8 risolto. il problema \xe8 in abbonamento annuale</div>
+        <div class="e-feature">non ascolti pi\xf9 il feed. ascolti i podcast sul non ascoltare il feed</div>
+        <div class="e-feature">la tua ansia ora \xe8 ottimizzata e ha un nome di prodotto</div>
+        <div class="e-price-block">
+          <div class="e-price-old">€ 149,99 / anno</div>
+          <div class="e-price">€ 9,99 <span style="font-size:14px;font-weight:400">/mese</span></div>
+          <div class="e-price-note">rinnovo automatico · annulla quando vuoi · non annullerai</div>
+        </div>
+        <button class="e-cta">CONTINUA IL TUO PERCORSO \u2192</button>
+        <div class="e-fine-print">il tuo qi \xe8 salvo. il tuo conto no. la pace interiore non \xe8 rimborsabile.</div>
+        ${stats}
+      </div>`;
+
+  // ── BRAINROT ───────────────────────────────────────────────────────────────
+  } else if (type === 'brainrot') {
+    const CHAOS_TERMS = [
+      'SIGMA','no cap','W rizz','ratio','L+ratio','Ohio','only in ohio',
+      'NPC','main character','it\'s giving','understood the assignment',
+      'aura farming','gigachad','touch grass','caught in 4K','fr fr',
+      'gyatt','skibidi','rizz','slay','based','lowkey','highkey',
+      'pov:','bussin','sus','glizzy','rent free','understood',
+      '\u{1F480}','\u{1F525}','\u{1F4AF}','\u26A1','\u{1F921}','\u{1F9E0}',
+      'TUNG','brrr','tralalà','sigma grindset','only in ohio',
+    ];
+    const chaosItems = Array.from({length: 28}, (_, i) => {
+      const term = CHAOS_TERMS[Math.floor(Math.random()*CHAOS_TERMS.length)];
+      const size = 9 + Math.floor(Math.random()*16);
+      const x = Math.random()*90;
+      const delay = Math.random()*8;
+      const dur = 6 + Math.random()*10;
+      const rot = (Math.random()*40-20).toFixed(0);
+      const color = ['#ff3030','#ff9040','#ffffff','#00ffff','#ff00ff','#ffff00'][Math.floor(Math.random()*6)];
+      return `<span style="left:${x}%;top:${70+Math.random()*30}%;font-size:${size}px;color:${color};--rot:${rot}deg;animation-delay:${delay}s;animation-duration:${dur}s">${term}</span>`;
+    }).join('');
+
+    overlay.innerHTML = `
+      <div class="e-chaos">${chaosItems}</div>
+      <div class="ending-inner">
+        <div class="e-title">BRAINROT\u2122 CERTIFICATO</div>
+        <div class="e-fragments">
+          <span class="e-frag dim">hai cliccato troppo velocemente per</span>
+          <span class="e-frag loud">SIGMA</span>
+          <span class="e-frag">il feed non riesce più a produrre significato.</span>
+          <span class="e-frag dim">ora produce solo</span>
+          <span class="e-frag mid">stimoli. pattern. loop.</span>
+          <span class="e-frag dim">uomo fa cosa —</span>
+          <span class="e-frag">internet arrabbiato —</span>
+          <span class="e-frag dim">esperto dice boh —</span>
+          <span class="e-frag loud">W RIZZ</span>
+          <span class="e-frag">la frase lunga è morta.</span>
+          <span class="e-frag mid">il titolo basta.</span>
+          <span class="e-frag dim">il titolo è tutto.</span>
+          <span class="e-frag loud">NO CAP FR FR</span>
+          <span class="e-frag dim">il cervello non legge più.</span>
+          <span class="e-frag">riconosce solo pattern.</span>
+          <span class="e-frag loud">RATIO</span>
+        </div>
+        ${stats}
+      </div>`;
+    playGlitchSound();
+
+  // ── SANTO (SEGRETO) ───────────────────────────────────────────────────────
+  } else if (type === 'santo') {
+    overlay.innerHTML = `
+      <div class="ending-inner">
+        <div class="e-label">——</div>
+        <div class="e-glyph">· · ·</div>
+        <div class="e-title">hai ascoltato.</div>
+        <div class="e-body">
+          non hai comprato niente.<br>
+          hai risposto a ogni domanda con attenzione.<br>
+          hai smesso quando te lo hanno chiesto.<br>
+          <br>
+          il feed non sa cosa fare di te.<br>
+          <br>
+          questo finale non esiste.<br>
+          se lo hai trovato, sai già cosa significa.
+        </div>
+        ${stats}
+      </div>`;
+    stopAmbient();
+  }
+
+  // Ferma l'audio sui finali silenziosi
+  if (type === 'nirvana') stopAmbient();
+  if (type === 'quit') stopAmbient();
+}
+
+function playZenSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    [261.63, 329.63, 392.00].forEach((freq, i) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.frequency.value = freq;
+      o.type = 'sine';
+      o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0, ctx.currentTime + i*0.3);
+      g.gain.linearRampToValueAtTime(0.15, ctx.currentTime + i*0.3 + 0.05);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + i*0.3 + 3);
+      o.start(ctx.currentTime + i*0.3);
+      o.stop(ctx.currentTime + i*0.3 + 3);
+    });
+  } catch(e) {}
+}
+function playGlitchSound() {
+  try {
+    const ctx = new (window.AudioContext || window.webkitAudioContext)();
+    for (let i = 0; i < 8; i++) {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.frequency.value = 80 + Math.random()*400;
+      o.type = 'square';
+      o.connect(g); g.connect(ctx.destination);
+      g.gain.setValueAtTime(0.08, ctx.currentTime + i*0.08);
+      g.gain.linearRampToValueAtTime(0, ctx.currentTime + i*0.08 + 0.05);
+      o.start(ctx.currentTime + i*0.08);
+      o.stop(ctx.currentTime + i*0.08 + 0.05);
+    }
+  } catch(e) {}
+}
+function resetStateForNewRun() {
+  iq = 100; minIQ = 100; seconds = 0; newsCount = 0; timestampJumped = false;
+  brainListened = 0; brainListenedStreak = 0; brainIgnored = 0; everIgnored = false;
+  cardsSinceInterruption = 0; recentLoadClicks = []; gameOver = false; totalLoadMore = 0;
+  adClicks = 0; usefulAdClicks = 0; spiritualDebt = 0; adsShown = 0; loadsSinceAd = 0; brainrotLevel = 0; doubleClickStreak = 0; lastLoadClickAt = 0; scrollLossDebt = 0; interruptionCount = 0;
+  mehUsed = []; intUsed = []; peakUsed = []; adUsed = []; quizUsed = []; brainrotUsed = []; lercioUsed = [];
+  scrollReasonIdx = 0;
+  passiveReasonIdx = 0;
+  lastStage = '';
+  feed.innerHTML = '';
+  document.getElementById('app').style.visibility = 'visible';
+  document.getElementById('endingOverlay').className = 'ending-overlay';
+  document.getElementById('endingOverlay').innerHTML = '';
+  document.getElementById('brainOverlay').classList.remove('active');
+  document.getElementById('shopOverlay')?.classList.remove('active');
+  // Bug fix: chiudi anche gli altri overlay possibili (notifica, conversazione, pre-finale)
+  document.getElementById('notifOverlay')?.classList.remove('active');
+  document.getElementById('convOverlay')?.classList.remove('active');
+  document.getElementById('prefinalOverlay')?.classList.remove('active');
+  pendingPromo = null; pendingPromoElement = null;
+  purchaseGateStep = 0; // reset gate confermazione acquisti
+  // v3 reset
+  pressureLevel = 0; eventAt8minDone = false; capitalismoMorphLevel = 0;
+  notificationShown = false; notificationReplied = false; notificationIgnored = false; convInProgress = false;
+  convStep = 0; allQuizConscious = true; noAdsBought = true; brainListenedFirst = false; quizAnsweredCount = 0;
+  noLercioInteracted = true; isFirstBrainShown = true;
+  // SISTEMA reset
+  sistemaCount = 0; sistemaUserId = ''; sistemaMsgUsed = [];
+  fakeCloseClicks = 0;
+  document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
+  document.body.classList.remove('hd-1','hd-2','hd-3','hd-4');
+  document.body.classList.remove('commentary');
+  commentaryClicks = 0; commentaryActive = false;
+  document.getElementById('timerVal').textContent = '00:00';
+  document.getElementById('newsCount').textContent = '0';
+  updateIQDisplay();
+  updateFinalsPill();
+}
+
+function restartGame() {
+  if (mainTimerId) clearInterval(mainTimerId);
+  if (brainTimerId) clearTimeout(brainTimerId);
+  stopAmbient();
+  resetStateForNewRun();
+  init();
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+
+// ── SPLASH SCREEN ────────────────────────────────────────────────────────────
+function showSplash() {
+  isReturningPlayer = !!localStorage.getItem('doomscroll_played');
+  const unlocked = getUnlocked();
+  const st = getStats();
+  const sessionN = (st.sessions || 0) + 1;
+  const inner = document.getElementById('splashInner');
+  if (isReturningPlayer) {
+    const totalTime = st.totalSeconds ? timeStr(st.totalSeconds) : '—';
+    const totalQI   = st.totalQILost  ? st.totalQILost + ' punti' : '—';
+    const totalEuro = st.totalSpent   ? '€' + (st.totalSpent * 7).toFixed(0) : '—';
+    const lastEnd   = st.lastEnding   ? st.lastEnding : null;
+    inner.innerHTML = `
+      <div class="splash-brand">DOOM/SCROLL</div>
+      <div class="splash-headline">sessione ${sessionN}.</div>
+      <div class="splash-rules">
+        <div class="splash-rule highlight">il feed ricorda che sei già stato qui.</div>
+        ${lastEnd ? `<div class="splash-rule">ultima sessione: finale "${lastEnd}".</div>` : ''}
+        <div class="splash-rule">tempo totale perso: ${totalTime}</div>
+        <div class="splash-rule">qi totale sprecato: ${totalQI}</div>
+        <div class="splash-rule">soldi sprecati in acquisti: ${totalEuro}</div>
+        ${unlocked.length > 0 ? `<div class="splash-rule">${unlocked.length}/5 finali sbloccati.</div>` : ''}
+      </div>
+      <button class="splash-cta" onclick="startGame()">ricomincia a scrollare</button>`;
+  } else {
+    inner.innerHTML = `
+      <div class="splash-brand">DOOM/SCROLL</div>
+      <div class="splash-headline">sei il protagonista di un feed che <strong>vuole il tuo QI.</strong></div>
+      <div class="splash-rules">
+        <div class="splash-rule">ogni scroll ti costa qualcosa.</div>
+        <div class="splash-rule">il cervello ti chiederà di smettere. puoi ignorarlo.</div>
+        <div class="splash-rule">ci sono annunci. alcuni sembrano utili.</div>
+        <div class="splash-rule highlight">ci sono 5 finali da scoprire — o evitare.</div>
+      </div>
+      <button class="splash-cta" onclick="startGame()">inizia a scrollare</button>
+      <div class="splash-finals-note">nessun account. nessun registro. solo il feed.</div>`;
+  }
+}
+
+function startGame() {
+  const overlay = document.getElementById('splashOverlay');
+  overlay.classList.add('hiding');
+  setTimeout(() => { overlay.style.display = 'none'; }, 650);
+  localStorage.setItem('doomscroll_played', '1');
+  initAmbient();
+  init();
+}
+
+// ── AMBIENT AUDIO ────────────────────────────────────────────────────────────
+function initAmbient() {
+  try {
+    audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+    ambientGainNode = audioCtx.createGain();
+    ambientGainNode.gain.setValueAtTime(0, audioCtx.currentTime);
+    ambientGainNode.gain.linearRampToValueAtTime(0.06, audioCtx.currentTime + 4);
+    ambientGainNode.connect(audioCtx.destination);
+    // Bass drone
+    const bass = audioCtx.createOscillator();
+    bass.type = 'sine';
+    bass.frequency.setValueAtTime(38, audioCtx.currentTime);
+    const bassGain = audioCtx.createGain();
+    bassGain.gain.value = 0.7;
+    bass.connect(bassGain);
+    bassGain.connect(ambientGainNode);
+    bass.start();
+    ambientOscillators.push(bass);
+    // Sub hum
+    const hum = audioCtx.createOscillator();
+    hum.type = 'triangle';
+    hum.frequency.setValueAtTime(60, audioCtx.currentTime);
+    const humGain = audioCtx.createGain();
+    humGain.gain.value = 0.3;
+    hum.connect(humGain);
+    humGain.connect(ambientGainNode);
+    hum.start();
+    ambientOscillators.push(hum);
+    // Digital noise via buffer
+    const bufferSize = audioCtx.sampleRate * 2;
+    const noiseBuffer = audioCtx.createBuffer(1, bufferSize, audioCtx.sampleRate);
+    const data = noiseBuffer.getChannelData(0);
+    for (let i = 0; i < bufferSize; i++) data[i] = (Math.random() * 2 - 1) * 0.15;
+    const noiseSource = audioCtx.createBufferSource();
+    noiseSource.buffer = noiseBuffer;
+    noiseSource.loop = true;
+    const noiseFilter = audioCtx.createBiquadFilter();
+    noiseFilter.type = 'bandpass';
+    noiseFilter.frequency.value = 800;
+    noiseFilter.Q.value = 0.5;
+    const noiseGain = audioCtx.createGain();
+    noiseGain.gain.value = 0.18;
+    noiseSource.connect(noiseFilter);
+    noiseFilter.connect(noiseGain);
+    noiseGain.connect(ambientGainNode);
+    noiseSource.start();
+    ambientNoise = { source: noiseSource, filter: noiseFilter, gain: noiseGain };
+    ambientStarted = true;
+  } catch(e) {}
+}
+
+function updateAmbient(currentIQ) {
+  if (!ambientStarted || !audioCtx || !ambientGainNode) return;
+  try {
+    const t = audioCtx.currentTime;
+    if (currentIQ >= 60) {
+      ambientGainNode.gain.linearRampToValueAtTime(0.06, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(38, t + 3);
+    } else if (currentIQ >= 40) {
+      ambientGainNode.gain.linearRampToValueAtTime(0.10, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(32, t + 3);
+      if (ambientNoise) ambientNoise.gain.gain.linearRampToValueAtTime(0.28, t + 2);
+    } else if (currentIQ >= 20) {
+      ambientGainNode.gain.linearRampToValueAtTime(0.16, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(26, t + 3);
+      if (ambientNoise) { ambientNoise.filter.frequency.linearRampToValueAtTime(400, t + 2); ambientNoise.gain.gain.linearRampToValueAtTime(0.38, t + 2); }
+    } else {
+      ambientGainNode.gain.linearRampToValueAtTime(0.22, t + 2);
+      if (ambientOscillators[0]) ambientOscillators[0].frequency.linearRampToValueAtTime(18, t + 3);
+      if (ambientNoise) { ambientNoise.filter.frequency.linearRampToValueAtTime(200, t + 2); ambientNoise.gain.gain.linearRampToValueAtTime(0.5, t + 2); }
+    }
+  } catch(e) {}
+}
+
+function stopAmbient() {
+  try {
+    if (ambientGainNode && audioCtx) ambientGainNode.gain.linearRampToValueAtTime(0, audioCtx.currentTime + 1.5);
+  } catch(e) {}
+  ambientStarted = false;
+}
+
+// ── PRESSIONE CRESCENTE ───────────────────────────────────────────────────────
+function checkPressure(s) {
+  if (pressureLevel < 1 && s >= 180) {
+    pressureLevel = 1;
+    showToast('3 minuti. il feed non si preoccupa per te.', 'bad');
+    if (brainTimerId) { clearTimeout(brainTimerId); brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 4000); }
+  }
+  if (pressureLevel < 2 && s >= 300) {
+    pressureLevel = 2;
+    applyFeedDegradation();
+    showToast('5 minuti. il feed sta cambiando.', 'bad');
+  }
+  if (pressureLevel < 3 && s >= 480) {
+    pressureLevel = 3;
+    if (!eventAt8minDone) { eventAt8minDone = true; triggerUniqueEvent(); }
+  }
+}
+
+function applyFeedDegradation() {
+  document.querySelectorAll('.news-card:not(.brainrot-news)').forEach((card, i) => {
+    if (i % 3 === 0) card.style.opacity = '0.85';
+    if (i % 5 === 0) card.style.filter = 'saturate(0.7)';
+  });
+}
+
+function triggerUniqueEvent() {
+  const div = document.createElement('div');
+  div.className = 'news-card pressure-event';
+  div.innerHTML = `
+    <div class="pressure-event-label">// SISTEMA IN MANUTENZIONE NON PIANIFICATA</div>
+    <div class="pressure-event-msg">il feed ha continuato a funzionare per otto minuti.<br>nessuno ha chiesto perché.</div>
+    <div class="pressure-event-sub">questo messaggio non sarà qui la prossima volta. non è un errore.</div>`;
+  const loadBtn = feed.querySelector('.load-more');
+  if (loadBtn) feed.insertBefore(div, loadBtn);
+  else feed.appendChild(div);
+  showToast('evento di sistema registrato.', '');
+}
+
+// ── NOTIFICA INTERRUPT ────────────────────────────────────────────────────────
+function scheduleNotification() {
+  setTimeout(() => {
+    if (!gameOver && !notificationShown) showNotification();
+  }, 240000 + Math.floor(Math.random() * 60000));
+}
+
+function showNotification() {
+  notificationShown = true;
+  document.getElementById('notifOverlay').classList.add('active');
+  if (mainTimerId) clearInterval(mainTimerId);
+}
+
+function ignoreNotification() {
+  notificationIgnored = true;
+  document.getElementById('notifOverlay').classList.remove('active');
+  updateIQ(-5, 'messaggio ignorato. lei aspetta ancora.');
+  showToast('il feed riprende. il messaggio no.', 'bad');
+  resumeAfterNotif();
+  brainrotLevel = Math.max(brainrotLevel, 1);
+  if (brainTimerId) clearTimeout(brainTimerId);
+  brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 3000);
+}
+
+function replyNotification() {
+  document.getElementById('notifOverlay').classList.remove('active');
+  notificationReplied = true;
+  convInProgress = true;
+  convStep = 0;
+  document.getElementById('convOverlay').classList.add('active');
+  // Reset avatar e nome a Giulia
+  document.getElementById('convAvatarImg').src = GIULIA_B64;
+  document.getElementById('convContact').textContent = 'Giulia 🩹❤️';
+  document.getElementById('convStatus').textContent = 'online';
+  const msgs = document.getElementById('convMessages');
+  msgs.innerHTML = '';
+  // Giulia appare nella chat con il messaggio della notifica
+  showTyping(() => {
+    addConvMsg('ma sei vivo?', 'them');
+    setTimeout(() => {
+      showTyping(() => {
+        addConvMsg('ti aspetto ancora al bar', 'them');
+        setTimeout(() => showConvChoices(0), 500);
+      }, 800);
+    }, 400);
+  }, 1000);
+}
+
+const GIULIA_AVATAR = "data:image/jpeg;base64,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";
+const ELISA_AVATAR  = "data:image/jpeg;base64,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";
+
+// CONV_SCRIPT — ogni nodo: them (array di bolle o stringa), choices, end, typing_delay
+// next speciali: 'good' = trigger quit, 'neutral' = chiudi e riprendi, 'elisa1/2/3' = messaggio Elisa
+const CONV_SCRIPT = {
+  // step 0 — apertura (Giulia non ha ancora detto niente nella chat, l'abbiamo vista nella notifica)
+  0: {
+    them: null,
+    choices: [
+      { text: 'scusa, sto arrivando', next: 1 },
+      { text: 'scusa, sto avendo una giornata pesante', next: 4 },
+      { text: 'ah è oggi?', next: 7 },
+    ]
+  },
+
+  // ramo BUONO — "scusa, sto arrivando"
+  1: {
+    them: 'tranquillo, ordino qualcosa intanto ☺️',
+    typingDelay: 900,
+    choices: [
+      { text: 'esco adesso', next: 'good' },
+      { text: 'tipo 20 minuti?', next: 2 },
+      { text: 'in realtà volevo rimandare', next: 3 },
+    ]
+  },
+  2: {
+    them: 'ok ti aspetto',
+    typingDelay: 700,
+    choices: [
+      { text: 'parto adesso', next: 'good' },
+      { text: 'forse meglio rimandare', next: 'neutral' },
+      { text: 'lascia perdere', next: 'elisa1' },
+    ]
+  },
+  3: {
+    them: 'ok.',
+    typingDelay: 2200,
+    choices: null,
+    end: 'neutral'
+  },
+
+  // ramo MEDIO — "scusa, sto avendo una giornata pesante"
+  4: {
+    them: ['vuoi parlarne?', 'sono qui'],
+    typingDelay: 1100,
+    choices: [
+      { text: 'sì, dammi 10 minuti e arrivo', next: 'good' },
+      { text: 'magari domani, ora è troppo', next: 'neutral' },
+      { text: 'lascia stare', next: 'elisa1' },
+    ]
+  },
+
+  // ramo CATTIVO — "ah è oggi?"
+  7: {
+    them: ['...', 'ce l\'avevamo da una settimana'],
+    typingDelay: 1800,
+    choices: [
+      { text: 'hai ragione, scusa. parto adesso', next: 'good' },
+      { text: 'lo so, sto messo male', next: 8 },
+      { text: 'rilassati eh', next: 'elisa2' },
+    ]
+  },
+  8: {
+    them: 'ok.',
+    typingDelay: 2500,
+    choices: null,
+    end: 'neutral'
+  },
+};
+
+const ELISA_MSGS = [
+  null,
+  'hey, non è stato carino. spero che tu abbia qualcosa di abbastanza importante da giustificare questo.',
+  'ok ho parlato con giulia. davvero?',
+  'ti rispondo solo perché qualcuno deve dirtelo: non si fa.',
+];
+
+// ── B3 — conversazione Giulia ────────────────────────────────────────────
+const GIULIA_B64 = "data:image/jpeg;base64,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";
+
+function addConvMsg(text, side) {
+  const msgs = document.getElementById('convMessages');
+  const div = document.createElement('div');
+  div.className = 'conv-msg ' + side;
+  div.textContent = text;
+  msgs.appendChild(div);
+  msgs.scrollTop = msgs.scrollHeight;
+}
+
+function showTyping(callback, delay) {
+  const msgs = document.getElementById('convMessages');
+  const dot = document.createElement('div');
+  dot.className = 'conv-msg them conv-typing';
+  dot.innerHTML = '<span></span><span></span><span></span>';
+  msgs.appendChild(dot);
+  msgs.scrollTop = msgs.scrollHeight;
+  setTimeout(() => {
+    dot.remove();
+    callback();
+  }, delay || 1200);
+}
+
+function showConvChoices(stepKey) {
+  const step = CONV_SCRIPT[stepKey];
+  const choicesEl = document.getElementById('convChoices');
+  choicesEl.innerHTML = '';
+  if (!step || !step.choices) {
+    const endType = (step && step.end) || 'neutral';
+    setTimeout(() => {
+      document.getElementById('convOverlay').classList.remove('active');
+      convInProgress = false;
+      if (endType === 'neutral') resumeAfterNotif();
+    }, 1800);
+    return;
+  }
+  step.choices.forEach(choice => {
+    const btn = document.createElement('button');
+    btn.className = 'conv-choice';
+    btn.textContent = choice.text;
+    btn.onclick = () => advanceConv(choice, stepKey);
+    choicesEl.appendChild(btn);
+  });
+}
+
+function deliverThemMsgs(msgs, callback) {
+  // msgs può essere array di bolle o stringa singola
+  const bubbles = Array.isArray(msgs) ? msgs : [msgs];
+  let i = 0;
+  function next() {
+    if (i >= bubbles.length) { callback(); return; }
+    addConvMsg(bubbles[i++], 'them');
+    if (i < bubbles.length) setTimeout(() => showTyping(next, 600), 400);
+    else setTimeout(callback, 400);
+  }
+  next();
+}
+
+function triggerElisa(level) {
+  const msg = ELISA_MSGS[level];
+  if (!msg) { convInProgress = false; return; }
+  const delay = 5000 + Math.floor(Math.random() * 5000); // 5-10s
+  setTimeout(() => {
+    const notif = document.getElementById('notifOverlay');
+    document.getElementById('notifSender').textContent = 'Elisa';
+    document.getElementById('notifText').textContent = msg;
+    const icon = notif.querySelector('.notif-app-icon');
+    icon.innerHTML = '<img src="' + ELISA_AVATAR + '" style="width:22px;height:22px;border-radius:50%;object-fit:cover">';
+    const actions = notif.querySelector('.notif-actions');
+    actions.innerHTML = '<button class="notif-btn reply" onclick="document.getElementById(\'notifOverlay\').classList.remove(\'active\'); convInProgress=false;">ok</button>';
+    notif.classList.add('active');
+    updateIQ(-5, 'qualcuno ha fatto le tue veci');
+  }, delay);
+}
+
+function advanceConv(choice, fromStep) {
+  addConvMsg(choice.text, 'me');
+  document.getElementById('convChoices').innerHTML = '';
+
+  if (choice.next === 'good') {
+    setTimeout(() => {
+      document.getElementById('convOverlay').classList.remove('active');
+      convInProgress = false;
+      triggerEnding('quit');
+    }, 900);
+    return;
+  }
+
+  if (choice.next === 'neutral') {
+    setTimeout(() => {
+      document.getElementById('convOverlay').classList.remove('active');
+      convInProgress = false;
+      resumeAfterNotif();
+    }, 1200);
+    return;
+  }
+
+  if (String(choice.next).startsWith('elisa')) {
+    const level = parseInt(choice.next.replace('elisa', '')) || 1;
+    setTimeout(() => {
+      document.getElementById('convOverlay').classList.remove('active');
+      triggerElisa(level); // spegne convInProgress dopo Elisa
+      resumeAfterNotif();
+    }, 1000);
+    return;
+  }
+
+  const nextStep = CONV_SCRIPT[choice.next];
+  if (!nextStep) return;
+  const delay = nextStep.typingDelay || 1000;
+
+  setTimeout(() => {
+    if (nextStep.them) {
+      showTyping(() => {
+        deliverThemMsgs(nextStep.them, () => showConvChoices(choice.next));
+      }, delay);
+    } else {
+      showConvChoices(choice.next);
+    }
+  }, 600);
+}
+
+function resumeAfterNotif() {
+  mainTimerId = setInterval(() => {
+    if (gameOver) return;
+    seconds++;
+    // A9 — timestamp che ti tradisce: dopo 5 minuti salta avanti una volta sola
+    if (!timestampJumped && seconds >= 300) {
+      timestampJumped = true;
+      seconds += 420 + Math.floor(Math.random() * 300);
+      setTimeout(() => {
+        if (!gameOver) {
+          const div = document.createElement('div');
+          div.className = 'sistema-card';
+          div.textContent = `[TIMESTAMP] utente_${sistemaUserId} — anomalia registrata.\ntempo di sessione non corrisponde al tempo percepito.\nnessuna azione richiesta.`;
+          feed.appendChild(div);
+        }
+      }, 800);
+    }
+    document.getElementById('timerVal').textContent = timeStr(seconds);
+    if (seconds % 16 === 0) {
+      const reason = PASSIVE_REASONS[passiveReasonIdx % PASSIVE_REASONS.length];
+      passiveReasonIdx++;
+      updateIQ(-1, reason);
+    }
+    checkPressure(seconds);
+    updateAmbient(iq);
+    if (!notificationShown && iq < 55) showNotification();
+    document.getElementById('liveDot').style.opacity = seconds % 2 === 0 ? '1' : '0.3';
+  }, 1000);
+}
+// ── CAPITALISMO MORPH ─────────────────────────────────────────────────────────
+function applyCapitalismoMorph(level) {
+  capitalismoMorphLevel = level;
+  document.body.classList.remove('morph-1','morph-2','morph-3','morph-4');
+  if (level > 0) document.body.classList.add('morph-' + Math.min(level, 4));
+  if (level >= 2) {
+    const w = document.createElement('div');
+    w.className = 'wellness-inject';
+    w.textContent = 'hai acquistato ' + level + ' prodotti per il tuo benessere. il feed registra il tuo percorso verso la lucidità. prossimo passo: piano annuale.';
+    const loadBtn = feed.querySelector('.load-more');
+    if (loadBtn) feed.insertBefore(w, loadBtn);
+  }
+}
+
+// ── PRE-FINALE LINE ───────────────────────────────────────────────────────────
+function generatePreEndingLine() {
+  const mins = Math.floor(seconds / 60);
+  const timeDesc = mins > 0 ? `${mins} minut${mins === 1 ? 'o' : 'i'}` : `${seconds} secondi`;
+  const parts = [];
+  if (adClicks > 0) parts.push(`hai comprato ${adClicks === 1 ? 'una volta' : `${adClicks} volte`}.`);
+  if (brainIgnored > 0) parts.push(`hai ignorato il cervello ${brainIgnored === 1 ? 'una volta' : `${brainIgnored} volte`}.`);
+  if (brainListened > 0) parts.push(`hai ascoltato il cervello ${brainListened === 1 ? 'una volta' : `${brainListened} volte`}.`);
+  parts.push(`hai scrollato per ${timeDesc}.`);
+  if (notificationIgnored) parts.push('non hai risposto al messaggio.');
+  else if (notificationReplied) parts.push('hai risposto al messaggio.');
+  if (newsCount > 30) parts.push(`hai visto ${newsCount} cose.`);
+  return parts.join(' ');
+}
+
+function showPreFinalThenEnding(type) {
+  const line = generatePreEndingLine();
+  const overlay = document.getElementById('prefinalOverlay');
+
+  // Forza il restart dell'animazione: sostituisce il contenitore con un clone pulito.
+  // Senza questo, se il gioco viene rigiocato la seconda volta l'animazione non riparte.
+  const oldText = document.getElementById('prefinalText');
+  const newText = oldText.cloneNode(false);
+  newText.id = 'prefinalText';
+
+  // Dividi il testo in frasi — max 3 righe, ognuna appare con delay scaglionato
+  const sentences = line.split('. ').filter(s => s.trim()).slice(0, 3);
+  newText.innerHTML = sentences.map(s => `<span>${s.endsWith('.') ? s : s + '.'}</span>`).join('');
+  oldText.parentNode.replaceChild(newText, oldText);
+
+  overlay.classList.add('active');
+
+  // 3.8s: abbastanza da leggere 3 frasi, con l'animazione che finisce naturalmente
+  setTimeout(() => {
+    overlay.classList.remove('active');
+    doTriggerEnding(type);
+  }, 3800);
+}
+
+function init() {
+  updateFinalsPill();
+  initSistemaId();
+  // Timer idle: se l'utente non clicca load-more per 90s, SISTEMA appare lo stesso
+  setTimeout(() => {
+    if (!gameOver && sistemaCount === 0) addSistemaCard();
+  }, 90000);
+  // Sessione 2: riconosce il ritorno
+  if (isReturningPlayer) {
+    const st2 = getStats();
+    const sessionN2 = st2.sessions || '?';
+    const lastEnd2  = st2.lastEnding || null;
+    const sub = document.getElementById('appSubtitle');
+    if (sub) sub.innerHTML = `sessione ${sessionN2}. il feed ti aspettava. <span class="pill" id="finalsPill"></span>`;
+    updateFinalsPill();
+    const returnCard = document.createElement('div');
+    returnCard.className = 'news-card peak';
+    const hl = lastEnd2
+      ? `utente noto. ultima sessione: finale "${lastEnd2}". bentornato in quello che non riesci a smettere di fare.`
+      : `utente noto: sessione precedente rilevata. benvenuto di nuovo in quello che non riesci a smettere di fare.`;
+    returnCard.innerHTML = `<div class="news-src">IL FEED — MEMORIA PERSISTENTE</div><div class="news-hl">${hl}</div><div class="news-meta"><span class="news-tag">Sessione ${sessionN2}</span><span class="news-time">adesso</span></div>`;
+    feed.appendChild(returnCard);
+    newsCount++;
+    document.getElementById('newsCount').textContent = newsCount;
+    if (brainTimerId) clearTimeout(brainTimerId);
+    brainTimerId = setTimeout(() => { if (!gameOver) showBrainPopup(); }, 4000);
+  }
+  addNewsCard();
+  addAdCard();
+  for (let i = 0; i < 3; i++) addNewsCard();
+  addQuizCard();
+  addNewsCard();
+  addLoadMore();
+  if (!isReturningPlayer) scheduleNextBrain('neutral');
+  scheduleNotification();
+  mainTimerId = setInterval(() => {
+    if (gameOver) return;
+    seconds++;
+    // A9 — timestamp che ti tradisce: dopo 5 minuti salta avanti una volta sola
+    if (!timestampJumped && seconds >= 300) {
+      timestampJumped = true;
+      seconds += 420 + Math.floor(Math.random() * 300);
+    }
+    document.getElementById('timerVal').textContent = timeStr(seconds);
+    if (seconds % 16 === 0) {
+      const reason = PASSIVE_REASONS[passiveReasonIdx % PASSIVE_REASONS.length];
+      passiveReasonIdx++;
+      updateIQ(-1, reason);
+    }
+    checkPressure(seconds);
+    updateAmbient(iq);
+    if (!notificationShown && iq < 55) showNotification();
+    document.getElementById('liveDot').style.opacity = seconds % 2 === 0 ? '1' : '0.3';
+  }, 1000);
+}
+
+// Tasto Esc chiude le modal aperte (igiene UX): cervello e shop.
+// Non chiude la schermata di finale, che è intenzionalmente bloccante.
+// ── FLUSH command — digita "flush" durante il gioco per resettare tutto ──
+let flushBuffer = '';
+document.addEventListener('keydown', (e) => {
+  if (e.key !== 'Escape') {
+    flushBuffer = (flushBuffer + e.key).slice(-5).toLowerCase();
+    if (flushBuffer === 'flush') { flushBuffer = ''; flushAll(); }
+  }
+  if (e.key !== 'Escape') return;
+  const shop = document.getElementById('shopOverlay');
+  if (shop && shop.classList.contains('active')) { closeProductPage(); return; }
+  const brain = document.getElementById('brainOverlay');
+  if (brain && brain.classList.contains('active')) {
+    // Chiudere il cervello con Esc = ignorarlo. Coerente con la satira.
+    ignoreBrain();
+  }
+});
+
+// Carica contenuto e quiz in parallelo, poi avvia il gioco.
+// Fallback su dati minimi se il fetch fallisce (es. file:// senza server).
+function applyContent(c) {
+  NEWS_MEH               = c.news_meh               || [];
+  NEWS_INTERESTING       = c.news_interesting       || [];
+  NEWS_PEAK              = c.news_peak              || [];
+  NEWS_BRAINROT          = c.news_brainrot          || [];
+  REPEATABLE_NEWS        = c.repeatable_news        || [];
+  EXTRA_MEH_TOPICS       = c.extra_meh_topics       || [];
+  EXTRA_MEH_ENDINGS      = c.extra_meh_endings      || [];
+  EXTRA_INTERESTING      = c.extra_interesting      || [];
+  EXTRA_PEAK             = c.extra_peak             || [];
+  EXTRA_BRAINROT         = c.extra_brainrot         || [];
+  EXTRA_NEWS_MEH_V28     = c.extra_news_meh_v28     || [];
+  EXTRA_NEWS_INTERESTING_V28 = c.extra_news_interesting_v28 || [];
+  EXTRA_NEWS_PEAK_V28    = c.extra_news_peak_v28    || [];
+  EXTRA_NEWS_BRAINROT_V28= c.extra_news_brainrot_v28|| [];
+  FAKE_COMMENTS          = c.fake_comments          || [];
+  BRAIN_MSGS             = c.brain_msgs             || [];
+  BRAIN_IGNORE_MSGS      = c.brain_ignore_msgs      || [];
+  ADS                    = c.ads                    || [];
+  // Nuove chiavi v3.2
+  if (c.sources && c.sources.length)         SOURCES          = c.sources;
+  if (c.times && c.times.length)             TIMES            = c.times;
+  if (c.comment_authors && c.comment_authors.length) COMMENT_AUTHORS = c.comment_authors;
+  if (c.comment_pool && c.comment_pool.length)       COMMENT_POOL    = c.comment_pool;
+  if (c.expansion_descs)                     EXPANSION_DESCS  = c.expansion_descs;
+  if (c.expansion_default && c.expansion_default.length) EXPANSION_DEFAULT = c.expansion_default;
+  if (c.expansion_toasts && c.expansion_toasts.length)   EXPANSION_TOASTS  = c.expansion_toasts;
+  if (c.fake_close_msgs && c.fake_close_msgs.length)     FAKE_CLOSE_MSGS   = c.fake_close_msgs;
+  // Antifascismo: mergia in NEWS_INTERESTING shufflato
+  const antifas = c.news_antifascismo || NEWS_ANTIFASCISMO;
+  NEWS_INTERESTING = NEWS_INTERESTING.concat(antifas).sort(() => Math.random() - 0.5);
+}
+
+const FALLBACK_CONTENT = {
+  news_meh: [["Il mondo continua a esistere nonostante tutto.", "Attualità"],["Nessuna novità rilevante oggi.", "Aggiornamenti"]],
+  brain_msgs: [{mood:'neutral', msgs:['forse è il momento di fermarsi.']}],
+  brain_ignore_msgs: ['capito. il telefono decide per te.'],
+  ads: [{title:'Mindfulness Premium', desc:'La pace interiore in abbonamento mensile.', iq:4, label:'Serenità SaaS'}]
+};
+
+const FALLBACK_QUIZ = [{
+  q: 'Cosa cerchi davvero qui dentro?',
+  opts: [
+    {t: 'Un limite', d: 2, k: 'conscious', fb: 'il cervello ha applaudito piano'},
+    {t: 'Distrazione', d: 0, k: 'neutral', fb: 'onestà basica'},
+    {t: 'Una scusa per non iniziare altro', d: -1, k: 'stupid', fb: 'procrastinazione con feed incorporato'},
+    {t: 'Una ragione esterna per sentirmi così', d: -3, k: 'idiot', fb: 'hai esternalizzato il malessere'}
+  ]
+}];
+
+Promise.allSettled([
+  fetch('content.json').then(r => r.json()),
+  fetch('quizzes.json').then(r => r.json()),
+  fetch('lercio.json').then(r => r.json())
+]).then(([contentRes, quizzesRes, lercioRes]) => {
+  applyContent(contentRes.status === 'fulfilled' ? contentRes.value : FALLBACK_CONTENT);
+  const qData = quizzesRes.status === 'fulfilled' ? quizzesRes.value : FALLBACK_QUIZ;
+  QUIZZES.push(...qData);
+  if (lercioRes.status === 'fulfilled') LERCIO_NEWS.push(...lercioRes.value);
+}).finally(() => {
+  showSplash();
+  // init() viene chiamato da startGame() dopo che l'utente clicca sulla splash
+});
+</script>
+</body>
+</html>
